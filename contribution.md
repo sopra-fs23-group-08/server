@@ -14,5 +14,5 @@
 * 30.3 - 6.4, Serafin, https://github.com/sopra-fs23-group-08/server/issues/56;
 * 30.3 - 6.4, Serafin, https://github.com/sopra-fs23-group-08/server/issues/57;
 
-* 30.3 - 6.4, Yating, https://github.com/sopra-fs23-group-08/client/issues/16;
-* 30.3 - 6.4, Yating, https://github.com/sopra-fs23-group-08/client/issues/18;
+* 30.3 - 6.4, Yating, https://github.com/sopra-fs23-group-08/client/issues/6; implement creating game function, front end part
+* 30.3 - 6.4, Yating, https://github.com/sopra-fs23-group-08/client/issues/4; implement creating game function, front end part
