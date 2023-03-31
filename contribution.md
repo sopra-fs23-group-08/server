@@ -7,7 +7,7 @@
 * 30.3 - 6.4, Jonas, https://github.com/sopra-fs23-group-08/client/issues/1; front-end part
 * 30.3 - 6.4, Jonas, https://github.com/sopra-fs23-group-08/client/issues/36; front-end part
 
-* 30.3 - 6.4, Rolando, https://github.com/sopra-fs23-group-08/server/issues/78;
+* 30.3 - 6.4, Rolando, https://github.com/sopra-fs23-group-08/server/issues/62;
 * 30.3 - 6.4, Rolando, https://github.com/sopra-fs23-group-08/server/issues/80;
 * 30.3 - 6.4, Rolando, https://github.com/sopra-fs23-group-08/server/issues/21;
 
