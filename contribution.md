@@ -9,6 +9,8 @@
 
 * 30.3 - 6.4, Rolando, https://github.com/sopra-fs23-group-08/server/issues/78;
 * 30.3 - 6.4, Rolando, https://github.com/sopra-fs23-group-08/server/issues/80;
+* 30.3 - 6.4, Rolando, https://github.com/sopra-fs23-group-08/server/issues/21;
+
     
 * 30.3 - 6.4, Serafin, https://github.com/sopra-fs23-group-08/server/issues/55;
 * 30.3 - 6.4, Serafin, https://github.com/sopra-fs23-group-08/server/issues/56;
