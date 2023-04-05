@@ -1,6 +1,5 @@
 package ch.uzh.ifi.hase.soprafs23.game;
 
-import java.awt.image.BufferedImage;
 import java.time.Duration;
 import java.util.Date;
 
@@ -8,11 +7,11 @@ public class VideoData {
     public final Integer views;
     public final Integer likes;
     public final String title;
-    public final BufferedImage thumbnail; //immutable ?
+    public final String thumbnail; //immutable ?
     public final Date releaseDate;
     public final Duration videoLength;
 
-    public VideoData(Integer aViews, Integer aLikes, String aTitle, BufferedImage aThumbnail, Date aReleaseDate,
+    public VideoData(Integer aViews, Integer aLikes, String aTitle, String aThumbnail, Date aReleaseDate,
             Duration aVideoLength) {
         views = aViews;
         likes = aLikes;
@@ -36,11 +35,11 @@ class MutableVideoData { //used for mutation and copy stuff
     protected  Integer views;
     protected  Integer likes;
     protected  String title;
-    protected  BufferedImage thumbnail; //immutable ?
+    protected  String thumbnail; //immutable ?
     protected  Date releaseDate;
     protected  Duration videoLength;
 
-    protected MutableVideoData(Integer aViews, Integer aLikes, String aTitle, BufferedImage aThumbnail, Date aReleaseDate,
+    protected MutableVideoData(Integer aViews, Integer aLikes, String aTitle, String aThumbnail, Date aReleaseDate,
             Duration aVideoLength) {
         views = aViews;
         likes = aLikes;
