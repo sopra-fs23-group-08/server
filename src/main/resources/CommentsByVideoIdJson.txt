@@ -1,0 +1,3212 @@
+{
+  "kind": "youtube#commentThreadListResponse",
+  "etag": "45RIOraXwX6s_PEvRS4S6NrNqDY",
+  "nextPageToken": "Z2V0X3JhbmtlZF9zdHJlYW1zLS1Db0VFQ0lBRUZSZTMwVGdhOWdNSzhRTUkyRjhRZ0FRWUJ5TG1BeXRjdWhRMktGSG1ONDRXTHRsQjcybXppTXVFRlVrOHcyMmVSTmd1SVdPazZiRDJJN2RTeHJ5emFBUkZBTGNZQlFxbnpuZXlWREhCNkZMc29nMFJxbUtYaWFzaDFZYTdnbUF6N0xEaFFsSDJ0RmN4T1dvdWlGd2JvMXI3b2hVeXpBTHFoQ0ZSSVZCYW93OGFxcU96SnE3NXdEbnNMWmRZMXB6RmpHYVlyMjNSVXRYVHNPb1lKRUtVS0dNc01oOVdwamVOS0EtWUlWdHlWZ3liX2paM292NllvWkplR3JfTXNBNVQ2TkE4eVExeHd1U1VvVUlTTXotTllGQTF0VXh1Y0dmbVdra2NLazhvVFJOSkpvaTdqWnRyeFIyS0hCbklRS2k5V2p4ZzlvU0pBcW5KRGlKeVpjTk1rcFZRd3JnNm1vbE1LQ0V4Z1pZMm9ZM2s1TENEQTBvbkEyZlliSlR3dEpzMTF2RV9sS3liZExzWU5nYVJqUW5IeHRGMHhTNUdTN3BETWZ1MExVYXNmVWdRdFRFUi1ZU2dJclVCVllUV0JUWnJGeFZXWjFrRXhXQW1vRkZvRXg1bmthT3plZVZoakFWVFVKaEpKRmtVcFdvcEJRbndCTGtJVFFQRGtNb1NuU1ZrbVJTNGdEMFJLQ05JUVZxZFRFYWo2ZjZLblBFaTVFZ1pmb2hvdVlCVE9MUDZrNllXU1BmZWEtSFJiaWxHajN1alZxR0pIR29jVFhZWHhGVUJMTWNEbVVELXhIV1hRaUVqWUpZbkJEdHY4d29TQWd1aXQ2c280UTdOMUJZWmR1a1VKRG1ESEw1VEJJb1d3eDdtdUFpTWlieEFpbWhIX01JSlM5M3lEQkJrRWdjSWh5QVFBUmdBRWdjSWx5QVFZaGdCRWdVSWlDQVlBQklIQ0lVZ0VGOFlBUklIQ0lRZ0VGY1lBUklGQ0lZZ0dBQVNCUWlKSUJnQUdBRQ==",
+  "pageInfo": {
+    "totalResults": 100,
+    "resultsPerPage": 100
+  },
+  "items": [
+    {
+      "kind": "youtube#commentThread",
+      "etag": "Ek63X6iofaAT6_CyCQPwLVIDJ-E",
+      "id": "UgyhfPR0V-9cingMxQ94AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "uXkq7tfG1jb053r1drscDFljYZ0",
+          "id": "UgyhfPR0V-9cingMxQ94AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Thank you all so much for listening and leaving such kind messages in the comments. We created a Spotify/Apple playlist inspired by this mix with some new songs we know you&#39;ll love. ?\u003cbr\u003eListen here: \u003ca href=\"https://listen.settle.fm/chill-lofi-mix\"\u003ehttps://listen.settle.fm/chill-lofi-mix\u003c/a\u003e\u003cbr\u003e\u003cbr\u003eMix Tracklist: \u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=00m00s\"\u003e00:00\u003c/a\u003e] Sutton – Lunch Break\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=01m47s\"\u003e01:47\u003c/a\u003e] Noji – Exhale\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=03m59s\"\u003e03:59\u003c/a\u003e] home grown – out of office\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=05m49s\"\u003e05:49\u003c/a\u003e] Hazue – Bloom\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=07m47s\"\u003e07:47\u003c/a\u003e] swiftly – happy place\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=09m28s\"\u003e09:28\u003c/a\u003e] Thymes – Free as a Bird\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=11m42s\"\u003e11:42\u003c/a\u003e] Noji – On My Way\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=13m57s\"\u003e13:57\u003c/a\u003e] Midnight Hour – Wanderlust\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=15m27s\"\u003e15:27\u003c/a\u003e] Sutton – Holiday\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=17m16s\"\u003e17:16\u003c/a\u003e] Ninn Tendo – Let’s Fly Away\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=18m57s\"\u003e18:57\u003c/a\u003e] Noji – Sultry\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=20m36s\"\u003e20:36\u003c/a\u003e] Kid City – Down by the Lake\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=22m35s\"\u003e22:35\u003c/a\u003e] Hazue – Motion\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=24m21s\"\u003e24:21\u003c/a\u003e] drowsy – homelands\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=26m20s\"\u003e26:20\u003c/a\u003e] Ninn Tendo – Beyond Reach\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=28m29s\"\u003e28:29\u003c/a\u003e] Sutton – Breezy\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=30m20s\"\u003e30:20\u003c/a\u003e] Lé Mon – Memory Lane\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=32m36s\"\u003e32:36\u003c/a\u003e] Sutton – Brighter Days\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=34m18s\"\u003e34:18\u003c/a\u003e] Midnight Hour – Soul Searching\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=36m02s\"\u003e36:02\u003c/a\u003e] home grown - dunes\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=37m52s\"\u003e37:52\u003c/a\u003e] drowsy – cozy\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=39m59s\"\u003e39:59\u003c/a\u003e] Kid City – Evening Walk\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=42m04s\"\u003e42:04\u003c/a\u003e] swiftly – leap of faith\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=43m48s\"\u003e43:48\u003c/a\u003e] Hazue – No Rush\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=45m38s\"\u003e45:38\u003c/a\u003e] Thymes – Daylight\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=47m26s\"\u003e47:26\u003c/a\u003e] Revoir – All By Myself\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=49m28s\"\u003e49:28\u003c/a\u003e] wide awake – evergreen\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=51m18s\"\u003e51:18\u003c/a\u003e] home grown – getaway\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=53m28s\"\u003e53:28\u003c/a\u003e] swiftly – daydreaming\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=55m30s\"\u003e55:30\u003c/a\u003e] wide awake – seize the day\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=57m49s\"\u003e57:49\u003c/a\u003e] drowsy – lost world\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h00m12s\"\u003e1:00:12\u003c/a\u003e] Kid City – Don’t Look Down\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h02m03s\"\u003e1:02:03\u003c/a\u003e] Hazue – Rest\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h04m26s\"\u003e1:04:26\u003c/a\u003e] swiftly – a late night\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h06m20s\"\u003e1:06:20\u003c/a\u003e] home grown – End of the Road\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h08m09s\"\u003e1:08:09\u003c/a\u003e] Lé Mon – Beauty\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h09m59s\"\u003e1:09:59\u003c/a\u003e] Midnight Hour – Serenity Now\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h11m59s\"\u003e1:11:59\u003c/a\u003e] drowsy – Earl Grey\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h13m51s\"\u003e1:13:51\u003c/a\u003e] swiftly – escapism\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h15m43s\"\u003e1:15:43\u003c/a\u003e] Hazue – Into The Night\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h17m32s\"\u003e1:17:32\u003c/a\u003e] Sutton – Pristine\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h19m43s\"\u003e1:19:43\u003c/a\u003e] Revoir, Ninn Tendo - Drift\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h21m44s\"\u003e1:21:44\u003c/a\u003e] swiftly – still falls the rain\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h23m40s\"\u003e1:23:40\u003c/a\u003e] drowsy – The Final Phase\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h26m13s\"\u003e1:26:13\u003c/a\u003e] Lé Mon – Sunset in Chicago\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h28m08s\"\u003e1:28:08\u003c/a\u003e] Sutton – High Springs \r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h30m18s\"\u003e1:30:18\u003c/a\u003e] Kid City – Breakfast in Bed\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h32m10s\"\u003e1:32:10\u003c/a\u003e] Hazue, Sutton, home grown – Scotch and Soda\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h34m36s\"\u003e1:34:36\u003c/a\u003e] Lé Mon – Sunrise in Paris\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h36m38s\"\u003e1:36:38\u003c/a\u003e] Kid City – Hike\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h38m52s\"\u003e1:38:52\u003c/a\u003e] Ninn Tendo, Noji – Ocean Breeze\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h41m10s\"\u003e1:41:10\u003c/a\u003e] Hazue &amp; Lé Mon – Remember\r\u003cbr\u003e[\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h43m01s\"\u003e1:43:01\u003c/a\u003e] home grown – Palms of Jupiter",
+            "textOriginal": "Thank you all so much for listening and leaving such kind messages in the comments. We created a Spotify/Apple playlist inspired by this mix with some new songs we know you'll love. ?\nListen here: https://listen.settle.fm/chill-lofi-mix\n\nMix Tracklist: \n[00:00] Sutton – Lunch Break\r\n[01:47] Noji – Exhale\r\n[03:59] home grown – out of office\r\n[05:49] Hazue – Bloom\r\n[07:47] swiftly – happy place\r\n[09:28] Thymes – Free as a Bird\r\n[11:42] Noji – On My Way\r\n[13:57] Midnight Hour – Wanderlust\r\n[15:27] Sutton – Holiday\r\n[17:16] Ninn Tendo – Let’s Fly Away\r\n[18:57] Noji – Sultry\r\n[20:36] Kid City – Down by the Lake\r\n[22:35] Hazue – Motion\r\n[24:21] drowsy – homelands\r\n[26:20] Ninn Tendo – Beyond Reach\r\n[28:29] Sutton – Breezy\r\n[30:20] Lé Mon – Memory Lane\r\n[32:36] Sutton – Brighter Days\r\n[34:18] Midnight Hour – Soul Searching\r\n[36:02] home grown - dunes\r\n[37:52] drowsy – cozy\r\n[39:59] Kid City – Evening Walk\r\n[42:04] swiftly – leap of faith\r\n[43:48] Hazue – No Rush\r\n[45:38] Thymes – Daylight\r\n[47:26] Revoir – All By Myself\r\n[49:28] wide awake – evergreen\r\n[51:18] home grown – getaway\r\n[53:28] swiftly – daydreaming\r\n[55:30] wide awake – seize the day\r\n[57:49] drowsy – lost world\r\n[1:00:12] Kid City – Don’t Look Down\r\n[1:02:03] Hazue – Rest\r\n[1:04:26] swiftly – a late night\r\n[1:06:20] home grown – End of the Road\r\n[1:08:09] Lé Mon – Beauty\r\n[1:09:59] Midnight Hour – Serenity Now\r\n[1:11:59] drowsy – Earl Grey\r\n[1:13:51] swiftly – escapism\r\n[1:15:43] Hazue – Into The Night\r\n[1:17:32] Sutton – Pristine\r\n[1:19:43] Revoir, Ninn Tendo - Drift\r\n[1:21:44] swiftly – still falls the rain\r\n[1:23:40] drowsy – The Final Phase\r\n[1:26:13] Lé Mon – Sunset in Chicago\r\n[1:28:08] Sutton – High Springs \r\n[1:30:18] Kid City – Breakfast in Bed\r\n[1:32:10] Hazue, Sutton, home grown – Scotch and Soda\r\n[1:34:36] Lé Mon – Sunrise in Paris\r\n[1:36:38] Kid City – Hike\r\n[1:38:52] Ninn Tendo, Noji – Ocean Breeze\r\n[1:41:10] Hazue & Lé Mon – Remember\r\n[1:43:01] home grown – Palms of Jupiter",
+            "authorDisplayName": "Settle",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/dl19pP2rM_VyLyU4p70Rn05zle60B27870wKQkGvELpAiWAgBFSmL_TXX2sskD3IuCACAGb1fg=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCkKT4qf-TcPFOmpqhTawrGA",
+            "authorChannelId": {
+              "value": "UCkKT4qf-TcPFOmpqhTawrGA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 139,
+            "publishedAt": "2023-02-25T12:11:24Z",
+            "updatedAt": "2023-03-15T08:50:41Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 18,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "BcRMGOFfIZZexJktWmGpJkPdOhs",
+      "id": "UgzINiCN3zIwu2zuoJ14AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "BHy54n7xJrF8rZj1BY08g1ei3Cs",
+          "id": "UgzINiCN3zIwu2zuoJ14AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "love this, beautiful mix settle &lt;3",
+            "textOriginal": "love this, beautiful mix settle \u003c3",
+            "authorDisplayName": "the bootleg boy",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/_RIV9EvUkGWKxwLShysfajw_38KtMBXbZfcTnW-tBx9P8Q0X0kccnQGSlBcFeeAGwYBjLlL60A=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC0fiLCwTmAukotCXYnqfj0A",
+            "authorChannelId": {
+              "value": "UC0fiLCwTmAukotCXYnqfj0A"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 230,
+            "publishedAt": "2022-10-03T17:16:27Z",
+            "updatedAt": "2022-10-03T17:16:27Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 13,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "OBUF1jL8eW55hcP6-WKIWRn0puc",
+      "id": "Ugxo1v5yXLrBnQmwAOB4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "uqSktrH2v0bDeuMrAmZjPcokPng",
+          "id": "Ugxo1v5yXLrBnQmwAOB4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "So smooth, so chill, love this!",
+            "textOriginal": "So smooth, so chill, love this!",
+            "authorDisplayName": "Fernanda Gomez",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/9x1dsgk87Dw5OrKduCKiMQWbjrnyXPa2mrjXTCYsSxtzhPNMFc3mP_LaqGCct2-8pkrwe6Xt=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCusPTw_occwkDa6XfAMF6Dg",
+            "authorChannelId": {
+              "value": "UCusPTw_occwkDa6XfAMF6Dg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 4,
+            "publishedAt": "2023-03-30T16:18:49Z",
+            "updatedAt": "2023-03-30T16:18:49Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "SPaFOzlYugXElD4FUWEJ1Q1Hlgs",
+      "id": "Ugzy3f4LIC2q4dWrH054AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "8r_zrmnqxMKan0F_PvHjZpFMzeo",
+          "id": "Ugzy3f4LIC2q4dWrH054AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "All right it took me a while but here&#39;s the tracklist! Please like this comment to bring it to the top and help me correct any mistakes.\u003cbr\u003e\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=00m00s\"\u003e00:00\u003c/a\u003e\tSutton  - Lunch Break\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=01m46s\"\u003e01:46\u003c/a\u003e\tNoji - Exhale\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=03m59s\"\u003e03:59\u003c/a\u003e\thome grown - out of office\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=05m48s\"\u003e05:48\u003c/a\u003e\tHazue - Bloom\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=07m46s\"\u003e07:46\u003c/a\u003e\tswiftly - happy place\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=09m27s\"\u003e09:27\u003c/a\u003e\tThymes - Free as a Bird\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=11m40s\"\u003e11:40\u003c/a\u003e\tNoji - On My Way\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=13m57s\"\u003e13:57\u003c/a\u003e\tMidnight Hour - Wanderlust\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=15m27s\"\u003e15:27\u003c/a\u003e\tSutton - Holiday\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=17m16s\"\u003e17:16\u003c/a\u003e\tNinn Tendo - Let&#39;s Fly Away\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=19m09s\"\u003e19:09\u003c/a\u003e\tNoji - Sultry\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=20m36s\"\u003e20:36\u003c/a\u003e\tKid City - Down by the Lake\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=22m34s\"\u003e22:34\u003c/a\u003e\tHazue - Motion\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=24m21s\"\u003e24:21\u003c/a\u003e\tdrowsy - homelands\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=26m20s\"\u003e26:20\u003c/a\u003e\tNinn Tendo - Beyond Reach\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=28m29s\"\u003e28:29\u003c/a\u003e\tSutton - Breezy\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=30m19s\"\u003e30:19\u003c/a\u003e\tLé Mon - Memory Lane\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=32m36s\"\u003e32:36\u003c/a\u003e\tSutton - Brighter Days\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=34m18s\"\u003e34:18\u003c/a\u003e\tMidnight Hour - Soul Searching\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=36m26s\"\u003e36:26\u003c/a\u003e\thome grown - dunes\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=37m52s\"\u003e37:52\u003c/a\u003e\tdrowsy - cozy\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=39m58s\"\u003e39:58\u003c/a\u003e\tKid City - Evening Walk\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=42m04s\"\u003e42:04\u003c/a\u003e\tswiftly - leap of faith\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=43m48s\"\u003e43:48\u003c/a\u003e\tHazue - No Rush\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=45m37s\"\u003e45:37\u003c/a\u003e\tThymes - Daylight\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=47m26s\"\u003e47:26\u003c/a\u003e\tRevoir - All By Myself\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=49m40s\"\u003e49:40\u003c/a\u003e\twide awake - evergreen\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=51m41s\"\u003e51:41\u003c/a\u003e\thome grown - getaway\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=53m52s\"\u003e53:52\u003c/a\u003e\tswiftly - daydreaming\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=55m30s\"\u003e55:30\u003c/a\u003e\twide awake - seize the day\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=57m49s\"\u003e57:49\u003c/a\u003e\tdrowsy - lost world\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h00m11s\"\u003e1:00:11\u003c/a\u003e\tKid City - Don&#39;t Look Down\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h02m03s\"\u003e1:02:03\u003c/a\u003e\tHazue - Rest\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h04m26s\"\u003e1:04:26\u003c/a\u003e\tswiftly - a late night\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h06m20s\"\u003e1:06:20\u003c/a\u003e\thome grown - End of the Road\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h08m09s\"\u003e1:08:09\u003c/a\u003e\tLé Mon - Beauty\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h09m54s\"\u003e1:09:54\u003c/a\u003e\tMidnight Hour - Serenity Now\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h11m58s\"\u003e1:11:58\u003c/a\u003e\tdrowsy - Earl Grey\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h13m51s\"\u003e1:13:51\u003c/a\u003e\tswiftly - escapism\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h15m43s\"\u003e1:15:43\u003c/a\u003e\tHazue - Into The Night\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h17m32s\"\u003e1:17:32\u003c/a\u003e\tSutton - Pristine\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h19m42s\"\u003e1:19:42\u003c/a\u003e\tRevoir, Ninn Tendo - Drift\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h21m45s\"\u003e1:21:45\u003c/a\u003e\tswiftly - still falls the rain\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h23m40s\"\u003e1:23:40\u003c/a\u003e\tdrowsy - The Final Phase\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h26m13s\"\u003e1:26:13\u003c/a\u003e\tLé Mon - Sunset in Chicago\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h28m07s\"\u003e1:28:07\u003c/a\u003e\tSutton - High Springs\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h30m17s\"\u003e1:30:17\u003c/a\u003e\tKid City - Breakfast in Bed\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h32m10s\"\u003e1:32:10\u003c/a\u003e\tHazue, Sutton, home grown - Scotch and Soda\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h34m36s\"\u003e1:34:36\u003c/a\u003e\tLé Mon - Sunrise in Paris\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h36m38s\"\u003e1:36:38\u003c/a\u003e\tKid City - Hike\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h38m52s\"\u003e1:38:52\u003c/a\u003e\tNinn Tendo, Noji - Ocean Breeze\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h41m10s\"\u003e1:41:10\u003c/a\u003e\tHazue, Le Mon - Remember\r\u003cbr\u003e\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=1h43m00s\"\u003e1:43:00\u003c/a\u003e\thome grown - Palms Of Jupiter",
+            "textOriginal": "All right it took me a while but here's the tracklist! Please like this comment to bring it to the top and help me correct any mistakes.\n\n00:00\tSutton  - Lunch Break\r\n01:46\tNoji - Exhale\r\n03:59\thome grown - out of office\r\n05:48\tHazue - Bloom\r\n07:46\tswiftly - happy place\r\n09:27\tThymes - Free as a Bird\r\n11:40\tNoji - On My Way\r\n13:57\tMidnight Hour - Wanderlust\r\n15:27\tSutton - Holiday\r\n17:16\tNinn Tendo - Let's Fly Away\r\n19:09\tNoji - Sultry\r\n20:36\tKid City - Down by the Lake\r\n22:34\tHazue - Motion\r\n24:21\tdrowsy - homelands\r\n26:20\tNinn Tendo - Beyond Reach\r\n28:29\tSutton - Breezy\r\n30:19\tLé Mon - Memory Lane\r\n32:36\tSutton - Brighter Days\r\n34:18\tMidnight Hour - Soul Searching\r\n36:26\thome grown - dunes\r\n37:52\tdrowsy - cozy\r\n39:58\tKid City - Evening Walk\r\n42:04\tswiftly - leap of faith\r\n43:48\tHazue - No Rush\r\n45:37\tThymes - Daylight\r\n47:26\tRevoir - All By Myself\r\n49:40\twide awake - evergreen\r\n51:41\thome grown - getaway\r\n53:52\tswiftly - daydreaming\r\n55:30\twide awake - seize the day\r\n57:49\tdrowsy - lost world\r\n1:00:11\tKid City - Don't Look Down\r\n1:02:03\tHazue - Rest\r\n1:04:26\tswiftly - a late night\r\n1:06:20\thome grown - End of the Road\r\n1:08:09\tLé Mon - Beauty\r\n1:09:54\tMidnight Hour - Serenity Now\r\n1:11:58\tdrowsy - Earl Grey\r\n1:13:51\tswiftly - escapism\r\n1:15:43\tHazue - Into The Night\r\n1:17:32\tSutton - Pristine\r\n1:19:42\tRevoir, Ninn Tendo - Drift\r\n1:21:45\tswiftly - still falls the rain\r\n1:23:40\tdrowsy - The Final Phase\r\n1:26:13\tLé Mon - Sunset in Chicago\r\n1:28:07\tSutton - High Springs\r\n1:30:17\tKid City - Breakfast in Bed\r\n1:32:10\tHazue, Sutton, home grown - Scotch and Soda\r\n1:34:36\tLé Mon - Sunrise in Paris\r\n1:36:38\tKid City - Hike\r\n1:38:52\tNinn Tendo, Noji - Ocean Breeze\r\n1:41:10\tHazue, Le Mon - Remember\r\n1:43:00\thome grown - Palms Of Jupiter",
+            "authorDisplayName": "IndieRodo",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/PcuMv7WhPWfhZnWHQ9emNHFmjXdxsMAiDY0PJXTSY0-5w_1jqNef9ui3hSUyw1FSf5fWI7aQ=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC98MVElt6Y7Q_zhYojKPFfw",
+            "authorChannelId": {
+              "value": "UC98MVElt6Y7Q_zhYojKPFfw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 97,
+            "publishedAt": "2023-03-14T22:14:49Z",
+            "updatedAt": "2023-03-14T22:14:49Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 10,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "4DiXuXdz5gOFVQc-rchQvVtPopA",
+      "id": "UgzFM7aoxmmfTktAuFp4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "uZ-tTxkIQ52-7oZfWCBrurNMmac",
+          "id": "UgzFM7aoxmmfTktAuFp4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "I swear whenever I read Lofi video comments, I realize that the Lofi community is the best community, people are so nice, and I believe that peace exists here. I love you all guys??",
+            "textOriginal": "I swear whenever I read Lofi video comments, I realize that the Lofi community is the best community, people are so nice, and I believe that peace exists here. I love you all guys??",
+            "authorDisplayName": "LoFi BOii",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/xnC1G5cPVX5RhZxEgakOpzEwLhDkytSDpTDCaAZx9d9cgoO0D7bvs5DowHkvYCmKH6yf_K2Fyw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC24EalcLbsU7CsQ7xZcGOcQ",
+            "authorChannelId": {
+              "value": "UC24EalcLbsU7CsQ7xZcGOcQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2023-04-03T07:28:45Z",
+            "updatedAt": "2023-04-03T07:28:45Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "j7vzsmhs738iyrFiUlpAHE7Qirk",
+      "id": "UgxldFSLQynttILV-bJ4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "jS1lLPm7XOcebquX7cdOfoAjNSY",
+          "id": "UgxldFSLQynttILV-bJ4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Amazing playlist, love it!",
+            "textOriginal": "Amazing playlist, love it!",
+            "authorDisplayName": "Basia Jarkiewicz",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJV7aIosWyLeK4tjWjnTolDEiZ-1qOLvW4LniTHJjZM=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCG6uOgKkwF3yCSXra8TPL5Q",
+            "authorChannelId": {
+              "value": "UCG6uOgKkwF3yCSXra8TPL5Q"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2023-03-30T08:13:56Z",
+            "updatedAt": "2023-03-30T08:13:56Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "_6f5u7whNFYqm9Ohd6URbl9BjWY",
+      "id": "Ugxt_g6IyJSt14Ve3nR4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "AUgHEC7hJW0AhI2VrkysN3yxNCc",
+          "id": "Ugxt_g6IyJSt14Ve3nR4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This track is the perfect background music for studying or relaxing. The beats and melodies are so soothing.",
+            "textOriginal": "This track is the perfect background music for studying or relaxing. The beats and melodies are so soothing.",
+            "authorDisplayName": "Bliss",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/Ua8IMJWY8sl_aOct1gkhhluQZ0DDYHlpsg3oP_8ITWhaxCs-QcOWa5mJ7RN_2bspLfjYF34B3w=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UClJPiox_6IGlp_OXjue6KgA",
+            "authorChannelId": {
+              "value": "UClJPiox_6IGlp_OXjue6KgA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 85,
+            "publishedAt": "2023-01-16T19:30:42Z",
+            "updatedAt": "2023-01-16T19:30:42Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 2,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "GuYGMM1ZEufNZ1yl0su4hO82Fkw",
+      "id": "UgxgnAgMDudI3qv1iVN4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "XWrC3xUiOvr_NGymvVlULtaG94Y",
+          "id": "UgxgnAgMDudI3qv1iVN4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "For the  people reading this comment, I hope you become successful in your life",
+            "textOriginal": "For the  people reading this comment, I hope you become successful in your life",
+            "authorDisplayName": "Relaxing Music BGM",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/34x6PcPiSh5Ufi99fPFSYHfdBhmeods8S-IgD9gxVHKgVAeXfRUNYzmGSoPkZeMDFJ1k068V=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCd__cw-aiOdl8O1KTkQMa0w",
+            "authorChannelId": {
+              "value": "UCd__cw-aiOdl8O1KTkQMa0w"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 1358,
+            "publishedAt": "2022-09-08T05:46:03Z",
+            "updatedAt": "2022-09-08T05:46:03Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 135,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "4lZu65ASlbRcA2U514lk4LxGliI",
+      "id": "UgzizRFrIOFBvIqXhhl4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "VSifO2cBV4iRsRPVdv1VDvI2yVM",
+          "id": "UgzizRFrIOFBvIqXhhl4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This mix has been a lifesaver today. It&#39;s helped me with trying to stay calm while work is really busy. Some of the best calming lo-fi stuff I&#39;ve found in ages. Great job and thanks.",
+            "textOriginal": "This mix has been a lifesaver today. It's helped me with trying to stay calm while work is really busy. Some of the best calming lo-fi stuff I've found in ages. Great job and thanks.",
+            "authorDisplayName": "Jason Lee",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJXZfH1oA2uvLemYrJy28pcxXBpyS_Q8zpgsvg=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCZr8sjoN9lDL4sALkKr8pJA",
+            "authorChannelId": {
+              "value": "UCZr8sjoN9lDL4sALkKr8pJA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 311,
+            "publishedAt": "2022-09-01T18:00:27Z",
+            "updatedAt": "2022-09-01T18:00:27Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 10,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "57R9gg17k-4XYEM0PwjUT91uI40",
+      "id": "UgyXXyP71_ZNWWJt-G14AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "StwwQ8DowNSD8ypTMItpNsF4xHc",
+          "id": "UgyXXyP71_ZNWWJt-G14AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "How calming this is..there is nothing better than letting something like this go in the evening and sinking into peace",
+            "textOriginal": "How calming this is..there is nothing better than letting something like this go in the evening and sinking into peace",
+            "authorDisplayName": "In The Meantime",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ftB4qv4Yb9wblT5UHWWrlBs93ynZMzUDxFR78zl-f4yNpATrCy4ST62LZ-wNYgjalI5-3lXMBg=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCFpyrmJEFJjrwHfGHxomV3w",
+            "authorChannelId": {
+              "value": "UCFpyrmJEFJjrwHfGHxomV3w"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 67,
+            "publishedAt": "2022-09-28T00:15:23Z",
+            "updatedAt": "2022-09-28T00:15:23Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 3,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "DiuvipEliQmWDeTdx7DWGs95yXs",
+      "id": "UgyyPnIsCHWhdUdG2hR4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "o-2-qz919xqV6jjxN-Q7wu7QFxI",
+          "id": "UgyyPnIsCHWhdUdG2hR4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Hope you&#39;re feeling great today and enjoying the music. Let&#39;s make the most of this day and make it one to remember!",
+            "textOriginal": "Hope you're feeling great today and enjoying the music. Let's make the most of this day and make it one to remember!",
+            "authorDisplayName": "CALM",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/9-fNpa9VpmCJJjGfSHssTlhtmgjFyUsARLc2XD2yW_k92LGB74GrjLrlJMPoA-g_NdXICdS5hA=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCb0ofZPOKpi7Lk0Rxor8P7g",
+            "authorChannelId": {
+              "value": "UCb0ofZPOKpi7Lk0Rxor8P7g"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 5,
+            "publishedAt": "2023-03-16T15:29:55Z",
+            "updatedAt": "2023-03-16T15:29:55Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "v0e7QDWa9RHziHcDN5yUJxN2C0g",
+      "id": "UgxGjZVQ96gDJcGv4lh4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "A_Mh2HfaVDuiWrn8w8mNx6FJCuk",
+          "id": "UgxGjZVQ96gDJcGv4lh4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Sendo sincero amigos ja na segunda musica tocada me  arrepiei com o som, estou aqui estudando e me degustando desses sons maravilhosos",
+            "textOriginal": "Sendo sincero amigos ja na segunda musica tocada me  arrepiei com o som, estou aqui estudando e me degustando desses sons maravilhosos",
+            "authorDisplayName": "Fred Miller",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVNuPl03PWRayVn1K6vEr6GYWoXS1naZz5NoQHV9JpJi1_4UZp4skP85dVD_UWp=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCf06gyDF1gI2iHjnioQotdA",
+            "authorChannelId": {
+              "value": "UCf06gyDF1gI2iHjnioQotdA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 5,
+            "publishedAt": "2023-03-10T21:43:08Z",
+            "updatedAt": "2023-03-10T21:43:08Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "Jr-9VTv1SSE-mvPnP8obb__mtuk",
+      "id": "Ugx9o1jDFyuc2uS1Nhh4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "vAqU8ILOft9UTO378osloWpCjp8",
+          "id": "Ugx9o1jDFyuc2uS1Nhh4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Hace una semana que terminé el bachillerato, ahora estoy juntando y guardando todos los cuadernos que use durante este año, mientras escucho esta música, y bro...\u003cbr\u003eLa nostalgia y la melancolía que me da pensar en lo que pasé este año y en todos los anteriores.",
+            "textOriginal": "Hace una semana que terminé el bachillerato, ahora estoy juntando y guardando todos los cuadernos que use durante este año, mientras escucho esta música, y bro...\nLa nostalgia y la melancolía que me da pensar en lo que pasé este año y en todos los anteriores.",
+            "authorDisplayName": "Bazan Marco",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVCD-wdE1JYZW_9dHTsYRtszo0HYGjUpCenAw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC0ALKppFog3c6tJBODupieQ",
+            "authorChannelId": {
+              "value": "UC0ALKppFog3c6tJBODupieQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 45,
+            "publishedAt": "2022-12-11T17:31:00Z",
+            "updatedAt": "2022-12-11T17:31:52Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "0MzCEb696rL2M3mc-j5Qv1YHxZI",
+      "id": "UgwSQgwew3QHWz28Ncl4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "EcJYZrTeoQ5vQXTIdV3HYS1DrbE",
+          "id": "UgwSQgwew3QHWz28Ncl4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This Chill Lofi Mix is fantastic! The combination of chill lo-fi hip hop beats is so relaxing and calming. The music is the perfect background for studying, working, or just relaxing. The visuals in the video are also lovely and add to the overall chill vibe. I love how this mix takes me on a journey and helps me to escape from the world for a little while. Great job to everyone involved in creating this beautiful piece of art!\u003ca href=\"about:invalid#zCSafez\"\u003e\u003c/a\u003e",
+            "textOriginal": "This Chill Lofi Mix is fantastic! The combination of chill lo-fi hip hop beats is so relaxing and calming. The music is the perfect background for studying, working, or just relaxing. The visuals in the video are also lovely and add to the overall chill vibe. I love how this mix takes me on a journey and helps me to escape from the world for a little while. Great job to everyone involved in creating this beautiful piece of art!",
+            "authorDisplayName": "Princess Dreams MC",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/uoNW_itqIqxpRn0i0IC0VK7nUH3slHJshFzympVJFiBeT9wvh410n7D4ns-1mHlDMaglG96L=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCT-PASsuqaPLnUkRb30130w",
+            "authorChannelId": {
+              "value": "UCT-PASsuqaPLnUkRb30130w"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 16,
+            "publishedAt": "2023-02-10T18:04:32Z",
+            "updatedAt": "2023-02-10T18:04:32Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 2,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "NZTIysXnl25W5h9pPA6hRXDcVkY",
+      "id": "UgwoR2DSvJnf3h4zx0F4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "UuMItJWbwKvYLJrpYV2HcZ0mD_c",
+          "id": "UgwoR2DSvJnf3h4zx0F4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "The gentle beats and melodies wrap around me like a warm blanket, soothing my mind and helping me find my center. &lt;3",
+            "textOriginal": "The gentle beats and melodies wrap around me like a warm blanket, soothing my mind and helping me find my center. \u003c3",
+            "authorDisplayName": "youngle",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/0G1djGDPOhaxEPbdeU4xMQHyo4ZGd3_3ijBRI07dqMDZQZqzJn8q53zxR_7xhQwH7n-Ro8n6Vw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCleQpx3GFr3QKTd3Evq9pcw",
+            "authorChannelId": {
+              "value": "UCleQpx3GFr3QKTd3Evq9pcw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 5,
+            "publishedAt": "2023-03-23T20:44:24Z",
+            "updatedAt": "2023-03-23T20:44:24Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "F8bRwDlHdbMykpmXZ0J6-PJryzw",
+      "id": "UgyvAEQYSCj-vBAo7JF4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "u4rE6kTOINAHcSPCm17u8ajqRYw",
+          "id": "UgyvAEQYSCj-vBAo7JF4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "A Cozy chilled late night vibe with this. I can work on my PC all night listening to this.",
+            "textOriginal": "A Cozy chilled late night vibe with this. I can work on my PC all night listening to this.",
+            "authorDisplayName": "Ivory Design Trading",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/9oTefRA1YQd9CNx7NSce2BhAYv6Y8RmIHS7z6QYRI45RL8tS-fyebpArzR1CG5kuCbKDCnDuNQ=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC5DLFglIA_-gTw5RvVLumZg",
+            "authorChannelId": {
+              "value": "UC5DLFglIA_-gTw5RvVLumZg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 47,
+            "publishedAt": "2022-09-15T06:44:18Z",
+            "updatedAt": "2022-09-15T06:44:18Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "lbftTMxhmHmtoxNIDbEDWFVa9L0",
+      "id": "UgydQjxtrZ_-9okG4eN4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "9WzkoHzVYNom03jKvRhS_TC5mCE",
+          "id": "UgydQjxtrZ_-9okG4eN4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Um dos melhores seleções de lofi! É relax, ajuda a ler, até meditar!",
+            "textOriginal": "Um dos melhores seleções de lofi! É relax, ajuda a ler, até meditar!",
+            "authorDisplayName": "Ludimilla Ferreira",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/mzBVAWojuPbVOwkEz-atFDoSZaGXHXuuqXs5hKL1E7dEx_tQGvjUVTo_t010d_mf86M9Sh_3=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCJVHoLst9kBkljiS8CjhuHA",
+            "authorChannelId": {
+              "value": "UCJVHoLst9kBkljiS8CjhuHA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 20,
+            "publishedAt": "2022-12-03T12:28:09Z",
+            "updatedAt": "2022-12-03T12:28:09Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "0873ReRGEgSj4dgc9yAY-nB1z_8",
+      "id": "Ugwjvf6F2Y68VMbImXV4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "FD1-pbSefcIUTM3V1MmPasvy7Fk",
+          "id": "Ugwjvf6F2Y68VMbImXV4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Danke für die Atmosphäre??",
+            "textOriginal": "Danke für die Atmosphäre??",
+            "authorDisplayName": "Barbara Roberts",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/_FRqgSgsetWQpbkZ2MhDsE1rNJQciKkiHCDtTK-nS4-NzpWcb6z-wqCecDlkEVkhj8qCKqU2RGY=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCb4_ZDK085mBloUPOU5pdlA",
+            "authorChannelId": {
+              "value": "UCb4_ZDK085mBloUPOU5pdlA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2023-03-30T18:26:02Z",
+            "updatedAt": "2023-03-30T18:26:02Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "Lpy_uqyqB4lreL7y3IQVw9GW8lQ",
+      "id": "UgyYSDIq5GNtOo1Z9Gd4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "gQUR84tSwMcjtJse-53l9lq5QC4",
+          "id": "UgyYSDIq5GNtOo1Z9Gd4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "???? This chill lo-fi mix with hip hop beats is absolutely beautiful! The mellow tunes and smooth beats create the perfect atmosphere for relaxation and contemplation. I love how the music is so serene and introspective, it really helps me unwind and reflect. Thank you for sharing this fantastic creation with us ? Keep up the excellent work, it&#39;s a true gem for anyone who loves lo-fi music! ??",
+            "textOriginal": "???? This chill lo-fi mix with hip hop beats is absolutely beautiful! The mellow tunes and smooth beats create the perfect atmosphere for relaxation and contemplation. I love how the music is so serene and introspective, it really helps me unwind and reflect. Thank you for sharing this fantastic creation with us ? Keep up the excellent work, it's a true gem for anyone who loves lo-fi music! ??",
+            "authorDisplayName": "Mighty Music Zoo",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/aRFud27LluUyzdnN8t745wwwAADKPrbJltydgnZxWS08ou8MHOaISXMG_1xo1kVGfs3bMXYd-A=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCDHyYnOiWUYKfg4ktc-qJog",
+            "authorChannelId": {
+              "value": "UCDHyYnOiWUYKfg4ktc-qJog"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 13,
+            "publishedAt": "2023-02-16T09:18:50Z",
+            "updatedAt": "2023-02-16T09:18:50Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "vUHNZbaDmwiabYeQAsOBmx3r_0g",
+      "id": "UgwOH32JmdmHBI-4VTJ4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "WYXafr8zTEl46ow2Av9HtdwI_dc",
+          "id": "UgwOH32JmdmHBI-4VTJ4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This has literally been my go to mix for over a month now to sleep.. I have extreme issues with not being able to shut my mind down after 14-16 hr work days, and this is perfect for me to get back into that calm, collected state of mind. Thank you!",
+            "textOriginal": "This has literally been my go to mix for over a month now to sleep.. I have extreme issues with not being able to shut my mind down after 14-16 hr work days, and this is perfect for me to get back into that calm, collected state of mind. Thank you!",
+            "authorDisplayName": "Sam Bryant",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJX83pMIC2nTJILgXgQJS_5FSYdcYSnmNhensQ=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCBpVyYIT_Mm-gV8pviHBR_w",
+            "authorChannelId": {
+              "value": "UCBpVyYIT_Mm-gV8pviHBR_w"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 52,
+            "publishedAt": "2022-10-25T03:28:00Z",
+            "updatedAt": "2022-10-25T03:28:00Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 9,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "t39N7xs9RJ_CDo1PHUsDwUxZi7k",
+      "id": "UgxHzYF4W64RQ76EHeJ4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "PWaov3bQdvuUeRIDopxPUxbLIo4",
+          "id": "UgxHzYF4W64RQ76EHeJ4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "The beats in this lofi music are so smooth and calming, it&#39;s like a warm blanket for my ears",
+            "textOriginal": "The beats in this lofi music are so smooth and calming, it's like a warm blanket for my ears",
+            "authorDisplayName": "Pixelated Lofi",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/XU5BJp2X-4TYvzzUtNB9E9QiHO4nxHjcUYR7BsFOuqm-ePZZyIJmJDLfN-UguTEwqhIk8jr2uq4=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCGqhAF8vyXoDczS--11HIaw",
+            "authorChannelId": {
+              "value": "UCGqhAF8vyXoDczS--11HIaw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 22,
+            "publishedAt": "2023-01-27T20:55:15Z",
+            "updatedAt": "2023-01-27T20:55:15Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "AoiCJ4c2XAwYtNn6kRVWZyuDS-w",
+      "id": "UgzjZzXYFoPLl6GsNf14AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "2YYHrZ3cRfum7HYWClAZMLgMYfY",
+          "id": "UgzjZzXYFoPLl6GsNf14AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "One of my favorite playlists to play for my class during independent work. Thank you for this!",
+            "textOriginal": "One of my favorite playlists to play for my class during independent work. Thank you for this!",
+            "authorDisplayName": "Haley Sands",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/8G78yZ2mYXAPBBIpAVekgVJu1_evW5f45GslohU-cmWOtyYxST1o3Bih00AsRzqraVmoSrtc=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCINnvW8uWtb0CQdrMxOf0hQ",
+            "authorChannelId": {
+              "value": "UCINnvW8uWtb0CQdrMxOf0hQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 61,
+            "publishedAt": "2022-09-29T19:21:11Z",
+            "updatedAt": "2022-09-29T19:21:11Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "DxCk2TWToptwPY45C0g_v06oCHE",
+      "id": "UgyPZ_SH6t5F0fACBsp4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "B_JKFtux6rpIwT2bCAO3B2RK8ak",
+          "id": "UgyPZ_SH6t5F0fACBsp4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This music is like a warm hug for the soul. It&#39;s so soothing and peaceful. Thank you for creating something so beautiful. ?",
+            "textOriginal": "This music is like a warm hug for the soul. It's so soothing and peaceful. Thank you for creating something so beautiful. ?",
+            "authorDisplayName": "Orous key",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/MQXVCUxdBR8TinEUxrzZtcbkFAjqZxrzQYl7x4CPOw_reiWemgwtRVLGHiVuPYEz6DNyvsLCMG0=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCw84Y9bbenZKyrJA-SLtQAA",
+            "authorChannelId": {
+              "value": "UCw84Y9bbenZKyrJA-SLtQAA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 29,
+            "publishedAt": "2023-02-05T15:21:01Z",
+            "updatedAt": "2023-02-05T15:21:01Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "8PHFfCmV_AF4Wkz-_NuS29195Jk",
+      "id": "Ugwh4RDMY2ZVW4TVetd4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "x62yt_Zdx1qiVKbSmOz9gz1dGOg",
+          "id": "Ugwh4RDMY2ZVW4TVetd4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "this is a great playlist, would love to have song names included too. thanks for putting this together",
+            "textOriginal": "this is a great playlist, would love to have song names included too. thanks for putting this together",
+            "authorDisplayName": "Nathan Tarino",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWvk-OXpXYQf9nG9oaa3XoFt7aPEGl2wys598KTJnD-io71dbUfOw9J8YFfbQQZ=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCUn52wPzPjyf6mEqprM33dQ",
+            "authorChannelId": {
+              "value": "UCUn52wPzPjyf6mEqprM33dQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 53,
+            "publishedAt": "2022-11-22T18:19:40Z",
+            "updatedAt": "2022-11-22T18:19:40Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 2,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "LXK__NvVVsFxW0upXs45DdAKX7s",
+      "id": "Ugx1T0-mjXm37Sm4Ff94AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "u1W6PA6mn-i2Rw14PILgEfbs2gk",
+          "id": "Ugx1T0-mjXm37Sm4Ff94AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "T\u003ca href=\"about:invalid#zCSafez\"\u003e\u003c/a\u003eo everyone who&#39;s studying with this music:\r\u003cbr\u003eChecklist: \r\u003cbr\u003e• A bottle of water, at least 1liter. Your brain works better if it has enough water and drinking helps you to concentrate?\r\u003cbr\u003e\r\u003cbr\u003e• Your charger. You sometimes don&#39;t even notice that your device&#39;s battery is going down, so better have it plugged in all the time?\r\u003cbr\u003e\r\u003cbr\u003e• Your headphones. You will be able to focus more with headphones, because it blocks background noises. Also, if it&#39;s a late night study session, you won&#39;t wake up anyone?\r\u003cbr\u003e\r\u003cbr\u003e• a tea or coffee. Coffee keeps you awake, green or black tea can make you feel more awake as well.?\r\u003cbr\u003e\r\u003cbr\u003e• Your study/work stuff:  your laptop/tablet/phone , a few pens, paper or whatever you need.?\r\u003cbr\u003e\r\u003cbr\u003e•Anything else you could need, what about a heat pad, a blanket, a good lamp, your pet so you have a study buddy ?",
+            "textOriginal": "To everyone who's studying with this music:\r\nChecklist: \r\n• A bottle of water, at least 1liter. Your brain works better if it has enough water and drinking helps you to concentrate?\r\n\r\n• Your charger. You sometimes don't even notice that your device's battery is going down, so better have it plugged in all the time?\r\n\r\n• Your headphones. You will be able to focus more with headphones, because it blocks background noises. Also, if it's a late night study session, you won't wake up anyone?\r\n\r\n• a tea or coffee. Coffee keeps you awake, green or black tea can make you feel more awake as well.?\r\n\r\n• Your study/work stuff:  your laptop/tablet/phone , a few pens, paper or whatever you need.?\r\n\r\n•Anything else you could need, what about a heat pad, a blanket, a good lamp, your pet so you have a study buddy ?",
+            "authorDisplayName": "Music Vibes Station",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/bD-lVhUku4ejQwTm4N0Y0oUUHMHQIHoXdMKSnX61zJSbe-ItSw5Y5fVZFounEvj7u6FODrmhpw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCy1CVFOHVg9-CheCdoSdqFg",
+            "authorChannelId": {
+              "value": "UCy1CVFOHVg9-CheCdoSdqFg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 121,
+            "publishedAt": "2023-01-05T05:02:35Z",
+            "updatedAt": "2023-01-05T05:02:35Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 4,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "fAGMu37J_3J--M-ZlYHf8scQhME",
+      "id": "UgwjWzaP5zxbfvjdCjB4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "A6f3YPs7q-rIIA8hDFzzbY4Eq4w",
+          "id": "UgwjWzaP5zxbfvjdCjB4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This is so so great. Just wish the visual was a little bit animated.?",
+            "textOriginal": "This is so so great. Just wish the visual was a little bit animated.?",
+            "authorDisplayName": "Lofi Scene",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/JZCPupFHKqabHhESPtziSVT-OHLZXxZUSsew6tTCQXqnOvIE4DukpucKHKf3H5ZXeikufzIV5Q=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCQfTZWHKbB82vDIXXMjACPg",
+            "authorChannelId": {
+              "value": "UCQfTZWHKbB82vDIXXMjACPg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 208,
+            "publishedAt": "2023-01-31T08:15:28Z",
+            "updatedAt": "2023-01-31T08:15:28Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 2,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "a--hrfUnAzZafgPS3lcfc9WnZzk",
+      "id": "UgxR9YEFPdfoFhSPwlh4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "kCbeoFd2n3ijsTV4UhXvjkahLdM",
+          "id": "UgxR9YEFPdfoFhSPwlh4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This video just gave me the motivation I needed today! The lofi beat and inspiring visuals are the perfect combination. Thank you for sharing",
+            "textOriginal": "This video just gave me the motivation I needed today! The lofi beat and inspiring visuals are the perfect combination. Thank you for sharing",
+            "authorDisplayName": "DolceLofi Lounge",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ozt5S8Jpbd5FogCDAVYd7-A-CB0do2QTgFGgxhaCK9LA6V_VjbeBbtk3x778_Zyc0mzgPjeVWQ=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCI-XhulbiHv_H3nxusgcRag",
+            "authorChannelId": {
+              "value": "UCI-XhulbiHv_H3nxusgcRag"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 13,
+            "publishedAt": "2023-02-04T20:49:13Z",
+            "updatedAt": "2023-02-04T20:49:13Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "K5Zl930ifONP5G8D5yACSSb9fC8",
+      "id": "Ugw3klgjJBptpy7TjJl4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "p7fXHfH8iyhlPyUtsMcSuZk7H80",
+          "id": "Ugw3klgjJBptpy7TjJl4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This sound is so wonderful. The person who is reading this comment , i wish you great success , health, love and happiness!!!",
+            "textOriginal": "This sound is so wonderful. The person who is reading this comment , i wish you great success , health, love and happiness!!!",
+            "authorDisplayName": "Ghibli 1 Hours Relaxation",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/g_K8N7nbtrCThjtqeE4jokdOXKrYJiHnXXhkyzC95O5s-cuMjw8MEDsbTm0HuOH-8JzTe4Pfuw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCryfvA5UJe-IxhT4I_aq9cQ",
+            "authorChannelId": {
+              "value": "UCryfvA5UJe-IxhT4I_aq9cQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 34,
+            "publishedAt": "2023-02-09T08:37:35Z",
+            "updatedAt": "2023-02-09T08:37:35Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 2,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "DgGBQcqlr3qAimCnW1V_SeR89Hw",
+      "id": "Ugw4PrOr1JCL-uoGoK14AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "tzkVS5Or0hOi7d5J4IiC-RzM1qg",
+          "id": "Ugw4PrOr1JCL-uoGoK14AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "One of the most chilling lofi track i&#39;ve ever heard",
+            "textOriginal": "One of the most chilling lofi track i've ever heard",
+            "authorDisplayName": "KayYu Lang Thang",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVh3i2t-KzeM9XtyaGD7TvuyFdD0CuTtB2xBEG0JqM=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC3SESo1kc46j8vqLUxQ-TCg",
+            "authorChannelId": {
+              "value": "UC3SESo1kc46j8vqLUxQ-TCg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 49,
+            "publishedAt": "2022-08-30T06:21:37Z",
+            "updatedAt": "2022-08-30T06:21:37Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 2,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "ecJdtbrNij2dC-vuOYu99FswALI",
+      "id": "UgyAjEa6jZDHu5qd0HR4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "ytgbb3M54_3XqahB2SXbRPNGGk4",
+          "id": "UgyAjEa6jZDHu5qd0HR4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "The fact that you watched this video means you&#39;re trying, and let me tell you that&#39;s more than enough, I&#39;m proud of you",
+            "textOriginal": "The fact that you watched this video means you're trying, and let me tell you that's more than enough, I'm proud of you",
+            "authorDisplayName": "Chill Radio",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/WObwKlgQ6v752Ys_YqRPWMVcncafclPUlXqGiPa2NfDuZhJZeMeI5rCfWd280Fufz3-3OeBCww=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCQSwLVSNqDFa1zLlaXAPgjA",
+            "authorChannelId": {
+              "value": "UCQSwLVSNqDFa1zLlaXAPgjA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 829,
+            "publishedAt": "2022-10-06T03:23:14Z",
+            "updatedAt": "2022-10-06T03:23:14Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 54,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "SgWHg9OJXrMpym_nF_fe6e8LTEE",
+      "id": "UgwWxPj_xE-nvBAoPPB4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "0dNVkSwO6eL9-SfoZHkGrI7iT9I",
+          "id": "UgwWxPj_xE-nvBAoPPB4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Today is my Birthday.? its about 60 degrees F here in Southern Indiana. Just made brunch for myself and enjoyed it outside at my picnic table under the Sun, listening to this. Over head was an Adult Hawk teaching its young one how to Fly. \u003cbr\u003e\u003cbr\u003eThe World is shitty at times, but boys and girls, Life IS Good. \u003cbr\u003e\u003cbr\u003eTake it easy. ?",
+            "textOriginal": "Today is my Birthday.? its about 60 degrees F here in Southern Indiana. Just made brunch for myself and enjoyed it outside at my picnic table under the Sun, listening to this. Over head was an Adult Hawk teaching its young one how to Fly. \n\nThe World is shitty at times, but boys and girls, Life IS Good. \n\nTake it easy. ?",
+            "authorDisplayName": "Isaac C...",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/gTF3Q7a1kWTonIg8_Nkfqxuhltpfi6ws1SUm-CKWojBGdWhDCIYzfpHGnjMC0GjmLfqTqA_x=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UClQx706tzees6FJxURam6xA",
+            "authorChannelId": {
+              "value": "UClQx706tzees6FJxURam6xA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2023-03-26T16:16:01Z",
+            "updatedAt": "2023-03-26T16:16:01Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "VWWEkihZ-49sFRecKA-rsRoMWH4",
+      "id": "UgxfTNtyUA5qShT-NL94AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "XcgiM8fvUVuYW0gbL4oL_FXJ5Mo",
+          "id": "UgxfTNtyUA5qShT-NL94AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This reminds me of a long ride in Big Bend I took with a few friends last month. This long melodic mix had me in my feels and into some deep thoughts.      Nice two-hour mix.",
+            "textOriginal": "This reminds me of a long ride in Big Bend I took with a few friends last month. This long melodic mix had me in my feels and into some deep thoughts.      Nice two-hour mix.",
+            "authorDisplayName": "Terry McCloud",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWflInJT3JevwGCNCgXLlDYuSLbHyvtUsFh88aedQ=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCpOZkHwsjL-zyiMyWvI7pnw",
+            "authorChannelId": {
+              "value": "UCpOZkHwsjL-zyiMyWvI7pnw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 5,
+            "publishedAt": "2023-02-15T17:07:58Z",
+            "updatedAt": "2023-02-15T17:07:58Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "uGqtBvCtQASkHOjLZTSte8HA7Tk",
+      "id": "UgyE3NZWCRH08bIJhr54AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "ostE0fS4mqzLvlOLvk92ahA5W04",
+          "id": "UgyE3NZWCRH08bIJhr54AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "To whoever is reading this : I am proud of you! If everyone knew what you are going thru right now, they wouldn’t believe how you’re still standing. But here you are : strong, amazing and doing your absolute best ,surviving anything that comes in your way and I couldn’t ask for more. If you haven’t heard this for anyone : keep fighting ,I am so proud of you ! I know how much strength it takes to keep pushing through but believe me when I tell you that all those sleepless nights will soon be paid off ? you’re almost there don’t give up!",
+            "textOriginal": "To whoever is reading this : I am proud of you! If everyone knew what you are going thru right now, they wouldn’t believe how you’re still standing. But here you are : strong, amazing and doing your absolute best ,surviving anything that comes in your way and I couldn’t ask for more. If you haven’t heard this for anyone : keep fighting ,I am so proud of you ! I know how much strength it takes to keep pushing through but believe me when I tell you that all those sleepless nights will soon be paid off ? you’re almost there don’t give up!",
+            "authorDisplayName": "Lotus Melody",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/mGCj5psGNybHGiLyJe9-I5qIO-dlm30Rs3KSs0RXKxBZex4xZpFynD58fVRJPjpkJm-DyOVek_g=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCrQ0-mGTYG5cqw9gERHPIbA",
+            "authorChannelId": {
+              "value": "UCrQ0-mGTYG5cqw9gERHPIbA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 75,
+            "publishedAt": "2022-09-28T08:40:06Z",
+            "updatedAt": "2022-09-28T08:40:06Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 10,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "IVFBluGonhpuIWidM74TxBEb-sI",
+      "id": "Ugxols-K0Y7HkP9JN3d4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "OV4nhjO4HaCgz53AuUS050iSoSA",
+          "id": "Ugxols-K0Y7HkP9JN3d4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "JUST A REMINDER-NO MORE READING COMMENTS GET BACK TO STUDYING AND STOP AVOIDING THE WORK!!!  Have fun studying everyone :) YOU GOT THIS!! ? Nice track settle ;D",
+            "textOriginal": "JUST A REMINDER-NO MORE READING COMMENTS GET BACK TO STUDYING AND STOP AVOIDING THE WORK!!!  Have fun studying everyone :) YOU GOT THIS!! ? Nice track settle ;D",
+            "authorDisplayName": "Snooze Tunez Lofi ",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/chcqWmpMjyoJROWOb8KArOpf1QqVrNmIbWsP9pc1tjVc4DEYXTRfjslOzKRwB9Js2GNOF9up=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCyKhLQGDdzrFLJh4Nx82y0g",
+            "authorChannelId": {
+              "value": "UCyKhLQGDdzrFLJh4Nx82y0g"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 8,
+            "publishedAt": "2023-02-22T01:24:51Z",
+            "updatedAt": "2023-02-22T01:24:51Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "D866SYfC0fscevLfOMoAs7-EbyM",
+      "id": "UgxO5yOPq2v7TSXHoF14AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "tG9X8vWyzMgvdMFlQzBtRLvMHXM",
+          "id": "UgxO5yOPq2v7TSXHoF14AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This playlist kept me relaxed and focused and mellow while completing a tedious task that I had been putting off. Thanks for the chill vibes. ???",
+            "textOriginal": "This playlist kept me relaxed and focused and mellow while completing a tedious task that I had been putting off. Thanks for the chill vibes. ???",
+            "authorDisplayName": "Marilyn Perez",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/BCu_W-5F-f_i0B4Fq6gyImJPcOZ7qtEqktLz0LYRpp24ZvkfVUZeGKzZVpfDEgD8OwJcMo0Lc8E=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCaMp24TmF2dQ2A5l2jaFu0Q",
+            "authorChannelId": {
+              "value": "UCaMp24TmF2dQ2A5l2jaFu0Q"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 5,
+            "publishedAt": "2023-02-20T07:58:02Z",
+            "updatedAt": "2023-02-20T07:58:02Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 2,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "VaajqmCL2C0qkewnRimZn2m7-Bo",
+      "id": "UgzBzgw4SHx7iPkbL5t4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "_ZjHZ4AvHNeyuFfLOmlWxK0yd1M",
+          "id": "UgzBzgw4SHx7iPkbL5t4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Lovely set! And everyone listening, keep up the good work! You got this!",
+            "textOriginal": "Lovely set! And everyone listening, keep up the good work! You got this!",
+            "authorDisplayName": "Mellow Minds",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/KX8wKQQ44RNHupiEICdqyamTkqv8_Hm8X0lccTkhueRL30ux3qZwf0JubCUlXeQcQ27ZUD7snH8=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCEnc5E9-CnTAsCDloOufk3A",
+            "authorChannelId": {
+              "value": "UCEnc5E9-CnTAsCDloOufk3A"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 4,
+            "publishedAt": "2023-03-08T16:37:49Z",
+            "updatedAt": "2023-03-08T16:37:49Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "bnUSXR0IyzJ-PlVL6WG2TYkQZiA",
+      "id": "UgwexFhMyXZLjrFy2cN4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "9qjxQoss-urQsHHaD5XhngAeGqg",
+          "id": "UgwexFhMyXZLjrFy2cN4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "After reading about the benefits of these instrumental sounds I couldn&#39;t stop listening, concentration improves a lot!",
+            "textOriginal": "After reading about the benefits of these instrumental sounds I couldn't stop listening, concentration improves a lot!",
+            "authorDisplayName": "Rest Your Mind",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/dzMK-vDByH9lA8AFR4YZ7JyUKSSQ9puVoA_f3UFts_OM-n3wsuA_OdhLuF_xF5ATtY-5mav0LA=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCvTkL60-EK_gSTmKMdqehZA",
+            "authorChannelId": {
+              "value": "UCvTkL60-EK_gSTmKMdqehZA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 50,
+            "publishedAt": "2022-10-18T01:00:20Z",
+            "updatedAt": "2022-10-18T01:00:20Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 2,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "qigTCQ_je4TFpSKI383YzGpasMo",
+      "id": "Ugz9mZkn4M1Dt_OLdTp4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "x3A93k-gH39mteyE2PmjQaXep2g",
+          "id": "Ugz9mZkn4M1Dt_OLdTp4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "\u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=51m18s\"\u003e51:18\u003c/a\u003e absolutely love this one.  \u003cbr\u003eThere should be a track list for this",
+            "textOriginal": "51:18 absolutely love this one.  \nThere should be a track list for this",
+            "authorDisplayName": "Humble 9300",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJW1SrQNfqcSt4410J-PTciwfFsKYVmCRFLTbS5J=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC16dYNbYOL2s5m_oteRkOhA",
+            "authorChannelId": {
+              "value": "UC16dYNbYOL2s5m_oteRkOhA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 22,
+            "publishedAt": "2022-12-05T22:00:06Z",
+            "updatedAt": "2022-12-05T22:00:06Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 2,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "kAkj7XuVQQp39-aP9t6lnGsmL4w",
+      "id": "Ugxz5N-3_30Wb_PjFlJ4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "4Jfr1qJ_jkUNteEvWSlZYUVOFVE",
+          "id": "Ugxz5N-3_30Wb_PjFlJ4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "your lofi playlists rly help me stay focused, been using these playlists for weeks. Thanks a lot!",
+            "textOriginal": "your lofi playlists rly help me stay focused, been using these playlists for weeks. Thanks a lot!",
+            "authorDisplayName": "Hita D",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/c_hKhVDIwzi0vAzEIQYhhQCit3QA23RPJDMZDqnY-izR3F6R-iFps8w4XqACtrVfZYOam6OQOA=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCcgq6R2lqTM0grEPbkqWR4g",
+            "authorChannelId": {
+              "value": "UCcgq6R2lqTM0grEPbkqWR4g"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 3,
+            "publishedAt": "2023-03-06T12:14:27Z",
+            "updatedAt": "2023-03-06T12:14:27Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "g2zRbuST_mOlphVTaJAmVX6b5mg",
+      "id": "Ugyf1JlVUON-G0DkTzZ4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "3NJPDykBCcw7a1qXIRmHclrXuu8",
+          "id": "Ugyf1JlVUON-G0DkTzZ4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Essa compilação é maravilhosa!!",
+            "textOriginal": "Essa compilação é maravilhosa!!",
+            "authorDisplayName": "Marco Guilherme",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWA9Hz7wZ2CCR3SL3gPz6R5uxzQ7sl5wmNySFGOKQ=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCLhAqNjpLY5cn1CHzgcwkQg",
+            "authorChannelId": {
+              "value": "UCLhAqNjpLY5cn1CHzgcwkQg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 3,
+            "publishedAt": "2023-03-09T14:44:26Z",
+            "updatedAt": "2023-03-09T14:44:26Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "1r4B-fw8yXXqOUHQM1Q7onjKRX8",
+      "id": "UgzdjBdM6JtIbeO_zQ54AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "_uUPBFKjh_4JfQjLwfZcPabH-o8",
+          "id": "UgzdjBdM6JtIbeO_zQ54AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Such a creative approach to lofi music - really enjoying it!",
+            "textOriginal": "Such a creative approach to lofi music - really enjoying it!",
+            "authorDisplayName": "Ethereal Oasis",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/UcRlFrl5R2N2-rnBFfWS1C-6Hzf3mpBunjU_pnLgwiPA10qrXUV01NTyo2u_MLnNn0XPn_UF2A=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCvTzDFRFHTyKyOeu6ile_3Q",
+            "authorChannelId": {
+              "value": "UCvTzDFRFHTyKyOeu6ile_3Q"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 3,
+            "publishedAt": "2023-02-25T15:55:41Z",
+            "updatedAt": "2023-02-25T15:55:41Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "2MCkMVqUc9J-IeYI-_alpji4re4",
+      "id": "UgxdOOLtr_WuGIM9ZRV4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "Dj0MTrr2XPabOruomQ8rXPwETf8",
+          "id": "UgxdOOLtr_WuGIM9ZRV4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "So good. So smooth, So chill. I play this everyday while i&#39;m working.",
+            "textOriginal": "So good. So smooth, So chill. I play this everyday while i'm working.",
+            "authorDisplayName": "Gui D",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWmubKlytnBtZNaaDw1TxpbchYjFkh42bp8CsxmQuZsoBC6_3xcCvt6vxiNJ5OS=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCPvNld0HNuLEic6jhlcoRkQ",
+            "authorChannelId": {
+              "value": "UCPvNld0HNuLEic6jhlcoRkQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 33,
+            "publishedAt": "2023-01-25T09:26:19Z",
+            "updatedAt": "2023-01-25T09:26:19Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "5kxYISB7z6g0TfCnhXX4tDolR44",
+      "id": "UgwnvUXtAYu514mbvhZ4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "9E7VP50HsuHZ0f434oNhPwHCsfg",
+          "id": "UgwnvUXtAYu514mbvhZ4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Thanks for the calming playlist! It helped me with my mental health ??\u003cbr\u003eAnd also, my evenings are nothing now without this music ??",
+            "textOriginal": "Thanks for the calming playlist! It helped me with my mental health ??\nAnd also, my evenings are nothing now without this music ??",
+            "authorDisplayName": "xmoonrise",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/0ruT8UYsi1MESvZL7FNRs8HRdAdd-MKkfr3JFJUs2F8y0zbvhl8D7dwg2-66Pvho1VAIe5HHojM=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC6fT83EJqFYqQoOKPqBwHFg",
+            "authorChannelId": {
+              "value": "UC6fT83EJqFYqQoOKPqBwHFg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 8,
+            "publishedAt": "2023-02-13T18:21:59Z",
+            "updatedAt": "2023-02-13T18:25:55Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "_SPQY0cTmeBVwZceeg0vgA_LpZw",
+      "id": "UgyxtDw3HojUBXdrBZt4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "Xv8VcKgs1T_f673bInXFAPrbkXM",
+          "id": "UgyxtDw3HojUBXdrBZt4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "I love the botanicals. I love that visual aspect of it. The imagery alone kinda puts me in a place of zen. I would love more garden, indoor garden, or just plant based thematical compilations. Good work on this~",
+            "textOriginal": "I love the botanicals. I love that visual aspect of it. The imagery alone kinda puts me in a place of zen. I would love more garden, indoor garden, or just plant based thematical compilations. Good work on this~",
+            "authorDisplayName": "Ion Gray",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/IqAJGERONsjkvIfOcGf1PQBU2dB9NB33-pJ97NE8yPUMfHUT1X715foEZngDoFocOU1VBU-6=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC892xRXC_wP_2qFXqRl_jdg",
+            "authorChannelId": {
+              "value": "UC892xRXC_wP_2qFXqRl_jdg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 25,
+            "publishedAt": "2023-01-08T17:33:54Z",
+            "updatedAt": "2023-01-08T17:33:54Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 2,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "DmAjhX7ptG42IQgoEBkB33nMYTQ",
+      "id": "Ugx1CDQeSlHeFr4by1R4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "K4Qizm1x6UhYPPtwCZd5OjdnivU",
+          "id": "Ugx1CDQeSlHeFr4by1R4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "You know it is a nice mix when only after an hour of working you realize that you were listening to music all along",
+            "textOriginal": "You know it is a nice mix when only after an hour of working you realize that you were listening to music all along",
+            "authorDisplayName": "Gvidas Pocius",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJXJ0YyCFfW8zY0Koym6WDVG8OBK074xq11G-FOWzw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC1lxLXVT0RZ1vHITWm2gyQw",
+            "authorChannelId": {
+              "value": "UC1lxLXVT0RZ1vHITWm2gyQw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 12,
+            "publishedAt": "2023-01-13T10:40:40Z",
+            "updatedAt": "2023-01-13T10:40:40Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "vqIUsHO0tbWiBtr4Hrlm_C6k1Jc",
+      "id": "UgynHMfado81Do6bIet4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "k-OyiIQ2x7G38osnPLU2cLUQjiM",
+          "id": "UgynHMfado81Do6bIet4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Beautiful relaxing and calming sounds, I really enjoyed this amazing atmosphere! Great work",
+            "textOriginal": "Beautiful relaxing and calming sounds, I really enjoyed this amazing atmosphere! Great work",
+            "authorDisplayName": "Gemma Studio",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/OvNWiJi0r4MvTMbOg3J3Mh9Xp8j5L9Q9oXGwQ1BOnlur0a-k2YewS0g11RGP1dIIkfdQWQNPMAk=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCNNlYixWQP6Rol8_X57bvwA",
+            "authorChannelId": {
+              "value": "UCNNlYixWQP6Rol8_X57bvwA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 11,
+            "publishedAt": "2023-01-30T04:55:01Z",
+            "updatedAt": "2023-01-30T04:55:01Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "yTW2vBKq79qSpo5Z6JP_9n25IZE",
+      "id": "Ugzl8pniHJDOYl9Poy94AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "_VF4io_5jkInTwktpdRG-5erefU",
+          "id": "Ugzl8pniHJDOYl9Poy94AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "One of the best mixes I&#39;ve heard by far. \u003cbr\u003e \u003cbr\u003eIf you&#39;re at the end of a sesh this is one of dem ones.",
+            "textOriginal": "One of the best mixes I've heard by far. \n \nIf you're at the end of a sesh this is one of dem ones.",
+            "authorDisplayName": "Neil Salvesen",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/izDaTZU8Vd9qOYohDnZEuXWOB6MhLbtD3SPuPAWv9B7cOXoAraGxgSbKnRBjybv15BhX1ns9gw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCtlbx9PNveqcFP16pSsCKIg",
+            "authorChannelId": {
+              "value": "UCtlbx9PNveqcFP16pSsCKIg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 6,
+            "publishedAt": "2023-02-15T08:38:14Z",
+            "updatedAt": "2023-02-15T08:38:14Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "b3mOkh0WEdxAILjTT2yXhwe5USo",
+      "id": "Ugx_68LKCk9iMAkDRJN4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "dl6u9VlFNEvXy5BdgdOL3JvEPfA",
+          "id": "Ugx_68LKCk9iMAkDRJN4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Loving the chill vibes!",
+            "textOriginal": "Loving the chill vibes!",
+            "authorDisplayName": "EndlessVistas",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/Lkf1bM-bRdkBJSGUudGCDcFHVHNQx1dwE7MvaG0NpM_CfVdAOaBI_Gl4AfUrNgNV7hto8Sgk=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCIU5SLodTWTAZldYFF9DXnw",
+            "authorChannelId": {
+              "value": "UCIU5SLodTWTAZldYFF9DXnw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2023-03-28T03:44:40Z",
+            "updatedAt": "2023-03-28T03:44:40Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "Wm5YmO0AdMIuHDgd5yI6LgSV_BY",
+      "id": "UgyDXgiAXG0txiFs09l4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "Yc9R27mL7z0nVTL-ylW5B6euOhI",
+          "id": "UgyDXgiAXG0txiFs09l4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Love this playlist. Very chilled out vibes ?",
+            "textOriginal": "Love this playlist. Very chilled out vibes ?",
+            "authorDisplayName": "Dev Paul",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUAaviRd5yCiLIOofdqH1y5isaMv5gc1xSogJ9y8Q=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCqpCTuXJHBKn_KxXoHnCsxA",
+            "authorChannelId": {
+              "value": "UCqpCTuXJHBKn_KxXoHnCsxA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 14,
+            "publishedAt": "2023-01-18T19:20:20Z",
+            "updatedAt": "2023-01-18T19:20:20Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "0Ug_XdBxvlr7vOAc2nE2W6fbr0A",
+      "id": "UgwUkKiIq7xr9Mdf0X14AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "lhRr70TC05PbV4KwO0YGMPklfBE",
+          "id": "UgwUkKiIq7xr9Mdf0X14AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Mog? s?ucha? w kó?ko...? dzi?kuj? ??",
+            "textOriginal": "Mog? s?ucha? w kó?ko...? dzi?kuj? ??",
+            "authorDisplayName": "Iwsounds",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUfmo_dzLUmIMJu-ci9A0pQFK24FU1QQj1hjkpY4w=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCTrOGKPWiSER05y3cr7RDJg",
+            "authorChannelId": {
+              "value": "UCTrOGKPWiSER05y3cr7RDJg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 19,
+            "publishedAt": "2022-10-11T16:59:31Z",
+            "updatedAt": "2022-10-11T16:59:31Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "NZP6bwT8C1AANJo4w3VoQWClSs0",
+      "id": "Ugy99AO55za-JtO62t94AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "vvV2Lgs4JZ4X4qopCoQTAkU90Zg",
+          "id": "Ugy99AO55za-JtO62t94AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Was searching for the perfect something to get into some studying and this hit the spot. Like Goldilocks who stole the porridge, this mix is just right. ??Thank you!",
+            "textOriginal": "Was searching for the perfect something to get into some studying and this hit the spot. Like Goldilocks who stole the porridge, this mix is just right. ??Thank you!",
+            "authorDisplayName": "Wilda",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/dm8eCojv6hsgz76IuEmeAjxTJ1Qumj_9IB7_0efbJMq32lBItPAj1dgkphNFnEXN3zpZ2Xz9HA=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCErAwoaWRnkX7zjd5JsGtBg",
+            "authorChannelId": {
+              "value": "UCErAwoaWRnkX7zjd5JsGtBg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 8,
+            "publishedAt": "2023-01-31T17:56:24Z",
+            "updatedAt": "2023-01-31T17:56:24Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "phITkabKs4h0PrmbWkVkGMeKodQ",
+      "id": "UgwnOCd_4KF_0pJ5B954AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "40_xqOWTTufiigUC87zUOluTlyk",
+          "id": "UgwnOCd_4KF_0pJ5B954AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Lofi always never disppoints me when it comes to chilled music..thank you",
+            "textOriginal": "Lofi always never disppoints me when it comes to chilled music..thank you",
+            "authorDisplayName": "Tshepang Leshona",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWfmC1cAETWES8G97ZBcCY2Y903tRH8ukm5ArAKaw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCTkcTFTGbn7DD4mx52BYXoQ",
+            "authorChannelId": {
+              "value": "UCTkcTFTGbn7DD4mx52BYXoQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 4,
+            "publishedAt": "2023-02-19T07:56:46Z",
+            "updatedAt": "2023-02-19T07:56:46Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "gsyCWqMhdkbPRs8QcymnmCwYJVw",
+      "id": "UgzrZtZYuvxFLND3neV4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "b5V5-MKFaEmHH0saCiKawoi-JAA",
+          "id": "UgzrZtZYuvxFLND3neV4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Best mix for studying, getting me through uni nicely, one play at a time. Thanks Settle!",
+            "textOriginal": "Best mix for studying, getting me through uni nicely, one play at a time. Thanks Settle!",
+            "authorDisplayName": "Changethegame",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/GrKGz1_5Qg3E4kz9QHxKHZbxg_0jxpkPhioeTpEelAOBXY6RXHUtzwvjhrcpbjfrQ8v7MrkuUQ=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCJILFUHoYStYX4XZCREGXuA",
+            "authorChannelId": {
+              "value": "UCJILFUHoYStYX4XZCREGXuA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 5,
+            "publishedAt": "2023-02-07T20:41:57Z",
+            "updatedAt": "2023-02-07T20:41:57Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "oXkwH7YuzTizI_zx57-Q4ckj6lY",
+      "id": "UgwR86XebfgdlxG5JTR4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "yoEwRi3L-0Fzr0ikq4Rfy2VVvK4",
+          "id": "UgwR86XebfgdlxG5JTR4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "The most relaxing lofi mix I heard. I feel so light. Thank you!",
+            "textOriginal": "The most relaxing lofi mix I heard. I feel so light. Thank you!",
+            "authorDisplayName": "VashD'Stampede",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/y-XYbE0x1AJg9S1aUbW7QN47_8M0opsnqgTOycAA_tEsgN00j50E-dWIlulcdpuAtj7YX_BtNA=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCNJ5d1KXc93_fx8vI2fjHzA",
+            "authorChannelId": {
+              "value": "UCNJ5d1KXc93_fx8vI2fjHzA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 10,
+            "publishedAt": "2023-01-12T17:49:21Z",
+            "updatedAt": "2023-01-12T17:49:21Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "S8ru2GmrNF2IiUHyGDgDA5uamuI",
+      "id": "UgzTxN8APr4tzkRARXZ4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "7dYlWEMC5CznIgXrI_FNBi7ZQpA",
+          "id": "UgzTxN8APr4tzkRARXZ4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "When I listen to lo-fi music, I feel I am lost in another world where everything is very quiet and peaceful. This helps me reduce stress and anxiety in my daily life. I felt like I was transported back to a time in the past when everything was simple and good.",
+            "textOriginal": "When I listen to lo-fi music, I feel I am lost in another world where everything is very quiet and peaceful. This helps me reduce stress and anxiety in my daily life. I felt like I was transported back to a time in the past when everything was simple and good.",
+            "authorDisplayName": "Chill Lofi Mix",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/Q3-LJ5UGyLux2GfjzADjyS__WS-2FuEipKy_j0jAEAmvKb3wyM2FBNmXOgj97nAKN85sMi_5vO8=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCvTLlcLWMbKBYtC1oFdV3lg",
+            "authorChannelId": {
+              "value": "UCvTLlcLWMbKBYtC1oFdV3lg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 7,
+            "publishedAt": "2023-03-03T01:53:37Z",
+            "updatedAt": "2023-03-03T01:53:37Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "wm7wBUO-wHgNDvOuSva4MwkNZTw",
+      "id": "UgyrwZXzhISvH50v8_94AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "A27LXMZKGGwMHQvRU8Moiwj3yBI",
+          "id": "UgyrwZXzhISvH50v8_94AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Que emocion, con este video acabo de procesar que me gusta este tipo de musica para conseguir algo de calma, me parece que es la segunda vez que escucho una de estas pistas, como que tuve una sensacion de malos pensamientos, y me volvi a enfocar en  el beat y me da alegria tener calma, espero poder encontrar mas pistas que me agraden, Muchas gracias de corazon ?",
+            "textOriginal": "Que emocion, con este video acabo de procesar que me gusta este tipo de musica para conseguir algo de calma, me parece que es la segunda vez que escucho una de estas pistas, como que tuve una sensacion de malos pensamientos, y me volvi a enfocar en  el beat y me da alegria tener calma, espero poder encontrar mas pistas que me agraden, Muchas gracias de corazon ?",
+            "authorDisplayName": "Eli Yerba",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVYBDr8GG8DHJt69Of0sEcha3wxY1wb34rn9pfYPbs=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCE1V1tl20lXFs2oAylj4HUg",
+            "authorChannelId": {
+              "value": "UCE1V1tl20lXFs2oAylj4HUg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 3,
+            "publishedAt": "2023-02-06T18:49:39Z",
+            "updatedAt": "2023-02-06T18:49:39Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "ARdmIWzHaBLJ5FuuFDcjn7jm8jE",
+      "id": "UgzDdLxPCF1E8JTIdFN4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "ODjYT-kS23LmvgW8PvX3z5KSxQE",
+          "id": "UgzDdLxPCF1E8JTIdFN4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "perfect to listen to in the background \u003cbr\u003ewhile working",
+            "textOriginal": "perfect to listen to in the background \nwhile working",
+            "authorDisplayName": "Marco Burgener",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWq4ieSaQooEucRDlw5GZ38qk_YYmQnEryPR7Pil63D4Bi-NAchEE2ta0z-Lo02=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCiqbTDqRbtrElU3oVjnaPDA",
+            "authorChannelId": {
+              "value": "UCiqbTDqRbtrElU3oVjnaPDA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 39,
+            "publishedAt": "2022-10-10T18:12:14Z",
+            "updatedAt": "2022-10-10T18:12:14Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "Nak7-g1FPzq4jkiWOBNKI74g82U",
+      "id": "UgxwvITV3GMDUnDs4jF4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "HgB40qcYnYtZnAEe_bq9ABIEWRc",
+          "id": "UgxwvITV3GMDUnDs4jF4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "I&#39;m adding this to my playlist!!!! To anyone overwhelmed with big projects/exams coming up, I&#39;m praying for you! You got this &lt;3",
+            "textOriginal": "I'm adding this to my playlist!!!! To anyone overwhelmed with big projects/exams coming up, I'm praying for you! You got this \u003c3",
+            "authorDisplayName": "Nesvelle",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/lCYARojWMNZuukZ-wFTBXdnAZxnpFSBcoK9wf-XfgJLLrGutf40-MK_G-Hg0AzQKl-AGVvn9Pg=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCTXgXRp09EzzPiFW4BCdDrg",
+            "authorChannelId": {
+              "value": "UCTXgXRp09EzzPiFW4BCdDrg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 75,
+            "publishedAt": "2022-11-20T01:01:43Z",
+            "updatedAt": "2022-11-20T01:01:43Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 4,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "nyUgcgDJCCNtZRCiLvyYdHMZ2OU",
+      "id": "UgzZXu6Tl-zlMk0BoKh4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "OsS1oY3iBOwrac01vLotFlAZJtk",
+          "id": "UgzZXu6Tl-zlMk0BoKh4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Never thought I’d ever have a favorite Lofi Mix, but this one hits different!! ????",
+            "textOriginal": "Never thought I’d ever have a favorite Lofi Mix, but this one hits different!! ????",
+            "authorDisplayName": "Robert Jackson",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/P6fk-e2refoqZF6SyGnUWnFqH6yRlNJjR8rbVcNwqGechsPvXS0uwAmhPMS825FNhye19MbAwc4=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCxOBVDoWd-PINxxHhttecSQ",
+            "authorChannelId": {
+              "value": "UCxOBVDoWd-PINxxHhttecSQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 16,
+            "publishedAt": "2023-01-16T02:20:05Z",
+            "updatedAt": "2023-01-16T02:20:05Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "mgMq7Xy7GCPmTl0awjhwd1_Tt40",
+      "id": "Ugx4w-HObp6et0m3zzR4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "WU9KD6wYLRJzhFKyq0PfGyKcAsQ",
+          "id": "Ugx4w-HObp6et0m3zzR4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "To the person who reading this .  I realize this life is hard, being mature is suck. I know you&#39;re tired with all of this, but you should know. You did a good job. You are great. You deserve to be happy.",
+            "textOriginal": "To the person who reading this .  I realize this life is hard, being mature is suck. I know you're tired with all of this, but you should know. You did a good job. You are great. You deserve to be happy.",
+            "authorDisplayName": "Chill Radio",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/WObwKlgQ6v752Ys_YqRPWMVcncafclPUlXqGiPa2NfDuZhJZeMeI5rCfWd280Fufz3-3OeBCww=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCQSwLVSNqDFa1zLlaXAPgjA",
+            "authorChannelId": {
+              "value": "UCQSwLVSNqDFa1zLlaXAPgjA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 92,
+            "publishedAt": "2022-10-07T01:53:41Z",
+            "updatedAt": "2022-10-07T01:53:41Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 6,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "Uu0iLvT_NfyC9j9UsHLZn3oqCFQ",
+      "id": "UgxO_ZQjEn2T5RJtTkN4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "lcSU74zKlyNB6eLTct7kTpHixmc",
+          "id": "UgxO_ZQjEn2T5RJtTkN4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Smooth as heaven yeah!!!Thanks for this,type of chill Lo-Fi sinking inside of one&#39;s mind &amp; soul ,bringing peace,love,strenght and courage!!!!\u003ca href=\"about:invalid#zCSafez\"\u003e\u003c/a\u003e\u003ca href=\"about:invalid#zCSafez\"\u003e\u003c/a\u003e",
+            "textOriginal": "Smooth as heaven yeah!!!Thanks for this,type of chill Lo-Fi sinking inside of one's mind & soul ,bringing peace,love,strenght and courage!!!!",
+            "authorDisplayName": "Ngoua Calix",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUYSwOI4fHCoCe9RlvonylXcNc-iePz_9q4RJk5FxukVexJWHshkAeuhmd0VkR4=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCzsJaBrbh_XIvwvivFcQSTA",
+            "authorChannelId": {
+              "value": "UCzsJaBrbh_XIvwvivFcQSTA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 14,
+            "publishedAt": "2022-09-30T07:11:07Z",
+            "updatedAt": "2022-09-30T07:11:07Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 2,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "Ig6UOT7tNl6UOVxEu3i0PzEcqZs",
+      "id": "Ugyhe7Rt7YUWyhyax3d4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "fe9kgHRj7rRNKyATecJ3dT-H6ZE",
+          "id": "Ugyhe7Rt7YUWyhyax3d4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "I just love the calmness, tranquility of how the music enhances my mood, my brain",
+            "textOriginal": "I just love the calmness, tranquility of how the music enhances my mood, my brain",
+            "authorDisplayName": "tina reyes",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVB4_4Ee5ME1yemg3h8KEoGERBwMRW8B4PaivNT=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCBPC6-UoK1FsjyQZ_v-xFyw",
+            "authorChannelId": {
+              "value": "UCBPC6-UoK1FsjyQZ_v-xFyw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 8,
+            "publishedAt": "2023-01-10T12:11:44Z",
+            "updatedAt": "2023-01-10T12:11:44Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "Iuyq0EaqxjRd-r8YjoBVMUZg7RM",
+      "id": "UgwzXcZrzjcz63CtIjZ4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "acxbrYG91hUNsfyj1zav-My4Od0",
+          "id": "UgwzXcZrzjcz63CtIjZ4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Gorgeous music - love it to just chill to",
+            "textOriginal": "Gorgeous music - love it to just chill to",
+            "authorDisplayName": "Lofi Chill Hop Lounge",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/VLUqWNVNQzq5TC0EX0Xn2slZx-jcq7NZp4UFCW-Uv4Q7AuCkzuoCTz_0yUQ7kw_3g8HUhKARWg=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC8VoCxqUEz_OwDiX7_cWqzg",
+            "authorChannelId": {
+              "value": "UC8VoCxqUEz_OwDiX7_cWqzg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 5,
+            "publishedAt": "2023-02-13T08:00:06Z",
+            "updatedAt": "2023-02-13T08:00:06Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "yljXYppmJaF1uGcpaTJBJiuYKZo",
+      "id": "UgxUFtAMklVyVS4P5gF4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "LHULwBbS-zOr0ztvrVJ4SJaVR2A",
+          "id": "UgxUFtAMklVyVS4P5gF4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Going through change and feeling out of place within me. Thank you for creating something to settle me on the inside?",
+            "textOriginal": "Going through change and feeling out of place within me. Thank you for creating something to settle me on the inside?",
+            "authorDisplayName": "Michaeleen Gonzalez",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJU9JlCfXUW2WXPwMAhOK5_BAzWyjHBAg0C3bZyoqw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCVGnAbu9MEzAYQ3H-xQaZwQ",
+            "authorChannelId": {
+              "value": "UCVGnAbu9MEzAYQ3H-xQaZwQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 25,
+            "publishedAt": "2023-01-02T17:33:54Z",
+            "updatedAt": "2023-01-02T17:33:54Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "V_FGXhjd5a-0PKNN2CP6saSZeAk",
+      "id": "UgwJzh9DzSRWHbBeEil4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "r35wLMdDq56tpLw4b_3XfBmEPFk",
+          "id": "UgwJzh9DzSRWHbBeEil4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "I listen to a lot of indie folk music. But I am in love with this! ?\u003cbr\u003e\u003cbr\u003e PS) also the image is just enough to drift off to nature!",
+            "textOriginal": "I listen to a lot of indie folk music. But I am in love with this! ?\n\n PS) also the image is just enough to drift off to nature!",
+            "authorDisplayName": "Claudia VE",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWXxfaeVXtf-GBJSxkkb-rwiVSIY8MFSWQPdy_vsdk=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCv0lpbpLGyH7l8rcxfA_ZAg",
+            "authorChannelId": {
+              "value": "UCv0lpbpLGyH7l8rcxfA_ZAg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 10,
+            "publishedAt": "2022-10-25T15:33:15Z",
+            "updatedAt": "2022-10-28T10:53:55Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "ZVhF3nQU4oGvhcnvKbO_Iv1vsSM",
+      "id": "UgzZCeFtec3-HaM6v154AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "Hq9zVQArT9YhH2CiZdq64_PSSYo",
+          "id": "UgzZCeFtec3-HaM6v154AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "currently stressed out working on my laptop for the last 6hrs and this mix came out of no where, really happy i found this \u003ca href=\"about:invalid#zCSafez\"\u003e\u003c/a\u003e",
+            "textOriginal": "currently stressed out working on my laptop for the last 6hrs and this mix came out of no where, really happy i found this ",
+            "authorDisplayName": "Nerissa Farrell",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVLkC4a-_SwJnCs545y_Ty-GEwAtHPCP_kB9-29kw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCnIDOHGYzQpUXKk7AvN-QqA",
+            "authorChannelId": {
+              "value": "UCnIDOHGYzQpUXKk7AvN-QqA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 23,
+            "publishedAt": "2023-01-09T22:09:48Z",
+            "updatedAt": "2023-01-09T22:09:48Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 4,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "hpJj93TtOk1BRI4EXT8LBL7WTuM",
+      "id": "Ugx7zTKs9pDOVOaUsaN4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "zWu9CQCkTcamw47BFeSbc0oRN7s",
+          "id": "Ugx7zTKs9pDOVOaUsaN4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Thank you for your work, your music is an amazing and gives a positive vibe for studying!\u003ca href=\"about:invalid#zCSafez\"\u003e\u003c/a\u003e",
+            "textOriginal": "Thank you for your work, your music is an amazing and gives a positive vibe for studying!",
+            "authorDisplayName": "Study&chill music ",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/qhXugM5qaliZmY9-wNngyu9B047umAHOixppmv3mI7U8npyh66fL3aeDHMMQGGZv3dX9itM0rQ=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCOuNhzlOnlKusA0TzzVB4zw",
+            "authorChannelId": {
+              "value": "UCOuNhzlOnlKusA0TzzVB4zw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 2,
+            "publishedAt": "2023-03-15T14:22:32Z",
+            "updatedAt": "2023-03-15T14:22:32Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "ltd2hc0bZRvolq23wzIaNimcvrE",
+      "id": "UgwuyYsFVZpdlXWrmFF4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "pg3VibqfZZSR-8iXLLMIXtMNLwA",
+          "id": "UgwuyYsFVZpdlXWrmFF4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "I have had the shittest day i was feeling like ass i out on my headphones hunted down this lofi vid and now im happy again an hour in all i feel is a state of pure bliss. Thank you so much",
+            "textOriginal": "I have had the shittest day i was feeling like ass i out on my headphones hunted down this lofi vid and now im happy again an hour in all i feel is a state of pure bliss. Thank you so much",
+            "authorDisplayName": "Lofi Sleep",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/HPYIsRZwMfAuPoNXRKX3VXQUKLZXVjw7bU1HCOseOT8XWVmrOq41HZFtd8Jf_vwqNu_5nUFUiQ8=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC5dOjha1-KCOTp7XkNRlp8g",
+            "authorChannelId": {
+              "value": "UC5dOjha1-KCOTp7XkNRlp8g"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 8,
+            "publishedAt": "2022-12-08T03:55:31Z",
+            "updatedAt": "2022-12-08T03:55:31Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "xNBgowyyTiu3LFAI0H8Hblxnsdo",
+      "id": "Ugzq49FJF3kff4nl30d4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "MNDKku4U16AodJNgFxQc3-8bxBk",
+          "id": "Ugzq49FJF3kff4nl30d4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This piece reminds me of why I started listening to you in the first place years ago! The mysterious unique Manelli style.\u003cbr\u003eRemember long night shifts at work with your tunes in my ears.\u003cbr\u003eThank you for your music!",
+            "textOriginal": "This piece reminds me of why I started listening to you in the first place years ago! The mysterious unique Manelli style.\nRemember long night shifts at work with your tunes in my ears.\nThank you for your music!",
+            "authorDisplayName": "dansve87",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWJ1VIK9hNLaNZ56rzHKJO7l9XrCqI5adlTgpMU=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCCPTcJjaIVUr1YBQsbSwxiQ",
+            "authorChannelId": {
+              "value": "UCCPTcJjaIVUr1YBQsbSwxiQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 3,
+            "publishedAt": "2023-03-09T07:53:13Z",
+            "updatedAt": "2023-03-09T07:53:13Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "hrBoRb2P33HpctD5Cgs_NHzDO3w",
+      "id": "UgyCi5dYwPrvsfbNwn54AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "AOJOVU-dYuyj8gg7hfJ2EOSQi-o",
+          "id": "UgyCi5dYwPrvsfbNwn54AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Very relaxing beats, keep up the great work!",
+            "textOriginal": "Very relaxing beats, keep up the great work!",
+            "authorDisplayName": "The Uplift Project",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/sqCboOXgz8QE84b7peGRTgKZkovnejpyUzL5jNDUYPWMV30D-SZokCVfwELbwxjsRW55vzHW=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCXz61DHLwbGdsTQxzBoMQ_g",
+            "authorChannelId": {
+              "value": "UCXz61DHLwbGdsTQxzBoMQ_g"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 17,
+            "publishedAt": "2023-01-05T12:30:50Z",
+            "updatedAt": "2023-01-05T12:30:50Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "WgNFbcuJgmaWMQ8n039imMQphqQ",
+      "id": "UgycjzvPEPB0GD5eOqJ4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "sbuzDO1MTfeckR2LAcPV15gvnaA",
+          "id": "UgycjzvPEPB0GD5eOqJ4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "I edit a lot of images and do a lot of writing and this music is fantastic for doing just that. Thank you.",
+            "textOriginal": "I edit a lot of images and do a lot of writing and this music is fantastic for doing just that. Thank you.",
+            "authorDisplayName": "Wesley Oosthuizen",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWBLpJcFnWsacNlYRAdKfOpyk7rcMpg-MiWVfI4rQ=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCPDutO5M2tg_d-p1Ej3zdOQ",
+            "authorChannelId": {
+              "value": "UCPDutO5M2tg_d-p1Ej3zdOQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 12,
+            "publishedAt": "2022-10-30T15:39:42Z",
+            "updatedAt": "2022-10-30T15:39:42Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "XNs_fgn1RKAt8qsmp7RYpofSFTo",
+      "id": "UgzTYNvDcrFGWrMonjJ4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "nIQt9gPoU1cM0narDlEg2JolTn4",
+          "id": "UgzTYNvDcrFGWrMonjJ4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "?\u200d??? So relaxing and inspiring!",
+            "textOriginal": "?\u200d??? So relaxing and inspiring!",
+            "authorDisplayName": "Alta",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/kcPs4vGZygmq7j2-4OjMtBxImrFyzyoyJAy_ahHwIYZjQGBYfKaMb6KYr3BRjmtJ-1xGwmFRFA=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCRLSoGq0ltnJssBGlN8ybdw",
+            "authorChannelId": {
+              "value": "UCRLSoGq0ltnJssBGlN8ybdw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 6,
+            "publishedAt": "2023-03-13T11:33:25Z",
+            "updatedAt": "2023-03-13T11:33:25Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "jsL5fO77dafsWD3Vkoc8tU9o43Y",
+      "id": "UgyXkO6ZVa8TR6Vs8gx4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "OKlxBZ0NSYHpCE3z-Ktq3_eAAIc",
+          "id": "UgyXkO6ZVa8TR6Vs8gx4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "I was having a hard time concentrating for work and this set helped me a lot. Thanks!",
+            "textOriginal": "I was having a hard time concentrating for work and this set helped me a lot. Thanks!",
+            "authorDisplayName": "Marcelo S.",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWOWhGvweegRxgAKxCXJtGBORMQOOyAAYKzdqNHPIU=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCd1u_xl9SXpaqoy0uIPZfHA",
+            "authorChannelId": {
+              "value": "UCd1u_xl9SXpaqoy0uIPZfHA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 1,
+            "publishedAt": "2023-02-15T13:23:36Z",
+            "updatedAt": "2023-02-15T13:23:36Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "uJnM60-5dCusg3z_GA2XTauwxeo",
+      "id": "UgxwGWOyAnYQwah1lXR4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "zeNRoudUmC4FP_idyX-rba1wrYw",
+          "id": "UgxwGWOyAnYQwah1lXR4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Mix so relaxing, it sent me into another dimension ?",
+            "textOriginal": "Mix so relaxing, it sent me into another dimension ?",
+            "authorDisplayName": "Karina G",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ADZuSG8whuN1aFdj0ZyUu4It1QqXhE70tKiXOR-FCksFrT-D86gwDmPzCeGHB-sp1FvpbGtTNw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCPN3KQ23c1BHgsv-DbavG5A",
+            "authorChannelId": {
+              "value": "UCPN3KQ23c1BHgsv-DbavG5A"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 5,
+            "publishedAt": "2023-02-08T15:23:33Z",
+            "updatedAt": "2023-02-08T15:23:33Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "AME5B8mSudOjDMMtMYcow6fDe3s",
+      "id": "UgwXUiXg_mKRRb3CVnd4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "lptsYt11gjTwUIRFBW_AJ5jPO2A",
+          "id": "UgwXUiXg_mKRRb3CVnd4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This music&#39;s great for studying too. I had a lot of self evaluations for college pastry work to write up. It took me 5 hours (I accidently deleted about 3/4 of it just before submitting, and had to do it all again) and if it wasn&#39;t for the Lofi mix I&#39;d have pulled my hair out if I had any.",
+            "textOriginal": "This music's great for studying too. I had a lot of self evaluations for college pastry work to write up. It took me 5 hours (I accidently deleted about 3/4 of it just before submitting, and had to do it all again) and if it wasn't for the Lofi mix I'd have pulled my hair out if I had any.",
+            "authorDisplayName": "Kev McG",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVoD_nou7Gve0N-ZNXzW6ntERr_5C8USuuRWGrI=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCxJM1Xirfv-RQ8hhXWUp5CQ",
+            "authorChannelId": {
+              "value": "UCxJM1Xirfv-RQ8hhXWUp5CQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 4,
+            "publishedAt": "2023-02-24T09:02:22Z",
+            "updatedAt": "2023-02-24T09:02:22Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "AAFNPLMhpeOmUrni1nFbsOkVpzI",
+      "id": "Ugy8hi8_Vh9xEi8KD6d4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "gS3FRnVo-9IoDvh5XCS52j7osF4",
+          "id": "Ugy8hi8_Vh9xEi8KD6d4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Very nice Beats ! Love it thank you ! ??",
+            "textOriginal": "Very nice Beats ! Love it thank you ! ??",
+            "authorDisplayName": "Papagallo Toon",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/GWRa3reUHSf-tFQvDgTcFT13RWXyradn7dXQvI2QDsBE8QyPxYmqH8YxyjxTGT_Gq9EPBe9YBPU=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC9Lzd2z6pBuQq1VnGKxSDHw",
+            "authorChannelId": {
+              "value": "UC9Lzd2z6pBuQq1VnGKxSDHw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 2,
+            "publishedAt": "2023-03-01T12:45:19Z",
+            "updatedAt": "2023-03-01T12:45:19Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "WRu_ZsjcW3BVTCUjgTel7-k7cAg",
+      "id": "UgxOHVrx2xImk3gjS9J4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "ZKhXK0EfPvpHU-wO0zM6kfKjs-0",
+          "id": "UgxOHVrx2xImk3gjS9J4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Calming music with comforting words to soothe the weary heart. It&#39;s been long since anyone asked me, How was your day? Some days, it&#39;s great but some days, it&#39;s not, nevertheless every day is a blessing. So I&#39;m happy to be living this day with gladness in my heart. Hope you had a great day too. No regrets that I stumbled upon this channel. Be well. Thank you for the blissful music",
+            "textOriginal": "Calming music with comforting words to soothe the weary heart. It's been long since anyone asked me, How was your day? Some days, it's great but some days, it's not, nevertheless every day is a blessing. So I'm happy to be living this day with gladness in my heart. Hope you had a great day too. No regrets that I stumbled upon this channel. Be well. Thank you for the blissful music",
+            "authorDisplayName": "Heavy rain sounds",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/E7_ISoRlyH9F8CLENPYBLi1qWZWqXqgk2p5sg14mcVXSZhLoXuv1c-nd2Xems7QX_6QBhnah4Dc=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCWGYAcS2j4_kNjDBz5m7IzQ",
+            "authorChannelId": {
+              "value": "UCWGYAcS2j4_kNjDBz5m7IzQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 33,
+            "publishedAt": "2022-09-21T15:39:41Z",
+            "updatedAt": "2022-09-21T15:39:41Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 2,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "m7s-HTTpA-IV25B0_SRHcaT9e3E",
+      "id": "UgwEcj68c-doPuwIacF4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "JLfQQlq1kAo12qKJ0lNlO5t21P0",
+          "id": "UgwEcj68c-doPuwIacF4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Really great, light, inspiring and sometimes even heart breaking :) Beautiful. Thank you.",
+            "textOriginal": "Really great, light, inspiring and sometimes even heart breaking :) Beautiful. Thank you.",
+            "authorDisplayName": "Jurate Cesnaite",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUtkZ5U4qTnbLmdbjp9KtYku1Cnr322KOr3oY8X6g=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCZLiwgZF8VJdQDj_oF8EXRw",
+            "authorChannelId": {
+              "value": "UCZLiwgZF8VJdQDj_oF8EXRw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 1,
+            "publishedAt": "2023-02-28T09:59:24Z",
+            "updatedAt": "2023-02-28T09:59:24Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "-h2BM0KHB0dZrqI-bnzJcgwuLOo",
+      "id": "UgxOWtXjzuLjlyWS0YB4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "wsYoXwKIHXLFTYnhwVG7rL_rTNQ",
+          "id": "UgxOWtXjzuLjlyWS0YB4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "?This lofi mix is the perfect companion for my morning routine. It sets the mood for a calm and productive day. Thank you for curating such a wonderful selection of tracks!\u003ca href=\"about:invalid#zCSafez\"\u003e\u003c/a\u003e",
+            "textOriginal": "?This lofi mix is the perfect companion for my morning routine. It sets the mood for a calm and productive day. Thank you for curating such a wonderful selection of tracks!",
+            "authorDisplayName": "Groove Galaxy Gateway",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/8GIyRiqSbOjKQxa_hk9gWmQwrR1gOQ9J7J6E7trvEqQRApVukF1HpnUJzRC-uNAGiyxigvdscw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCahyt1AloyrHCde7sFw1hNw",
+            "authorChannelId": {
+              "value": "UCahyt1AloyrHCde7sFw1hNw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 1,
+            "publishedAt": "2023-02-19T22:01:06Z",
+            "updatedAt": "2023-02-19T22:01:06Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "cBAyvWwUzlym_qkJzuRYU_MNTjk",
+      "id": "UgxPokKxM7XfVmlRbbF4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "iP5yzPL1_aLzaw5LGP2DoV9ZaS4",
+          "id": "UgxPokKxM7XfVmlRbbF4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "this is perfect for a day off! youtube randomly opened this video after a lauv song and i added this mix to the favs instantly, so soothing ahh",
+            "textOriginal": "this is perfect for a day off! youtube randomly opened this video after a lauv song and i added this mix to the favs instantly, so soothing ahh",
+            "authorDisplayName": "kivvz",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJV0a37KOVzN1SbuXULqzzSMRXWx4vCLREG5ettABw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCp5jK81q71qKk97PMF9aqBQ",
+            "authorChannelId": {
+              "value": "UCp5jK81q71qKk97PMF9aqBQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 3,
+            "publishedAt": "2023-02-23T11:52:49Z",
+            "updatedAt": "2023-02-23T11:52:49Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "9KUAZo4l-AWJM3d4VGVLWYupAzY",
+      "id": "UgyBafjYmxaxl2TXUSd4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "Et7DB-_KM-4pN6lVGRKmmqRzOeA",
+          "id": "UgyBafjYmxaxl2TXUSd4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "OMG! I&#39;ve finally found the heart of the music!! You can ride or chill to every beat. Think my favorite is at \u003ca href=\"https://www.youtube.com/watch?v=CLeZyIID9Bo&amp;t=28m30s\"\u003e28:30\u003c/a\u003e... Definitely added to my collection!",
+            "textOriginal": "OMG! I've finally found the heart of the music!! You can ride or chill to every beat. Think my favorite is at 28:30... Definitely added to my collection!",
+            "authorDisplayName": "Aja Wade",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVF50pbwbqiUMbby6IXYIlCsc9Fix0A07cBF__jHw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCk8pf8xqFvdmUzTGGNNNksg",
+            "authorChannelId": {
+              "value": "UCk8pf8xqFvdmUzTGGNNNksg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 2,
+            "publishedAt": "2023-02-09T16:33:25Z",
+            "updatedAt": "2023-02-09T16:33:25Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "vqDWv6S4VV8EzUqzmD_1X7Vsd6o",
+      "id": "Ugxe6qsNh8mp9qxK0rp4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "yZGx_F452yIoRfPf8T5-u1UdnZE",
+          "id": "Ugxe6qsNh8mp9qxK0rp4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This is so beautiful and peaceful ??",
+            "textOriginal": "This is so beautiful and peaceful ??",
+            "authorDisplayName": "Sherri Dadzie",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJV1m14EiwXNYiIbSmAuGUlgik6F8TtQqmtsABJTww=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCNlTLuYco6l-yBE4jyQ9eaA",
+            "authorChannelId": {
+              "value": "UCNlTLuYco6l-yBE4jyQ9eaA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 4,
+            "publishedAt": "2023-02-06T14:35:37Z",
+            "updatedAt": "2023-02-06T14:35:37Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "fKiw6CGdqUJ_lY0nYZxYjQo-6QI",
+      "id": "UgwvGCcgLIW8P8Yc5Il4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "7KsVDJOKFWB3gFfOEgcrtqplGig",
+          "id": "UgwvGCcgLIW8P8Yc5Il4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "I am here to proudly announce that it is 3am and I have finished all of my homework\r\u003cbr\u003e\r\u003cbr\u003ePS: Great content! Really like the artwork as well! \u003ca href=\"about:invalid#zCSafez\"\u003e\u003c/a\u003e",
+            "textOriginal": "I am here to proudly announce that it is 3am and I have finished all of my homework\r\n\r\nPS: Great content! Really like the artwork as well! ",
+            "authorDisplayName": "Abstrax Art",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/iyNox3keA9H8TUtchweEts8kYwiBPV_g0FAdx4lmh2Xb_QlKKeojUmpM5uk9zZ6GGSJSPXhq=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC-cEhFdlZfiOHMlky2KwLeQ",
+            "authorChannelId": {
+              "value": "UC-cEhFdlZfiOHMlky2KwLeQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 29,
+            "publishedAt": "2022-10-19T00:59:21Z",
+            "updatedAt": "2022-10-19T00:59:21Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "IpIk6l_fKp-kD8UMUfoGxvbcQSA",
+      "id": "UgzJSoNtRz9uEcAn0xN4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "j4ges5KbNsrr8ujfC7A0Gu8cCdI",
+          "id": "UgzJSoNtRz9uEcAn0xN4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This music is beautiful! Thank you for this collection",
+            "textOriginal": "This music is beautiful! Thank you for this collection",
+            "authorDisplayName": "Man of Nature",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/nrfDka3gV1Vv6qqwe5d-QekEISwZxjcDweIi19DEwcY_kjzg0dOzWwiJHXuFBr5bbtrMAE6U=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCPq1HHlpbgF-M72N0qfombQ",
+            "authorChannelId": {
+              "value": "UCPq1HHlpbgF-M72N0qfombQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 13,
+            "publishedAt": "2022-12-16T17:49:27Z",
+            "updatedAt": "2022-12-16T17:49:27Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "SpKe2ZHEHqir1LnwJ_KYu4j3hvI",
+      "id": "UgxBAYcjzbCvMEMRKZ14AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "mqB3PSRvn_yvxevdCdYHetU6_KA",
+          "id": "UgxBAYcjzbCvMEMRKZ14AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "The chill vibes in your music make it the perfect choice for relaxation and unwinding.",
+            "textOriginal": "The chill vibes in your music make it the perfect choice for relaxation and unwinding.",
+            "authorDisplayName": "Lofi Flow",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/EIskFZh67dbYNkKh4NOAbXNpiS2YNNL1k7mzM36-dKqV-xfzshXdIB1XbwtvUQrJZmfYkBZQmg=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCISqIjXkYNHpApp1-YNK2Jg",
+            "authorChannelId": {
+              "value": "UCISqIjXkYNHpApp1-YNK2Jg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 16,
+            "publishedAt": "2023-01-08T12:52:51Z",
+            "updatedAt": "2023-01-08T12:52:51Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 2,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "ts_t7TcQzAHHN4a_v1gfORt8MhE",
+      "id": "Ugw5HHO42TsNqNA-9SJ4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "_yV9n5YKqS4nYoMjNZYPLC-FdvY",
+          "id": "Ugw5HHO42TsNqNA-9SJ4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Love it, its so relaxing?",
+            "textOriginal": "Love it, its so relaxing?",
+            "authorDisplayName": "LoFiforbetterGrades",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/FNbmn9Jg9b2x7i_GWRdyW8qDczOlIW6_DLY_g5yy3OkZ6mxBj_iSp-Hb8cTsZ6thFVK2OEzpnQ=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCdRQ5lFM0SmZtsO2fBhw3Cw",
+            "authorChannelId": {
+              "value": "UCdRQ5lFM0SmZtsO2fBhw3Cw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 5,
+            "publishedAt": "2023-01-12T17:08:57Z",
+            "updatedAt": "2023-01-12T17:08:57Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "NohI_VZbjKBJR-CdL_-9xoH8vkU",
+      "id": "UgyJLts8VTtXRN9VtMt4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "U_cPYUm8OWMHw6D72g6KpDxcbKs",
+          "id": "UgyJLts8VTtXRN9VtMt4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Thanks for being ad-free, perfect kind of lofi",
+            "textOriginal": "Thanks for being ad-free, perfect kind of lofi",
+            "authorDisplayName": "alltogo91",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUpB262sQXTTj6PWBPlS3cskJdmjgl2FK7MtQ=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCQvEHZRzVIRyzkRIxB6mG7w",
+            "authorChannelId": {
+              "value": "UCQvEHZRzVIRyzkRIxB6mG7w"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 9,
+            "publishedAt": "2022-10-02T06:42:51Z",
+            "updatedAt": "2022-10-02T06:42:51Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "uBi3vSc5l0SqJt4FPz5QmelmMLk",
+      "id": "UgwVLukUEcMBLw_875J4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "YRE_xb1sZFWOLpqKJ_mSUMpJW2U",
+          "id": "UgwVLukUEcMBLw_875J4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "you have the most beautiful channel of chill lofi music. thank you ?",
+            "textOriginal": "you have the most beautiful channel of chill lofi music. thank you ?",
+            "authorDisplayName": "andrea posella",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/nVxdn3JrJMW5z0L_BQmhaTsUH4eazPCgnScKKjqyyoqtJRdQV081c9gy8YPcOYuLz4lFFkT2=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCOX0qDpy53Fe2Eu5528kTOw",
+            "authorChannelId": {
+              "value": "UCOX0qDpy53Fe2Eu5528kTOw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 12,
+            "publishedAt": "2022-10-18T14:39:34Z",
+            "updatedAt": "2022-10-18T14:39:34Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "vhYHVakw7N67Ql21IR-GKrDktyU",
+      "id": "UgxIBLhgsXSAgdEGzAp4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "Uew3gSyRTFyyUB_agVTszUDnEkY",
+          "id": "UgxIBLhgsXSAgdEGzAp4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "This music could literally heal my soul &lt;3",
+            "textOriginal": "This music could literally heal my soul \u003c3",
+            "authorDisplayName": "Dreamy Jimmy",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/zIEmYt2Jg9Esrf-VH2yPH8mqqHeiS7yPn2hHj9AJwjeqjhEqlY4ToF2L03WdRz_lZ72FSRy9ew=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC0RWzayyhvfx2oIQR_dn3qQ",
+            "authorChannelId": {
+              "value": "UC0RWzayyhvfx2oIQR_dn3qQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 10,
+            "publishedAt": "2022-10-20T06:15:24Z",
+            "updatedAt": "2022-10-20T06:15:24Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "AhYr2qQlq5_YF1yESbWRmdO7UAo",
+      "id": "Ugxgs8-yeDh_yksgDR14AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "3A7_4uukTgYmyPYV5wvziwGZSbw",
+          "id": "Ugxgs8-yeDh_yksgDR14AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "I listen while i get rdy for work. Thank u for starting my chaotic work day so calm.",
+            "textOriginal": "I listen while i get rdy for work. Thank u for starting my chaotic work day so calm.",
+            "authorDisplayName": "CozyPillowx",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJXt3naGYKK2bHOBWg42muaeLI3xhI8Z8-TMAmfT8w=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCxaVW0XYR_LXO0p37KxyWMg",
+            "authorChannelId": {
+              "value": "UCxaVW0XYR_LXO0p37KxyWMg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 1,
+            "publishedAt": "2023-03-24T17:42:31Z",
+            "updatedAt": "2023-03-24T17:42:31Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "S1Ilmw2tKXEgrrdTh3jCNlFH_AM",
+      "id": "UgwCHniOHVNfao9GlLR4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "hZASAy5QasYqu3SVWUNlwxGRmCk",
+          "id": "UgwCHniOHVNfao9GlLR4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Hats off to the vibes of the beats...????",
+            "textOriginal": "Hats off to the vibes of the beats...????",
+            "authorDisplayName": "Gurjot Singh Sethi",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJW7oIYzmafEvmHrLFf1RV4WxI63KM48gNYGJlf84g=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCpE6S65Rw0oB5jZ4L6oLbxQ",
+            "authorChannelId": {
+              "value": "UCpE6S65Rw0oB5jZ4L6oLbxQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 4,
+            "publishedAt": "2023-01-31T20:15:33Z",
+            "updatedAt": "2023-01-31T20:15:33Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "4Ybv3q2eIO0lNpy5WlcORNCumcY",
+      "id": "UgxuOT6Jw-zLOn-g9qR4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "bcsZICs0r6ZCBAoYhpGvOfxq-m4",
+          "id": "UgxuOT6Jw-zLOn-g9qR4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Amazing! Good music! All the best!!!??",
+            "textOriginal": "Amazing! Good music! All the best!!!??",
+            "authorDisplayName": "Relax Music Flow",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/Rm_xYzv8b4LV3E4rYDEAqiHJfcQeLjU6NXhfgytUbqTP5zHxsvBOFXBF8DYoK-8HJxwitvwx=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCeezziPSliQqeENUxfTDsRQ",
+            "authorChannelId": {
+              "value": "UCeezziPSliQqeENUxfTDsRQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 9,
+            "publishedAt": "2022-10-04T20:20:27Z",
+            "updatedAt": "2022-10-04T20:20:27Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "yHxifN9NGs84YoZ2jBEfPAEbZWc",
+      "id": "UgyFEpWtY6ubq1S3o-t4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "MoRNF8LHdWWLGdKUH2Q0XgJinoM",
+          "id": "UgyFEpWtY6ubq1S3o-t4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Love the beat! So chill keep it going",
+            "textOriginal": "Love the beat! So chill keep it going",
+            "authorDisplayName": "MindFree-Relaxation",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/OmFFxa1k6L45QdHyNfyWXtmjCsqRmbphFJtj_ZK8xPGM89G3MZ6JuOTFj_4uohnA63D-0vUE=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC2TvjjlfHZgjpEnK6Ysmthg",
+            "authorChannelId": {
+              "value": "UC2TvjjlfHZgjpEnK6Ysmthg"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 7,
+            "publishedAt": "2023-01-20T19:45:37Z",
+            "updatedAt": "2023-01-20T19:45:37Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "bc0co2lt0B4FLCbKYfYd6g6YeZw",
+      "id": "UgxRlm-NnhTWvEu8Aod4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "ohCslC8eZ_LtpYTkEpHmNHBmBb0",
+          "id": "UgxRlm-NnhTWvEu8Aod4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Nice smooth listening vibes",
+            "textOriginal": "Nice smooth listening vibes",
+            "authorDisplayName": "William Reynolds",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJX83Yq7dy9AwbPQE-d7EEgGf8ODrgbFz0VujRVP=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCJ5uuvIiSj5mYXY4Q8BFK7g",
+            "authorChannelId": {
+              "value": "UCJ5uuvIiSj5mYXY4Q8BFK7g"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 8,
+            "publishedAt": "2022-10-01T01:22:07Z",
+            "updatedAt": "2022-10-01T01:22:07Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "6nGLHMuJL85lCmahab2gMiZZNT4",
+      "id": "Ugz87fAQxaLS6UqSHzN4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "6_fJ0HomzJ-amucz4F-eNnTeoUQ",
+          "id": "Ugz87fAQxaLS6UqSHzN4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Just happy and grateful laying here playing Wordle while my dog&#39;s heat warms my toes and twinkle lights giving a nice ambience. Things are good.",
+            "textOriginal": "Just happy and grateful laying here playing Wordle while my dog's heat warms my toes and twinkle lights giving a nice ambience. Things are good.",
+            "authorDisplayName": "The Curly Carnivore",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/zG_12PhitPeNeoq5N7Ve8DNskxefxlEPDgqsoyfy4kFE5tcdAYZH3Un3E1mhuxYxCur4UCvYIQ=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCv_ZaSx3FiZx9Cs_N1mIhvA",
+            "authorChannelId": {
+              "value": "UCv_ZaSx3FiZx9Cs_N1mIhvA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 7,
+            "publishedAt": "2022-12-17T06:31:28Z",
+            "updatedAt": "2022-12-17T06:31:28Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "oBmSCbRc2nCnZ9gHgF46yOGzZNY",
+      "id": "UgyphaqNMDTr3HRFJQh4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "aTa6jf1-i96x2MWHbj7CtUURiCc",
+          "id": "UgyphaqNMDTr3HRFJQh4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "We are in love with this Chill mix! ?",
+            "textOriginal": "We are in love with this Chill mix! ?",
+            "authorDisplayName": "Chill Positive Music",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/MnQc8HJyU8-mOrV8wjWHd7dSTi_DahsTYDnFBuLQ5TvrvDNEAFUNCUqFNysJQVgKuw1pZjJDmg=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCPnJIlFv6qqR6KLUOsBsI1w",
+            "authorChannelId": {
+              "value": "UCPnJIlFv6qqR6KLUOsBsI1w"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 2,
+            "publishedAt": "2023-03-06T07:47:26Z",
+            "updatedAt": "2023-03-06T07:47:26Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "VAsEAzHkTqU1Z-Yf7tn414eWn8w",
+      "id": "Ugx3S0Q0Qz0mj4ib82t4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "pdFR6GlfCYc8WWMeePTAYyNHtno",
+          "id": "Ugx3S0Q0Qz0mj4ib82t4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Very relaxing Lofi! Congrats for the channel! ??",
+            "textOriginal": "Very relaxing Lofi! Congrats for the channel! ??",
+            "authorDisplayName": "Study Pomodoro",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/TlGQkC3f4ecgghRIb9oFFYYoxc-HcDQTPk5QVhibK65eGmjDGVPk83Wq1OvbguIUmFwtdrDCqw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCMyOZfDiwxypw5HOJk6ad0w",
+            "authorChannelId": {
+              "value": "UCMyOZfDiwxypw5HOJk6ad0w"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 6,
+            "publishedAt": "2023-01-16T20:40:56Z",
+            "updatedAt": "2023-01-16T20:40:56Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "HPNEbQSbC_GP8kZS3Da5NkX9rWM",
+      "id": "Ugzr9Wzd-3oHb81FeCN4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "oGhy5Ww4GVeiE0VH0n494aErUMk",
+          "id": "Ugzr9Wzd-3oHb81FeCN4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "You got a subscriber.\u003cbr\u003eAfter listening to many others, I finally found your channel...this is exactly what I was looking for.\u003cbr\u003eThank you.",
+            "textOriginal": "You got a subscriber.\nAfter listening to many others, I finally found your channel...this is exactly what I was looking for.\nThank you.",
+            "authorDisplayName": "Aastha Yadav",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVfcbfFnjAy2EOAfsa1APBKIpEO7WD7t2gdMeFP=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC9_j5c3CAUhvBKyqDYxOonA",
+            "authorChannelId": {
+              "value": "UC9_j5c3CAUhvBKyqDYxOonA"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 9,
+            "publishedAt": "2022-12-05T05:06:08Z",
+            "updatedAt": "2022-12-05T05:06:08Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "U_eHse2ZFziHYE2W6-Ry7wHdg0E",
+      "id": "UgzlKOZrNJnBY8Tffnh4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "oYYvQFxx44ImZzx9UQsVaTnA8EE",
+          "id": "UgzlKOZrNJnBY8Tffnh4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "Beautiful relaxing and calming sounds",
+            "textOriginal": "Beautiful relaxing and calming sounds",
+            "authorDisplayName": "CHILL",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/r_Y8nLzJW0IEqks8nX8AMONODXw3e01MLbPPYhf2mVA-OM0rX6FewAcXVMIMTP68tjYPTZvFsY0=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC3aq1h-yrQ4lI6TBG7KOclw",
+            "authorChannelId": {
+              "value": "UC3aq1h-yrQ4lI6TBG7KOclw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 3,
+            "publishedAt": "2023-02-01T05:27:09Z",
+            "updatedAt": "2023-02-01T05:27:09Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "1pR9USgYCMYwRhZOuRGTJwzRJDc",
+      "id": "UgwjQNdIlT872rHtukx4AaABAg",
+      "snippet": {
+        "videoId": "CLeZyIID9Bo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "TqeaDOQyKWC00C3Pe_FB0nsa4XA",
+          "id": "UgwjQNdIlT872rHtukx4AaABAg",
+          "snippet": {
+            "videoId": "CLeZyIID9Bo",
+            "textDisplay": "I needed this kind of mix. Love it",
+            "textOriginal": "I needed this kind of mix. Love it",
+            "authorDisplayName": "Melancholy Mind",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/oGcT2u-b23uU8mfXJxc3Ry2tTGNLfn2aoHs8Gf3M5ZSoXPTr2l5PnxZI0Dg6tpUDHMGiXKwb=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCyRtzBNnyFj8few_tvA0d5A",
+            "authorChannelId": {
+              "value": "UCyRtzBNnyFj8few_tvA0d5A"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 12,
+            "publishedAt": "2022-10-09T13:23:02Z",
+            "updatedAt": "2022-10-09T13:23:02Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    }
+  ]
+}
+

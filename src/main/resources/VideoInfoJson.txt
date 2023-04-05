@@ -1,0 +1,31 @@
+{
+  "kind": "youtube#videoListResponse",
+  "etag": "vKiXMm7jEeRVL-1eCLQ3F4VVsiw",
+  "items": [
+    {
+      "kind": "youtube#video",
+      "etag": "0OS9H-OrL7zN506at4_lqqZbiH4",
+      "id": "5yx6BWlEVcY",
+      "contentDetails": {
+        "duration": "P0D",
+        "dimension": "2d",
+        "definition": "sd",
+        "caption": "false",
+        "licensedContent": true,
+        "contentRating": {},
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "43761685",
+        "likeCount": "356179",
+        "favoriteCount": "0",
+        "commentCount": "30"
+      }
+    }
+  ],
+  "pageInfo": {
+    "totalResults": 1,
+    "resultsPerPage": 1
+  }
+}
+
