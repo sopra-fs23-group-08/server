@@ -1,5 +1,5 @@
 package ch.uzh.ifi.hase.soprafs23.game;
 
 public enum GamePhase {
-    
+    WAITING_FOR_PLAYERS, FIRST_ROUND, SECOND_ROUND, THIRD_ROUND, FOURTH_ROUND, END_ALL_FOLDED, END_AFTER_FOURTH_ROUND
 }
