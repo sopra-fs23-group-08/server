@@ -2,13 +2,13 @@ package ch.uzh.ifi.hase.soprafs23.game;
 
 
 public enum Decision {
-    CALL, RAISE, FOLD;
+    CALL, RAISE, FOLD, NOT_DECIDED;
 
     private Integer val;
 
      
     public void setRaiseValue(int x) throws Exception{ //the amount which is raised. 0 if call.
-        if (this == CALL || this == FOLD) {
+        if (this != RAISE)  {
             throw new Exception("Only Raise has a RaiseAmount");
         }
         if (val == null) {
@@ -19,7 +19,7 @@ public enum Decision {
     }
 
     public int getRaiseValue() throws Exception {
-        if (this == CALL || this == FOLD) {
+        if (this != RAISE) {
             throw new Exception("Only Raise has a RaiseAmount");
         }
         return val;
