@@ -2,12 +2,12 @@ package ch.uzh.ifi.hase.soprafs23.game;
 
 
 public enum Decision {
-    CALL, RAISE, FOLD, NOT_DECIDED;
+    CALL, RAISE, FOLD, NOT_DECIDED; //call also acts like check
 
     private Integer val;
 
      
-    public void setRaiseValue(int x) throws Exception{ //the amount which is raised. 0 if call.
+    public void setNewCallAmount(int x) throws Exception{ //the amount which is raised. 0 if call.
         if (this != RAISE)  {
             throw new Exception("Only Raise has a RaiseAmount");
         }
@@ -35,17 +35,17 @@ class Test {
 
         Decision D2 = Decision.RAISE;
         System.out.println(D2);
-        D2.setRaiseValue(100);
+        D2.setNewCallAmount(100);
         System.out.println(D2.getRaiseValue());
         
         try {
-            D2.setRaiseValue(200);
+            D2.setNewCallAmount(200);
         } catch (Exception e) {
             System.out.println(e);
         }
         
         try {
-            D.setRaiseValue(200);
+            D.setNewCallAmount(200);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -59,7 +59,7 @@ class Test {
         D = Decision.FOLD;
 
         try {
-            D.setRaiseValue(200);
+            D.setNewCallAmount(200);
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -7,7 +7,7 @@ public class VideoData {
     public final Integer views;
     public final Integer likes;
     public final String title;
-    public final String thumbnail; //immutable ?
+    public final String thumbnail; 
     public final Date releaseDate;
     public final Duration videoLength;
 

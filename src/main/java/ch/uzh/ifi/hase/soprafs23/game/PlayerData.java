@@ -6,7 +6,7 @@ import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
 class PlayerData { //protected (Package Private)
     private final Player player;
-    final Long id;
+    final String id;
     final String name;
     final boolean loggedIn;
     private Integer score;
@@ -31,6 +31,10 @@ class PlayerData { //protected (Package Private)
     }
 
     //setters and getter-------------------------------------
+    public Player getPlayer() {
+        return player;
+    }
+
 
     public void setScore(Integer score) {
         for (GameObserver o : observers) {
@@ -50,12 +54,12 @@ class PlayerData { //protected (Package Private)
         this.hand = hand;
     }
 
-    public void setEvaluatedHand(Hand hand) {
-        for (GameObserver o : observers) {
-            o.handEvaluated(player, hand);
-        }
-        this.hand = hand;
-    }
+    // public void setEvaluatedHand(Hand hand) {
+    //     for (GameObserver o : observers) {
+    //         o.handEvaluated(player, hand);
+    //     }
+    //     this.hand = hand;
+    // }
 
     public Hand getHand() {
         return hand;
