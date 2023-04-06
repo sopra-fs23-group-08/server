@@ -1,80 +1,102 @@
 package ch.uzh.ifi.hase.soprafs23.game;
 
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.uzh.ifi.hase.soprafs23.entity.Comment;
-import ch.uzh.ifi.hase.soprafs23.entity.User;
 
 
 public class Game {
 
     private GameModel gameModel;
-    private VideoSelection videoSelection;
+    public VideoSelection videoSelection;
+    private GameController gameController;
+    private int startScore = 0;
 
-    public void game(Game game){
+    public Game() {
+        gameModel = new GameModel();
+        videoSelection = new VideoSelection();
+        gameController = new GameController(gameModel);
     }
     
-    public void joinGame(User user){
+    public void joinGame(Player player){
+        gameModel.getSetupData().addPlayer(player, startScore);
     }
 
-    public void leaveGame(User user){
-        
+    public void leaveGame(Player player){
+        gameModel.getSetupData().removePlayer(player);
     }
 
     public void setSmallBlind(int smallBlind) {
-
+        gameModel.getSetupData().setSmallBlind(smallBlind);
     }
 
     public void setBigBlind(int bigBlind) {
-
+        gameModel.getSetupData().setBigBlind(bigBlind);
     }
 
     public void setStartScore(int startScore) {
-
+        this.startScore = startScore;
+        gameModel.getSetupData().changeInitialScoreForAll(startScore);
     }
 
 
-    public void setScorePlayer(int scorePlayer, User user) {
-
+    public void setScorePlayer(int scorePlayer, Player player) {
+        gameModel.getSetupData().changeInitialScore(player, scorePlayer);
     }
 
-    public void infoFirstRound(boolean bool){
-
+    public void infoFirstRound(boolean shouldThereBeInfoFirstRound){
+        gameModel.getSetupData().setInfoFirstRound(shouldThereBeInfoFirstRound);
     }
 
-    public void start(User user){
-
+    public void startGame() throws IOException, InterruptedException, Exception {
+        gameController.startGame();
+    }
+    
+    public void startBettingRound() {
+        gameController.startBettingRound();
     }
 
-    public void call(User user){
-
+    public void call(Player player) throws Exception{
+        gameController.playerDecision(player, Decision.CALL);
     }
 
-    public void raise(User user){
-
+    public void raise(Player player, int newCallAmount) throws Exception{
+        Decision d = Decision.RAISE;
+        d.setNewCallAmount(newCallAmount);
+        gameController.playerDecision(player, d);
     }
 
-    public void fold(User user){
-
+    public void fold(Player player) throws Exception{
+        gameController.playerDecision(player, Decision.FOLD);
     }
 
     public void addObserver(GameObserver o) {
+        gameModel.addObserver(o);
     }
 
-    public Game getGameId(Game game) {
-        return game; 
+    public String getGameId() {
+        return gameModel.getGameId(); 
     }
 
 
-    public VideoData getVideoData(VideoData videoData) {
-        return videoData;
+    public VideoData getVideoData() {
+        return gameModel.getVideoData();
     }
 
-    public GamePhase getGamePhase(GamePhase gamePhase) {
-        return gamePhase;
+    public GamePhase getGamePhase() {
+        return gameModel.getGamePhase();
     }
 
-    public Player getPlayer(Player player) {
-        return player;
+    public List<Player> getPlayers() {
+        List<Player> l = new ArrayList<>();
+        for (PlayerData p : gameModel.getPlayers()) {
+            l.add(p.getPlayer()); //convert PlayerData to Player
+        }
+        return l;
     }
 
 

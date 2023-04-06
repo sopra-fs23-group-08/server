@@ -1,7 +1,6 @@
 package ch.uzh.ifi.hase.soprafs23.game;
 
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
-import ch.uzh.ifi.hase.soprafs23.entity.User;
 
 public interface GameObserver {
 
@@ -9,18 +8,22 @@ public interface GameObserver {
 
     void newHand(Player player, Hand hand);
 
-    void handEvaluated(Player player, Hand hand);
+    // void handEvaluated(Player player, Hand hand); //don't use this maybe?
 
     void playerDecisionChanged(Player player, Decision decision);
 
-    void currentPlayerChange(User user);
+    void currentPlayerChange(Player player);
 
-    void winnerIs(User user);
+    void winnerIs(Player player);
 
     void gameGettingClosed();
 
     void gamePhaseChange(GamePhase gamePhase);
 
     void potScoreChange(Integer score);
+
+    void callAmountChanged(Integer newCallAmount);
+
+    void newPlayerBigBlindNSmallBlind(Player smallBlind, Player bigBlind);
     
 }
