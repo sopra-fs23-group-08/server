@@ -4,10 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.sql.Time;
-import java.text.DateFormat;
 import java.time.Duration;
+import java.util.Date;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,6 +18,7 @@ import org.springframework.data.util.Pair;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 
 import ch.uzh.ifi.hase.soprafs23.entity.Comment;
 import ch.uzh.ifi.hase.soprafs23.game.Correctness;
@@ -35,7 +35,20 @@ class APIController {
         // try (PrintWriter out = new PrintWriter("src/main/resources/responseJson.txt")) {
         //     out.println(response);
         // }
-        var happy_try = getGameDataByQuery("LoFi HipHop", Language.GERMAN);
+
+        // var happy_try = getGameDataByQuery("LoFi HipHop", Language.GERMAN);
+        // var happy = new gsonVDandHand(happy_try);
+
+        // Gson gson = new GsonBuilder().setDateFormat(DateFormat.FULL, DateFormat.FULL).create();
+        // String response = gson.toJson(happy);
+        // try (PrintWriter out = new PrintWriter("src/main/resources/responseJson.txt")) {
+        //     out.println(response);
+        // }
+    }
+
+    static Pair<VideoData, List<Hand>> readFromFile(String path) throws JsonSyntaxException, FileNotFoundException, IOException {
+        Gson gson = new GsonBuilder().setDateFormat(DateFormat.FULL, DateFormat.FULL).create();
+        return gson.fromJson(APIController.readFile(path), GsonVDandHand.class).get();
     }
 
     //this is the complete function :)
@@ -114,6 +127,8 @@ class APIController {
 
                 if (commentList.items.size() < 21) {
                     throw new Exception("Not enough (21 or more) comments longer than " + MINCHARS + " chars.");
+                } else {
+                    System.out.println("Successfully added video Comments");
                 }
                 Pair<VideoList.Item, List<CommentList.Item>> vac = Pair.of(video, commentList.items);
                 videosWithComments.add(vac);
@@ -345,4 +360,39 @@ class VideoInfoList {
         public int totalResults;
         public int resultsPerPage;
     }
+}
+
+class GsonVDandHand {
+
+    VD videoData = new VD();
+    List<Hand> hands;
+
+    GsonVDandHand(Pair<VideoData, List<Hand>> in) {
+        var v = in.getFirst();
+        videoData.likes = v.likes;
+        videoData.views = v.views;
+        videoData.title = v.title;
+        videoData.thumbnail = v.thumbnail;
+        videoData.releaseDate = v.releaseDate;
+        videoData.videoLength = v.videoLength.toString();
+        hands = in.getSecond();
+    }
+
+    Pair<VideoData, List<Hand>> get() {
+        VideoData out = new VideoData(videoData.views, videoData.likes, videoData.title, videoData.thumbnail,
+                videoData.releaseDate, Duration.parse(videoData.videoLength));
+        return Pair.of(out, hands);
+
+    }
+    
+    class VD {
+        Integer views;
+        Integer likes;
+        String title;
+        String thumbnail; 
+        Date releaseDate;
+        String videoLength;
+        
+    }
+    
 }
