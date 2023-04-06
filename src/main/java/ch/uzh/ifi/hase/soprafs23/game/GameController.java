@@ -57,8 +57,11 @@ class GameController {
                 p.setDecision(Decision.NOT_DECIDED);
             }
         }
-        gm.nextDealer();
-        gm.setCurrentPlayer(gm.getSmallBlind());
+        // gm.nextDealer();
+        gm.setCurrentPlayer(gm.getDealer());
+        gm.nextPlayer();
+        gm.setLastRaisingPlayer(gm.getCurrentPlayer().getPlayer());
+        gm.setCallAmount(0);
     }
 
     void playerDecision(Player p, Decision d) throws Exception {
@@ -86,6 +89,8 @@ class GameController {
                     throw new Exception(
                             "Player score(" + playerData.getScore() + ") is not high enough to raise(" + newCallAmount
                                     + ").");
+                }else if (gm.getCallAmount() > newCallAmount){
+                    throw new Exception("The CallAmount must be higher after a raise. CallAmountBefore: " + gm.getCallAmount() + " NewCallAmount: " + newCallAmount);
                 }
                 gm.setCallAmount(newCallAmount);
                 addToPot(p);
@@ -100,8 +105,7 @@ class GameController {
         
         if (allFoldedButOne()) {
             winOtherFolded();
-        }
-        if (isBettingRoundOver()) {
+        }else if (isBettingRoundOver()) {
             endOfBettingRound();
         }
     }
@@ -148,8 +152,10 @@ class GameController {
     void endOfBettingRound() throws Exception {
         if (gm.getGamePhase() == GamePhase.FOURTH_ROUND) {
             evaluateWinner();
+        } else {
+            gm.setGamePhase(gm.getGamePhase().nextPhase());
+            startBettingRound();
         }
-        gm.setGamePhase(gm.getGamePhase().nextPhase());
     }
     
 
@@ -174,10 +180,10 @@ class GameController {
     }
 
     void enforceBigAndSmallBlind(Player p) throws Exception {
-        if (isBigBlind(p) && gm.getCallAmount() < gm.getSetupData().getBigBlind()) {
+        if (isBigBlind(p) && gm.getCallAmount() < gm.getSetupData().getBigBlind() && gm.getGamePhase() == GamePhase.FIRST_ROUND) {
             throw new Exception("BigBlind must raise. currentCallAmount: " + gm.getCallAmount() + " BigBlindAmount: "
                     + gm.getSetupData().getBigBlind());
-        } else if (isSmallBlind(p) && gm.getCallAmount() < gm.getSetupData().getSmallBlind()) {
+        } else if (isSmallBlind(p) && gm.getCallAmount() < gm.getSetupData().getSmallBlind() && gm.getGamePhase() == GamePhase.FIRST_ROUND) {
             throw new Exception("SmallBlind must raise. currentCallAmount: " + gm.getCallAmount()
                     + " SmallBlindAmount: " + gm.getSetupData().getSmallBlind());
         }
@@ -191,6 +197,6 @@ class GameController {
     }
 
     boolean allFoldedButOne() {
-        return gm.getFoldCount() >= gm.getPlayers().size();
+        return gm.getFoldCount() >= gm.getPlayers().size()-1;
     }
 }
