@@ -13,11 +13,16 @@ import ch.uzh.ifi.hase.soprafs23.entity.User;
 
 public class SetupData {
 
-    private List<Pair<Player, Integer>> players = new ArrayList<>();
+    private List<Pair<Player, Integer>> players;
     private int smallBlind;
     private int bigBlind;
     private boolean infoFirstRound;
     private YTAPIManager yt;
+
+    public SetupData() {
+        yt = new YTAPIManager();
+        players = new ArrayList<>();
+    }
 
     public List<Pair<Player, Integer>> getPlayers() {
         return players;

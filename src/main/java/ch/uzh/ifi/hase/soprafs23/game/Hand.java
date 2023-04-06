@@ -9,7 +9,7 @@ import ch.uzh.ifi.hase.soprafs23.entity.Comment;
 public class Hand {
     private List<Pair<Comment, Correctness>> comments;
     
-    public Hand(ArrayList<Pair<Comment, Correctness>> cards) {
+    public Hand(List<Pair<Comment, Correctness>> cards) {
         comments = new ArrayList<>(cards); //shallow copy
     }
     

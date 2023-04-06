@@ -12,8 +12,6 @@ import java.util.List;
 import ch.uzh.ifi.hase.soprafs23.YTAPIManager.YTAPIManager;
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
-//todo check for winner
-//todo game phase update
 //todo testing :)
 
 class GameController {
@@ -34,18 +32,18 @@ class GameController {
 
         for (Pair<Player, Integer> pair : setupData.getPlayers()) {
             var playerData = new PlayerData(pair.getFirst());
+            gm.addPlayer(playerData);
+
             playerData.setScore(pair.getSecond());
             playerData.setDecision(Decision.NOT_DECIDED);
 
             Hand hand = ytData.getSecond().get(rand.nextInt(ytData.getSecond().size()));
             ytData.getSecond().remove(hand);
             playerData.setNewHand(hand);
-
-            gm.addPlayer(playerData);
         }
 
         gm.setDealer(gm.getPlayers().get(rand.nextInt(gm.getPlayers().size())));
-        gm.setCurrentPlayer(gm.getSmallBlind());
+        gm.setCurrentPlayer(new PlayerData());
         gm.setGamePhase(GamePhase.FIRST_ROUND);
         gm.setPot(0);
         gm.setCallAmount(0);
@@ -64,6 +62,9 @@ class GameController {
     }
 
     void playerDecision(Player p, Decision d) throws Exception {
+        playerDecision(p, d, null);
+    }
+    void playerDecision(Player p, Decision d, Integer newCallAmount) throws Exception {
         if (p != gm.getCurrentPlayer().getPlayer()) {
             throw new Exception("You're not the current player");
         }
@@ -80,7 +81,6 @@ class GameController {
                 break;
 
             case RAISE:
-                var newCallAmount = d.getRaiseValue();
                 var playerData = gm.getPlayer(p);
                 if (playerData.getScore() < newCallAmount) {
                     throw new Exception(

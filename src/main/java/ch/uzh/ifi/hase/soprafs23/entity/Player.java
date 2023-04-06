@@ -12,10 +12,16 @@ public class Player {
     public final String name;
     public final boolean loggedIn;
 
-    public Player(String aName, boolean aLoggedIn){
+    public Player(String aName, boolean aLoggedIn) {
         id = UUID.randomUUID().toString();
         name = aName;
         loggedIn = aLoggedIn;
+    }
+
+    public Player() {
+        id = null;
+        name = null;
+        loggedIn = false;
     }
 
 }

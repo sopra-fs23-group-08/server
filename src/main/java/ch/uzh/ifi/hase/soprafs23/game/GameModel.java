@@ -8,7 +8,7 @@ import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
 class GameModel { //protected (Package Private)
     public final String gameId;
-    private final List<PlayerData> players = new ArrayList<>(); //mutable but address can not be changed
+    private final List<PlayerData> players; //mutable but address can not be changed
     private VideoData videoData;
     private GamePhase gamePhase;
     private PlayerData currentPlayer;
@@ -27,6 +27,9 @@ class GameModel { //protected (Package Private)
     public GameModel() {
         gameId = UUID.randomUUID().toString();
         gamePhase = GamePhase.WAITING_FOR_PLAYERS;
+        setupData = new SetupData();
+        players = new ArrayList<>();
+        observers = new ArrayList<>();
     }
     
     //observer stuff------------------------------

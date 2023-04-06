@@ -1,5 +1,6 @@
 package ch.uzh.ifi.hase.soprafs23.game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
@@ -20,6 +21,15 @@ class PlayerData { //protected (Package Private)
         id = aPlayer.id;
         name = aPlayer.name;
         loggedIn = aPlayer.loggedIn;
+        observers = new ArrayList<>();
+    }
+
+    PlayerData() {
+        player = new Player();
+        id = null;
+        name = null;
+        loggedIn = false;
+        observers = new ArrayList<>();
     }
 
     public void addObserver(GameObserver o) {

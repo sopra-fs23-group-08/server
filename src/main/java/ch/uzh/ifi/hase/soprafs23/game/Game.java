@@ -66,8 +66,7 @@ public class Game {
 
     public void raise(Player player, int newCallAmount) throws Exception{
         Decision d = Decision.RAISE;
-        d.setNewCallAmount(newCallAmount);
-        gameController.playerDecision(player, d);
+        gameController.playerDecision(player, d, newCallAmount);
     }
 
     public void fold(Player player) throws Exception{
@@ -100,5 +99,17 @@ public class Game {
     }
 
 
+    public static void main(String[] args) throws IOException, InterruptedException, Exception {
+        Game game = new Game();
+        Player playerA = new Player("A",false);
+        Player playerB = new Player("B",false);
+        Player playerC = new Player("C",false);
+
+        
+        game.joinGame(playerC);
+        game.joinGame(playerB);
+        game.joinGame(playerA);
+        game.startGame();
+    }
     
 }
