@@ -1,15 +1,19 @@
 package ch.uzh.ifi.hase.soprafs23.game;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
+
+import org.springframework.data.util.Pair;
 
 import ch.uzh.ifi.hase.soprafs23.YTAPIManager.Language;
 import ch.uzh.ifi.hase.soprafs23.YTAPIManager.YTAPIManager;
 
-public class VideoSelection {
+public class VideoSetup {
 
     YTAPIManager ytAPIManager;
 
-    public VideoSelection() {
+    public VideoSetup() {
         ytAPIManager = new YTAPIManager();
     }
 
@@ -27,5 +31,9 @@ public class VideoSelection {
 
     public void setMinimalViewcount(Integer viewCount) throws Exception {
         ytAPIManager.setMinimalViewcount(viewCount);
+    }
+
+    protected Pair<VideoData, List<Hand>> getVideoAndHand() throws IOException, InterruptedException, Exception{
+        return ytAPIManager.getVideoAndHand();
     }
 }

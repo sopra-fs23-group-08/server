@@ -3,36 +3,38 @@ package ch.uzh.ifi.hase.soprafs23.game;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.data.util.Pair;
 
-import ch.uzh.ifi.hase.soprafs23.YTAPIManager.YTAPIManager;
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
-import ch.uzh.ifi.hase.soprafs23.entity.User;
 
 
 
-public class SetupData {
+public class SetupData extends Setup {
 
     private List<Pair<Player, Integer>> players;
     private int smallBlind;
     private int bigBlind;
     private boolean infoFirstRound;
-    private YTAPIManager yt;
+    private int initialScore;
+
+    public VideoSetup video;
 
     public SetupData() {
-        yt = new YTAPIManager();
         players = new ArrayList<>();
+        initialScore = 0;
+        video = new VideoSetup();
     }
 
     public List<Pair<Player, Integer>> getPlayers() {
         return players;
     }
 
-    public void addPlayer(Player p, int initialScore) {
+    public void joinGame(Player p) {
         this.players.add(Pair.of(p, initialScore));
     }
 
-    public void removePlayer(Player p) {
+    public void leaveGame(Player p) {
         Pair<Player, Integer> remove = null;
         for (Pair<Player, Integer> pair : players) {
             if (pair.getFirst().id == p.id) {
@@ -43,12 +45,13 @@ public class SetupData {
         players.remove(remove);
     }
 
-    public void changeInitialScore(Player p, int newInitialScore) {
-        removePlayer(p);
-        addPlayer(p, newInitialScore);
+    public void setScoreForPlayer(Player p, int newInitialScore) {
+        leaveGame(p);//chanky implementation ok interface
+        this.players.add(Pair.of(p, newInitialScore));
     }
 
-    public void changeInitialScoreForAll(int newInitialScore) {
+    public void setStartScoreForAll(int newInitialScore) {
+        initialScore = newInitialScore;
         List<Pair<Player, Integer>> l = new ArrayList<>();
         for (Pair<Player, Integer> pair : players) {
             l.add(Pair.of(pair.getFirst(), newInitialScore));
@@ -58,19 +61,19 @@ public class SetupData {
     }
 
     public Pair<VideoData, List<Hand>> getYTData() throws IOException, InterruptedException, Exception {
-        return yt.getVideoAndHand();
+        return video.getVideoAndHand();
     }
     
-    public int getSmallBlind() {
+    public int getSmallBlindAmount() {
         return smallBlind;
     }
-    public void setSmallBlind(int smallBid) {
+    public void setSmallBlindAmount(int smallBid) {
         this.smallBlind = smallBid;
     }
-    public int getBigBlind() {
+    public int getBigBlindAmount() {
         return bigBlind;
     }
-    public void setBigBlind(int bigBlind) {
+    public void setBigBlindAmount(int bigBlind) {
         this.bigBlind = bigBlind;
     }
     public boolean isInfoFirstRound() {

@@ -23,7 +23,7 @@ public class GameTest {
   TestGameObserver observer;
 
   @BeforeEach
-  public void setUpGame() {
+  public void setUpGame() throws Exception {
 
     game = new Game();
     playerA = new Player("A",false);
@@ -33,32 +33,41 @@ public class GameTest {
 
     assertEquals(false, game.getGameId().isEmpty());
     
-    game.joinGame(playerC);
-    game.joinGame(playerB);
+    game.setup.joinGame(playerC);
+    game.setup.joinGame(playerB);
     game.addObserver(observer);
-    game.joinGame(playerA);
-    game.setStartScore(1000); //maybe change call to be in game.setup.setAllPlayerScore
-    game.setSmallBlind(10);
-    game.setBigBlind(20);
+    game.setup.joinGame(playerA);
+    game.setup.setStartScoreForAll(1000); //maybe change call to be in game.setup.setAllPlayerScore
+    game.setup.setSmallBlindAmount(10);
+    game.setup.setBigBlindAmount(20);
 
     assertTrue(!game.getPlayers().contains(playerC));//players are added after the game has started. maybe change that?
     assertEquals(GamePhase.WAITING_FOR_PLAYERS, game.getGamePhase());
 
     try {
       game.startGame();
-    } catch (Exception e) { assertEquals("Some exception occurred", e); }
+    } catch (Exception e) {
+      assertEquals("Some exception occurred", e);
+    }
+    
+    
   }
 
   @Test
-  public void runThrough() { //this is like a sample game
+  public void runThrough() throws Exception { //this is like a sample game
+    executableThrowsExceptionMsg(() -> {
+      game.setup.setBigBlindAmount(0);
+    }, "During the game the Setup can't be changed. 'setBigBlindAmount'");
+
     assertEquals(GamePhase.FIRST_ROUND, game.getGamePhase());
     assertTrue(game.getPlayers().contains(playerC));
 
     game.getPlayers().remove(playerC); //immutability test
     assertTrue(game.getPlayers().contains(playerC));
 
-    game.leaveGame(playerC);//maybe weird change this?
-    assertTrue(game.getPlayers().contains(playerC));
+    executableThrowsExceptionMsg(() -> {
+      game.setup.leaveGame(playerC);
+    }, "During the game the Setup can't be changed. 'leaveGame'");
 
     executableThrowsExceptionMsg(() -> {
       game.call(playerC);

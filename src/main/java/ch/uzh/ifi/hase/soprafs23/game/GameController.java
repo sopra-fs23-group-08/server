@@ -3,6 +3,7 @@ package ch.uzh.ifi.hase.soprafs23.game;
 import java.io.IOException;
 import java.util.Currency;
 import java.util.Random;
+import java.util.Set;
 
 import org.springframework.data.util.Pair;
 
@@ -18,21 +19,22 @@ class GameController {
     
     private Random rand = new Random();
     private GameModel gm;
+    private Setup sd;
 
-    GameController(GameModel gm) {
+    GameController(GameModel gm, Setup sd) {
         this.gm = gm;
+        this.sd = sd;
     }
 
     void startGame() throws IOException, InterruptedException, Exception {//Creating playerData and stuff
-        var setupData = gm.getSetupData();
-
-        Pair<VideoData, java.util.List<Hand>> ytData = gm.getSetupData().getYTData();
+        
+        Pair<VideoData, java.util.List<Hand>> ytData = sd.getYTData();
 
         gm.setVideoData(ytData.getFirst());
 
-        for (Pair<Player, Integer> pair : setupData.getPlayers()) {
+        for (Pair<Player, Integer> pair : sd.getPlayers()) {
             var playerData = new PlayerData(pair.getFirst());
-            gm.addPlayer(playerData);
+            gm.addPlayerData(playerData);
 
             playerData.setScore(pair.getSecond());
             playerData.setDecision(Decision.NOT_DECIDED);
@@ -42,36 +44,27 @@ class GameController {
             playerData.setNewHand(hand);
         }
 
-        gm.setDealer(gm.getPlayers().get(rand.nextInt(gm.getPlayers().size())));
-        gm.setCurrentPlayer(new PlayerData());
-        gm.setGamePhase(GamePhase.FIRST_ROUND);
-        gm.setPot(0);
-        gm.setCallAmount(0);
-        gm.setFoldCount(0);
-        gm.setWinner(null);
+        gm.resetTable();
+        gm.setDealerPlayer(); //random dealer if not set before
     }
     
     void startBettingRound() {
-        for (PlayerData p : gm.getPlayers()) {
-            if (p.getDecision() != Decision.FOLD) {
-                p.setDecision(Decision.NOT_DECIDED);
+        for (PlayerData pd : gm.getPlayerDataCollection()) {
+            if (pd.getDecision() != Decision.FOLD) {
+                pd.setDecision(Decision.NOT_DECIDED);
             }
         }
-        // gm.nextDealer();
-        gm.setCurrentPlayer(gm.getDealer());
-        gm.nextPlayer();
-        gm.setLastRaisingPlayer(gm.getCurrentPlayer().getPlayer());
-        gm.setCallAmount(0);
+        gm.resetBettingRound();
     }
 
     void playerDecision(Player p, Decision d) throws Exception {
         playerDecision(p, d, null);
     }
     void playerDecision(Player p, Decision d, Integer newCallAmount) throws Exception {
-        if (p != gm.getCurrentPlayer().getPlayer()) {
+        if (p != gm.getCurrentPlayer()) {
             throw new Exception("You're not the current player");
         }
-        if (gm.getPlayer(p).getDecision() == Decision.FOLD) {
+        if (gm.getPlayerData(p).getDecision() == Decision.FOLD) {
             throw new Exception("After you folded you can't do anything until next game");
         }
         switch (d) {
@@ -80,11 +73,11 @@ class GameController {
                 break;
             case FOLD:
                 gm.setFoldCount(gm.getFoldCount() + 1);
-                gm.getPlayer(p).setDecision(Decision.FOLD);
+                gm.getPlayerData(p).setDecision(Decision.FOLD);
                 break;
 
             case RAISE:
-                var playerData = gm.getPlayer(p);
+                var playerData = gm.getPlayerData(p);
                 if (playerData.getScore() < newCallAmount) {
                     throw new Exception(
                             "Player score(" + playerData.getScore() + ") is not high enough to raise(" + newCallAmount
@@ -100,7 +93,7 @@ class GameController {
             default:
                 throw new Exception("Illegal decision " + d);
         }
-        gm.getPlayer(p).setDecision(d);
+        gm.getPlayerData(p).setDecision(d);
         gm.nextPlayer();
         
         if (allFoldedButOne()) {
@@ -113,12 +106,12 @@ class GameController {
     void winOtherFolded() throws Exception {
         gm.setGamePhase(GamePhase.END_ALL_FOLDED);
         Player winner = null;
-        for (PlayerData p : gm.getPlayers()) {
-            if (p.getDecision() != Decision.FOLD) {
+        for (PlayerData pd : gm.getPlayerDataCollection()) {
+            if (pd.getDecision() != Decision.FOLD) {
                 if (winner != null) {
                     throw new Exception("There can not be two winner");
                 }
-                winner = p.getPlayer();
+                winner = pd.getPlayer();
             }
         }
 
@@ -134,10 +127,10 @@ class GameController {
         gm.setGamePhase(GamePhase.END_ALL_FOLDED);
         Player winner = null;
         int maxCorrect = -1;
-        for (PlayerData p : gm.getPlayers()) {
-            if (p.getDecision() != Decision.FOLD && p.getHand().getCountCorrect() > maxCorrect) {
-                maxCorrect = p.getHand().getCountCorrect();
-                winner = p.getPlayer();
+        for (PlayerData pd : gm.getPlayerDataCollection()) {
+            if (pd.getDecision() != Decision.FOLD && pd.getHand().getCountCorrect() > maxCorrect) {
+                maxCorrect = pd.getHand().getCountCorrect();
+                winner = pd.getPlayer();
             }
         }
 
@@ -162,41 +155,41 @@ class GameController {
     void addToPot(Player p) throws Exception {
         enforceBigAndSmallBlind(p);
 
-        var playerData = gm.getPlayer(p);
+        var playerData = gm.getPlayerData(p);
         if (playerData.getScore() < gm.getCallAmount()) {
             throw new Exception(
                     p + " not enough score(" + playerData.getScore() + ") to call(" + gm.getCallAmount() + ")");
         }
         playerData.setScore(playerData.getScore() - gm.getCallAmount());
-        gm.setPot(gm.getPot() + gm.getCallAmount());
+        gm.setPotAmount(gm.getPotAmount() + gm.getCallAmount());
     }
 
     boolean isSmallBlind(Player p) {
-        return (gm.getSmallBlind().getPlayer().id == p.id);
+        return (gm.getSmallBlindPlayer().id == p.id);
     }
 
     boolean isBigBlind(Player p) {
-        return (gm.getBigBlind().getPlayer().id == p.id);
+        return (gm.getBigBlindPlayer().id == p.id);
     }
 
     void enforceBigAndSmallBlind(Player p) throws Exception {
-        if (isBigBlind(p) && gm.getCallAmount() < gm.getSetupData().getBigBlind() && gm.getGamePhase() == GamePhase.FIRST_ROUND) {
+        if (isBigBlind(p) && gm.getCallAmount() < sd.getBigBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_ROUND) {
             throw new Exception("BigBlind must raise. currentCallAmount: " + gm.getCallAmount() + " BigBlindAmount: "
-                    + gm.getSetupData().getBigBlind());
-        } else if (isSmallBlind(p) && gm.getCallAmount() < gm.getSetupData().getSmallBlind() && gm.getGamePhase() == GamePhase.FIRST_ROUND) {
+                    + sd.getBigBlindAmount());
+        } else if (isSmallBlind(p) && gm.getCallAmount() < sd.getSmallBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_ROUND) {
             throw new Exception("SmallBlind must raise. currentCallAmount: " + gm.getCallAmount()
-                    + " SmallBlindAmount: " + gm.getSetupData().getSmallBlind());
+                    + " SmallBlindAmount: " + sd.getSmallBlindAmount());
         }
     }
 
     boolean isBettingRoundOver() {
-        if (gm.getCurrentPlayer().getPlayer().id == gm.getLastRaisingPlayer().id) {
+        if (gm.getCurrentPlayer().id == gm.getLastRaisingPlayer().id) {
             return true;
         }
         return false;
     }
 
     boolean allFoldedButOne() {
-        return gm.getFoldCount() >= gm.getPlayers().size()-1;
+        return gm.getFoldCount() >= gm.getPlayerDataCollection().size()-1;
     }
 }

@@ -6,54 +6,41 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.uzh.ifi.hase.soprafs23.entity.Comment;
+//this is the interface for the Game Component. Setup and VideoSetup are also part of the interface.
+//basic usage:
+//###################################################
+//Game game = new Game();
+//game.addObserver(GameObserver);
+//...
+//game.setup.join(playerA);
+//...
+//game.setup.setSmallBlindAmount(10);
+//...
+//game.setup.video.setQuery("LoFi HipHop");
+//...
+//game.startGame(); //note after the game is started no changes to the setup are allowed
+//
+//game.call(playerA);
+//...
+//###################################################
 
-
+//todo allow to play a second round. By placing game back into setup mode.
+//todo not automatically jump to next betting round. Wait for betting round start. Maybe add Enum with BettingRound.running/ended
 public class Game {
 
     private GameModel gameModel;
-    public VideoSelection videoSelection;
+    public Setup setup;
     private GameController gameController;
-    private int startScore = 0;
 
     public Game() {
         gameModel = new GameModel();
-        videoSelection = new VideoSelection();
-        gameController = new GameController(gameModel);
-    }
-    
-    public void joinGame(Player player){
-        gameModel.getSetupData().addPlayer(player, startScore);
-    }
-
-    public void leaveGame(Player player){
-        gameModel.getSetupData().removePlayer(player);
-    }
-
-    public void setSmallBlind(int smallBlind) {
-        gameModel.getSetupData().setSmallBlind(smallBlind);
-    }
-
-    public void setBigBlind(int bigBlind) {
-        gameModel.getSetupData().setBigBlind(bigBlind);
-    }
-
-    public void setStartScore(int startScore) {
-        this.startScore = startScore;
-        gameModel.getSetupData().changeInitialScoreForAll(startScore);
-    }
-
-
-    public void setScorePlayer(int scorePlayer, Player player) {
-        gameModel.getSetupData().changeInitialScore(player, scorePlayer);
-    }
-
-    public void infoFirstRound(boolean shouldThereBeInfoFirstRound){
-        gameModel.getSetupData().setInfoFirstRound(shouldThereBeInfoFirstRound);
+        setup = new SetupData();
+        gameController = new GameController(gameModel, setup);
     }
 
     public void startGame() throws IOException, InterruptedException, Exception {
         gameController.startGame();
+        setup = new SetupClosed();
     }
     
     public void startBettingRound() {
@@ -92,8 +79,8 @@ public class Game {
 
     public List<Player> getPlayers() {
         List<Player> l = new ArrayList<>();
-        for (PlayerData p : gameModel.getPlayers()) {
-            l.add(p.getPlayer()); //convert PlayerData to Player
+        for (PlayerData pd : gameModel.getPlayerDataCollection()) {
+            l.add(pd.getPlayer()); //convert PlayerData to Player
         }
         return l;
     }
@@ -106,9 +93,9 @@ public class Game {
         Player playerC = new Player("C",false);
 
         
-        game.joinGame(playerC);
-        game.joinGame(playerB);
-        game.joinGame(playerA);
+        game.setup.joinGame(playerC);
+        game.setup.joinGame(playerB);
+        game.setup.joinGame(playerA);
         game.startGame();
     }
     
