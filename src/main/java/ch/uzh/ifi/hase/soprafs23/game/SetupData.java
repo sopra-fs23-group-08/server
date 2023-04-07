@@ -10,7 +10,7 @@ import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
 
 
-public class SetupData extends Setup {
+class SetupData extends Setup {
 
     private List<Pair<Player, Integer>> players;
     private int smallBlind;

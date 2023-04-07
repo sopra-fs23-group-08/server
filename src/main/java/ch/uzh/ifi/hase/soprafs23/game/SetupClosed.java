@@ -7,7 +7,7 @@ import org.springframework.data.util.Pair;
 
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
-public class SetupClosed extends Setup {
+class SetupClosed extends Setup {
     
     public SetupClosed() {
         video = null; //maybe nicer possibilities

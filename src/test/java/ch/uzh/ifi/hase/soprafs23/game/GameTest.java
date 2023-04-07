@@ -3,7 +3,6 @@ package ch.uzh.ifi.hase.soprafs23.game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
-import org.mockito.internal.stubbing.answers.ThrowsException;
 
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
@@ -11,9 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.IOException;
-import java.util.function.Function;
 
 public class GameTest {
   Game game;

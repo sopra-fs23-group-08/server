@@ -48,7 +48,7 @@ public class YTAPIManager {
             return Pair.of(new VideoData(null, null, null, null, null, null), new ArrayList<>(Arrays.asList(new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments())))); //faster debug
         } else if (noApiKey) {
             return APIController.readFromFile("src/main/resources/GameData1.txt");
-        } else {
+        } else {//standard
             return APIController.getGameDataByQuery(query, language);
         }
     } 
