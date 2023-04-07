@@ -38,15 +38,18 @@ public class YTAPIManager {
     }
     
     public Pair<VideoData, List<Hand>> getVideoAndHand() throws IOException, InterruptedException, Exception {
+        var fastDebug = false;
+        var noApiKey = true;
 
-        Comment comment = new Comment(null, query, query, query, null, null);
-        Pair<Comment,Correctness> p = Pair.of(comment, Correctness.CORRECT);
-        Hand hand = new Hand(Arrays.asList(p, p, p, p, p, p));
-        return Pair.of(new VideoData(null, null, null, null, null, null), new ArrayList<>(Arrays.asList(new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments())))); //faster debug
-
-        // return APIController.readFromFile("src/main/resources/GameData1.txt");
-
-
-        // return APIController.getGameDataByQuery(query, language);
+        if (fastDebug) {
+            Comment comment = new Comment(null, query, query, query, null, null);
+            Pair<Comment,Correctness> p = Pair.of(comment, Correctness.CORRECT);
+            Hand hand = new Hand(Arrays.asList(p, p, p, p, p, p));
+            return Pair.of(new VideoData(null, null, null, null, null, null), new ArrayList<>(Arrays.asList(new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments())))); //faster debug
+        } else if (noApiKey) {
+            return APIController.readFromFile("src/main/resources/GameData1.txt");
+        } else {
+            return APIController.getGameDataByQuery(query, language);
+        }
     } 
 }
