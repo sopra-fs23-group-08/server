@@ -17,7 +17,7 @@ public class APICaller {
 
     public static String getApiKey()  {
         String jsonString = "";
-        try (FileReader in = new FileReader("local.properties")) {
+        try (FileReader in = new FileReader("src/main/resources/YouTube.ApiKey")) {
             int c;
             while ((c = in.read()) != -1)
                 jsonString += (char) c;
