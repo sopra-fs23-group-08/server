@@ -2,21 +2,21 @@ package ch.uzh.ifi.hase.soprafs23.YTAPIManager;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
 
 import org.springframework.data.util.Pair;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import ch.uzh.ifi.hase.soprafs23.entity.Comment;
 import ch.uzh.ifi.hase.soprafs23.game.Correctness;
 import ch.uzh.ifi.hase.soprafs23.game.Hand;
 import ch.uzh.ifi.hase.soprafs23.game.VideoData;
+
+//todo add difference to video selection cosine similarity & yt recommendations?
+//todo add login for 2auth to increase the contingent. At the time around 80 games per day. 
+//todo Or getting rid of search call. 1000 games per day
 
 public class YTAPIManager {
     private String query = "LoFi HipHop";
@@ -51,8 +51,8 @@ public class YTAPIManager {
         if (fastDebug && isDebug) {
             return emptyVideoAndHand();
         } else if (!useYouTubeApi) {//gson is really slow in debug mode
-            return APIController.readFromFile("src/main/resources/GameData1.txt");
-        } else {//standard
+            return APIController.readFromFile("src/main/resources/GameData1.txt"); //reads local file
+        } else {//standard uses YT API
             return APIController.getGameDataByQuery(query, language);
         }
     }
