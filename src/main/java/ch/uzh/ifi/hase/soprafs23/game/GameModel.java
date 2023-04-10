@@ -14,7 +14,7 @@ import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
 class GameModel { //protected (Package Private)
     public final String gameId;
-    private final Map<String, PlayerData> playersData; //mutable but address can not be changed
+    private final Map<String, PlayerData> playersData; //mutable but address cannot be changed
     private final List<Player> playerOrder;
     private Random rand;
     private VideoData videoData;
@@ -32,7 +32,7 @@ class GameModel { //protected (Package Private)
     private List<GameObserver> observers;
 
     public GameModel() {
-        gameId = UUID.randomUUID().toString();
+        gameId = UUID.randomUUID().toString(); //generates a unique identifier
         gamePhase = GamePhase.WAITING_FOR_PLAYERS;
         playersData = new HashMap<>();
         observers = new ArrayList<>();
