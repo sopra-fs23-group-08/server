@@ -3,6 +3,9 @@ package ch.uzh.ifi.hase.soprafs23.game; // or socket?
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
@@ -15,6 +18,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker // enables WebSocket message handling, backed by a message broker.
 public class WebSocketConf implements WebSocketMessageBrokerConfigurer{
 
+    private static final String APPLICATION_DESTINATION_PREFIX = "/app"; //prefix for messages that are bound for methods annotated with @MessageMapping.
     private static final String WEBSOCKET_PREFIX = "/topic"; //prefix used for the destinations of WebSocket messages.In this case, it is set to "/topic".
     private static final String WEBSOCKET_SUFFIX = "/sopra-websocket"; //suffix for the WebSocket connection endpoint. In this case, it is set to "/sopra-websocket".
     private static final String ORIGIN_LOCALHOST = "http://localhost:3000"; //
@@ -24,7 +28,10 @@ public class WebSocketConf implements WebSocketMessageBrokerConfigurer{
     public void configureMessageBroker(@NotNull MessageBrokerRegistry config) { // implements the default method in 
         //WebSocketMessageBrokerConfigurer to configure the message broker. It starts by calling enableSimpleBroker() to enable 
         //a simple memory-based message broker to carry the greeting messages back to the client on destinations prefixed with /topic.
+        // FROM server TO client
         config.enableSimpleBroker(WEBSOCKET_PREFIX);
+        // FROM client TO server
+        config.setApplicationDestinationPrefixes(APPLICATION_DESTINATION_PREFIX);
     }
 
     @Override
@@ -35,4 +42,5 @@ public class WebSocketConf implements WebSocketMessageBrokerConfigurer{
                 .setAllowedOrigins(ORIGIN_LOCALHOST, ORIGIN_PROD)
                 .withSockJS(); //The SockJS client will attempt to connect to /sopra-websocket and use the best available transport
     }
+
 }
