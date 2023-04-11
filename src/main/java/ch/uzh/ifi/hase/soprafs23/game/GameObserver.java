@@ -2,6 +2,9 @@ package ch.uzh.ifi.hase.soprafs23.game;
 
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
+import ch.uzh.ifi.hase.soprafs23.YTAPIManager.*; // import all classes from the YTAPIManager package
+
+
 public interface GameObserver {
 
     void playerScoreChanged(Player player, Integer score);
@@ -25,5 +28,11 @@ public interface GameObserver {
     void callAmountChanged(Integer newCallAmount);
 
     void newPlayerBigBlindNSmallBlind(Player smallBlind, Player bigBlind);
+
     
 }
+
+    APIController apiController = new APIController();
+    Pair<VideoData, List<Hand>> gameData = apiController.getGameDataByQuery("query", Language.ENGLISH);
+
+
