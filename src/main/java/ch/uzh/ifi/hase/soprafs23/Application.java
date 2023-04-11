@@ -9,15 +9,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@RestController
 @SpringBootApplication
+@RestController // this anotation makes this class to serve restpoints
+
 public class Application {
 
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
   }
 
-  @GetMapping(value = "/", produces = MediaType.TEXT_PLAIN_VALUE)
+  @GetMapping(value = "/", produces = MediaType.TEXT_PLAIN_VALUE) // get something from the server
   @ResponseStatus(HttpStatus.OK)
   @ResponseBody
   public String helloWorld() {

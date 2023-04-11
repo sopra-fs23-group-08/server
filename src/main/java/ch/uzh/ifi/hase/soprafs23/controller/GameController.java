@@ -1,4 +1,5 @@
 package ch.uzh.ifi.hase.soprafs23.controller;
+//responsible for handling incoming HTTP requests related to games and player information. 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,7 +9,8 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 import ch.uzh.ifi.hase.soprafs23.service.GameService;
-@RestController
+@RestController //This annotation is applied to a class to mark it as a request handler. 
+//Spring RestController annotation is used to create RESTful web services using Spring MVC.
 public class GameController {
 
     @Autowired
