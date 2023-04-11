@@ -1,72 +1,49 @@
 package ch.uzh.ifi.hase.soprafs23.service;
 
-import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
-import ch.uzh.ifi.hase.soprafs23.entity.User;
-import ch.uzh.ifi.hase.soprafs23.repository.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
+import ch.uzh.ifi.hase.soprafs23.controller.TestGame;
+import ch.uzh.ifi.hase.soprafs23.controller.TestPlayer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @Service
 @Transactional
 public class GameService {
+    private HashMap<String, TestGame> games = new HashMap<String, TestGame>();
 
-  private final Logger log = LoggerFactory.getLogger(UserService.class);
+    public TestGame createGame(String hostUsername){
+        TestPlayer host = new TestPlayer();
+        host.setUsername(hostUsername);
+        // create new game
+        TestGame newGame = new TestGame();
+        // set host (not yet added to player list)
+        newGame.setHost(host);
+        // add game to list of games
+        games.put(newGame.getId(), newGame);
 
-  private final UserRepository userRepository;
-
-  @Autowired
-  public UserService(@Qualifier("userRepository") UserRepository userRepository) {
-    this.userRepository = userRepository;
-  }
-
-  public List<User> getUsers() {
-    return this.userRepository.findAll();
-  }
-
-  public User createUser(User newUser) {
-    newUser.setToken(UUID.randomUUID().toString());
-    newUser.setStatus(UserStatus.OFFLINE);
-    checkIfUserExists(newUser);
-    // saves the given entity but data is only persisted in the database once
-    // flush() is called
-    newUser = userRepository.save(newUser);
-    userRepository.flush();
-
-    log.debug("Created Information for User: {}", newUser);
-    return newUser;
-  }
-
-  /**
-   * This is a helper method that will check the uniqueness criteria of the
-   * username and the name
-   * defined in the User entity. The method will do nothing if the input is unique
-   * and throw an error otherwise.
-   *
-   * @param userToBeCreated
-   * @throws org.springframework.web.server.ResponseStatusException
-   * @see User
-   */
-  private void checkIfUserExists(User userToBeCreated) {
-    User userByUsername = userRepository.findByUsername(userToBeCreated.getUsername());
-    User userByName = userRepository.findByName(userToBeCreated.getName());
-
-    String baseErrorMessage = "The %s provided %s not unique. Therefore, the user could not be created!";
-    if (userByUsername != null && userByName != null) {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-          String.format(baseErrorMessage, "username and the name", "are"));
-    } else if (userByUsername != null) {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(baseErrorMessage, "username", "is"));
-    } else if (userByName != null) {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(baseErrorMessage, "name", "is"));
+        return newGame;
     }
-  }
+
+    public ArrayList<String> getPlayers(String gameId) {
+        ArrayList<TestPlayer> players = games.get(gameId).getPlayers();
+
+        // get only the usernames
+        ArrayList<String> usernames = new ArrayList<>();
+        for (TestPlayer player : players) {
+            usernames.add(player.getUsername());
+        }
+        return usernames;
+    }
+
+    public void addPlayer(String gameId, String username) {
+        //TODO throw error if game doesn't exist
+        //TODO check if username exists; if yes, add corresponding player
+        TestGame game = games.get(gameId);
+        TestPlayer player = new TestPlayer();
+        player.setUsername(username);
+        game.addPlayer(player);
+    }
+
 }
