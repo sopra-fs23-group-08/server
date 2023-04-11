@@ -4,23 +4,33 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class TestGame {
-    private ArrayList<TestPlayer> players = new ArrayList<TestPlayer>();
-    private String gameId;
 
-    public TestGame(TestPlayer host) {
-        players.add(host);
-        this.gameId = UUID.randomUUID().toString();
+    private TestPlayer host;
+    private String id;
+
+    private ArrayList<TestPlayer> players = new ArrayList<TestPlayer>();
+
+    public TestGame() {
+        this.id = UUID.randomUUID().toString();
     }
 
-    public String getGameId() {
-        return gameId;
+    public String getId() {
+        return id;
+    }
+
+    public void addPlayer(TestPlayer player) {
+        players.add(player);
     }
 
     public ArrayList<TestPlayer> getPlayers() {
         return players;
     }
 
-    public void addPlayer(TestPlayer player) {
-        players.add(player);
+    public TestPlayer getHost() {
+        return host;
+    }
+
+    public void setHost(TestPlayer host) {
+        this.host = host;
     }
 }
