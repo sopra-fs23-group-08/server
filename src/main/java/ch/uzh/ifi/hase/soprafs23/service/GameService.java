@@ -8,10 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@Service
-@Transactional
+@Service //part of the Spring Framework, and you will use it to mark a class as a service layer component. 
+@Transactional // transactions should be managed for this service via @Transactional annotation.
+
 public class GameService {
     private HashMap<String, TestGame> games = new HashMap<String, TestGame>();
+    //The service maintains a HashMap of games with game IDs as keys and TestGame objects as values.
 
     public TestGame createGame(String hostUsername){
         TestPlayer host = new TestPlayer();
@@ -26,6 +28,7 @@ public class GameService {
         return newGame;
     }
 
+    //returns a list of players for a specified game.
     public ArrayList<String> getPlayers(String gameId) {
         ArrayList<TestPlayer> players = games.get(gameId).getPlayers();
 
@@ -37,12 +40,20 @@ public class GameService {
         return usernames;
     }
 
+    // adds a new player to a specified game.
     public void addPlayer(String gameId, String username) {
-        //TODO throw error if game doesn't exist
-        //TODO check if username exists; if yes, add corresponding player
+        //TODO throw error if game doesn't exist; Like this?
+        if (!games.containsKey(gameId)) {
+            throw new IllegalArgumentException("Game with ID " + gameId + " does not exist.");
+        } 
+        
         TestGame game = games.get(gameId);
         TestPlayer player = new TestPlayer();
         player.setUsername(username);
+        //TODO check if username exists; if yes, add corresponding player; Like this? 
+        if (game.getPlayers().stream().anyMatch(p -> p.getUsername().equals(username))) {
+            throw new IllegalArgumentException("Player with username " + username + " already exists in the game.");
+        }
         game.addPlayer(player);
     }
 

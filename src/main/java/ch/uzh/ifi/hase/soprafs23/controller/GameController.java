@@ -14,13 +14,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin(origins = { "http://localhost:3000", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" })
+@CrossOrigin(origins = { "http://localhost:3000", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" }) //used to specify the allowed origins for cross-origin resource sharing.
 @RestController //This annotation is applied to a class to mark it as a request handler. 
 //Spring RestController annotation is used to create RESTful web services using Spring MVC.
 public class GameController {
 
     @Autowired
-    SimpMessagingTemplate messagingTemplate;
+    SimpMessagingTemplate messagingTemplate; //Spring utility class that can be used to send messages to WebSocket clients.
 
     private final GameService gameService;
 
@@ -47,6 +47,7 @@ public class GameController {
     }
     */
 
+    //maps a STOMP message to a specific handler method. In this case, /games/{gameId}/players is mapped to the addPlayer method.
     // the problem is: i return a strange JSON file here
     @MessageMapping("/games/{gameId}/players")
     @SendTo("/topic/games/{gameId}/players")
