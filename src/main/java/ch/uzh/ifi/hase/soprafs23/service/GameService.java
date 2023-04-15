@@ -2,8 +2,10 @@ package ch.uzh.ifi.hase.soprafs23.service;
 
 import ch.uzh.ifi.hase.soprafs23.controller.TestGame;
 import ch.uzh.ifi.hase.soprafs23.controller.TestPlayer;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,8 +30,12 @@ public class GameService {
         return newGame;
     }
 
+    public TestGame getGame(String gameId) {
+        return games.get(gameId);
+    }
+
     //returns a list of players for a specified game.
-    public ArrayList<String> getPlayers(String gameId) {
+    public ArrayList<String> getPlayerUsernames(String gameId) {
         ArrayList<TestPlayer> players = games.get(gameId).getPlayers();
 
         // get only the usernames
@@ -44,7 +50,7 @@ public class GameService {
     public void addPlayer(String gameId, String username) {
         //TODO throw error if game doesn't exist; Like this?
         if (!games.containsKey(gameId)) {
-            throw new IllegalArgumentException("Game with ID " + gameId + " does not exist.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");
         } 
         
         TestGame game = games.get(gameId);

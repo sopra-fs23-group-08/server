@@ -10,6 +10,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 import ch.uzh.ifi.hase.soprafs23.service.GameService;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +40,12 @@ public class GameController {
         return response;
     }
 
+    @GetMapping("/games/{gameId}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public TestGame getGame(@PathVariable String gameId) {
+        return gameService.getGame(gameId);
+    }
     /*
     @PostMapping("/games/{gameId}/players")
     public void addPlayer(@PathVariable String gameId, @RequestBody String username) {
@@ -48,11 +55,11 @@ public class GameController {
     */
 
     //maps a STOMP message to a specific handler method. In this case, /games/{gameId}/players is mapped to the addPlayer method.
-    // the problem is: i return a strange JSON file here
     @MessageMapping("/games/{gameId}/players")
     @SendTo("/topic/games/{gameId}/players")
     public ArrayList<String> addPlayer(@DestinationVariable String gameId, String username) {
         gameService.addPlayer(gameId, username);
-        return gameService.getPlayers(gameId);
+        ArrayList<String> players = gameService.getPlayerUsernames(gameId);
+        return players;
     }
 }

@@ -32,7 +32,7 @@ public interface GameObserver {
     
 }
 
+/*
     APIController apiController = new APIController();
     Pair<VideoData, List<Hand>> gameData = apiController.getGameDataByQuery("query", Language.ENGLISH);
-
-
+*/
