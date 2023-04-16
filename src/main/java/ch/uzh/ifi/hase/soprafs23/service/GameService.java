@@ -1,11 +1,14 @@
 package ch.uzh.ifi.hase.soprafs23.service;
 
-import ch.uzh.ifi.hase.soprafs23.controller.TestGame;
-import ch.uzh.ifi.hase.soprafs23.controller.TestPlayer;
+import ch.uzh.ifi.hase.soprafs23.entity.TestGame;
+import ch.uzh.ifi.hase.soprafs23.entity.TestPlayer;
+import ch.uzh.ifi.hase.soprafs23.rest.mapper.DTOMapper;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.TestPlayerWsDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,17 +16,20 @@ import java.util.HashMap;
 @Service //part of the Spring Framework, and you will use it to mark a class as a service layer component. 
 @Transactional // transactions should be managed for this service via @Transactional annotation.
 
+// TODO: start games
+// TODO: end/delete games
 public class GameService {
     private HashMap<String, TestGame> games = new HashMap<String, TestGame>();
     //The service maintains a HashMap of games with game IDs as keys and TestGame objects as values.
 
-    public TestGame createGame(String hostUsername){
-        TestPlayer host = new TestPlayer();
-        host.setUsername(hostUsername);
+    public TestGame createGame(TestPlayer host){
         // create new game
         TestGame newGame = new TestGame();
-        // set host (not yet added to player list)
+
+        // set host (host is not added to player list here)
+        // FE sends a WS message to add the host to the player list
         newGame.setHost(host);
+
         // add game to list of games
         games.put(newGame.getId(), newGame);
 
@@ -35,32 +41,26 @@ public class GameService {
     }
 
     //returns a list of players for a specified game.
-    public ArrayList<String> getPlayerUsernames(String gameId) {
-        ArrayList<TestPlayer> players = games.get(gameId).getPlayers();
-
-        // get only the usernames
-        ArrayList<String> usernames = new ArrayList<>();
-        for (TestPlayer player : players) {
-            usernames.add(player.getUsername());
-        }
-        return usernames;
+    public ArrayList<TestPlayer> getPlayers(String gameId) {
+        return games.get(gameId).getPlayers();
     }
 
     // adds a new player to a specified game.
-    public void addPlayer(String gameId, String username) {
-        //TODO throw error if game doesn't exist; Like this?
+    public void addPlayer(String gameId, TestPlayer player) {
+        // TODO: deal with case where player is registered
+        // check if game exists
         if (!games.containsKey(gameId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");
-        } 
-        
-        TestGame game = games.get(gameId);
-        TestPlayer player = new TestPlayer();
-        player.setUsername(username);
-        //TODO check if username exists; if yes, add corresponding player; Like this? 
-        if (game.getPlayers().stream().anyMatch(p -> p.getUsername().equals(username))) {
-            throw new IllegalArgumentException("Player with username " + username + " already exists in the game.");
         }
-        game.addPlayer(player);
-    }
 
+        TestGame game = games.get(gameId);
+        player.setCurrentGame(game);
+
+        // add player to player list
+        ArrayList<TestPlayer> players = game.getPlayers();
+        players.add(player);
+
+        game.setPlayers(players);
+    }
 }
+

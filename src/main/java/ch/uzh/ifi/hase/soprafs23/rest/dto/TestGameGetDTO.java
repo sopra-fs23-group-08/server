@@ -1,6 +1,6 @@
 package ch.uzh.ifi.hase.soprafs23.rest.dto;
 
-public class TestGamePostDTO {
+public class TestGameGetDTO {
     private String id;
 
     public String getId() {
