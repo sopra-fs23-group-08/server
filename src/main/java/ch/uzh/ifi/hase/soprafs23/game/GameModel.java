@@ -28,6 +28,7 @@ class GameModel { //protected (Package Private)
     private Player lastRaisingPlayer;
     private int foldCount;
     private Player winner;
+    private Player host;
 
     private List<GameObserver> observers;
 
@@ -248,4 +249,13 @@ class GameModel { //protected (Package Private)
         }
         this.winner = winner;
     }
+
+    public Player getHost() {
+        return host;
+    }
+
+    public void setHost(Player host) {
+        this.host = host;
+    }
+
 }

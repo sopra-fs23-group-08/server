@@ -32,7 +32,17 @@ public class Game {
     public Setup setup;
     private GameLogic gameController;
 
+
+    public Game(Player host) {
+        setup();
+        gameModel.setHost(host);
+    }
+    
     public Game() {
+        setup();
+    }
+    
+    private void setup() {
         gameModel = new GameModel();
         setup = new SetupData();
         gameController = new GameLogic(gameModel, setup);
@@ -71,7 +81,11 @@ public class Game {
     }
 
     public String getGameId() { // to get the game uuid
-        return gameModel.getGameId(); 
+        return gameModel.getGameId();
+    }
+    
+    public Player getHost() {
+        return gameModel.getHost();
     }
 
     public List<Player> getPlayers() { //to get all the players which are currently in the game. Not working during setup!!
