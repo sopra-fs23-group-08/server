@@ -29,6 +29,30 @@ public class VideoData {
         releaseDate = mvd.releaseDate;
         videoLength = mvd.videoLength;
     }
+
+    public VideoData getPartialVideoData(int gameInfoAmount) throws Exception { //game info Amount 0-4
+        MutableVideoData mvd = new MutableVideoData(this);
+
+        switch (gameInfoAmount) {
+            case 0:
+                mvd.likes = null;
+                mvd.views = null;
+            case 1:
+                mvd.videoLength = null;
+            case 2:
+                mvd.thumbnail = null;
+            case 3:
+                mvd.releaseDate = null;
+            case 4:
+                mvd.title = null;
+            case 5:
+                break;
+            default:
+                throw new Exception("only values in [0,5] are allowed");
+        }
+
+        return new VideoData(mvd);
+    }
 }
 
 class MutableVideoData { //used for mutation and copy stuff

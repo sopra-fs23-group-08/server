@@ -14,7 +14,7 @@ public interface GameObserver {
 
     void currentPlayerChange(Player player);
 
-    void winnerIs(Player player);
+    void roundWinnerIs(Player player);
 
     void gameGettingClosed();
 
@@ -25,5 +25,6 @@ public interface GameObserver {
     void callAmountChanged(Integer newCallAmount);
 
     void newPlayerBigBlindNSmallBlind(Player smallBlind, Player bigBlind);
-    
+
+    void newVideoData(VideoData videoData); //not revealed fields are set to null
 }

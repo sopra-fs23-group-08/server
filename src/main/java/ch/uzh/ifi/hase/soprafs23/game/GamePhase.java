@@ -1,16 +1,27 @@
 package ch.uzh.ifi.hase.soprafs23.game;
 
 public enum GamePhase {
-    WAITING_FOR_PLAYERS, FIRST_ROUND, SECOND_ROUND, THIRD_ROUND, FOURTH_ROUND, END_ALL_FOLDED, END_AFTER_FOURTH_ROUND;
+    LOBBY(1), FIRST_BETTING_ROUND(2), SECOND_BETTING_ROUND(3), THIRD_BETTING_ROUND(4), FOURTH_BETTING_ROUND(5),
+    END_ALL_FOLDED(5), END_AFTER_FOURTH_BETTING_ROUND(5);
 
+    final int val;
+
+    GamePhase(int i) {
+        val = i;
+    }
+    
+    public int getVal() {
+        return val;
+    }
+    
     public GamePhase nextPhase() throws Exception {
         switch (this) {
-            case FIRST_ROUND:
-                return GamePhase.SECOND_ROUND;
-            case SECOND_ROUND:
-                return GamePhase.THIRD_ROUND;
-            case THIRD_ROUND:
-                return GamePhase.FOURTH_ROUND;
+            case FIRST_BETTING_ROUND:
+                return GamePhase.SECOND_BETTING_ROUND;
+            case SECOND_BETTING_ROUND:
+                return GamePhase.THIRD_BETTING_ROUND;
+            case THIRD_BETTING_ROUND:
+                return GamePhase.FOURTH_BETTING_ROUND;
             default:
                 throw new Exception("nextPhase is invalid for " + this);
         }

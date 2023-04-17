@@ -33,7 +33,7 @@ class GameModel { //protected (Package Private)
 
     public GameModel() {
         gameId = UUID.randomUUID().toString(); //generates a unique identifier
-        gamePhase = GamePhase.WAITING_FOR_PLAYERS;
+        gamePhase = GamePhase.LOBBY;
         playersData = new HashMap<>();
         observers = new ArrayList<>();
         playerOrder = new ArrayList<>();
@@ -43,8 +43,14 @@ class GameModel { //protected (Package Private)
     public void resetTable() {//call before playing, players stay
         resetSmallBigBlind();
         setCurrentPlayer(new Player());
-        setGamePhase(GamePhase.FIRST_ROUND);
+        setGamePhase(GamePhase.FIRST_BETTING_ROUND);
         setPotAmount(0);
+        setFoldCount(0);
+        setWinner(null);
+    }
+
+    public void resetRound() {
+        setGamePhase(GamePhase.FIRST_BETTING_ROUND);
         setFoldCount(0);
         setWinner(null);
     }
@@ -169,6 +175,11 @@ class GameModel { //protected (Package Private)
     public void setGamePhase(GamePhase gamePhase) {
         for (GameObserver o : observers) {
             o.gamePhaseChange(gamePhase);
+            try {
+                o.newVideoData(videoData.getPartialVideoData(gamePhase.getVal()));
+            } catch (Exception e) {
+                System.out.println("Sending video Data did not work: " + e);
+            }
         }
         this.gamePhase = gamePhase;
     }
@@ -233,7 +244,7 @@ class GameModel { //protected (Package Private)
 
     public void setWinner(Player winner) {
         for (GameObserver o : observers) {
-            o.winnerIs(winner);
+            o.roundWinnerIs(winner);
         }
         this.winner = winner;
     }

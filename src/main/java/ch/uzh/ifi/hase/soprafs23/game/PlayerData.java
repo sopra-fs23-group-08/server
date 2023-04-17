@@ -9,7 +9,6 @@ class PlayerData { //protected (Package Private)
     private final Player player;
     final String id;
     final String name;
-    final boolean loggedIn;
     private Integer score;
     private Hand hand;
     private Decision decision;
@@ -20,7 +19,6 @@ class PlayerData { //protected (Package Private)
         player = aPlayer;
         id = aPlayer.id;
         name = aPlayer.name;
-        loggedIn = aPlayer.loggedIn;
         observers = new ArrayList<>();
     }
 
@@ -28,7 +26,6 @@ class PlayerData { //protected (Package Private)
         player = new Player();
         id = null;
         name = null;
-        loggedIn = false;
         observers = new ArrayList<>();
     }
 

@@ -15,13 +15,13 @@ import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
 //todo testing :)
 
-class GameController {
+class GameLogic {
     
     private Random rand = new Random();
     private GameModel gm;
     private Setup sd;
 
-    GameController(GameModel gm, Setup sd) {
+    GameLogic(GameModel gm, Setup sd) {
         this.gm = gm;
         this.sd = sd;
     }
@@ -48,6 +48,22 @@ class GameController {
         gm.setDealerPlayer(); //random dealer if not set before
     }
     
+    void startRound() throws IOException, InterruptedException, Exception {
+        Pair<VideoData, java.util.List<Hand>> ytData = sd.getYTData();
+
+        gm.setVideoData(ytData.getFirst());
+
+        for (PlayerData playerData : gm.getPlayerDataCollection()) {
+            playerData.setDecision(Decision.NOT_DECIDED);
+            Hand hand = ytData.getSecond().get(rand.nextInt(ytData.getSecond().size()));
+            ytData.getSecond().remove(hand);
+            playerData.setNewHand(hand);
+        }
+
+        gm.resetRound();
+        gm.nextDealer(); //random dealer if not set before
+    }
+
     void startBettingRound() {
         for (PlayerData pd : gm.getPlayerDataCollection()) {
             if (pd.getDecision() != Decision.FOLD) {
@@ -138,12 +154,12 @@ class GameController {
             throw new Exception("There must be a winner");
         }
 
-        gm.setGamePhase(GamePhase.END_AFTER_FOURTH_ROUND);
+        gm.setGamePhase(GamePhase.END_AFTER_FOURTH_BETTING_ROUND);
         gm.setWinner(winner);
     }
     
     void endOfBettingRound() throws Exception {
-        if (gm.getGamePhase() == GamePhase.FOURTH_ROUND) {
+        if (gm.getGamePhase() == GamePhase.FOURTH_BETTING_ROUND) {
             evaluateWinner();
         } else {
             gm.setGamePhase(gm.getGamePhase().nextPhase());
@@ -173,10 +189,10 @@ class GameController {
     }
 
     void enforceBigAndSmallBlind(Player p) throws Exception {
-        if (isBigBlind(p) && gm.getCallAmount() < sd.getBigBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_ROUND) {
+        if (isBigBlind(p) && gm.getCallAmount() < sd.getBigBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_BETTING_ROUND) {
             throw new Exception("BigBlind must raise. currentCallAmount: " + gm.getCallAmount() + " BigBlindAmount: "
                     + sd.getBigBlindAmount());
-        } else if (isSmallBlind(p) && gm.getCallAmount() < sd.getSmallBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_ROUND) {
+        } else if (isSmallBlind(p) && gm.getCallAmount() < sd.getSmallBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_BETTING_ROUND) {
             throw new Exception("SmallBlind must raise. currentCallAmount: " + gm.getCallAmount()
                     + " SmallBlindAmount: " + sd.getSmallBlindAmount());
         }

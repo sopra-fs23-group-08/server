@@ -38,7 +38,7 @@ public class GameTest {
     game.setup.setBigBlindAmount(20);
 
     assertTrue(!game.getPlayers().contains(playerC));//players are added after the game has started. maybe change that?
-    assertEquals(GamePhase.WAITING_FOR_PLAYERS, game.getGamePhase());
+    assertEquals(GamePhase.LOBBY, game.getGamePhase());
 
     try {
       game.startGame();
@@ -55,7 +55,7 @@ public class GameTest {
       game.setup.setBigBlindAmount(0);
     }, "During the game the Setup can't be changed. 'setBigBlindAmount'");
 
-    assertEquals(GamePhase.FIRST_ROUND, game.getGamePhase());
+    assertEquals(GamePhase.FIRST_BETTING_ROUND, game.getGamePhase());
     assertTrue(game.getPlayers().contains(playerC));
 
     game.getPlayers().remove(playerC); //immutability test
@@ -110,18 +110,18 @@ public class GameTest {
     try {
       game.raise(observer.currentPlayer, 20);
       game.call(observer.currentPlayer);
-      assertEquals(GamePhase.FIRST_ROUND, observer.gamePhase);
+      assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
       game.call(observer.currentPlayer);
-      assertEquals(GamePhase.SECOND_ROUND, observer.gamePhase);
+      assertEquals(GamePhase.SECOND_BETTING_ROUND, observer.gamePhase);
       game.call(observer.currentPlayer);
       game.call(observer.currentPlayer);
       game.call(observer.currentPlayer);
-      assertEquals(GamePhase.THIRD_ROUND, observer.gamePhase);
+      assertEquals(GamePhase.THIRD_BETTING_ROUND, observer.gamePhase);
       game.call(observer.currentPlayer);
       game.raise(observer.currentPlayer, 40);
       game.fold(observer.currentPlayer);
       game.call(observer.currentPlayer);
-      assertEquals(GamePhase.FOURTH_ROUND, observer.gamePhase);
+      assertEquals(GamePhase.FOURTH_BETTING_ROUND, observer.gamePhase);
       var winner = observer.currentPlayer;
       game.raise(observer.currentPlayer, 80);
       game.fold(observer.currentPlayer);
@@ -148,10 +148,10 @@ public class GameTest {
       assertEquals(30, observer.potScore);
       game.call(observer.currentPlayer);
       assertEquals(50, observer.potScore);
-      assertEquals(GamePhase.FIRST_ROUND, observer.gamePhase);
+      assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
       game.call(observer.currentPlayer);
       assertEquals(70, observer.potScore);
-      assertEquals(GamePhase.SECOND_ROUND, observer.gamePhase);
+      assertEquals(GamePhase.SECOND_BETTING_ROUND, observer.gamePhase);
 
       game.call(observer.currentPlayer);
       assertEquals(70, observer.potScore);
@@ -159,7 +159,7 @@ public class GameTest {
       assertEquals(70, observer.potScore);
       game.call(observer.currentPlayer);
       assertEquals(70, observer.potScore);
-      assertEquals(GamePhase.THIRD_ROUND, observer.gamePhase);
+      assertEquals(GamePhase.THIRD_BETTING_ROUND, observer.gamePhase);
 
       game.call(observer.currentPlayer);
       game.raise(observer.currentPlayer, 40);
@@ -170,7 +170,7 @@ public class GameTest {
         game.raise(observer.currentPlayer, 20);
       }, "The CallAmount must be higher after a raise. CallAmountBefore: 40 NewCallAmount: 20");
       game.call(observer.currentPlayer);
-      assertEquals(GamePhase.FOURTH_ROUND, observer.gamePhase);
+      assertEquals(GamePhase.FOURTH_BETTING_ROUND, observer.gamePhase);
 
       executableThrowsExceptionMsg(() -> {
         game.raise(observer.currentPlayer, 1000);
@@ -178,7 +178,7 @@ public class GameTest {
       game.call(observer.currentPlayer);
       game.call(observer.currentPlayer);
       game.call(observer.currentPlayer);
-      assertEquals(GamePhase.END_AFTER_FOURTH_ROUND, observer.gamePhase);
+      assertEquals(GamePhase.END_AFTER_FOURTH_BETTING_ROUND, observer.gamePhase);
 
     } catch (Exception e) {
       assertEquals("Some exception occurred", e);
