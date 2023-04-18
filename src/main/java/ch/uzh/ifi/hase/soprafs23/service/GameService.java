@@ -36,6 +36,13 @@ public class GameService {
         return newGame;
     }
 
+    public TestPlayer getHost(String gameId){
+        if (!games.containsKey(gameId)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");
+        }
+        return games.get(gameId).getHost();
+    }
+
     public TestGame getGame(String gameId) {
         return games.get(gameId);
     }
@@ -47,7 +54,7 @@ public class GameService {
 
     // adds a new player to a specified game.
     public void addPlayer(String gameId, TestPlayer player) {
-        // TODO: deal with case where player is registered
+        // TODO deal with case where player is registered
         // check if game exists
         if (!games.containsKey(gameId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");
@@ -55,11 +62,16 @@ public class GameService {
 
         TestGame game = games.get(gameId);
         player.setCurrentGame(game);
-
-        // add player to player list
+        // add player to game
         ArrayList<TestPlayer> players = game.getPlayers();
+        // check if player has already been added to game
+        for(TestPlayer p : players){
+            if(p.getToken().equals(player.getToken())){
+                // maybe throw a conflict error here
+                return;
+            }
+        }
         players.add(player);
-
         game.setPlayers(players);
     }
 }

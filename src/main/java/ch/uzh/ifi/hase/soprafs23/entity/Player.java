@@ -10,18 +10,20 @@ public class Player {
 
     public final String id;
     public final String name;
-    public final boolean loggedIn;
 
-    public Player(String aName, boolean aLoggedIn) {
+    public Player(String aName, String aId) {
+        id = aId;
+        name = aName;
+    }
+
+    public Player(String aName) {
         id = UUID.randomUUID().toString();
         name = aName;
-        loggedIn = aLoggedIn;
     }
 
     public Player() {
         id = null;
         name = null;
-        loggedIn = false;
     }
 
 }

@@ -2,9 +2,6 @@ package ch.uzh.ifi.hase.soprafs23.game;
 
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
-import ch.uzh.ifi.hase.soprafs23.YTAPIManager.*; // import all classes from the YTAPIManager package
-
-
 public interface GameObserver {
 
     void playerScoreChanged(Player player, Integer score);
@@ -17,7 +14,7 @@ public interface GameObserver {
 
     void currentPlayerChange(Player player);
 
-    void winnerIs(Player player);
+    void roundWinnerIs(Player player);
 
     void gameGettingClosed();
 
@@ -29,10 +26,5 @@ public interface GameObserver {
 
     void newPlayerBigBlindNSmallBlind(Player smallBlind, Player bigBlind);
 
-    
+    void newVideoData(VideoData videoData); //not revealed fields are set to null
 }
-
-/*
-    APIController apiController = new APIController();
-    Pair<VideoData, List<Hand>> gameData = apiController.getGameDataByQuery("query", Language.ENGLISH);
-*/

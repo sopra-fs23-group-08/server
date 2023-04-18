@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.springframework.data.util.Pair;
 
@@ -20,10 +21,11 @@ import ch.uzh.ifi.hase.soprafs23.game.VideoData;
 
 public class YTAPIManager {
     private String query = "LoFi HipHop";
+    private String playlistId = "PL6HF94r1ogByYa2xFAXIE_1Pw-K0AU_Vd";
     private Language language = Language.GERMAN;
 
-    public void setPlaylist(URL url) throws Exception {
-        throw new Exception("method not implemented yet");
+    public void setPlaylist(String URL) throws Exception {
+        playlistId = urlToPlaylistId(URL);
     }
 
     public void setQuery(String query) {
@@ -45,6 +47,7 @@ public class YTAPIManager {
         if (isDebug)
             System.out.println(
                     "Set fastDebug = true in YTAPIManager/YTAPIManager.getVideoAndHand to have faster Debugging. Attention empty VideoData and Hands will be returned");
+
         var fastDebug = false;
         var useYouTubeApi = false;
 
@@ -53,10 +56,22 @@ public class YTAPIManager {
         } else if (!useYouTubeApi) {//gson is really slow in debug mode
             return APIController.readFromFile("src/main/resources/GameData1.txt"); //reads local file
         } else {//standard uses YT API
-            return APIController.getGameDataByQuery(query, language);
+            return APIController.getGameDataByPlaylist(playlistId, language);
         }
     }
 
+    private String urlToPlaylistId(String URL) throws Exception {
+        Pattern pattern = Pattern.compile("list=");
+        String[] s1 = pattern.split(URL);
+        String[] s2;
+        if (s1.length < 2) {
+            throw new Exception("There is no Playlist in this URL: " + URL);
+        } else {
+            s2 = s1[1].split("&");
+        }
+        return s2[0];
+    }
+    
     private Pair<VideoData, List<Hand>> emptyVideoAndHand(){
             Comment comment = new Comment(null, query, query, query, null, null);
             Pair<Comment,Correctness> p = Pair.of(comment, Correctness.CORRECT);

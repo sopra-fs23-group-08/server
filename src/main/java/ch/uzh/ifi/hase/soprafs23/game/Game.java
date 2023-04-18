@@ -24,60 +24,71 @@ import java.util.List;
 //...
 //###################################################
 
-//todo allow to play a second round. By placing game back into setup mode.
-//todo not automatically jump to next betting round. Wait for betting round start. Maybe add Enum with BettingRound.running/ended
+//todo add get host function
+
 public class Game {
 
     private GameModel gameModel;
     public Setup setup;
-    private GameController gameController;
+    private GameLogic gameController;
 
-    public Game() {
-        gameModel = new GameModel();
-        setup = new SetupData();
-        gameController = new GameController(gameModel, setup);
-    }
 
-    public void startGame() throws IOException, InterruptedException, Exception {
-        gameController.startGame();
-        setup = new SetupClosed();
+    public Game(Player host) {
+        setup();
+        gameModel.setHost(host);
     }
     
-    public void startBettingRound() {
+    public Game() {
+        setup();
+    }
+    
+    private void setup() {
+        gameModel = new GameModel();
+        setup = new SetupData();
+        gameController = new GameLogic(gameModel, setup);
+    }
+
+    public void startGame() throws IOException, InterruptedException, Exception { //this ends the setup phase. No changes to setup are possible
+        gameController.startGame();
+        setup = new SetupClosed();
+        gameController.startBettingRound();
+    }
+    
+    public void startBettingRound() { //this is not needed at the current state but would start the betting round
         gameController.startBettingRound();
     }
 
-    public void call(Player player) throws Exception{
+    public void call(Player player) throws Exception{ //this should be called of player player decides to call
         gameController.playerDecision(player, Decision.CALL);
     }
 
-    public void raise(Player player, int newCallAmount) throws Exception{
+    public void raise(Player player, int newCallAmount) throws Exception{ //this should be called of player player decides to raise
         Decision d = Decision.RAISE;
         gameController.playerDecision(player, d, newCallAmount);
     }
 
-    public void fold(Player player) throws Exception{
+    public void fold(Player player) throws Exception { //this should be called of player player decides to fold
         gameController.playerDecision(player, Decision.FOLD);
     }
 
-    public void addObserver(GameObserver o) {
+    public void nexRound() throws IOException, InterruptedException, Exception { // this should be called after a round to play a second round
+        gameController.startRound();
+        gameController.startBettingRound();
+    }
+
+    public void addObserver(GameObserver o) { //adding game observer. Game observer are classes which implement GameObserver most of the data traffic happens there
         gameModel.addObserver(o);
     }
 
-    public String getGameId() {
-        return gameModel.getGameId(); 
+    public String getGameId() { // to get the game uuid
+        return gameModel.getGameId();
+    }
+    
+    public Player getHost() {
+        return gameModel.getHost();
     }
 
-
-    public VideoData getVideoData() {
-        return gameModel.getVideoData();
-    }
-
-    public GamePhase getGamePhase() {
-        return gameModel.getGamePhase();
-    }
-
-    public List<Player> getPlayers() {
+    public List<Player> getPlayers() { //to get all the players which are currently in the game. Not working during setup!!
         List<Player> l = new ArrayList<>();
         for (PlayerData pd : gameModel.getPlayerDataCollection()) {
             l.add(pd.getPlayer()); //convert PlayerData to Player
@@ -88,9 +99,9 @@ public class Game {
 
     public static void main(String[] args) throws IOException, InterruptedException, Exception {
         Game game = new Game();
-        Player playerA = new Player("A",false);
-        Player playerB = new Player("B",false);
-        Player playerC = new Player("C",false);
+        Player playerA = new Player("A");
+        Player playerB = new Player("B");
+        Player playerC = new Player("C");
 
         
         game.setup.joinGame(playerC);
