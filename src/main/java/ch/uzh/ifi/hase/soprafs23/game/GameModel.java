@@ -19,7 +19,6 @@ class GameModel { //protected (Package Private)
     private Random rand;
     private VideoData videoData;
     private GamePhase gamePhase;
-    private Player host;
     private Player currentPlayer;
     private Player dealerPlayer;
     private Player smallBlindPlayer; //automatically set when dealer is set

@@ -24,8 +24,8 @@ import java.util.List;
 //...
 //###################################################
 
-//todo add get host function
-
+//todo allow to play a second round. By placing game back into setup mode.
+//todo not automatically jump to next betting round. Wait for betting round start. Maybe add Enum with BettingRound.running/ended
 public class Game {
 
     private GameModel gameModel;
@@ -37,11 +37,11 @@ public class Game {
         setup();
         gameModel.setHost(host);
     }
-    
+
     public Game() {
         setup();
     }
-    
+
     private void setup() {
         gameModel = new GameModel();
         setup = new SetupData();
@@ -83,7 +83,7 @@ public class Game {
     public String getGameId() { // to get the game uuid
         return gameModel.getGameId();
     }
-    
+
     public Player getHost() {
         return gameModel.getHost();
     }

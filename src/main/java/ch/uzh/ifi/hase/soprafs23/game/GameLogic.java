@@ -1,16 +1,10 @@
 package ch.uzh.ifi.hase.soprafs23.game;
 
 import java.io.IOException;
-import java.util.Currency;
 import java.util.Random;
-import java.util.Set;
 
 import org.springframework.data.util.Pair;
 
-import com.fasterxml.jackson.databind.ser.std.RawSerializer;
-
-import java.util.List;
-import ch.uzh.ifi.hase.soprafs23.YTAPIManager.YTAPIManager;
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
 //todo testing :)
