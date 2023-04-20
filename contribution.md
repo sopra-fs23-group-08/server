@@ -36,3 +36,6 @@
 * 7.4. - 20.4., Rolando https://github.com/sopra-fs23-group-08/client/issues/62
 * 7.4. - 20.4., Rolando https://github.com/sopra-fs23-group-08/client/issues/80
 * 7.4. - 20.4., Rolando https://github.com/sopra-fs23-group-08/server/issues/82
+    
+###Week 3
+    
