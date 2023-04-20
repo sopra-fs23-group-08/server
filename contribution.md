@@ -37,24 +37,11 @@
 * 7.4. - 20.4., Rolando https://github.com/sopra-fs23-group-08/client/issues/80
 * 7.4. - 20.4., Rolando https://github.com/sopra-fs23-group-08/server/issues/82
     
-    
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/client/issues/40
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/client/issues/29
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/server/issues/41
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/server/issues/30
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/client/issues/22
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/client/issues/23
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/server/issues/18
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/server/issues/16
-    
 ### Week 3
+* 20.4 - 27.4, Serafin https://github.com/sopra-fs23-group-08/server/issues/5
 * 20.4 - 27.4, Serafin https://github.com/sopra-fs23-group-08/server/issues/35
+* 20.4 - 27.4, Serafin https://github.com/sopra-fs23-group-08/server/issues/16
 * 20.4 - 27.4, Serafin https://github.com/sopra-fs23-group-08/server/issues/86
-
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/client/issues/28
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/client/issues/26
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/server/issues/15
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/server/issues/19
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/client/issues/21
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/client/issues/17
-* 7.4. - 20.4., Yating https://github.com/sopra-fs23-group-08/server/issues/14
+ 
+* 20.4. - 27.4., Jonas https://github.com/sopra-fs23-group-08/client/issues/46 ; includes issues 47 & 48
+* 20.4. - 27.4., Jonas https://github.com/sopra-fs23-group-08/client/issues/49
