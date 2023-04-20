@@ -37,5 +37,8 @@
 * 7.4. - 20.4., Rolando https://github.com/sopra-fs23-group-08/client/issues/80
 * 7.4. - 20.4., Rolando https://github.com/sopra-fs23-group-08/server/issues/82
     
-###Week 3
-    
+### Week 3
+* 20.4 - 27.4, Serafin https://github.com/sopra-fs23-group-08/server/issues/5
+* 20.4 - 27.4, Serafin https://github.com/sopra-fs23-group-08/server/issues/35
+* 20.4 - 27.4, Serafin https://github.com/sopra-fs23-group-08/server/issues/16
+* 20.4 - 27.4, Serafin https://github.com/sopra-fs23-group-08/server/issues/86
