@@ -28,4 +28,8 @@
 * 7.4 - 20.4, Serafin https://github.com/sopra-fs23-group-08/server/issues/72
 * 7.4 - 20.4, Serafin https://github.com/sopra-fs23-group-08/server/issues/48
     
+* 7.4. - 20.4., Jonas https://github.com/sopra-fs23-group-08/client/issues/8
+* 7.4. - 20.4., Jonas https://github.com/sopra-fs23-group-08/client/issues/9
+* 7.4. - 20.4., Jonas https://github.com/sopra-fs23-group-08/server/issues/89
+* 7.4. - 20.4., Jonas https://github.com/sopra-fs23-group-08/server/issues/88
 
