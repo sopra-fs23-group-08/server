@@ -33,3 +33,6 @@
 * 7.4. - 20.4., Jonas https://github.com/sopra-fs23-group-08/server/issues/89
 * 7.4. - 20.4., Jonas https://github.com/sopra-fs23-group-08/server/issues/88
 
+* 7.4. - 20.4., Rolando https://github.com/sopra-fs23-group-08/client/issues/62
+* 7.4. - 20.4., Rolando https://github.com/sopra-fs23-group-08/client/issues/80
+* 7.4. - 20.4., Rolando https://github.com/sopra-fs23-group-08/server/issues/82
