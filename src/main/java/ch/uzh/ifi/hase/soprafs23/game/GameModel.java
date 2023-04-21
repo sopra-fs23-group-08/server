@@ -80,7 +80,7 @@ class GameModel { //protected (Package Private)
 
     //player stuff-------------------------------
     public void addPlayerData(PlayerData p) {
-        playersData.put(p.id ,p);
+        playersData.put(p.token ,p);
         playerOrder.add(p.getPlayer());
         for (GameObserver o : observers) {
             p.addObserver(o);
@@ -88,7 +88,7 @@ class GameModel { //protected (Package Private)
     }
     
     public void removePlayerData(PlayerData p) {
-        playersData.remove(p.id);
+        playersData.remove(p.token);
         playerOrder.remove(p.getPlayer());
         for (GameObserver o : observers) {
             p.removeObserver(o);
@@ -114,7 +114,7 @@ class GameModel { //protected (Package Private)
 
     public void nextPlayer() {
         setCurrentPlayer(playerOrder.get((playerOrder.indexOf(currentPlayer) + 1) % playerOrder.size()));
-        while (Decision.FOLD == playersData.get(currentPlayer.id).getDecision()) {
+        while (Decision.FOLD == playersData.get(currentPlayer.getToken()).getDecision()) {
             setCurrentPlayer(playerOrder.get((playerOrder.indexOf(currentPlayer) + 1) % playerOrder.size()));
         }
     }
@@ -155,7 +155,7 @@ class GameModel { //protected (Package Private)
     }
 
     public PlayerData getPlayerData(Player p) {
-        return playersData.get(p.id);
+        return playersData.get(p.getToken());
     }
 
     public VideoData getVideoData() {

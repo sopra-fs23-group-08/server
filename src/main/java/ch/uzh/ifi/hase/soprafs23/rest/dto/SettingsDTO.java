@@ -2,42 +2,42 @@ package ch.uzh.ifi.hase.soprafs23.rest.dto;
 
 public class SettingsDTO {
     
-    private Long bigblind;
-    private Long smallbling;
-    private Long initialbalance; //not sure if it's called like this
-    private String playlisturl;
+    private Long bigBlind;
+    private Long smallBlind;
+    private Long initialBalance; //not sure if it's called like this
+    private String playlistUrl;
     private String language;
 
-    public Long getBigblind(){
-        return bigblind;
+    public Long getBigBlind(){
+        return bigBlind;
     }
 
-    public void setBigblind(Long bigblind) {
-        this.bigblind = bigblind;
+    public void setBigBlind(Long bigBlind) {
+        this.bigBlind = bigBlind;
     }
 
-    public Long getSmallblind(){
-        return smallbling;
+    public Long getSmallBlind(){
+        return smallBlind;
     }
 
-    public void setSmallblind(Long smallbling) {
-        this.smallbling = smallbling;
+    public void setSmallBlind(Long smallBlind) {
+        this.smallBlind = smallBlind;
     }
 
-    public Long getInitialbalance(){
-        return initialbalance;
+    public Long getInitialBalance(){
+        return initialBalance;
     }
 
-    public void setInitialbalance(Long initialbalance) {
-        this.initialbalance = initialbalance;
+    public void setInitialBalance(Long initialBalance) {
+        this.initialBalance = initialBalance;
     }
 
-    public String getPlaylisturl(){
-        return playlisturl;
+    public String getPlaylistUrl(){
+        return playlistUrl;
     }
 
-    public void setPlaylisturl(String playlisturl) {
-        this.playlisturl = playlisturl;
+    public void setPlaylistUrl(String playlistUrl) {
+        this.playlistUrl = playlistUrl;
     }
     
     public String getLanguage(){

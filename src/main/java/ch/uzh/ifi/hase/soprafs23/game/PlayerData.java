@@ -7,7 +7,7 @@ import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
 class PlayerData { //protected (Package Private)
     private final Player player;
-    final String id;
+    final String token;
     final String name;
     private Integer score;
     private Hand hand;
@@ -17,14 +17,14 @@ class PlayerData { //protected (Package Private)
 
     PlayerData(Player aPlayer) {
         player = aPlayer;
-        id = aPlayer.id;
-        name = aPlayer.name;
+        token = aPlayer.getToken();
+        name = aPlayer.getName();
         observers = new ArrayList<>();
     }
 
     PlayerData() {
         player = new Player();
-        id = null;
+        token = null;
         name = null;
         observers = new ArrayList<>();
     }

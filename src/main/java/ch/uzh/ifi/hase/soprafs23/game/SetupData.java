@@ -37,7 +37,7 @@ class SetupData extends Setup {
     public void leaveGame(Player p) {
         Pair<Player, Integer> remove = null;
         for (Pair<Player, Integer> pair : players) {
-            if (pair.getFirst().id == p.id) {
+            if (pair.getFirst().getToken() == p.getToken()) {
                 remove = pair;
                 break;
             }
