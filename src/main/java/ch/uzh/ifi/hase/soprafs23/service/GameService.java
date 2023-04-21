@@ -73,6 +73,32 @@ public class GameService {
         }
         players.add(player);
         game.setPlayers(players);
+
+        
     }
+
+    public void removePlayer(String gameId, TestPlayer player) {
+        // check if game exists
+        if (!games.containsKey(gameId)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");
+        }
+    
+        TestGame game = games.get(gameId);
+        ArrayList<TestPlayer> players = game.getPlayers();
+    
+        // remove player from list of players
+        for (int i = 0; i < players.size(); i++) {
+            TestPlayer p = players.get(i);
+            if (p.getToken().equals(player)) {
+                players.remove(i);
+                game.setPlayers(players);
+                p.setCurrentGame(null);
+                return;
+            }
+        }
+    
+
+    }
+    
 }
 

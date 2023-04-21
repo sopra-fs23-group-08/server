@@ -17,7 +17,7 @@ public class VideoSetup {
         ytAPIManager = new YTAPIManager();
     }
 
-    public void setPlaylist(URL url) throws Exception {
+    public void setPlaylist(String url) throws Exception {
         ytAPIManager.setPlaylist(url);
     }
 
