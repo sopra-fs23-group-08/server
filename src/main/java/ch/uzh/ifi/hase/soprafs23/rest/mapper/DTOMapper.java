@@ -51,10 +51,10 @@ public interface DTOMapper {
   @Mapping(source = "id", target = "id")
   TestGameGetDTO convertEntityToTestGameGetDTO(TestGame game);
 
-  @Mapping(source = "bigblind", target = "bigblind")
-  @Mapping(source = "smallblind", target = "smallblind")
-  @Mapping(source = "initialbalance", target = "initialbalance")
-  @Mapping(source = "playlisturl", target = "playlisturl")
+  @Mapping(source = "bigBlind", target = "bigBlind")
+  @Mapping(source = "smallBlind", target = "smallBlind")
+  @Mapping(source = "initialBalance", target = "initialBalance")
+  @Mapping(source = "playlistUrl", target = "playlistUrl")
   @Mapping(source = "language", target = "language")
   SettingsDTO convertSettingsDTOtoEntity(SettingsDTO settingsDTO);
 }
