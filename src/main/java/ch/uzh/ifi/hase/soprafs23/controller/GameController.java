@@ -118,69 +118,69 @@ public class GameController implements GameObserver {
 
     @Override
     @SendTo("/topic/games/{gameId}/state/general")
-    public void playerScoreChanged(Player player, Integer score) {
+    public void playerScoreChanged(String gameId, Player player, Integer score) {
         // send GameStateDTO
     }
 
     @Override
     @SendTo("/topic/games/{gameId}/players/{playerId}/hand")
-    public void newHand(Player player, Hand hand) {
+    public void newHand(String gameId, Player player, Hand hand) {
         // send PlayerHandDTO
     }
 
     @Override
     @SendTo("/topic/games/{gameId}/state/general")
-    public void playerDecisionChanged(Player player, Decision decision) {
+    public void playerDecisionChanged(String gameId, Player player, Decision decision) {
         // send GameStateDTO (includes a list of players with their decisions & scores)
     }
 
     @Override
     @SendTo("/topic/games/{gameId}/state/general")
-    public void currentPlayerChange(Player player) {
+    public void currentPlayerChange(String gameId, Player player) {
         // send GameStateDTO
     }
 
     @Override
     // not 100% sure about the topic location here -> maybe create a separate endpoint for this?
     @SendTo("/topic/games/{gameId}/state/general")
-    public void roundWinnerIs(Player player) {
+    public void roundWinnerIs(String gameId, Player player) {
         // send GameStateDTO (i think?)
     }
 
     @Override
     // changed topic here, might make sense to have a separate endpoint for this
     @SendTo("/topic/games/{gameId}/close")
-    public void gameGettingClosed() {
+    public void gameGettingClosed(String gameId) {
         // might not need a DTO, just send a message -> everyone is redirected to home & game is deleted
     }
 
     @Override
     @SendTo("/topic/games/{gameId}/state/general")
-    public void gamePhaseChange(GamePhase gamePhase) {
+    public void gamePhaseChange(String gameId, GamePhase gamePhase) {
         // send GameStateDTO
     }
 
     @Override
     @SendTo("/topic/games/{gameId}/state/general")
-    public void potScoreChange(Integer score) {
+    public void potScoreChange(String gameId, Integer score) {
         // send GameStateDTO
     }
 
     @Override
     @SendTo("/topic/games/{gameId}/state/general")
-    public void callAmountChanged(Integer newCallAmount) {
+    public void callAmountChanged(String gameId, Integer newCallAmount) {
         // send GameStateDTO
     }
 
     @Override
     @SendTo("/topic/games/{gameId}/state/general")
-    public void newPlayerBigBlindNSmallBlind(Player smallBlind, Player bigBlind) {
+    public void newPlayerBigBlindNSmallBlind(String gameId, Player smallBlind, Player bigBlind) {
         // send GameStateDTO
     }
 
     @Override
     @SendTo("/topic/games/{gameId}/state/video")
-    public void newVideoData(VideoData videoData) {
+    public void newVideoData(String gameId, VideoData videoData) {
         // send VideoDataDTO
     }
 
