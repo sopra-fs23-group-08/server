@@ -4,9 +4,9 @@ import java.util.UUID;
 
 public class Player {
 
-    private String token;
+    private final String token;
 
-    private String name;
+    private final String name;
 
     public Player(String name, String token) {
         this.token = token;
@@ -16,6 +16,11 @@ public class Player {
     public Player(String name) {
         this.token = UUID.randomUUID().toString();
         this.name = name;
+    }
+
+    public Player(MutablePlayer mp) {
+        this.token = mp.getToken();
+        this.name = mp.getName();
     }
 
     public Player() {
@@ -31,16 +36,7 @@ public class Player {
         return token;
     }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }
