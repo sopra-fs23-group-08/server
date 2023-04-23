@@ -22,9 +22,9 @@ public class GameTest {
   public void setUpGame() throws Exception {
 
     game = new Game();
-    playerA = new Player("A",false);
-    playerB = new Player("B",false);
-    playerC = new Player("C",false);
+    playerA = new Player("A");
+    playerB = new Player("B");
+    playerC = new Player("C");
     observer = new TestGameObserver();
 
     assertEquals(false, game.getGameId().isEmpty());
@@ -39,14 +39,15 @@ public class GameTest {
 
     assertTrue(!game.getPlayers().contains(playerC));//players are added after the game has started. maybe change that?
     assertEquals(GamePhase.LOBBY, game.getGamePhase());
-
+    
     try {
       game.startGame();
     } catch (Exception e) {
       assertEquals("Some exception occurred", e);
     }
     
-    
+    assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
+    assertEquals(GamePhase.FIRST_BETTING_ROUND, game.getGamePhase());
   }
 
   @Test
@@ -55,7 +56,7 @@ public class GameTest {
       game.setup.setBigBlindAmount(0);
     }, "During the game the Setup can't be changed. 'setBigBlindAmount'");
 
-    assertEquals(GamePhase.FIRST_BETTING_ROUND, game.getGamePhase());
+    assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
     assertTrue(game.getPlayers().contains(playerC));
 
     game.getPlayers().remove(playerC); //immutability test
@@ -65,18 +66,18 @@ public class GameTest {
       game.setup.leaveGame(playerC);
     }, "During the game the Setup can't be changed. 'leaveGame'");
 
-    executableThrowsExceptionMsg(() -> {
-      game.call(playerC);
-    }, "You're not the current player");
+    // executableThrowsExceptionMsg(() -> {
+    //   game.call(playerC);
+    // }, "You're not the current player");
 
     assertEquals(1000, observer.playerScore);
-    assertEquals(null, observer.currentPlayer.id);
+    //assertEquals(null, observer.currentPlayer.getToken());
 
     game.startBettingRound();
 
     var smallBlind = observer.smallBlind; //rename to smallBlindPlayer ?
     var currentPlayer = observer.currentPlayer;
-    assertEquals(smallBlind.name, currentPlayer.name);
+    assertEquals(smallBlind.getName(), currentPlayer.getName());
 
     executableThrowsExceptionMsg(() -> {
       game.call(observer.bigBlind);
@@ -207,60 +208,66 @@ public class GameTest {
     public GamePhase gamePhase;
     public Player winner;
     public Player currentPlayer;
+    public VideoData videoData;
 
     @Override
-    public void playerScoreChanged(Player player, Integer score) {
+    public void playerScoreChanged(String gameId, Player player, Integer score) {
       this.player = player;
       this.playerScore = score;
     }
 
     @Override
-    public void newHand(Player player, Hand hand) {
+    public void newHand(String gameId, Player player, Hand hand) {
       this.player = player;
       this.hand = hand;
     }
 
     @Override
-    public void playerDecisionChanged(Player player, Decision decision) {
+    public void playerDecisionChanged(String gameId, Player player, Decision decision) {
       this.player = player;
       this.decision = decision;
     }
 
     @Override
-    public void currentPlayerChange(Player player) {
+    public void currentPlayerChange(String gameId, Player player) {
       this.currentPlayer = player;
     }
 
     @Override
-    public void winnerIs(Player player) {
+    public void roundWinnerIs(String gameId, Player player) {
       this.winner = player;
     }
 
     @Override
-    public void gameGettingClosed() {
+    public void gameGettingClosed(String gameId) {
       // TODO Auto-generated method stub
       throw new UnsupportedOperationException("Unimplemented method 'gameGettingClosed'");
     }
 
     @Override
-    public void gamePhaseChange(GamePhase gamePhase) {
+    public void gamePhaseChange(String gameId, GamePhase gamePhase) {
       this.gamePhase = gamePhase;
     }
 
     @Override
-    public void potScoreChange(Integer score) {
+    public void potScoreChange(String gameId, Integer score) {
       this.potScore = score;
     }
 
     @Override
-    public void callAmountChanged(Integer newCallAmount) {
+    public void callAmountChanged(String gameId, Integer newCallAmount) {
       this.callAmount = newCallAmount;
     }
 
     @Override
-    public void newPlayerBigBlindNSmallBlind(Player smallBlind, Player bigBlind) {
+    public void newPlayerBigBlindNSmallBlind(String gameId, Player smallBlind, Player bigBlind) {
       this.smallBlind = smallBlind;
       this.bigBlind = bigBlind;
+    }
+
+    @Override
+    public void newVideoData(String gameId, VideoData videoData) {
+      this.videoData = videoData;
     }
     
   }

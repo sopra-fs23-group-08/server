@@ -98,6 +98,10 @@ public class Game {
         return l;
     }
 
+    public GamePhase getGamePhase() {
+        return gameModel.getGamePhase();
+    }
+
 
     public static void main(String[] args) throws IOException, InterruptedException, Exception {
         Game game = new Game();
