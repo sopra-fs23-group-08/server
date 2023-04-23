@@ -67,7 +67,7 @@ class GameModel { //protected (Package Private)
     public void addObserver(GameObserver o) {
         observers.add(o);
         for (PlayerData p : playersData.values()) {
-            p.addObserver(o);
+            p.addObserver(gameId, o);
         }
     }
 
@@ -83,7 +83,7 @@ class GameModel { //protected (Package Private)
         playersData.put(p.id ,p);
         playerOrder.add(p.getPlayer());
         for (GameObserver o : observers) {
-            p.addObserver(o);
+            p.addObserver(gameId, o);
         }
     }
     
@@ -132,7 +132,7 @@ class GameModel { //protected (Package Private)
         smallBlindPlayer = playerOrder.get((indexDealer + 1) % playerOrder.size());
         bigBlindPlayer = playerOrder.get((indexDealer + 2) % playerOrder.size());
         for (GameObserver o : observers) {
-            o.newPlayerBigBlindNSmallBlind(smallBlindPlayer, bigBlindPlayer);
+            o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
         }
         this.dealerPlayer = dealer;
     }
@@ -141,8 +141,26 @@ class GameModel { //protected (Package Private)
         smallBlindPlayer = null;
         bigBlindPlayer = null;
         for (GameObserver o : observers) {
-            o.newPlayerBigBlindNSmallBlind(smallBlindPlayer, bigBlindPlayer);
+            o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
         }
+    }
+
+    public List<HandOwnerWinner> getHands() throws Exception {
+        var l = new ArrayList<HandOwnerWinner>();
+        for (PlayerData pd : playersData.values()) {
+            var how = new HandOwnerWinner();
+            how.setHand(pd.getHand());
+            how.setPlayer(pd.getPlayer());
+            how.setIsWinner(false);
+            if (how.getPlayer() == winner) {
+                how.setIsWinner(true);
+            }
+            l.add(how);
+        }
+        if (winner == null) {
+            throw new Exception("There is currently no Winner in Game: " + gameId);
+        }
+        return l;
     }
 
 
@@ -175,9 +193,9 @@ class GameModel { //protected (Package Private)
 
     public void setGamePhase(GamePhase gamePhase) {
         for (GameObserver o : observers) {
-            o.gamePhaseChange(gamePhase);
+            o.gamePhaseChange(gameId, gamePhase);
             try {
-                o.newVideoData(videoData.getPartialVideoData(gamePhase.getVal()));
+                o.newVideoData(gameId, videoData.getPartialVideoData(gamePhase.getVal()));
             } catch (Exception e) {
                 System.out.println("Sending video Data did not work: " + e);
             }
@@ -191,7 +209,7 @@ class GameModel { //protected (Package Private)
 
     public void setCurrentPlayer(Player currentPlayer) {
         for (GameObserver o : observers) {
-            o.currentPlayerChange(currentPlayer);
+            o.currentPlayerChange(gameId, currentPlayer);
         }
         this.currentPlayer = currentPlayer;
     }
@@ -203,7 +221,7 @@ class GameModel { //protected (Package Private)
 
     public void setPotAmount(int pot) {
         for (GameObserver o : observers) {
-            o.potScoreChange(pot);
+            o.potScoreChange(gameId, pot);
         }
         potAmount = pot;
     }
@@ -214,7 +232,7 @@ class GameModel { //protected (Package Private)
 
     public void setCallAmount(int callAmount) {
         for (GameObserver o : observers) {
-            o.callAmountChanged(callAmount);
+            o.callAmountChanged(gameId, callAmount);
         }
         this.callAmount = callAmount;
     }
@@ -245,7 +263,7 @@ class GameModel { //protected (Package Private)
 
     public void setWinner(Player winner) {
         for (GameObserver o : observers) {
-            o.roundWinnerIs(winner);
+            o.roundWinnerIs(gameId, winner);
         }
         this.winner = winner;
     }

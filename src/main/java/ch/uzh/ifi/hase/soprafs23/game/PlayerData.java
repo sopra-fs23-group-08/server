@@ -9,6 +9,7 @@ class PlayerData { //protected (Package Private)
     private final Player player;
     final String id;
     final String name;
+    private String gameId;
     private Integer score;
     private Hand hand;
     private Decision decision;
@@ -29,7 +30,8 @@ class PlayerData { //protected (Package Private)
         observers = new ArrayList<>();
     }
 
-    public void addObserver(GameObserver o) {
+    public void addObserver(String gameId, GameObserver o) {
+        this.gameId = gameId;
         observers.add(o);
     }
 
@@ -45,7 +47,7 @@ class PlayerData { //protected (Package Private)
 
     public void setScore(Integer score) {
         for (GameObserver o : observers) {
-            o.playerScoreChanged(player, score);
+            o.playerScoreChanged(gameId, player, score);
         }
         this.score = score;
     }
@@ -56,7 +58,7 @@ class PlayerData { //protected (Package Private)
     
     public void setNewHand(Hand hand) {
         for (GameObserver o : observers) {
-            o.newHand(player, hand);
+            o.newHand(gameId, player, hand);
         }
         this.hand = hand;
     }
@@ -74,7 +76,7 @@ class PlayerData { //protected (Package Private)
 
     public void setDecision(Decision d) {
         for (GameObserver o : observers) {
-            o.playerDecisionChanged(player, d);
+            o.playerDecisionChanged(gameId, player, d);
         }
         this.decision = d;
     }

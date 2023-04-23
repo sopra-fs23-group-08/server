@@ -1,7 +1,6 @@
 package ch.uzh.ifi.hase.soprafs23.game;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
 import org.springframework.data.util.Pair;
@@ -17,7 +16,7 @@ public class VideoSetup {
         ytAPIManager = new YTAPIManager();
     }
 
-    public void setPlaylist(URL url) throws Exception {
+    public void setPlaylist(String url) throws Exception {
         ytAPIManager.setPlaylist(url);
     }
 

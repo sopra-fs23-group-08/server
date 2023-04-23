@@ -4,27 +4,27 @@ import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
 public interface GameObserver {
 
-    void playerScoreChanged(Player player, Integer score);
+    void playerScoreChanged(String gameId, Player player, Integer score);
 
-    void newHand(Player player, Hand hand);
+    void newHand(String gameId, Player player, Hand hand);
 
     // void handEvaluated(Player player, Hand hand); //don't use this maybe?
 
-    void playerDecisionChanged(Player player, Decision decision);
+    void playerDecisionChanged(String gameId, Player player, Decision decision);
 
-    void currentPlayerChange(Player player);
+    void currentPlayerChange(String gameId, Player player);
 
-    void roundWinnerIs(Player player);
+    void roundWinnerIs(String gameId, Player player);
 
-    void gameGettingClosed();
+    void gameGettingClosed(String gameId);
 
-    void gamePhaseChange(GamePhase gamePhase);
+    void gamePhaseChange(String gameId, GamePhase gamePhase);
 
-    void potScoreChange(Integer score);
+    void potScoreChange(String gameId, Integer score);
 
-    void callAmountChanged(Integer newCallAmount);
+    void callAmountChanged(String gameId, Integer newCallAmount);
 
-    void newPlayerBigBlindNSmallBlind(Player smallBlind, Player bigBlind);
+    void newPlayerBigBlindNSmallBlind(String gameId, Player smallBlind, Player bigBlind);
 
-    void newVideoData(VideoData videoData); //not revealed fields are set to null
+    void newVideoData(String gameId, VideoData videoData); //not revealed fields are set to null
 }

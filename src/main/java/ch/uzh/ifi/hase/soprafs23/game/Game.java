@@ -24,8 +24,6 @@ import java.util.List;
 //...
 //###################################################
 
-//todo allow to play a second round. By placing game back into setup mode.
-//todo not automatically jump to next betting round. Wait for betting round start. Maybe add Enum with BettingRound.running/ended
 public class Game {
 
     private GameModel gameModel;
@@ -86,6 +84,10 @@ public class Game {
 
     public Player getHost() {
         return gameModel.getHost();
+    }
+
+    public List<HandOwnerWinner> getHands() throws Exception{
+        return gameModel.getHands();
     }
 
     public List<Player> getPlayers() { //to get all the players which are currently in the game. Not working during setup!!
