@@ -175,11 +175,11 @@ class GameLogic {
     }
 
     boolean isSmallBlind(Player p) {
-        return (gm.getSmallBlindPlayer().id == p.id);
+        return (gm.getSmallBlindPlayer().getToken() == p.getToken());
     }
 
     boolean isBigBlind(Player p) {
-        return (gm.getBigBlindPlayer().id == p.id);
+        return (gm.getBigBlindPlayer().getToken() == p.getToken());
     }
 
     void enforceBigAndSmallBlind(Player p) throws Exception {
@@ -193,7 +193,7 @@ class GameLogic {
     }
 
     boolean isBettingRoundOver() {
-        if (gm.getCurrentPlayer().id == gm.getLastRaisingPlayer().id) {
+        if (gm.getCurrentPlayer().getToken() == gm.getLastRaisingPlayer().getToken()) {
             return true;
         }
         return false;

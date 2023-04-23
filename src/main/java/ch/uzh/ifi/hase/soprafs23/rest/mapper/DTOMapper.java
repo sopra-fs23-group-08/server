@@ -7,6 +7,7 @@ import ch.uzh.ifi.hase.soprafs23.rest.dto.TestGameGetDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.TestPlayerWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.UserGetDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.UserPostDTO;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsDTO;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
@@ -49,4 +50,11 @@ public interface DTOMapper {
 
   @Mapping(source = "id", target = "id")
   TestGameGetDTO convertEntityToTestGameGetDTO(TestGame game);
+
+  @Mapping(source = "bigBlind", target = "bigBlind")
+  @Mapping(source = "smallBlind", target = "smallBlind")
+  @Mapping(source = "initialBalance", target = "initialBalance")
+  @Mapping(source = "playlistUrl", target = "playlistUrl")
+  @Mapping(source = "language", target = "language")
+  SettingsDTO convertSettingsDTOtoEntity(SettingsDTO settingsDTO);
 }

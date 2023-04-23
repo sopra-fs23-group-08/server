@@ -40,9 +40,9 @@ public class Game {
         setup();
     }
 
-    private void setup() {
+    private void setup() { 
         gameModel = new GameModel();
-        setup = new SetupData();
+        setup = new SetupData(); //create a new setup data 
         gameController = new GameLogic(gameModel, setup);
     }
 
