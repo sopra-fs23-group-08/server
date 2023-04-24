@@ -12,17 +12,26 @@ public class PlayerWsDTO {
     public PlayerWsDTO(@JsonProperty("token") String token,
                        @JsonProperty("username") String username,
                        @JsonProperty("score") Integer Score,
-                       @JsonProperty("lastDecision") Decision lastDecision) {
+                       @JsonProperty("lastDecision") Decision lastDecision,
+                       @JsonProperty("isBigBlind") boolean isBigBlind,
+                       @JsonProperty("isSmallBlind") boolean isSmallBlind,
+                       @JsonProperty("isCurrentPlayer") boolean isCurrentPlayer) {
         this.token = token;
         this.username = username;
         this.score = Score;
         this.lastDecision = lastDecision;
+        this.isBigBlind = isBigBlind;
+        this.isSmallBlind = isSmallBlind;
+        this.isCurrentPlayer = isCurrentPlayer;
     }
 
     private String token;
     private String username;
     private Integer score;
     private Decision lastDecision;
+    private boolean isBigBlind;
+    private boolean isSmallBlind;
+    private boolean isCurrentPlayer;
 
 
     public String getToken() {
@@ -55,5 +64,29 @@ public class PlayerWsDTO {
 
     public void setLastDecision(Decision lastDecision) {
         this.lastDecision = lastDecision;
+    }
+
+    public boolean isCurrentPlayer() {
+        return isCurrentPlayer;
+    }
+
+    public void setCurrentPlayer(boolean currentPlayer) {
+        isCurrentPlayer = currentPlayer;
+    }
+
+    public boolean isSmallBlind() {
+        return isSmallBlind;
+    }
+
+    public void setSmallBlind(boolean smallBlind) {
+        isSmallBlind = smallBlind;
+    }
+
+    public boolean isBigBlind() {
+        return isBigBlind;
+    }
+
+    public void setBigBlind(boolean bigBlind) {
+        isBigBlind = bigBlind;
     }
 }
