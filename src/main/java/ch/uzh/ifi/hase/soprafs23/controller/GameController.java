@@ -25,9 +25,10 @@ import java.util.ArrayList;
 @CrossOrigin(origins = { "http://localhost:3000", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" }) //used to specify the allowed origins for cross-origin resource sharing.
 @RestController //This annotation is applied to a class to mark it as a request handler. 
 //Spring RestController annotation is used to create RESTful web services using Spring MVC.
-public class GameController implements GameObserver {
+public class GameController{
 
     SimpMessagingTemplate messagingTemplate; //Spring utility class that can be used to send messages to WebSocket clients.
+
 
     private final GameService gameService;
 
@@ -39,6 +40,7 @@ public class GameController implements GameObserver {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public TestGameGetDTO createGame(TestPlayerWsDTO playerWsDTO) {
+        echoResponse();
         // convert DTO to entity
         TestPlayer player = DTOMapper.INSTANCE.convertTestPlayerWsDTOtoEntity(playerWsDTO);
 
@@ -87,6 +89,17 @@ public class GameController implements GameObserver {
         return playerWsDTOS;
     }
 
+    @MessageMapping("/echo")
+    public void echo(){
+        echoResponse();
+    }
+
+    
+
+    public void echoResponse(){
+        messagingTemplate.convertAndSend("/topic/test", "Hello World");
+    }
+
     @MessageMapping("/games/{gameId}/players/leave")
     @SendTo("/topic/games/{gameId}/players")
     public ArrayList<TestPlayerWsDTO> removePlayer(@DestinationVariable String gameId, TestPlayerWsDTO playerWsDTO) {
@@ -116,72 +129,14 @@ public class GameController implements GameObserver {
     *  Maybe it makes sense to fuse some of these methods into one, e.g. gameStateChanged
     * */
 
-    @Override
     @SendTo("/topic/games/{gameId}/state/general")
-    public void playerScoreChanged(String gameId, Player player, Integer score) {
+    public void gameStateChanged(String gameId, Integer score) {
         // send GameStateDTO
     }
 
-    @Override
     @SendTo("/topic/games/{gameId}/players/{playerId}/hand")
     public void newHand(String gameId, Player player, Hand hand) {
         // send PlayerHandDTO
-    }
-
-    @Override
-    @SendTo("/topic/games/{gameId}/state/general")
-    public void playerDecisionChanged(String gameId, Player player, Decision decision) {
-        // send GameStateDTO (includes a list of players with their decisions & scores)
-    }
-
-    @Override
-    @SendTo("/topic/games/{gameId}/state/general")
-    public void currentPlayerChange(String gameId, Player player) {
-        // send GameStateDTO
-    }
-
-    @Override
-    // not 100% sure about the topic location here -> maybe create a separate endpoint for this?
-    @SendTo("/topic/games/{gameId}/state/general")
-    public void roundWinnerIs(String gameId, Player player) {
-        // send GameStateDTO (i think?)
-    }
-
-    @Override
-    // changed topic here, might make sense to have a separate endpoint for this
-    @SendTo("/topic/games/{gameId}/close")
-    public void gameGettingClosed(String gameId) {
-        // might not need a DTO, just send a message -> everyone is redirected to home & game is deleted
-    }
-
-    @Override
-    @SendTo("/topic/games/{gameId}/state/general")
-    public void gamePhaseChange(String gameId, GamePhase gamePhase) {
-        // send GameStateDTO
-    }
-
-    @Override
-    @SendTo("/topic/games/{gameId}/state/general")
-    public void potScoreChange(String gameId, Integer score) {
-        // send GameStateDTO
-    }
-
-    @Override
-    @SendTo("/topic/games/{gameId}/state/general")
-    public void callAmountChanged(String gameId, Integer newCallAmount) {
-        // send GameStateDTO
-    }
-
-    @Override
-    @SendTo("/topic/games/{gameId}/state/general")
-    public void newPlayerBigBlindNSmallBlind(String gameId, Player smallBlind, Player bigBlind) {
-        // send GameStateDTO
-    }
-
-    @Override
-    @SendTo("/topic/games/{gameId}/state/video")
-    public void newVideoData(String gameId, VideoData videoData) {
-        // send VideoDataDTO
     }
 
 }
