@@ -1,6 +1,6 @@
 package ch.uzh.ifi.hase.soprafs23.rest.dto;
 
-public class SettingsDTO {
+public class SettingsWsDTO {
     
     private Long bigBlind;
     private Long smallBlind;
