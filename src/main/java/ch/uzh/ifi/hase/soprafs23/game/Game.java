@@ -56,17 +56,17 @@ public class Game {
         gameController.startBettingRound();
     }
 
-    public void call(Player player) throws Exception{ //this should be called of player player decides to call
-        gameController.playerDecision(player, Decision.CALL);
+    public void call(String playerId) throws Exception{ //this should be called of player player decides to call
+        gameController.playerDecision(playerId, Decision.CALL);
     }
 
-    public void raise(Player player, int newCallAmount) throws Exception{ //this should be called of player player decides to raise
+    public void raise(String playerId, int newCallAmount) throws Exception{ //this should be called of player player decides to raise
         Decision d = Decision.RAISE;
-        gameController.playerDecision(player, d, newCallAmount);
+        gameController.playerDecision(playerId, d);
     }
 
-    public void fold(Player player) throws Exception { //this should be called of player player decides to fold
-        gameController.playerDecision(player, Decision.FOLD);
+    public void fold(String playerId) throws Exception { //this should be called of player player decides to fold
+        gameController.playerDecision(playerId, Decision.FOLD);
     }
 
     public void nexRound() throws IOException, InterruptedException, Exception { // this should be called after a round to play a second round

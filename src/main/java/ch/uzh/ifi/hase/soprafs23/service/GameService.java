@@ -8,6 +8,7 @@ import ch.uzh.ifi.hase.soprafs23.game.GameObserver;
 import ch.uzh.ifi.hase.soprafs23.game.GamePhase;
 import ch.uzh.ifi.hase.soprafs23.game.Hand;
 import ch.uzh.ifi.hase.soprafs23.game.VideoData;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.mapper.DTOMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,14 +42,57 @@ public class GameService implements GameObserver{
         // create new game
         Game newGame = new Game(host);
 
+        GameData gameData = new GameData();
+
+
+        newGame.addObserver(this);
+        
+        
         // set host (host is not added to player list here)
         // FE sends a WS message to add the host to the player list
         
         
         // add game to list of games
         games.put(newGame.getGameId(), newGame);
+        gamesData.put(newGame.getGameId(), gameData);
 
         return newGame;
+    }
+
+    public void startGame(String gameId) throws IOException, InterruptedException, Exception{
+        checkIfGameExists(gameId);
+        Game game = games.get(gameId);
+        game.startGame();
+
+    }
+
+
+    public void playerDecision(String gameId, String playerId, Decision decision, Integer raiseAmount) throws Exception{
+        checkIfGameExists(gameId);
+        Game game = games.get(gameId);
+        switch (decision) {
+            case CALL: game.call(playerId);
+                
+                break;
+            case RAISE: game.raise(playerId, raiseAmount);
+            
+                break;
+            case FOLD: game.fold(playerId);
+                
+                break;
+
+            default:
+                throw new IllegalArgumentException("Illegal decision");
+        };
+
+    }
+
+    public void nexRound(String gameId) throws IOException, InterruptedException, Exception{
+        checkIfGameExists(gameId);
+        Game game = games.get(gameId);
+        game.nexRound();
+
+
     }
 
     public Player getHost(String gameId){
@@ -87,8 +131,9 @@ public class GameService implements GameObserver{
 
         game.setup.leaveGame(player);
     
-
     }
+
+    
 
 
 
@@ -97,7 +142,7 @@ public class GameService implements GameObserver{
         checkIfGameExists(gameId);
         //update GameData
         GameData gameData = gamesData.get(gameId);
-        gameData.playersData.get(player.getToken()).score = score;
+        gameData.playersData.get(player.getToken()).setScore(score);
 
         //send GameData to front end
         gameController.gameStateChanged(gameId, null); //todo create Setting DTO
@@ -108,9 +153,6 @@ public class GameService implements GameObserver{
     @Override
     public void newHand(String gameId, Player player, Hand hand) {
         checkIfGameExists(gameId);
-        //update GameData
-        GameData gameData = gamesData.get(gameId);
-        gameData.playersData.get(player.getToken()).hand = hand;
         
         //send GameData to front end
         gameController.newHand(gameId, player, hand); //todo create Setting DTO
@@ -121,20 +163,40 @@ public class GameService implements GameObserver{
 
     @Override
     public void playerDecisionChanged(String gameId, Player player, Decision decision) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'playerDecisionChanged'");
+        checkIfGameExists(gameId);
+        //update GameData
+        GameData gameData = gamesData.get(gameId);
+        PlayerWsDTO playerWsDTO = gameData.playersData.get(player.getToken());
+        playerWsDTO.setLastDecision(decision);
+
+        //send GameData to front end
+        gameController.gameStateChanged(gameId, null); //todo create Setting DTO
+
+        throw new UnsupportedOperationException("not working yet");
     }
 
     @Override
     public void currentPlayerChange(String gameId, Player player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'currentPlayerChange'");
+        checkIfGameExists(gameId);
+        //update GameData
+        GameData gameData = gamesData.get(gameId);
+        gameData.setCurrentPlayer(player);
+
+        //send GameData to front end
+        gameController.gameStateChanged(gameId, null); //todo create Setting DTO
+
+        throw new UnsupportedOperationException("not working yet");
     }
 
     @Override
     public void roundWinnerIs(String gameId, Player player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'roundWinnerIs'");
+        checkIfGameExists(gameId);
+        //update GameData
+        GameData gameData = gamesData.get(gameId);
+        gameData.gameStateWsDTO.setRoundWinner(player);
+        //send GameData to front end
+        gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
+
     }
 
     @Override
@@ -145,31 +207,55 @@ public class GameService implements GameObserver{
 
     @Override
     public void gamePhaseChange(String gameId, GamePhase gamePhase) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'gamePhaseChange'");
+        checkIfGameExists(gameId);
+        //update GameData
+        GameData gameData = gamesData.get(gameId);
+        gameData.gameStateWsDTO.setGamePhase(gamePhase);
+
+        //send GameData to front end
+        gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
+
+
     }
 
     @Override
     public void potScoreChange(String gameId, Integer score) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'potScoreChange'");
+        checkIfGameExists(gameId);
+        //update GameData
+        GameData gameData = gamesData.get(gameId);
+        gameData.gameStateWsDTO.setCurrentPot(score);
+
+        //send GameData to front end
+        gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
     }
 
     @Override
     public void callAmountChanged(String gameId, Integer newCallAmount) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'callAmountChanged'");
+        checkIfGameExists(gameId);
+        //update GameData
+        GameData gameData = gamesData.get(gameId);
+        gameData.gameStateWsDTO.setCurrentBet(newCallAmount);
+
+        //send GameData to front end
+        gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
     }
 
     @Override
     public void newPlayerBigBlindNSmallBlind(String gameId, Player smallBlind, Player bigBlind) {
-        // TODO Auto-generated method stub
+        checkIfGameExists(gameId);
+        //update GameData
+        GameData gameData = gamesData.get(gameId);
+        gameData.setSmallBlind(smallBlind);
+        gameData.setBigBlind(bigBlind);
+
+        //send GameData to front end
+        gameController.playerstatechagned(gameId, null);        
         throw new UnsupportedOperationException("Unimplemented method 'newPlayerBigBlindNSmallBlind'");
     }
 
     @Override
     public void newVideoData(String gameId, VideoData videoData) {
-        // TODO Auto-generated method stub
+        gameController.newVideoData(gameId, videoData);
         throw new UnsupportedOperationException("Unimplemented method 'newVideoData'");
     }
 
@@ -180,9 +266,5 @@ public class GameService implements GameObserver{
         
     }
 
-    private void informClient(){
-    // TODO
-    }
-    
 }
 

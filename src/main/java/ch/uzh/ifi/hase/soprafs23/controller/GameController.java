@@ -2,10 +2,12 @@ package ch.uzh.ifi.hase.soprafs23.controller;
 //responsible for handling incoming HTTP requests related to games and player information. 
 
 import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
+import ch.uzh.ifi.hase.soprafs23.entity.GameState;
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 import ch.uzh.ifi.hase.soprafs23.entity.TestGame;
 import ch.uzh.ifi.hase.soprafs23.entity.TestPlayer;
 import ch.uzh.ifi.hase.soprafs23.game.*;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.GameStateWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.TestGameGetDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.TestPlayerWsDTO;
@@ -21,6 +23,8 @@ import ch.uzh.ifi.hase.soprafs23.service.GameService;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+
+import javax.swing.plaf.nimbus.State;
 
 @CrossOrigin(origins = { "http://localhost:3000", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" }) //used to specify the allowed origins for cross-origin resource sharing.
 @RestController //This annotation is applied to a class to mark it as a request handler. 
@@ -40,7 +44,6 @@ public class GameController{
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public TestGameGetDTO createGame(TestPlayerWsDTO playerWsDTO) {
-        echoResponse();
         // convert DTO to entity
         TestPlayer player = DTOMapper.INSTANCE.convertTestPlayerWsDTOtoEntity(playerWsDTO);
 
@@ -89,16 +92,7 @@ public class GameController{
         return playerWsDTOS;
     }
 
-    @MessageMapping("/echo")
-    public void echo(){
-        echoResponse();
-    }
-
     
-
-    public void echoResponse(){
-        messagingTemplate.convertAndSend("/topic/test", "Hello World");
-    }
 
     @MessageMapping("/games/{gameId}/players/leave")
     @SendTo("/topic/games/{gameId}/players")
@@ -130,7 +124,7 @@ public class GameController{
     * */
 
     @SendTo("/topic/games/{gameId}/state/general")
-    public void gameStateChanged(String gameId, Integer score) {
+    public void gameStateChanged(String gameId, GameStateWsDTO gameStateWsDTO) {
         // send GameStateDTO
     }
 

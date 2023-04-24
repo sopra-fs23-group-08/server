@@ -1,23 +1,19 @@
 package ch.uzh.ifi.hase.soprafs23.service;
 
-import ch.uzh.ifi.hase.soprafs23.game.Hand;
-import ch.uzh.ifi.hase.soprafs23.game.Decision;
-import ch.uzh.ifi.hase.soprafs23.game.GamePhase;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.GameStateWsDTO;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
 
 import java.util.HashMap;
 import java.util.List;
 
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
+import ch.uzh.ifi.hase.soprafs23.game.GamePhase;
 
 class GameData {
 
-    public Player currentPlayer;
-    public Player bigBlindPlayer;
-    public Player smallBlindPlayer;
-    public Integer pot;
-    public GamePhase gamePhase;
-    public Integer callAmount;
-    public HashMap<String, PlayerData> playersData = new HashMap<>();
+    
+    public GameStateWsDTO gameStateWsDTO = new GameStateWsDTO(0,0,false,GamePhase.LOBBY);
+    public HashMap<String, PlayerWsDTO> playersData = new HashMap<>();
 
     public GameData(List<Player> players){
         for(Player player: players){
@@ -27,24 +23,35 @@ class GameData {
     public GameData(){}
 
     public void addPlayer(Player player){
-        playersData.put(player.getToken(), new PlayerData(player.getToken(), player.getName()));
+        playersData.put(player.getToken(), new PlayerWsDTO(player.getToken(), player.getName(),  null ,null, false, false, false));
     }
 
     public void removePlayer(Player player){
         playersData.remove(player.getToken());
     }
 
-    public class PlayerData{
-        public String token;
-        public String username;
-        public Integer score;
-        public Hand hand;
-        public Decision decision;
-
-        public PlayerData(String token, String name){
-            this.token = token;
-            this.token = name;
+    public void setCurrentPlayer(Player currentPlayer){
+        for(PlayerWsDTO player: playersData.values()){
+            player.setCurrentPlayer(false);
         }
+        playersData.get(currentPlayer.getToken()).setCurrentPlayer(true);
+
+    }
+
+    public void setBigBlind(Player bigBlind){
+        for(PlayerWsDTO player: playersData.values()){
+            player.setBigBlind(false);
+        }
+        playersData.get(bigBlind.getToken()).setBigBlind(true);
+
+    }
+
+    public void setSmallBlind(Player smallBlind){
+        for(PlayerWsDTO player: playersData.values()){
+            player.setSmallBlind(false);
+        }
+        playersData.get(smallBlind.getToken()).setSmallBlind(true);
+
     }
     
 }

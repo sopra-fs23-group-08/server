@@ -25,7 +25,7 @@ class GameModel { //protected (Package Private)
     private Player bigBlindPlayer; //automatically set when dealer is set
     private int potAmount;
     private int callAmount;
-    private Player lastRaisingPlayer;
+    private String lastRaisingPlayer;
     private int foldCount;
     private Player winner;
     private Player host;
@@ -59,7 +59,7 @@ class GameModel { //protected (Package Private)
     public void resetBettingRound() {
         setCurrentPlayer(dealerPlayer);
         nextPlayer();
-        setLastRaisingPlayer(currentPlayer);
+        setLastRaisingPlayer(currentPlayer.getToken());
         setCallAmount(0);
     }
     
@@ -172,8 +172,8 @@ class GameModel { //protected (Package Private)
         return playersData.values();
     }
 
-    public PlayerData getPlayerData(Player p) {
-        return playersData.get(p.getToken());
+    public PlayerData getPlayerData(String playerId) {
+        return playersData.get(playerId);
     }
 
     public VideoData getVideoData() {
@@ -242,11 +242,11 @@ class GameModel { //protected (Package Private)
     }
 
     public Player getLastRaisingPlayer() {
-        return lastRaisingPlayer;
+        return new Player(lastRaisingPlayer);
     }
 
-    public void setLastRaisingPlayer(Player lastRaisingPlayer) {
-        this.lastRaisingPlayer = lastRaisingPlayer;
+    public void setLastRaisingPlayer(String playerId) {
+        this.lastRaisingPlayer = playerId;
     }
 
     public int getFoldCount() {
