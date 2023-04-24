@@ -9,6 +9,7 @@ import ch.uzh.ifi.hase.soprafs23.game.GamePhase;
 import ch.uzh.ifi.hase.soprafs23.game.Hand;
 import ch.uzh.ifi.hase.soprafs23.game.VideoData;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.mapper.DTOMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,7 +96,7 @@ public class GameService implements GameObserver{
 
     }
 
-    public Player getHost(String gameId){
+    public Player get(String gameId){
         if (!games.containsKey(gameId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");
         }
@@ -123,6 +124,20 @@ public class GameService implements GameObserver{
         
     }
 
+    public void setGameSettings(String gameId, SettingsWsDTO settings) throws Exception {
+        // TODO deal with case where player is registered
+        // check if game exists
+        checkIfGameExists(gameId);
+
+        Game game = games.get(gameId);
+     
+        game.setup.setBigBlindAmount(settings.getBigBlind());
+        game.setup.setSmallBlindAmount(settings.getSmallBlind());
+        game.setup.setStartScoreForAll(settings.getInitialBalance());
+        game.setup.video.setPlaylist(settings.getPlaylistUrl());
+        game.setup.video.setLanguage(settings.getLanguage());
+        
+    }
     public void removePlayer(String gameId, Player player) throws Exception {
         // check if game exists
         checkIfGameExists(gameId);
@@ -150,6 +165,7 @@ public class GameService implements GameObserver{
         throw new UnsupportedOperationException("not working yet");
     }
 
+    
     @Override
     public void newHand(String gameId, Player player, Hand hand) {
         checkIfGameExists(gameId);

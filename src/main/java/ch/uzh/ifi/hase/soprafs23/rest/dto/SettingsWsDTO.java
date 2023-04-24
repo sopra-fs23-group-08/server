@@ -1,34 +1,36 @@
 package ch.uzh.ifi.hase.soprafs23.rest.dto;
 
+import ch.uzh.ifi.hase.soprafs23.YTAPIManager.Language;
+
 public class SettingsWsDTO {
     
-    private Long bigBlind;
-    private Long smallBlind;
-    private Long initialBalance; //not sure if it's called like this
+    private Integer bigBlind;
+    private Integer smallBlind;
+    private Integer initialBalance; //not sure if it's called like this
     private String playlistUrl;
-    private String language;
+    private Language language;
 
-    public Long getBigBlind(){
+    public Integer getBigBlind(){
         return bigBlind;
     }
 
-    public void setBigBlind(Long bigBlind) {
+    public void setBigBlind(Integer bigBlind) {
         this.bigBlind = bigBlind;
     }
 
-    public Long getSmallBlind(){
+    public Integer getSmallBlind(){
         return smallBlind;
     }
 
-    public void setSmallBlind(Long smallBlind) {
+    public void setSmallBlind(Integer smallBlind) {
         this.smallBlind = smallBlind;
     }
 
-    public Long getInitialBalance(){
+    public Integer getInitialBalance(){
         return initialBalance;
     }
 
-    public void setInitialBalance(Long initialBalance) {
+    public void setInitialBalance(Integer initialBalance) {
         this.initialBalance = initialBalance;
     }
 
@@ -40,11 +42,11 @@ public class SettingsWsDTO {
         this.playlistUrl = playlistUrl;
     }
     
-    public String getLanguage(){
+    public Language getLanguage(){
         return language;
     }
 
-    public void setLanguage(String language) {
+    public void setLanguage(Language language) {
         this.language = language;
     }
 }
