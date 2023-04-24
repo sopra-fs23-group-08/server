@@ -1,13 +1,8 @@
 package ch.uzh.ifi.hase.soprafs23.rest.mapper;
 
-import ch.uzh.ifi.hase.soprafs23.entity.TestGame;
-import ch.uzh.ifi.hase.soprafs23.entity.TestPlayer;
-import ch.uzh.ifi.hase.soprafs23.entity.User;
-import ch.uzh.ifi.hase.soprafs23.rest.dto.TestGameGetDTO;
-import ch.uzh.ifi.hase.soprafs23.rest.dto.TestPlayerWsDTO;
-import ch.uzh.ifi.hase.soprafs23.rest.dto.UserGetDTO;
-import ch.uzh.ifi.hase.soprafs23.rest.dto.UserPostDTO;
-import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsDTO;
+import ch.uzh.ifi.hase.soprafs23.entity.*;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.*;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
@@ -27,34 +22,55 @@ public interface DTOMapper {
 
   DTOMapper INSTANCE = Mappers.getMapper(DTOMapper.class);
 
+  /** DTO -> ENTITY*/
   @Mapping(source = "name", target = "name")
   @Mapping(source = "username", target = "username")
   User convertUserPostDTOtoEntity(UserPostDTO userPostDTO);
 
-  @Mapping(source = "id", target = "id")
-  @Mapping(source = "name", target = "name")
-  @Mapping(source = "username", target = "username")
-  @Mapping(source = "status", target = "status")
-  UserGetDTO convertEntityToUserGetDTO(User user);
-
-
+  @Mapping(source = "token", target = "token")
   @Mapping(source = "username", target = "username")
   @Mapping(source = "score", target = "score")
-  @Mapping(source = "token", target = "token")
-  TestPlayerWsDTO convertEntityToTestPlayerWsDTO(TestPlayer player);
-
-  @Mapping(source = "username", target = "username")
-  @Mapping(source = "score", target = "score")
-  @Mapping(source = "token", target = "token")
-  TestPlayer convertTestPlayerWsDTOtoEntity(TestPlayerWsDTO playerWsDTO);
-
-  @Mapping(source = "id", target = "id")
-  TestGameGetDTO convertEntityToTestGameGetDTO(TestGame game);
+  @Mapping(source = "lastDecision", target = "lastDecision")
+  Player convertPlayerWsDTOtoEntity(PlayerWsDTO playerWsDTO);
 
   @Mapping(source = "bigBlind", target = "bigBlind")
   @Mapping(source = "smallBlind", target = "smallBlind")
   @Mapping(source = "initialBalance", target = "initialBalance")
   @Mapping(source = "playlistUrl", target = "playlistUrl")
   @Mapping(source = "language", target = "language")
-  SettingsDTO convertSettingsDTOtoEntity(SettingsDTO settingsDTO);
+  Settings convertSettingsWsDTOtoEntity(SettingsWsDTO settingsWsDTO);
+
+  /** ENTITY -> DTO */
+  @Mapping(source = "id", target = "id")
+  @Mapping(source = "name", target = "name")
+  @Mapping(source = "username", target = "username")
+  @Mapping(source = "status", target = "status")
+  UserGetDTO convertEntityToUserGetDTO(User user);
+
+  @Mapping(source = "currentBet", target = "currentBet")
+  @Mapping(source = "currentPot", target = "currentPot")
+  @Mapping(source = "hasStarted", target = "hasStarted")
+  @Mapping(source = "gamePhase", target = "gamePhase")
+  GameStateWsDTO convertEntityToGameStateWsDTO(GameState gameState);
+
+  @Mapping(source = "title", target = "title")
+  @Mapping(source = "thumbnailUrl", target = "thumbnailUrl")
+  @Mapping(source = "views", target = "views")
+  @Mapping(source = "likes", target = "likes")
+  @Mapping(source = "duration", target = "duration")
+  @Mapping(source = "releaseDate", target = "releaseDate")
+  VideoDataWsDTO convertEntityToVideoDataWsDTO(VideoData videoData);
+
+  @Mapping(source = "token", target = "token")
+  @Mapping(source = "username", target = "username")
+  @Mapping(source = "score", target = "score")
+  @Mapping(source = "lastDecision", target = "lastDecision")
+  PlayerWsDTO convertEntityToPlayerWsDTO(Player player);
+
+  @Mapping(source = "bigBlind", target = "bigBlind")
+  @Mapping(source = "smallBlind", target = "smallBlind")
+  @Mapping(source = "initialBalance", target = "initialBalance")
+  @Mapping(source = "playlistUrl", target = "playlistUrl")
+  @Mapping(source = "language", target = "language")
+  SettingsWsDTO convertEntityToSettingsWsDTO(Settings settings);
 }
