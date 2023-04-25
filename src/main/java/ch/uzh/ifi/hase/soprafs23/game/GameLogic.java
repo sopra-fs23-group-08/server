@@ -130,7 +130,7 @@ class GameLogic {
         }
 
         gm.setWinner(winner);
-
+        
     }
     
     void evaluateWinner() throws Exception {
