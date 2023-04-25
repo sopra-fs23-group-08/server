@@ -62,15 +62,20 @@ public class GameService implements GameObserver{
         return newGame;
     }
 
-    public void startGame(String gameId) throws IOException, InterruptedException, Exception{
+    public void startGame(String gameId) {
         checkIfGameExists(gameId);
         Game game = games.get(gameId);
-        game.startGame();
-
+        try {
+            game.startGame();
+        }
+        // TODO choose more fitting http error code
+        catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
 
-    public void playerDecision(String gameId, String playerId, DecisionWsDTO decisionWsDTO) throws Exception{
+    public void playerDecision(String gameId, String playerId, DecisionWsDTO decisionWsDTO) {
         Decision decision = null;
         Integer raiseAmount = decisionWsDTO.getRaiseAmount();
         // try enum conversion
@@ -83,24 +88,29 @@ public class GameService implements GameObserver{
 
         checkIfGameExists(gameId);
         Game game = games.get(gameId);
-        switch (decision) {
-            case CALL: game.call(playerId);
+        try {
+            switch (decision) {
+                case CALL: game.call(playerId);
 
-                break;
-            case RAISE: game.raise(playerId, raiseAmount);
+                    break;
+                case RAISE: game.raise(playerId, raiseAmount);
 
-                break;
-            case FOLD: game.fold(playerId);
+                    break;
+                case FOLD: game.fold(playerId);
 
-                break;
+                    break;
 
-            default:
-                throw new IllegalArgumentException("Illegal decision");
-        };
+                default:
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Illegal decision");
+            };
+        }
+        catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
 
     }
 
-    public void nextRound(String gameId) throws IOException, InterruptedException, Exception{
+    public void nextRound(String gameId) {
         checkIfGameExists(gameId);
         Game game = games.get(gameId);
         game.nextRound();
@@ -114,48 +124,63 @@ public class GameService implements GameObserver{
     }
 
     public Game getGame(String gameId) {
+        checkIfGameExists(gameId);
         return games.get(gameId);
     }
 
     //returns a list of players for a specified game.
     public List<Player> getPlayers(String gameId) {
+        checkIfGameExists(gameId);
         return games.get(gameId).getPlayers();
     }
 
     // adds a new player to a specified game.
-    public void addPlayer(String gameId, Player player) throws Exception {
+    public void addPlayer(String gameId, Player player) {
         // TODO deal with case where player is registered
         // check if game exists
         checkIfGameExists(gameId);
 
         Game game = games.get(gameId);
-     
-        game.setup.joinGame(player);
-        
+        try {
+            game.setup.joinGame(player);
+        }
+        catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
-    public void setGameSettings(String gameId, SettingsWsDTO settings) throws Exception {
+    public void removePlayer(String gameId, Player player) {
+        // check if game exists
+        checkIfGameExists(gameId);
+
+        Game game = games.get(gameId);
+
+        // TODO allow players to leave after the game has started
+        try {
+            game.setup.leaveGame(player);
+        }
+        catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
+        }
+    }
+
+    public void setGameSettings(String gameId, SettingsWsDTO settings) {
         // TODO deal with case where player is registered
         // check if game exists
         checkIfGameExists(gameId);
 
         Game game = games.get(gameId);
-     
-        game.setup.setBigBlindAmount(settings.getBigBlind());
-        game.setup.setSmallBlindAmount(settings.getSmallBlind());
-        game.setup.setStartScoreForAll(settings.getInitialBalance());
-        game.setup.video.setPlaylist(settings.getPlaylistUrl());
-        game.setup.video.setLanguage(settings.getLanguage());
-        
-    }
-    public void removePlayer(String gameId, Player player) throws Exception {
-        // check if game exists
-        checkIfGameExists(gameId);
-    
-        Game game = games.get(gameId);
 
-        game.setup.leaveGame(player);
-    
+        try {
+            game.setup.setBigBlindAmount(settings.getBigBlind());
+            game.setup.setSmallBlindAmount(settings.getSmallBlind());
+            game.setup.setStartScoreForAll(settings.getInitialBalance());
+            game.setup.video.setPlaylist(settings.getPlaylistUrl());
+            game.setup.video.setLanguage(settings.getLanguage());
+        }
+        catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
+        }
     }
 
     
@@ -285,6 +310,8 @@ public class GameService implements GameObserver{
         throw new UnsupportedOperationException("Unimplemented method 'newVideoData'");
     }
 
+    /** HELPER METHODS */
+
     public boolean checkPlaylist(String URL) throws Exception {//true if playlist contains 6 or more videos
         return YTAPIManager.checkPlaylistUrl(URL);
     }
@@ -293,9 +320,8 @@ public class GameService implements GameObserver{
         if (!games.containsKey(gameId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");
         }
-
+        
     }
-
 
 }
 

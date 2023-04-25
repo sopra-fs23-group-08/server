@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @CrossOrigin(origins = { "http://localhost:3000", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" })
 @RestController
@@ -66,10 +67,10 @@ public class GameController {
         Player player = DTOMapper.INSTANCE.convertPlayerWsDTOtoEntity(Player);
 
         // add player to game
-        ArrayList<Player> players = gameService.addPlayer(gameId, player);
+        gameService.addPlayer(gameId, player);
 
         // convert player-list to DTOs
-        return convertListToDTOs(players);
+        return convertListToDTOs(gameService.getPlayers(gameId));
     }
 
     @MessageMapping("/games/{gameId}/players/remove")
@@ -79,10 +80,10 @@ public class GameController {
         Player player = DTOMapper.INSTANCE.convertPlayerWsDTOtoEntity(Player);
 
         // remove player from game
-        ArrayList<Player> players = gameService.removePlayer(gameId, player);
+        gameService.removePlayer(gameId, player);
 
         // convert player-list to DTOs
-        return convertListToDTOs(players);
+        return convertListToDTOs(gameService.getPlayers(gameId));
     }
 
     @MessageMapping("/games/{gameId}/settings")
@@ -158,7 +159,7 @@ public class GameController {
     }
 
     /** HELPER METHODS */
-    private ArrayList<PlayerWsDTO> convertListToDTOs(ArrayList<Player> players) {
+    private ArrayList<PlayerWsDTO> convertListToDTOs(List<Player> players) {
         ArrayList<PlayerWsDTO> playerDTOs = new ArrayList<>();
         for (Player p : players) {
             playerDTOs.add(DTOMapper.INSTANCE.convertEntityToPlayerWsDTO(p));
