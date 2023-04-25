@@ -7,22 +7,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /** has no corresponding entity --> no mapper function */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class DecisionWsDTO {
+    private String decision;
+    private Integer raiseAmount;
 
-    @JsonCreator
-    public DecisionWsDTO(@JsonProperty("decision") Decision decision) {
-        this.decision = decision;
-    }
-
-    @JsonProperty("playerToken")
-    private Decision decision;
-
-    public Decision getDecision() {
+    public String getDecision() {
         return decision;
     }
 
-    public void setDecision(Decision decision) {
+    public void setDecision(String decision) {
         this.decision = decision;
+    }
+
+    public Integer getRaiseAmount() {
+        return raiseAmount;
+    }
+
+    public void setRaiseAmount(Integer raiseAmount) {
+        this.raiseAmount = raiseAmount;
     }
 }

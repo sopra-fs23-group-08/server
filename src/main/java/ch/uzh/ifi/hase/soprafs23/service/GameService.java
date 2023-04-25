@@ -8,6 +8,7 @@ import ch.uzh.ifi.hase.soprafs23.game.GameObserver;
 import ch.uzh.ifi.hase.soprafs23.game.GamePhase;
 import ch.uzh.ifi.hase.soprafs23.game.Hand;
 import ch.uzh.ifi.hase.soprafs23.game.VideoData;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.DecisionWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.mapper.DTOMapper;
@@ -68,18 +69,28 @@ public class GameService implements GameObserver{
     }
 
 
-    public void playerDecision(String gameId, String playerId, Decision decision, Integer raiseAmount) throws Exception{
+    public void playerDecision(String gameId, String playerId, DecisionWsDTO decisionWsDTO) throws Exception{
+        Decision decision = null;
+        Integer raiseAmount = decisionWsDTO.getRaiseAmount();
+        // try enum conversion
+        try {
+            decision = Decision.valueOf(decisionWsDTO.getDecision().toUpperCase());
+        }
+        catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Illegal decision");
+        }
+
         checkIfGameExists(gameId);
         Game game = games.get(gameId);
         switch (decision) {
             case CALL: game.call(playerId);
-                
+
                 break;
             case RAISE: game.raise(playerId, raiseAmount);
-            
+
                 break;
             case FOLD: game.fold(playerId);
-                
+
                 break;
 
             default:
@@ -88,15 +99,13 @@ public class GameService implements GameObserver{
 
     }
 
-    public void nexRound(String gameId) throws IOException, InterruptedException, Exception{
+    public void nextRound(String gameId) throws IOException, InterruptedException, Exception{
         checkIfGameExists(gameId);
         Game game = games.get(gameId);
-        game.nexRound();
-
-
+        game.nextRound();
     }
 
-    public Player get(String gameId){
+    public Player getHost(String gameId){
         if (!games.containsKey(gameId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");
         }
@@ -150,7 +159,7 @@ public class GameService implements GameObserver{
 
     
 
-
+    /** OBSERVER METHODS */
 
     @Override
     public void playerScoreChanged(String gameId, Player player, Integer score) {
@@ -265,7 +274,7 @@ public class GameService implements GameObserver{
         gameData.setBigBlind(bigBlind);
 
         //send GameData to front end
-        gameController.playerstatechagned(gameId, null);        
+        gameController.playerStateChanged(gameId, null);
         throw new UnsupportedOperationException("Unimplemented method 'newPlayerBigBlindNSmallBlind'");
     }
 

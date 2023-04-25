@@ -1,38 +1,37 @@
 package ch.uzh.ifi.hase.soprafs23.controller;
-//responsible for handling incoming HTTP requests related to games and player information. 
 
-import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
-import ch.uzh.ifi.hase.soprafs23.entity.GameState;
+
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
-import ch.uzh.ifi.hase.soprafs23.entity.TestGame;
-import ch.uzh.ifi.hase.soprafs23.entity.TestPlayer;
-import ch.uzh.ifi.hase.soprafs23.game.*;
-import ch.uzh.ifi.hase.soprafs23.rest.dto.GameStateWsDTO;
-import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsDTO;
-import ch.uzh.ifi.hase.soprafs23.rest.dto.TestGameGetDTO;
-import ch.uzh.ifi.hase.soprafs23.rest.dto.TestPlayerWsDTO;
+import ch.uzh.ifi.hase.soprafs23.entity.Settings;
+import ch.uzh.ifi.hase.soprafs23.game.Decision;
+import ch.uzh.ifi.hase.soprafs23.game.Game;
+import ch.uzh.ifi.hase.soprafs23.game.Hand;
+import ch.uzh.ifi.hase.soprafs23.game.VideoData;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.*;
 import ch.uzh.ifi.hase.soprafs23.rest.mapper.DTOMapper;
+import ch.uzh.ifi.hase.soprafs23.service.GameService;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
-import ch.uzh.ifi.hase.soprafs23.service.GameService;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 
-import javax.swing.plaf.nimbus.State;
+@CrossOrigin(origins = { "http://localhost:3000", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" })
+@RestController
+public class GameController {
 
-@CrossOrigin(origins = { "http://localhost:3000", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" }) //used to specify the allowed origins for cross-origin resource sharing.
-@RestController //This annotation is applied to a class to mark it as a request handler. 
-//Spring RestController annotation is used to create RESTful web services using Spring MVC.
-public class GameController{
-
-    SimpMessagingTemplate messagingTemplate; //Spring utility class that can be used to send messages to WebSocket clients.
-
+    // Field injection might lead to issues, maybe change to constructor injection
+    @Autowired
+    SimpMessagingTemplate messagingTemplate;
 
     private final GameService gameService;
 
@@ -43,94 +42,129 @@ public class GameController{
     @PostMapping("/games")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public TestGameGetDTO createGame(TestPlayerWsDTO playerWsDTO) {
-        // convert DTO to entity
-        TestPlayer player = DTOMapper.INSTANCE.convertTestPlayerWsDTOtoEntity(playerWsDTO);
+    public String createGame(@RequestBody PlayerWsDTO playerWsDTO) {
 
-        // create new Game
-        TestGame newGame = gameService.createGame(player);
+        Player player = DTOMapper.INSTANCE.convertPlayerWsDTOtoEntity(playerWsDTO);
+        Game newGame = gameService.createGame(player);
 
-        return DTOMapper.INSTANCE.convertEntityToTestGameGetDTO(newGame);
+        return String.format("{\"id\":\"%s\"}", newGame.getGameId());
     }
-
-    @GetMapping("/games/{gameId}")
-    @ResponseStatus(HttpStatus.OK)
-    @ResponseBody
-    public TestGame getGame(@PathVariable String gameId) {
-        return gameService.getGame(gameId);
-    }
-    /*
-    @PostMapping("/games/{gameId}/players")
-    public void addPlayer(@PathVariable String gameId, @RequestBody String username) {
-        TestGame game = gameService.getGame(gameId);
-        game.addPlayer(new TestPlayer(username));
-    }
-    */
 
     @GetMapping("/games/{gameId}/host")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public TestPlayer getHost(@PathVariable String gameId) {
-        return gameService.getHost(gameId);
+    public PlayerWsDTO getHost(@PathVariable String gameId) {
+        Game game = gameService.getGame(gameId);
+        Player host = game.getHost();
+        return DTOMapper.INSTANCE.convertEntityToPlayerWsDTO(host);
     }
 
-    //maps a STOMP message to a specific handler method. In this case, /games/{gameId}/players is mapped to the addPlayer method.
-    @MessageMapping("/games/{gameId}/players/join")
+    @MessageMapping("/games/{gameId}/players/add")
     @SendTo("/topic/games/{gameId}/players")
-    public ArrayList<TestPlayerWsDTO> addPlayer(@DestinationVariable String gameId, TestPlayerWsDTO playerWsDTO) {
+    public ArrayList<PlayerWsDTO> addPlayer(@DestinationVariable String gameId, PlayerWsDTO Player) {
         // convert DTO to entity
-        TestPlayer player = DTOMapper.INSTANCE.convertTestPlayerWsDTOtoEntity(playerWsDTO);
-        // add player to correct game
-        gameService.addPlayer(gameId, player);
-        // convert player entities to DTOs
-        ArrayList<TestPlayerWsDTO> playerWsDTOS = new ArrayList<>();
-        ArrayList<TestPlayer> players = gameService.getPlayers(gameId);
+        Player player = DTOMapper.INSTANCE.convertPlayerWsDTOtoEntity(Player);
 
-        for (TestPlayer p : players) {
-            playerWsDTOS.add(DTOMapper.INSTANCE.convertEntityToTestPlayerWsDTO(p));
-        }
-        return playerWsDTOS;
+        // add player to game
+        ArrayList<Player> players = gameService.addPlayer(gameId, player);
+
+        // convert player-list to DTOs
+        return convertListToDTOs(players);
     }
 
-    
-
-    @MessageMapping("/games/{gameId}/players/leave")
+    @MessageMapping("/games/{gameId}/players/remove")
     @SendTo("/topic/games/{gameId}/players")
-    public ArrayList<TestPlayerWsDTO> removePlayer(@DestinationVariable String gameId, TestPlayerWsDTO playerWsDTO) {
+    public ArrayList<PlayerWsDTO> removePlayer(@DestinationVariable String gameId, PlayerWsDTO Player) {
         // convert DTO to entity
-        TestPlayer player = DTOMapper.INSTANCE.convertTestPlayerWsDTOtoEntity(playerWsDTO);
-        // add player to correct game
-        gameService.removePlayer(gameId, player);
-        // convert player entities to DTOs
-        ArrayList<TestPlayerWsDTO> playerWsDTOS = new ArrayList<>();
-        ArrayList<TestPlayer> players = gameService.getPlayers(gameId);
+        Player player = DTOMapper.INSTANCE.convertPlayerWsDTOtoEntity(Player);
 
-        for (TestPlayer p : players) {
-            playerWsDTOS.add(DTOMapper.INSTANCE.convertEntityToTestPlayerWsDTO(p));
-        }
-        return playerWsDTOS;
+        // remove player from game
+        ArrayList<Player> players = gameService.removePlayer(gameId, player);
+
+        // convert player-list to DTOs
+        return convertListToDTOs(players);
     }
-
 
     @MessageMapping("/games/{gameId}/settings")
     @SendTo("/topic/games/{gameId}/settings")
-    public void updateSettings(@DestinationVariable String gameId, SettingsDTO settingsDTO) {
-        // TODO come up with a DTO for settings --> part of a game entity or a separate entity?
+    public SettingsWsDTO updateSettings(@DestinationVariable String gameId, SettingsWsDTO settingsWsDTO) {
+        // update settings
+        gameService.setGameSettings(gameId, settingsWsDTO);
+
+        // send new settings to all players
+        return settingsWsDTO;
     }
 
+    // TODO not sure if the sendTo is required
+    @MessageMapping("/games/{gameId}/start")
+    @SendTo("/topic/games/{gameId}/start")
+    public void startGame(@DestinationVariable String gameId) {
+        // start game
+        gameService.startGame(gameId);
+    }
 
-    /* OBSERVER METHODS
-    *  Maybe it makes sense to fuse some of these methods into one, e.g. gameStateChanged
-    * */
+    @MessageMapping("/games/{gameId}/end")
+    @SendTo("/topic/games/{gameId}/end")
+    public void endGame(@DestinationVariable String gameId) {
+        // end game
+        // TODO create gameService method & notify all players
+        // gameService.endGame(gameId);
+    }
 
-    @SendTo("/topic/games/{gameId}/state/general")
+    @MessageMapping("/games/{gameId}/players/{playerToken}/decision")
+    public void handlePlayerDecision(@DestinationVariable String gameId,
+                                     @DestinationVariable String playerToken,
+                                     DecisionWsDTO decisionWsDTO)
+    {
+        gameService.playerDecision(gameId, playerToken, decisionWsDTO);
+    }
+
+    @MessageMapping("/games/{gameId}/rounds/next")
+    public void nextRound(@DestinationVariable String gameId) {
+        gameService.nextRound(gameId);
+    }
+
+    /** OBSERVER ENDPOINT METHODS
+     * these methods are invoked by gameService */
     public void gameStateChanged(String gameId, GameStateWsDTO gameStateWsDTO) {
-        // send GameStateDTO
+        String destination = String.format("/topic/games/%s/state", gameId);
+        messagingTemplate.convertAndSend(destination, gameStateWsDTO);
     }
 
-    @SendTo("/topic/games/{gameId}/players/{playerId}/hand")
+    //TODO clarify the payload for this message
+    public void playerStateChanged(String gameId) {
+        String destination = String.format("/topic/games/%s/players", gameId);
+        messagingTemplate.convertAndSend(destination, "");
+    }
+
     public void newHand(String gameId, Player player, Hand hand) {
-        // send PlayerHandDTO
+        String destination = String.format("/topic/games/%s/players/%s/hand", gameId, player.getToken());
+        ObjectMapper objectMapper = new ObjectMapper();
+        String responseBody;
+        try {
+            responseBody = objectMapper.writeValueAsString(hand.getComments());
+        }
+        catch (JsonProcessingException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Could not convert hand to JSON");
+        }
+
+        messagingTemplate.convertAndSend(destination, responseBody);
     }
 
+    public void newVideoData(String gameId, VideoData videoData) {
+        String destination = String.format("/topic/games/%s/video", gameId);
+        // convert to videoDataDTO
+        // TODO figure out conversion with VideoData public attributes
+    }
+
+    /** HELPER METHODS */
+    private ArrayList<PlayerWsDTO> convertListToDTOs(ArrayList<Player> players) {
+        ArrayList<PlayerWsDTO> playerDTOs = new ArrayList<>();
+        for (Player p : players) {
+            playerDTOs.add(DTOMapper.INSTANCE.convertEntityToPlayerWsDTO(p));
+        }
+        return playerDTOs;
+    }
 }
+
+
