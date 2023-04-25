@@ -24,6 +24,16 @@ public class YTAPIManager {
     private String playlistId = "PL6HF94r1ogByYa2xFAXIE_1Pw-K0AU_Vd";
     private Language language = Language.GERMAN;
 
+    public static boolean checkPlaylistUrl(String Url) throws Exception {
+        var listId = urlToPlaylistId(Url);
+        var videoCount = APIController.getVideoCountForPlaylist(listId);
+        if (videoCount > 5) {
+            return true;
+        } else {
+            throw new Exception("There must be at least 6 videos in the Playlist (Playlist contains " + videoCount + ")");
+        }
+    }
+    
     public void setPlaylist(String URL) throws Exception {
         playlistId = urlToPlaylistId(URL);
     }
@@ -60,7 +70,7 @@ public class YTAPIManager {
         }
     }
 
-    private String urlToPlaylistId(String URL) throws Exception {
+    static private String urlToPlaylistId(String URL) throws Exception {
         Pattern pattern = Pattern.compile("list=");
         String[] s1 = pattern.split(URL);
         String[] s2;
