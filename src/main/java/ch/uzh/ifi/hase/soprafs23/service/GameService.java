@@ -1,5 +1,6 @@
 package ch.uzh.ifi.hase.soprafs23.service;
 
+import ch.uzh.ifi.hase.soprafs23.YTAPIManager.YTAPIManager;
 import ch.uzh.ifi.hase.soprafs23.controller.GameController;
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 import ch.uzh.ifi.hase.soprafs23.game.Decision;
@@ -310,6 +311,11 @@ public class GameService implements GameObserver{
     }
 
     /** HELPER METHODS */
+
+    public boolean checkPlaylist(String URL) throws Exception {//true if playlist contains 6 or more videos
+        return YTAPIManager.checkPlaylistUrl(URL);
+    }
+
     private void checkIfGameExists(String gameId) {
         if (!games.containsKey(gameId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");

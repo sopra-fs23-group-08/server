@@ -262,6 +262,12 @@ class GameModel { //protected (Package Private)
     }
 
     public void setWinner(Player winner) {
+        //update points
+        int score = getPlayerData(winner.getToken()).getScore();
+        getPlayerData(winner.getToken()).setScore(score + potAmount);
+        setPotAmount(0);
+
+        //declare winner
         for (GameObserver o : observers) {
             o.roundWinnerIs(gameId, winner);
         }
