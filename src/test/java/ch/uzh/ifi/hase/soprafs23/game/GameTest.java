@@ -39,12 +39,13 @@ public class GameTest {
 
     assertTrue(!game.getPlayers().contains(playerC));//players are added after the game has started. maybe change that?
     assertEquals(GamePhase.LOBBY, game.getGamePhase());
-    
+
     try {
       game.startGame();
     } catch (Exception e) {
-      assertEquals("Some exception occurred", e);
+      assertEquals("Some exception occurred in setup", e);
     }
+    
     
     assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
     assertEquals(GamePhase.FIRST_BETTING_ROUND, game.getGamePhase());
@@ -73,7 +74,6 @@ public class GameTest {
     assertEquals(1000, observer.playerScore);
     //assertEquals(null, observer.currentPlayer.getToken());
 
-    game.startBettingRound();
 
     var smallBlind = observer.smallBlind; //rename to smallBlindPlayer ?
     var currentPlayer = observer.currentPlayer;
@@ -91,12 +91,12 @@ public class GameTest {
       game.raise(observer.currentPlayer, 5);
     }, "SmallBlind must raise. currentCallAmount: 5 SmallBlindAmount: 10");
 
-    assertEquals(5, observer.callAmount);
+    assertEquals(0, observer.callAmount);
 
     try {
       game.raise(observer.currentPlayer, 10);
     } catch (Exception e) {
-      assertEquals("Some exception occurred", e);
+      assertEquals("Some exception occurred1", e);
     }
 
     assertNotEquals(currentPlayer, observer.currentPlayer); //since a new player is playing
@@ -130,7 +130,7 @@ public class GameTest {
       assertEquals(winner, observer.winner);
       
     } catch (Exception e) {
-      assertEquals("Some exception occurred", e);
+      assertEquals("Some exception occurred2", e);
     }
 
     
@@ -139,9 +139,8 @@ public class GameTest {
   @Test
   public void runThrough2() {
 
-    game.startBettingRound();
     assertEquals(null, observer.winner);
-    
+
     try {
       game.raise(observer.currentPlayer, 10);
       assertEquals(10, observer.potScore);
@@ -151,22 +150,22 @@ public class GameTest {
       assertEquals(50, observer.potScore);
       assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
       game.call(observer.currentPlayer);
-      assertEquals(70, observer.potScore);
+      assertEquals(60, observer.potScore);
       assertEquals(GamePhase.SECOND_BETTING_ROUND, observer.gamePhase);
 
       game.call(observer.currentPlayer);
-      assertEquals(70, observer.potScore);
+      assertEquals(60, observer.potScore);
       game.call(observer.currentPlayer);
-      assertEquals(70, observer.potScore);
+      assertEquals(60, observer.potScore);
       game.call(observer.currentPlayer);
-      assertEquals(70, observer.potScore);
+      assertEquals(60, observer.potScore);
       assertEquals(GamePhase.THIRD_BETTING_ROUND, observer.gamePhase);
 
       game.call(observer.currentPlayer);
       game.raise(observer.currentPlayer, 40);
-      assertEquals(110, observer.potScore);
+      assertEquals(80, observer.potScore);
       game.call(observer.currentPlayer);
-      assertEquals(150, observer.potScore);
+      assertEquals(100, observer.potScore);
       executableThrowsExceptionMsg(() -> {
         game.raise(observer.currentPlayer, 20);
       }, "The CallAmount must be higher after a raise. CallAmountBefore: 40 NewCallAmount: 20");
@@ -175,7 +174,7 @@ public class GameTest {
 
       executableThrowsExceptionMsg(() -> {
         game.raise(observer.currentPlayer, 1000);
-      }, "Player score(930) is not high enough to raise(1000).");
+      }, "Player score(960) is not high enough to raise(1000).");
       game.call(observer.currentPlayer);
       game.call(observer.currentPlayer);
       game.call(observer.currentPlayer);
@@ -185,6 +184,62 @@ public class GameTest {
       assertEquals("Some exception occurred", e);
     }
     assertNotEquals(null, observer.winner);
+  }
+
+  @Test
+  public void runThrough3() {
+
+    
+    try {
+      assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
+      
+      game.raise(observer.currentPlayer, 10);
+      game.raise(observer.currentPlayer, 20);
+
+      game.call(observer.currentPlayer);
+      var winner = observer.player;
+      var pScore = observer.playerScore;
+
+      game.call(observer.currentPlayer);
+      
+      var potScore = observer.potScore;
+
+      assertEquals(GamePhase.SECOND_BETTING_ROUND, observer.gamePhase);
+      assertEquals(observer.smallBlind, observer.currentPlayer);
+      
+      game.fold(observer.currentPlayer);
+      game.fold(observer.currentPlayer);
+      assertEquals(GamePhase.END_ALL_FOLDED, observer.gamePhase);
+      assertEquals(winner, observer.winner);
+      assertEquals(observer.winner, observer.player);
+      assertEquals(pScore + potScore, observer.playerScore);
+
+      var oldBig = observer.bigBlind;
+      game.nexRound();//---------------------------------------------------------
+      assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
+      assertEquals(oldBig, observer.smallBlind);
+      
+      game.raise(observer.currentPlayer, 980);
+      game.call(observer.currentPlayer);
+      game.call(observer.currentPlayer);
+      assertEquals(GamePhase.SECOND_BETTING_ROUND, observer.gamePhase);
+      
+      game.fold(observer.currentPlayer);
+      game.fold(observer.currentPlayer);
+      assertEquals(GamePhase.END_ALL_FOLDED, observer.gamePhase);
+      
+      game.nexRound(); //only two players left
+      
+      game.raise(observer.currentPlayer, 10);
+      game.raise(observer.currentPlayer, 20);
+      game.fold(observer.currentPlayer);
+      
+      assertEquals(GamePhase.END_ALL_FOLDED, observer.gamePhase);
+            
+
+    } catch (Exception e) {
+      assertEquals("Some exception occurred", e);
+    }
   }
 
 

@@ -11,42 +11,52 @@ class PlayerData { //protected (Package Private)
     final String name;
     private String gameId;
     private Integer score;
+    private Integer scorePutIntoPot = 0;
     private Hand hand;
     private Decision decision;
 
-    private List<GameObserver> observers;
+    private List<GameObserver> observersPlayer;
 
     PlayerData(Player aPlayer) {
         player = aPlayer;
         token = aPlayer.getToken();
         name = aPlayer.getName();
-        observers = new ArrayList<>();
+        observersPlayer = new ArrayList<>();
     }
 
     PlayerData() {
         player = new Player();
         token = null;
         name = null;
-        observers = new ArrayList<>();
+        observersPlayer = new ArrayList<>();
     }
 
     public void addObserver(String gameId, GameObserver o) {
         this.gameId = gameId;
-        observers.add(o);
+        observersPlayer.add(o);
     }
 
     public void removeObserver(GameObserver o) {
-        observers.remove(o);
+        observersPlayer.remove(o);
     }
 
     //setters and getter-------------------------------------
+
+    public Integer getScorePutIntoPot() {
+        return scorePutIntoPot;
+    }
+
+    public void setScorePutIntoPot(Integer scorePutIntoPot) {
+        this.scorePutIntoPot = scorePutIntoPot;
+    }
+
     public Player getPlayer() {
         return player;
     }
 
 
     public void setScore(Integer score) {
-        for (GameObserver o : observers) {
+        for (GameObserver o : observersPlayer) {
             o.playerScoreChanged(gameId, player, score);
         }
         this.score = score;
@@ -57,7 +67,7 @@ class PlayerData { //protected (Package Private)
     }
     
     public void setNewHand(Hand hand) {
-        for (GameObserver o : observers) {
+        for (GameObserver o : observersPlayer) {
             o.newHand(gameId, player, hand);
         }
         this.hand = hand;
@@ -75,7 +85,7 @@ class PlayerData { //protected (Package Private)
     }
 
     public void setDecision(Decision d) {
-        for (GameObserver o : observers) {
+        for (GameObserver o : observersPlayer) {
             o.playerDecisionChanged(gameId, player, d);
         }
         this.decision = d;

@@ -24,8 +24,8 @@ class GameModel { //protected (Package Private)
     private Player smallBlindPlayer; //automatically set when dealer is set
     private Player bigBlindPlayer; //automatically set when dealer is set
     private int potAmount;
-    private int callAmount;
-    private String lastRaisingPlayer;
+    private int callAmount = 0;
+    private Player lastRaisingPlayer;
     private int foldCount;
     private Player winner;
     private Player host;
@@ -46,21 +46,20 @@ class GameModel { //protected (Package Private)
         setCurrentPlayer(new Player());
         setGamePhase(GamePhase.FIRST_BETTING_ROUND);
         setPotAmount(0);
-        setFoldCount(0);
         setWinner(null);
+        setCallAmount(0);
     }
 
     public void resetRound() {
         setGamePhase(GamePhase.FIRST_BETTING_ROUND);
-        setFoldCount(0);
         setWinner(null);
+        setCallAmount(0);
     }
 
     public void resetBettingRound() {
         setCurrentPlayer(dealerPlayer);
         nextPlayer();
-        setLastRaisingPlayer(currentPlayer.getToken());
-        setCallAmount(0);
+        setLastRaisingPlayer(currentPlayer);
     }
     
     //observer stuff------------------------------
@@ -172,8 +171,8 @@ class GameModel { //protected (Package Private)
         return playersData.values();
     }
 
-    public PlayerData getPlayerData(String playerId) {
-        return playersData.get(playerId);
+    public PlayerData getPlayerData(Player player) {
+        return playersData.get(player.getToken());
     }
 
     public VideoData getVideoData() {
@@ -242,11 +241,11 @@ class GameModel { //protected (Package Private)
     }
 
     public Player getLastRaisingPlayer() {
-        return new Player(lastRaisingPlayer);
+        return lastRaisingPlayer;
     }
 
-    public void setLastRaisingPlayer(String playerId) {
-        this.lastRaisingPlayer = playerId;
+    public void setLastRaisingPlayer(Player player) {
+        this.lastRaisingPlayer = player;
     }
 
     public int getFoldCount() {
@@ -263,10 +262,11 @@ class GameModel { //protected (Package Private)
 
     public void setWinner(Player winner) {
         //update points
-        int score = getPlayerData(winner.getToken()).getScore();
-        getPlayerData(winner.getToken()).setScore(score + potAmount);
-        setPotAmount(0);
-
+        if (winner != null) {
+            int score = getPlayerData(winner).getScore();
+            getPlayerData(winner).setScore(score + potAmount);
+            setPotAmount(0);
+        }
         //declare winner
         for (GameObserver o : observers) {
             o.roundWinnerIs(gameId, winner);

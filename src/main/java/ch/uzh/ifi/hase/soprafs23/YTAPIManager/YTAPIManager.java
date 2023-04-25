@@ -58,7 +58,7 @@ public class YTAPIManager {
             System.out.println(
                     "Set fastDebug = true in YTAPIManager/YTAPIManager.getVideoAndHand to have faster Debugging. Attention empty VideoData and Hands will be returned");
 
-        var fastDebug = false;
+        var fastDebug = true;
         var useYouTubeApi = false;
 
         if (fastDebug && isDebug) {

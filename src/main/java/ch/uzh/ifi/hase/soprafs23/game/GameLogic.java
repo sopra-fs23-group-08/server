@@ -46,12 +46,17 @@ class GameLogic {
         Pair<VideoData, java.util.List<Hand>> ytData = sd.getYTData();
 
         gm.setVideoData(ytData.getFirst());
+        gm.setFoldCount(0);
 
         for (PlayerData playerData : gm.getPlayerDataCollection()) {
             playerData.setDecision(Decision.NOT_DECIDED);
+            if (playerData.getScore() < sd.getBigBlindAmount()) {//player is not allowed to play since he has not enough points
+                leaveGame(playerData);
+            }
             Hand hand = ytData.getSecond().get(rand.nextInt(ytData.getSecond().size()));
             ytData.getSecond().remove(hand);
             playerData.setNewHand(hand);
+            playerData.setScorePutIntoPot(0);
         }
 
         gm.resetRound();
@@ -67,27 +72,29 @@ class GameLogic {
         gm.resetBettingRound();
     }
 
-    void playerDecision(String playerId, Decision d) throws Exception {
-        playerDecision(playerId, d, null);
+    void playerDecision(Player player, Decision d) throws Exception {
+        playerDecision(player, d, gm.getCallAmount());
     }
-    void playerDecision(String playerId, Decision d, Integer newCallAmount) throws Exception {
-        if (playerId != gm.getCurrentPlayer().getToken()) {
+    void playerDecision(Player player, Decision d, Integer newCallAmount) throws Exception {
+        if (player != gm.getCurrentPlayer()) {
             throw new Exception("You're not the current player");
         }
-        if (gm.getPlayerData(playerId).getDecision() == Decision.FOLD) {
+        if (gm.getPlayerData(player).getDecision() == Decision.FOLD) {
             throw new Exception("After you folded you can't do anything until next game");
         }
+        enforceBigAndSmallBlind(player, newCallAmount);
+
         switch (d) {
             case CALL:
-                addToPot(playerId);
+                addToPot(player);
                 break;
             case FOLD:
                 gm.setFoldCount(gm.getFoldCount() + 1);
-                gm.getPlayerData(playerId).setDecision(Decision.FOLD);
+                gm.getPlayerData(player).setDecision(Decision.FOLD);
                 break;
 
             case RAISE:
-                var playerData = gm.getPlayerData(playerId);
+                var playerData = gm.getPlayerData(player);
                 if (playerData.getScore() < newCallAmount) {
                     throw new Exception(
                             "Player score(" + playerData.getScore() + ") is not high enough to raise(" + newCallAmount
@@ -96,14 +103,14 @@ class GameLogic {
                     throw new Exception("The CallAmount must be higher after a raise. CallAmountBefore: " + gm.getCallAmount() + " NewCallAmount: " + newCallAmount);
                 }
                 gm.setCallAmount(newCallAmount);
-                addToPot(playerId);
-                gm.setLastRaisingPlayer(playerId);
+                addToPot(player);
+                gm.setLastRaisingPlayer(player);
 
                 break;
             default:
                 throw new Exception("Illegal decision " + d);
         }
-        gm.getPlayerData(playerId).setDecision(d);
+        gm.getPlayerData(player).setDecision(d);
         gm.nextPlayer();
         
         if (allFoldedButOne()) {
@@ -162,32 +169,34 @@ class GameLogic {
     }
     
 
-    void addToPot(String playerId) throws Exception {
-        enforceBigAndSmallBlind(playerId);
+    void addToPot(Player player) throws Exception {
+        
 
-        var playerData = gm.getPlayerData(playerId);
+        var playerData = gm.getPlayerData(player);
         if (playerData.getScore() < gm.getCallAmount()) {
             throw new Exception(
-                    playerId + " not enough score(" + playerData.getScore() + ") to call(" + gm.getCallAmount() + ")");
+                    player + " not enough score(" + playerData.getScore() + ") to call(" + gm.getCallAmount() + ")");
         }
-        playerData.setScore(playerData.getScore() - gm.getCallAmount());
-        gm.setPotAmount(gm.getPotAmount() + gm.getCallAmount());
+
+        playerData.setScore(playerData.getScore() - (gm.getCallAmount() - playerData.getScorePutIntoPot()));
+        gm.setPotAmount(gm.getPotAmount() + (gm.getCallAmount() - playerData.getScorePutIntoPot()));
+        playerData.setScorePutIntoPot(gm.getCallAmount());
     }
 
-    boolean isSmallBlind(String playerId) {
-        return (gm.getSmallBlindPlayer().getToken() == playerId);
+    boolean isSmallBlind(Player player) {
+        return (gm.getSmallBlindPlayer() == player);
     }
 
-    boolean isBigBlind(String playerId) {
-        return (gm.getBigBlindPlayer().getToken() == playerId);
+    boolean isBigBlind(Player player) {
+        return (gm.getBigBlindPlayer() == player);
     }
 
-    void enforceBigAndSmallBlind(String playerId) throws Exception {
-        if (isBigBlind(playerId) && gm.getCallAmount() < sd.getBigBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_BETTING_ROUND) {
-            throw new Exception("BigBlind must raise. currentCallAmount: " + gm.getCallAmount() + " BigBlindAmount: "
+    void enforceBigAndSmallBlind(Player player, Integer newCallAmount) throws Exception {
+        if (isBigBlind(player) && newCallAmount < sd.getBigBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_BETTING_ROUND) {
+            throw new Exception("BigBlind must raise. currentCallAmount: " + newCallAmount + " BigBlindAmount: "
                     + sd.getBigBlindAmount());
-        } else if (isSmallBlind(playerId) && gm.getCallAmount() < sd.getSmallBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_BETTING_ROUND) {
-            throw new Exception("SmallBlind must raise. currentCallAmount: " + gm.getCallAmount()
+        } else if (isSmallBlind(player) && newCallAmount < sd.getSmallBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_BETTING_ROUND) {
+            throw new Exception("SmallBlind must raise. currentCallAmount: " + newCallAmount
                     + " SmallBlindAmount: " + sd.getSmallBlindAmount());
         }
     }
@@ -200,6 +209,23 @@ class GameLogic {
     }
 
     boolean allFoldedButOne() {
-        return gm.getFoldCount() >= gm.getPlayerDataCollection().size()-1;
+        return gm.getFoldCount() >= gm.getPlayerDataCollection().size() - 1;
+    }
+    
+    void leaveGame(PlayerData playerData) {
+        switch (gm.getGamePhase()) {
+            case LOBBY:
+            case END_AFTER_FOURTH_BETTING_ROUND:
+            case END_ALL_FOLDED:
+                gm.removePlayerData(playerData);
+                break;
+        
+            default:
+                gm.setPotAmount(gm.getPotAmount() + playerData.getScore());
+                playerData.setDecision(Decision.FOLD);
+                gm.setFoldCount(gm.getFoldCount() + 1);
+                gm.removePlayerData(playerData);
+                break;
+        }
     }
 }
