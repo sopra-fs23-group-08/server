@@ -75,9 +75,9 @@ public class GameController {
 
     @MessageMapping("/games/{gameId}/players/remove")
     @SendTo("/topic/games/{gameId}/players")
-    public ArrayList<PlayerWsDTO> removePlayer(@DestinationVariable String gameId, PlayerWsDTO Player) {
+    public ArrayList<PlayerWsDTO> removePlayer(@DestinationVariable String gameId, PlayerDTO playerDTO) {
         // convert DTO to entity
-        Player player = DTOMapper.INSTANCE.convertPlayerWsDTOtoEntity(Player);
+        Player player = new Player(playerDTO.getUsername(), playerDTO.getToken());
 
         // remove player from game
         gameService.removePlayer(gameId, player);

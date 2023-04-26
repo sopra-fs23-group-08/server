@@ -47,12 +47,6 @@ public interface DTOMapper {
   @Mapping(source = "status", target = "status")
   UserGetDTO convertEntityToUserGetDTO(User user);
 
-  @Mapping(source = "currentBet", target = "currentBet")
-  @Mapping(source = "currentPot", target = "currentPot")
-  @Mapping(source = "hasStarted", target = "hasStarted")
-  @Mapping(source = "gamePhase", target = "gamePhase")
-  GameStateWsDTO convertEntityToGameStateWsDTO(GameState gameState);
-
   @Mapping(source = "title", target = "title")
   @Mapping(source = "thumbnailUrl", target = "thumbnailUrl")
   @Mapping(source = "views", target = "views")

@@ -68,7 +68,7 @@ public class GameService implements GameObserver{
         try {
             game.startGame();
         }
-        // TODO choose more fitting http error code
+        // TODO throw more specific exception - no players? other error?
         catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
