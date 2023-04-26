@@ -45,3 +45,7 @@
  
 * 20.4. - 27.4., Jonas https://github.com/sopra-fs23-group-08/client/issues/46 ; includes issues 47 & 48
 * 20.4. - 27.4., Jonas https://github.com/sopra-fs23-group-08/client/issues/49
+* 20.4. - 27.4., Jonas https://github.com/sopra-fs23-group-08/client/issues/95 ; May require some finishing changes to adapt to service class
+    
+### Week 4
+* 27.4. - 4.5.,
