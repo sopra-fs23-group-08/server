@@ -12,7 +12,7 @@ import ch.uzh.ifi.hase.soprafs23.game.GamePhase;
 class GameData {
 
     
-    public GameStateWsDTO gameStateWsDTO = new GameStateWsDTO(0,0,false,GamePhase.LOBBY);
+    public GameStateWsDTO gameStateWsDTO = new GameStateWsDTO(0,0,false,null,GamePhase.LOBBY);
     public HashMap<String, PlayerWsDTO> playersData = new HashMap<>();
 
     public GameData(List<Player> players){

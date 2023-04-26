@@ -113,7 +113,7 @@ public class GameService implements GameObserver{
     public void nextRound(String gameId) {
         checkIfGameExists(gameId);
         Game game = games.get(gameId);
-        game.nextRound();
+        game.nextRound();        
     }
 
     public Player getHost(String gameId){
@@ -300,7 +300,7 @@ public class GameService implements GameObserver{
         gameData.setBigBlind(bigBlind);
 
         //send GameData to front end
-        gameController.playerStateChanged(gameId, null);
+        gameController.playerStateChanged(gameId, gameData.playersData.values());
         throw new UnsupportedOperationException("Unimplemented method 'newPlayerBigBlindNSmallBlind'");
     }
 

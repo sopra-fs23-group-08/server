@@ -78,7 +78,7 @@ public class Game {
         gameController.playerDecision(new Player(playerId), Decision.FOLD);
     }
 
-    public void nexRound() throws IOException, InterruptedException, Exception { // this should be called after a round to play a second round
+    public void nextRound() throws IOException, InterruptedException, Exception { // this should be called after a round to play a second round
         gameController.startRound();
         gameController.startBettingRound();
     }

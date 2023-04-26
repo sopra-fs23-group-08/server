@@ -13,6 +13,7 @@ import ch.uzh.ifi.hase.soprafs23.service.GameService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @CrossOrigin(origins = { "http://localhost:3000", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" })
@@ -133,7 +135,7 @@ public class GameController {
     }
 
     //TODO clarify the payload for this message
-    public void playerStateChanged(String gameId) {
+    public void playerStateChanged(String gameId, Collection<PlayerWsDTO> playersDTOList) {
         String destination = String.format("/topic/games/%s/players", gameId);
         messagingTemplate.convertAndSend(destination, "");
     }
