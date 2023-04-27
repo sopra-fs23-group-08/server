@@ -1,8 +1,8 @@
 package ch.uzh.ifi.hase.soprafs23.rest.mapper;
 
-import ch.uzh.ifi.hase.soprafs23.entity.User;
-import ch.uzh.ifi.hase.soprafs23.rest.dto.UserGetDTO;
-import ch.uzh.ifi.hase.soprafs23.rest.dto.UserPostDTO;
+import ch.uzh.ifi.hase.soprafs23.entity.*;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.*;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
@@ -22,13 +22,37 @@ public interface DTOMapper {
 
   DTOMapper INSTANCE = Mappers.getMapper(DTOMapper.class);
 
+  /** DTO -> ENTITY*/
   @Mapping(source = "name", target = "name")
   @Mapping(source = "username", target = "username")
   User convertUserPostDTOtoEntity(UserPostDTO userPostDTO);
 
+  @Mapping(source = "token", target = "token")
+  @Mapping(source = "name", target = "name")
+  MutablePlayer convertPlayerDTOtoEntity(PlayerDTO playerDTO);
+
+  @Mapping(source = "bigBlind", target = "bigBlind")
+  @Mapping(source = "smallBlind", target = "smallBlind")
+  @Mapping(source = "initialBalance", target = "initialBalance")
+  @Mapping(source = "playlistUrl", target = "playlistUrl")
+  @Mapping(source = "language", target = "language")
+  Settings convertSettingsWsDTOtoEntity(SettingsWsDTO settingsWsDTO);
+
+  /** ENTITY -> DTO */
   @Mapping(source = "id", target = "id")
   @Mapping(source = "name", target = "name")
   @Mapping(source = "username", target = "username")
   @Mapping(source = "status", target = "status")
   UserGetDTO convertEntityToUserGetDTO(User user);
+
+  @Mapping(source = "name", target = "name")
+  @Mapping(source = "token", target = "token")
+  PlayerDTO convertEntityToPlayerDTO(MutablePlayer player);
+
+  @Mapping(source = "bigBlind", target = "bigBlind")
+  @Mapping(source = "smallBlind", target = "smallBlind")
+  @Mapping(source = "initialBalance", target = "initialBalance")
+  @Mapping(source = "playlistUrl", target = "playlistUrl")
+  @Mapping(source = "language", target = "language")
+  SettingsWsDTO convertEntityToSettingsWsDTO(Settings settings);
 }

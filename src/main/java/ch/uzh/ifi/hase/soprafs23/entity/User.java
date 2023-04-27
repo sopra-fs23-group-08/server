@@ -21,11 +21,14 @@ public class User implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
+  // TODO add fields for statistics
+  // TODO replace name attribute with password
+
   @Id
   @GeneratedValue
   private Long id;
 
-  @Column(nullable = false)
+  @Column
   private String name;
 
   @Column(nullable = false, unique = true)

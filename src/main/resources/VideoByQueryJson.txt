@@ -1,0 +1,1033 @@
+{
+  "kind": "youtube#searchListResponse",
+  "etag": "jHLr8HdI7tLEpiM3HS9779qSr0Y",
+  "nextPageToken": "CB4QAA",
+  "regionCode": "CH",
+  "pageInfo": {
+    "totalResults": 1000000,
+    "resultsPerPage": 30
+  },
+  "items": [
+    {
+      "kind": "youtube#searchResult",
+      "etag": "hWlO_YeYrC93aXrxx4fw5X5d5Mc",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "jfKfPfyJRdk"
+      },
+      "snippet": {
+        "publishedAt": "2022-07-12T12:12:29Z",
+        "channelId": "UCSJ4gkVC6NrvII8umztf0Ow",
+        "title": "lofi hip hop radio - beats to relax/study to",
+        "description": "Thank you for listening, I hope you will have a good time here | Get the latest vinyl (limited edition) ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/jfKfPfyJRdk/default_live.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/jfKfPfyJRdk/mqdefault_live.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/jfKfPfyJRdk/hqdefault_live.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Lofi Girl",
+        "liveBroadcastContent": "live",
+        "publishTime": "2022-07-12T12:12:29Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "kpFX7d-jmKiyuJoZz4klDjfPmlY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "rUxyKA_-grg"
+      },
+      "snippet": {
+        "publishedAt": "2022-07-13T16:04:34Z",
+        "channelId": "UCSJ4gkVC6NrvII8umztf0Ow",
+        "title": "lofi hip hop radio - beats to sleep/chill to",
+        "description": "This playlist contains the smoothest lofi hip hop beats, perfect to help you chill or fall asleep | Listen on Spotify, Apple music and ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/rUxyKA_-grg/default_live.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/rUxyKA_-grg/mqdefault_live.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/rUxyKA_-grg/hqdefault_live.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Lofi Girl",
+        "liveBroadcastContent": "live",
+        "publishTime": "2022-07-13T16:04:34Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "z-J6J3Xe36wfEicJ_MqWpz99le4",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "n61ULEU7CO0"
+      },
+      "snippet": {
+        "publishedAt": "2021-12-31T16:30:13Z",
+        "channelId": "UCSJ4gkVC6NrvII8umztf0Ow",
+        "title": "Best of lofi hip hop 2021 ? - beats to relax/study to",
+        "description": "The new Lofi Girl compilation �Best of 2021� is out now This compilation contains a track cherry-picked from every release on ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/n61ULEU7CO0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/n61ULEU7CO0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/n61ULEU7CO0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Lofi Girl",
+        "liveBroadcastContent": "none",
+        "publishTime": "2021-12-31T16:30:13Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "ChVEDCwM9NVcwxaFugGc8ircVVw",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "5yx6BWlEVcY"
+      },
+      "snippet": {
+        "publishedAt": "2020-03-21T13:21:02Z",
+        "channelId": "UCOxqgCwgOqC2lMqC5PYz_Dg",
+        "title": "Chillhop Radio - jazzy &amp; lofi hip hop beats ?",
+        "description": "Welcome to the Chillhop Radio, playing the best jazzy / lofi hip hop beats from our label to get you through your day. Enjoy your ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/5yx6BWlEVcY/default_live.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/5yx6BWlEVcY/mqdefault_live.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/5yx6BWlEVcY/hqdefault_live.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Chillhop Music",
+        "liveBroadcastContent": "live",
+        "publishTime": "2020-03-21T13:21:02Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "44rgCO_tVTVu9hqQ6JN2T3jYJdE",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "lTRiuFIWV54"
+      },
+      "snippet": {
+        "publishedAt": "2019-12-08T22:02:06Z",
+        "channelId": "UCSJ4gkVC6NrvII8umztf0Ow",
+        "title": "1 A.M Study Session ? - [lofi hip hop/chill beats]",
+        "description": "Create your lofi avatar now ? https://bit.ly/lofigirl-generator | Listen on Spotify, Apple music and more ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/lTRiuFIWV54/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/lTRiuFIWV54/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/lTRiuFIWV54/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Lofi Girl",
+        "liveBroadcastContent": "none",
+        "publishTime": "2019-12-08T22:02:06Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "elKwZZHUjTg6WgWN1HRCJy-y7xA",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "7NOSDKb0HlU"
+      },
+      "snippet": {
+        "publishedAt": "2020-03-21T13:58:03Z",
+        "channelId": "UCOxqgCwgOqC2lMqC5PYz_Dg",
+        "title": "lofi hip hop radio - beats to study/relax to ?",
+        "description": "We hope you enjoy these chill lofi hip hop tunes while studying / chilling / working. ? Essentials Spring 2023 (save & receive ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/7NOSDKb0HlU/default_live.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/7NOSDKb0HlU/mqdefault_live.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/7NOSDKb0HlU/hqdefault_live.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Chillhop Music",
+        "liveBroadcastContent": "live",
+        "publishTime": "2020-03-21T13:58:03Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "AYaXAzNLZJhSRae-ZmtmDCtSnOk",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "CLeZyIID9Bo"
+      },
+      "snippet": {
+        "publishedAt": "2022-08-12T11:30:07Z",
+        "channelId": "UCkKT4qf-TcPFOmpqhTawrGA",
+        "title": "Chill Lofi Mix [chill lo-fi hip hop beats]",
+        "description": "YouTube Playlists: http://listen.settle.fm/youtube Listen on Spotify, Apple Music & more: https://listen.settle.fm/playlists ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/CLeZyIID9Bo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/CLeZyIID9Bo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/CLeZyIID9Bo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Settle",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-08-12T11:30:07Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "dRtTEII6hb4dIhVotojaaCUDIVg",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "i43tkaTXtwI"
+      },
+      "snippet": {
+        "publishedAt": "2022-12-30T20:00:08Z",
+        "channelId": "UCSJ4gkVC6NrvII8umztf0Ow",
+        "title": "Best of lofi hip hop 2022 ? - beats to relax/study to",
+        "description": "Get the Best Of on vinyl ! (limited edition): ? https://bit.ly/3i3clWd The new Lofi Girl compilation �Best of 2022� is out now 2023 is ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/i43tkaTXtwI/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/i43tkaTXtwI/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/i43tkaTXtwI/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Lofi Girl",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-12-30T20:00:08Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "OJKRpl1SgIwVVmdJ5_TBzsw1P7s",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "iicfmXFALM8"
+      },
+      "snippet": {
+        "publishedAt": "2022-03-05T14:00:11Z",
+        "channelId": "UCS4iXNXsvlOHm7TuXLltreg",
+        "title": "Chill Drive - Aesthetic Music ~ Lofi hip hop mix",
+        "description": "Music provided by Chill Beats Records: https://spoti.fi/3CDd8Cq | Stream it: https://listen.chillbeats.com/chillbeatsmusic | Lofi ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/iicfmXFALM8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/iicfmXFALM8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/iicfmXFALM8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "chilli music",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-03-05T14:00:11Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "yqApnEUwXYuxEW1VieiRv9H_m3Y",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "kgx4WGK0oNU"
+      },
+      "snippet": {
+        "publishedAt": "2021-06-19T08:26:33Z",
+        "channelId": "UC84whx2xxsiA1gXHXXqKGOA",
+        "title": "jazz/lofi hip hop radio?chill beats to relax/study to [LIVE 24/7]",
+        "description": "Thanks for listening, I hope you all have a wonderful day! Listen to the playlist on Spotify ?? https://spoti.fi/3w4dWwM ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/kgx4WGK0oNU/default_live.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/kgx4WGK0oNU/mqdefault_live.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/kgx4WGK0oNU/hqdefault_live.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Abao in Tokyo",
+        "liveBroadcastContent": "live",
+        "publishTime": "2021-06-19T08:26:33Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "cobG30PQBy-5N_hmXeh027c3mHY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "e3L1PIY1pN8"
+      },
+      "snippet": {
+        "publishedAt": "2022-12-17T15:47:45Z",
+        "channelId": "UCsIg9WMfxjZZvwROleiVsQg",
+        "title": "coffee shop radio // 24/7 lofi hip-hop beats",
+        "description": "Coffee Shop Vibes on Spotify: https://fanlink.to/CSVibes This stream's playlist is curated with an emphasis on meditation and ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/e3L1PIY1pN8/default_live.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/e3L1PIY1pN8/mqdefault_live.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/e3L1PIY1pN8/hqdefault_live.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "STEEZYASFUCK",
+        "liveBroadcastContent": "live",
+        "publishTime": "2022-12-17T15:47:45Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "OE6412ETYsUBAse0PuM17gZohP4",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "VLN_uXYM0ow"
+      },
+      "snippet": {
+        "publishedAt": "2023-03-31T15:00:08Z",
+        "channelId": "UCS4iXNXsvlOHm7TuXLltreg",
+        "title": "Chill Drive Music - Lofi hip hop ~ Stress Relief, Relaxing Music",
+        "description": "Stream it: https://clovrrecords.ck.page/landingpage Chill Drive Music - Lofi hip hop ~ Stress Relief, Relaxing Music ? stress relief, ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/VLN_uXYM0ow/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/VLN_uXYM0ow/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/VLN_uXYM0ow/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "chilli music",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-03-31T15:00:08Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "lCRe6X6Z-p1HLW4XD9HbzW369n8",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "3SeOVVJXOUo"
+      },
+      "snippet": {
+        "publishedAt": "2020-11-06T16:15:00Z",
+        "channelId": "UC1ygBj1gBJv3dEuosyuV4BQ",
+        "title": "Lofi Hip Hop Chillhop Music Mix  GEMN Chill Lo fi Hip Hop Beats FREE 2022",
+        "description": "Find this playlist on Spotify : https://open.spotify.com/playlist/3vAMevoWRarxF18Ckt3Sbr?si=d1e94b257c524194 ? Listen to ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/3SeOVVJXOUo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/3SeOVVJXOUo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/3SeOVVJXOUo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Music time for all",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-11-06T16:15:00Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "-e_k16Q1t7CqL92RYBj5BUCGbqE",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "aGSYKFb_zxg"
+      },
+      "snippet": {
+        "publishedAt": "2021-10-13T12:12:42Z",
+        "channelId": "UCpNDViJ9ezD1yEY8JaLm5xQ",
+        "title": "Good Vibes Only - Hip-Hop � Chillhop � Lofi Radio 24/7",
+        "description": "Good Vibes Only - Chillhop Radio 24/7 LTB Music Spotify Playlists : lofi beats to study : https://spoti.fi/3YUgFrt Good Vibes ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/aGSYKFb_zxg/default_live.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/aGSYKFb_zxg/mqdefault_live.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/aGSYKFb_zxg/hqdefault_live.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "LTB Music",
+        "liveBroadcastContent": "live",
+        "publishTime": "2021-10-13T12:12:42Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "Skp8igrNsJ3eWtQkS2pRCe6k_oU",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "zW5wpJY1rgQ"
+      },
+      "snippet": {
+        "publishedAt": "2022-09-21T13:00:26Z",
+        "channelId": "UCq9J_CUURRfbP7vm4VN_3xg",
+        "title": "????? ????? ~ lofi hip hop mix ~ beats to chill / drive to",
+        "description": "Listen to PUEBLO VISTA // ? pvmm ? ? https://pvmm.ffm.to/lofivibes ? https://pvmm.ffm.to/chillbeats ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/zW5wpJY1rgQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/zW5wpJY1rgQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/zW5wpJY1rgQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Mimi Lofi Chill",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-09-21T13:00:26Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "MmM35f9dAFOS7fZngPO7lqQvsKY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "GmCZtGfb53c"
+      },
+      "snippet": {
+        "publishedAt": "2023-03-21T14:33:13Z",
+        "channelId": "UCsIg9WMfxjZZvwROleiVsQg",
+        "title": "lofi hip hop radio � beats to sleep/study/relax to ?",
+        "description": "Lofi Hip-Hop Beats on Spotify: ? https://fanlink.to/LofiHipHop Welcome to our 24/7 lofi hip-hop live stream. Good for relaxing ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/GmCZtGfb53c/default_live.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/GmCZtGfb53c/mqdefault_live.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/GmCZtGfb53c/hqdefault_live.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "STEEZYASFUCK",
+        "liveBroadcastContent": "live",
+        "publishTime": "2023-03-21T14:33:13Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "AScdyzSJN0U2vOBfSDwlN-4oPuI",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "goxmvGJkoi0"
+      },
+      "snippet": {
+        "publishedAt": "2022-04-11T19:00:24Z",
+        "channelId": "UCxONCRXEhzv0cRbWCKybOsw",
+        "title": "Kami ?? ? Japanese Lofi HipHop Mix",
+        "description": "Kami ?? means ~ God in Japanese Japanese Spotify Playlist: ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/goxmvGJkoi0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/goxmvGJkoi0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/goxmvGJkoi0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "LO-FI SENPAI",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-04-11T19:00:24Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "LKNNhATcAejKAVajc4tUlPLqm6w",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "1fueZCTYkpA"
+      },
+      "snippet": {
+        "publishedAt": "2022-04-11T18:00:15Z",
+        "channelId": "UCSJ4gkVC6NrvII8umztf0Ow",
+        "title": "Morning Coffee ?? [lofi hip hop/study beats]",
+        "description": "Listen everywhere ? https://fanlink.to/MorningCoffeeCompilation | Tracklist [00:00] drkmnd x No Spirit - Ripples [03:14] Purrple ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/1fueZCTYkpA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/1fueZCTYkpA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/1fueZCTYkpA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Lofi Girl",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-04-11T18:00:15Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CvUqGjt3-peX1D8sGJeAd6gVko0",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "wGdodz6ck7g"
+      },
+      "snippet": {
+        "publishedAt": "2022-11-07T13:00:07Z",
+        "channelId": "UCqX2Rl-aRnLhcMm-vWcPo8A",
+        "title": "Lofi Study Vibes ?? Lofi Hip Hop &amp; Chillhop Mix ~ Study Music, Relaxing Music",
+        "description": "Lofi Study Vibes ?? Lofi Hip Hop & Chillhop Mix ~ Study Music, Relaxing Music https://youtu.be/wGdodz6ck7g Lofi Study Vibes ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/wGdodz6ck7g/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/wGdodz6ck7g/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/wGdodz6ck7g/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Bears Chillhop",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-11-07T13:00:07Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "pQXQp711T6Z6C_E-YlXPM1mBg0U",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "_tV5LEBDs7w"
+      },
+      "snippet": {
+        "publishedAt": "2021-01-16T20:00:11Z",
+        "channelId": "UCSJ4gkVC6NrvII8umztf0Ow",
+        "title": "Cozy Winter ?? - [lofi hip hop/study beats]",
+        "description": "This music is free to use in your livestreams & videos ? https://bit.ly/lofigirl-usethemusic | Listen on Spotify, Apple music and ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/_tV5LEBDs7w/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/_tV5LEBDs7w/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/_tV5LEBDs7w/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Lofi Girl",
+        "liveBroadcastContent": "none",
+        "publishTime": "2021-01-16T20:00:11Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "bOq9qd4ROemb1tQSid9-pEmC2-g",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "P-Vw-chm5vc"
+      },
+      "snippet": {
+        "publishedAt": "2023-03-30T22:30:12Z",
+        "channelId": "UCDFm-w2mWNAPy6sqAPcKnkQ",
+        "title": "lofi hip hop radio ~ beats to relax/study ?? Music to put you in a better mood ? Calm Your Mind",
+        "description": "lofi hip hop radio ~ beats to relax/study ?? Music to put you in a better mood Calm Your Mind https://youtu.be/P-Vw-chm5vc ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/P-Vw-chm5vc/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/P-Vw-chm5vc/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/P-Vw-chm5vc/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "RELAXATION (LoFi & CHILL)",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-03-30T22:30:12Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "pC5x9WfGOlwIaeq2zQM-ZDU93Kc",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "8iU8LPEa4o0"
+      },
+      "snippet": {
+        "publishedAt": "2017-10-25T12:50:15Z",
+        "channelId": "UCOxqgCwgOqC2lMqC5PYz_Dg",
+        "title": "Chill Study Beats 4 � jazz &amp; lofi hiphop Mix [2017]",
+        "description": "Thanks to all 1 million of you who share the love for this music. ? Similar Music on Spotify � http://bit.ly/CMsingles Tracklist: ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/8iU8LPEa4o0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/8iU8LPEa4o0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/8iU8LPEa4o0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Chillhop Music",
+        "liveBroadcastContent": "none",
+        "publishTime": "2017-10-25T12:50:15Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "_y_q8IPnp_pdb78kCarP6BpLVFM",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "QDTpbB1uCiQ"
+      },
+      "snippet": {
+        "publishedAt": "2021-03-09T21:00:17Z",
+        "channelId": "UCd9jgX7osAxheV6RfLU3DtQ",
+        "title": "90s Hip Hop but it&#39;s a lofi remix | Tupac, Notorius BIG, Snoop Dogg, Ice Cube, Wu Tang Clan, and Nas",
+        "description": "Old Hip Hop songs but they are a lofi remix Tupac- Old School https://soundcloud.com/ditosco\u200b Notorious BIG- Suicidal Thoughts ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/QDTpbB1uCiQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/QDTpbB1uCiQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/QDTpbB1uCiQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Chill Haven",
+        "liveBroadcastContent": "none",
+        "publishTime": "2021-03-09T21:00:17Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "0hi35NYldE2CY23wnPWt7_MlLY0",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "jrTMMG0zJyI"
+      },
+      "snippet": {
+        "publishedAt": "2018-05-20T22:00:01Z",
+        "channelId": "UC0fiLCwTmAukotCXYnqfj0A",
+        "title": "Samurai ? Japanese Lofi HipHop Mix",
+        "description": "Samurai ? Japanese Lofi HipHop Mix Lofi hip hop / Chill beats mix Japanese Mix Listen on Spotify - https://goo.gl/vXtVi5 Part 2 ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/jrTMMG0zJyI/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/jrTMMG0zJyI/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/jrTMMG0zJyI/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "the bootleg boy",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-05-20T22:00:01Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "ym9IXAWtWF1Jwbk-gHVvJCyIY8s",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "8T4_mOmJPaE"
+      },
+      "snippet": {
+        "publishedAt": "2023-03-31T22:30:10Z",
+        "channelId": "UCDFm-w2mWNAPy6sqAPcKnkQ",
+        "title": "lofi hip hop radio ~ beats to relax/study ?\u200d? Music to put you in a better mood ? Study Music",
+        "description": "lofi hip hop radio ~ beats to relax/study \u200d   Music to put you in a better mood Study Music https://youtu.be/8T4_mOmJPaE ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/8T4_mOmJPaE/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/8T4_mOmJPaE/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/8T4_mOmJPaE/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "RELAXATION (LoFi & CHILL)",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-03-31T22:30:10Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "L4oqHmuUDizB6eB2vWKyHRKaubk",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "25BkVBgFD9Y"
+      },
+      "snippet": {
+        "publishedAt": "2022-02-18T14:00:14Z",
+        "channelId": "UCS4iXNXsvlOHm7TuXLltreg",
+        "title": "Chill Drive - Lofi hip hop mix ~ Stress Relief, Relaxing Your Mind",
+        "description": "Music provided by Chill Beats Records: https://spoti.fi/3CDd8Cq | Stream it: https://listen.chillbeats.com/chillbeatsmusic | Lofi ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/25BkVBgFD9Y/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/25BkVBgFD9Y/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/25BkVBgFD9Y/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "chilli music",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-02-18T14:00:14Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "SBVPYwM64dXmv-MdXMOm8ihzUX8",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "NuIuROyJBzs"
+      },
+      "snippet": {
+        "publishedAt": "2023-03-30T08:25:23Z",
+        "channelId": "UCDFm-w2mWNAPy6sqAPcKnkQ",
+        "title": "Chill your mind ? Music to put you in a better mood ~ lofi / relax / stress relief",
+        "description": "Chill your mind Music to put you in a better mood ~ lofi / relax / stress relief https://youtube.com/live/NuIuROyJBzs ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/NuIuROyJBzs/default_live.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/NuIuROyJBzs/mqdefault_live.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/NuIuROyJBzs/hqdefault_live.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "RELAXATION (LoFi & CHILL)",
+        "liveBroadcastContent": "live",
+        "publishTime": "2023-03-30T08:25:23Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "pAKEarjCq254lSFaK741J4ZNtkA",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "_xAxbE2YON0"
+      },
+      "snippet": {
+        "publishedAt": "2023-02-16T04:25:03Z",
+        "channelId": "UCFIsW2c65LNGTxpLE5q4mnA",
+        "title": "RAINING IN ????? (Lofi HipHop)",
+        "description": "RAINING IN ????? (Lofi HipHop) My channel specializes in: - Relaxed driving, Relaxed feeling, Night driving, Slow driving, ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/_xAxbE2YON0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/_xAxbE2YON0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/_xAxbE2YON0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Lofi Zone",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-02-16T04:25:03Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "sLC8B5VfAz2DraaUDg_as2CLUds",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "1W74Hjnle9E"
+      },
+      "snippet": {
+        "publishedAt": "2023-04-02T15:00:01Z",
+        "channelId": "UCsxTsDvh-xQnShEtN1M64zQ",
+        "title": "Soft Lofi Hiphop ? Deep Focus Study/Work [chill lo-fi hip hop beats]",
+        "description": "Soft Lofi Hiphop Deep Focus Study/Work [chill lo-fi hip hop beats] #Lofi #Soft #DeepFocus #Study #Work #LofiGirl #LofiHiphop ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/1W74Hjnle9E/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/1W74Hjnle9E/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/1W74Hjnle9E/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "????? ???????",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-04-02T15:00:01Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "7oE85kCLBju1BWdipOSw360o8A8",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "EtD7_8kCMHA"
+      },
+      "snippet": {
+        "publishedAt": "2022-05-08T14:00:10Z",
+        "channelId": "UCcXBWfn_ZlbyZlv9dXRIzkg",
+        "title": "Flow Of Time ?? Japanese LoFi HipHop Mix - Collection ?????",
+        "description": "a beautiful melodic japanese lofi collection by Deebu - enjoy ????? New Deebu Mix (2023) ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/EtD7_8kCMHA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/EtD7_8kCMHA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/EtD7_8kCMHA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Deebu",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-05-08T14:00:10Z"
+      }
+    }
+  ]
+}
+
