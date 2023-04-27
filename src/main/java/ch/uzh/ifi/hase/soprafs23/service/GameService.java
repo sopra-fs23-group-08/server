@@ -148,22 +148,14 @@ public class GameService implements GameObserver{
 
         // TODO create new PlayerWsDTO
 
-        PlayerWsDTO playerWsDTO = new PlayerWsDTO(
-            "sampleToken",
-            "sampleUsername",
-            100, // sample score
-            Decision.CALL, // sample decision
-            false, // not big blind
-            true, // is small blind
-            false // not current player
-    );
-
-
+        PlayerWsDTO playerWsDTO = new PlayerWsDTO(player.getToken(),player.getName(),null,null,false,false,false);
+        
+        gamesData.get(gameId).playersData.put(playerWsDTO.getToken(), playerWsDTO);
 
         Game game = games.get(gameId);
         try {
             game.setup.joinGame(player);
-        }
+    }
         catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
