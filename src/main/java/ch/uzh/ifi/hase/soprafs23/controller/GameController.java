@@ -45,12 +45,16 @@ public class GameController {
     @PostMapping("/games")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public String createGame(@RequestBody PlayerWsDTO playerWsDTO) {
+    public String createGame(@RequestBody PlayerDTO playerDTO) {
 
-        Player player = DTOMapper.INSTANCE.convertPlayerWsDTOtoEntity(playerWsDTO);
-        Game newGame = gameService.createGame(player);
-
-        return String.format("{\"id\":\"%s\"}", newGame.getGameId());
+        try {
+            Player player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
+            Game newGame = gameService.createGame(player);
+            return String.format("{\"id\":\"%s\"}", newGame.getGameId());
+        }
+        catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/games/{gameId}/host")
@@ -59,14 +63,19 @@ public class GameController {
     public PlayerWsDTO getHost(@PathVariable String gameId) {
         Game game = gameService.getGame(gameId);
         Player host = game.getHost();
-        return DTOMapper.INSTANCE.convertEntityToPlayerWsDTO(host);
+        // return DTOMapper.INSTANCE.convertEntityToPlayerWsDTO(host);
+
+        // TEMPORARY
+        return new PlayerWsDTO(host.getToken(), host.getName(), 0, Decision.FOLD, false, false, false);
     }
 
     @MessageMapping("/games/{gameId}/players/add")
     @SendTo("/topic/games/{gameId}/players")
-    public ArrayList<PlayerWsDTO> addPlayer(@DestinationVariable String gameId, PlayerWsDTO Player) {
+    public ArrayList<PlayerWsDTO> addPlayer(@DestinationVariable String gameId, PlayerWsDTO playerWsDTO) {
         // convert DTO to entity
-        Player player = DTOMapper.INSTANCE.convertPlayerWsDTOtoEntity(Player);
+        // Player player = DTOMapper.INSTANCE.convertPlayerWsDTOtoEntity(playerWsDTO);
+        // TEMPORARY
+        Player player = new Player(playerWsDTO.getUsername(), playerWsDTO.getToken());
 
         // add player to game
         gameService.addPlayer(gameId, player);
@@ -163,8 +172,16 @@ public class GameController {
     /** HELPER METHODS */
     private ArrayList<PlayerWsDTO> convertListToDTOs(List<Player> players) {
         ArrayList<PlayerWsDTO> playerDTOs = new ArrayList<>();
+        /*
         for (Player p : players) {
             playerDTOs.add(DTOMapper.INSTANCE.convertEntityToPlayerWsDTO(p));
+        }
+        return playerDTOs;
+        */
+
+        // TEMPORARY
+        for (Player p : players) {
+            playerDTOs.add(new PlayerWsDTO(p.getToken(), p.getName(), 0, Decision.FOLD, false, false, false));
         }
         return playerDTOs;
     }

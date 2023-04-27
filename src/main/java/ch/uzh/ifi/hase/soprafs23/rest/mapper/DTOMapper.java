@@ -27,11 +27,9 @@ public interface DTOMapper {
   @Mapping(source = "username", target = "username")
   User convertUserPostDTOtoEntity(UserPostDTO userPostDTO);
 
+  @Mapping(source = "name", target = "name")
   @Mapping(source = "token", target = "token")
-  @Mapping(source = "username", target = "username")
-  @Mapping(source = "score", target = "score")
-  @Mapping(source = "lastDecision", target = "lastDecision")
-  Player convertPlayerWsDTOtoEntity(PlayerWsDTO playerWsDTO);
+  Player convertPlayerDTOtoEntity(PlayerDTO playerDTO);
 
   @Mapping(source = "bigBlind", target = "bigBlind")
   @Mapping(source = "smallBlind", target = "smallBlind")
@@ -54,12 +52,6 @@ public interface DTOMapper {
   @Mapping(source = "duration", target = "duration")
   @Mapping(source = "releaseDate", target = "releaseDate")
   VideoDataWsDTO convertEntityToVideoDataWsDTO(VideoData videoData);
-
-  @Mapping(source = "token", target = "token")
-  @Mapping(source = "username", target = "username")
-  @Mapping(source = "score", target = "score")
-  @Mapping(source = "lastDecision", target = "lastDecision")
-  PlayerWsDTO convertEntityToPlayerWsDTO(Player player);
 
   @Mapping(source = "bigBlind", target = "bigBlind")
   @Mapping(source = "smallBlind", target = "smallBlind")
