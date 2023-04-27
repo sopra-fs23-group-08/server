@@ -57,8 +57,8 @@ public class GameController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public PlayerDTO getHost(@PathVariable String gameId) {
-        Player host = gameService.getHost(gameId);
-        return DTOMapper.INSTANCE.convertEntityToPlayerDTO(new MutablePlayer(host));
+        MutablePlayer host = gameService.getHost(gameId);
+        return DTOMapper.INSTANCE.convertEntityToPlayerDTO(host);
     }
 
     @MessageMapping("/games/{gameId}/players/add")

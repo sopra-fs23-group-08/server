@@ -2,6 +2,7 @@ package ch.uzh.ifi.hase.soprafs23.service;
 
 import ch.uzh.ifi.hase.soprafs23.YTAPIManager.YTAPIManager;
 import ch.uzh.ifi.hase.soprafs23.controller.GameController;
+import ch.uzh.ifi.hase.soprafs23.entity.MutablePlayer;
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 import ch.uzh.ifi.hase.soprafs23.game.Decision;
 import ch.uzh.ifi.hase.soprafs23.game.Game;
@@ -126,11 +127,11 @@ public class GameService implements GameObserver{
         }        
     }
 
-    public Player getHost(String gameId){
+    public MutablePlayer getHost(String gameId){
         if (!games.containsKey(gameId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");
         }
-        return games.get(gameId).getHost();
+        return new MutablePlayer(games.get(gameId).getHost());
     }
 
     public Game getGame(String gameId) {
