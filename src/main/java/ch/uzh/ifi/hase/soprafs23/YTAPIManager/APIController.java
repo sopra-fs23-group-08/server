@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
+import ch.uzh.ifi.hase.soprafs23.YTAPIManager.CommentList.Item.Snippet;
 import ch.uzh.ifi.hase.soprafs23.entity.Comment;
 import ch.uzh.ifi.hase.soprafs23.game.Correctness;
 import ch.uzh.ifi.hase.soprafs23.game.Hand;
@@ -36,8 +37,15 @@ class APIController {
         //     out.println(response);
         // }
 
-        // var happy_try = getGameDataByQuery("LoFi HipHop", Language.GERMAN);
-        // var happy = new gsonVDandHand(happy_try);
+        // String response = APICaller.getVideosByPlaylistId("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi");
+        // System.out.println(response);
+
+        // try (PrintWriter out = new PrintWriter("src/main/resources/responseJson.txt")) {
+        //     out.println(response);
+        // }
+        
+        // var happy_try = getGameDataByPlaylist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi", Language.GERMAN);
+        // var happy = new GsonVDandHand(happy_try);
 
         // Gson gson = new GsonBuilder().setDateFormat(DateFormat.FULL, DateFormat.FULL).create();
         // String response = gson.toJson(happy);
@@ -64,8 +72,8 @@ class APIController {
             throws IOException, InterruptedException, Exception {
         return getGameDataFromVidsAndComments(
                 collectCommentsFromVideoList(
-                        fromJsonToVideoList(
-                                APICaller.getVideosByPlaylistId(playlistId))));
+                        fromJsonToPlaylistVideoList(
+                                APICaller.getVideosByPlaylistId(playlistId)).toVideoList()));
     }
 
     static Integer getVideoCountForPlaylist(String playlistId) throws IOException, InterruptedException {
@@ -124,6 +132,8 @@ class APIController {
         return Pair.of(videoData, hands);
     }
 
+    
+
     //takes a list of videos filters to videos with comment and fetches 100 most relevant comments filters them to be longer than 50 chars.
     private static List<Pair<VideoList.Item, List<CommentList.Item>>> collectCommentsFromVideoList(VideoList videoList) {
         List<Pair<VideoList.Item, List<CommentList.Item>>> videosWithComments = new ArrayList<>();
@@ -179,6 +189,13 @@ class APIController {
 
         Gson gson = new GsonBuilder().setDateFormat(DateFormat.FULL, DateFormat.FULL).create();
         return gson.fromJson(jsonString, VideoList.class);
+    }
+
+    static PlaylistVideoList fromJsonToPlaylistVideoList(String jsonString) {
+        jsonString = jsonString.replace("default", "default_escape");
+
+        Gson gson = new GsonBuilder().setDateFormat(DateFormat.FULL, DateFormat.FULL).create();
+        return gson.fromJson(jsonString, PlaylistVideoList.class);
     }
 
     static CommentList fromJsonToCommentList(String jsonString) throws Exception {
@@ -257,6 +274,87 @@ class VideoList {
                 //public String liveBroadcastContent;
                 //public Time publishTime;
             }
+        }
+    }
+}
+
+class PlaylistVideoList {
+    public VideoList toVideoList() {
+        var vd = new VideoList();
+        vd.items = new ArrayList<>();
+        for (var i : items) {
+            vd.items.add(i.toVideoList());
+        }
+        return vd;
+    }
+
+    //public String kind;
+    //public String etag;
+    //public String nextPageToken;
+    //public String regionCode;
+    //public PageInfo pageInfo;
+    public List<Item> items;
+
+    // public class PageInfo {
+    //     public int totalResults;
+    //     public int resultsPerPage;
+    // }
+
+    public class Item {
+
+        //public String kind;
+        //public String etag;
+        // public String id;
+
+        public Snippet snippet;
+
+        public class Snippet {
+
+            public Date publishedAt;
+            //public String channelId;
+            public String title;
+            //public String description;
+            public Thumbnails thumbnails;
+
+            public class Thumbnails {
+                //public Thumbnail default_escape;
+                public Thumbnail medium;
+                //public Thumbnail high;
+
+                public class Thumbnail {
+                    public String url;
+                    //public int width;
+                    //public int height;
+                }
+
+                //public String channelTitle;
+                //public String liveBroadcastContent;
+                //public Time publishTime;
+            }
+
+            ResourceId resourceId;
+            public class ResourceId {
+                //String kind;
+                String videoId;
+            }
+
+            public VideoList.Item.Snippet toVideoList(VideoList.Item i) {
+                var s = i.new Snippet();
+                s.publishedAt = publishedAt;
+                s.thumbnails = s.new Thumbnails();
+                s.thumbnails.medium = s.thumbnails.new Thumbnail();
+                s.thumbnails.medium.url = thumbnails.medium.url;
+                s.title = title;
+                return s;
+            }
+        }
+
+        public VideoList.Item toVideoList() {
+            var i = new VideoList().new Item();
+            i.id = i.new itemId();
+            i.id.videoId = snippet.resourceId.videoId;
+            i.snippet = snippet.toVideoList(i);
+            return i;
         }
     }
 }
