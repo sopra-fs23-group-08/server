@@ -48,9 +48,9 @@ public class GameController {
     public String createGame(@RequestBody PlayerWsDTO playerWsDTO) {
 
         Player player = DTOMapper.INSTANCE.convertPlayerWsDTOtoEntity(playerWsDTO);
-        Game newGame = gameService.createGame(player);
+        String newGameId = gameService.createGame(player);
 
-        return String.format("{\"id\":\"%s\"}", newGame.getGameId());
+        return String.format("{\"id\":\"%s\"}", newGameId);
     }
 
     @GetMapping("/games/{gameId}/host")
@@ -77,9 +77,9 @@ public class GameController {
 
     @MessageMapping("/games/{gameId}/players/remove")
     @SendTo("/topic/games/{gameId}/players")
-    public ArrayList<PlayerWsDTO> removePlayer(@DestinationVariable String gameId, PlayerDTO playerDTO) {
+    public ArrayList<PlayerWsDTO> removePlayer(@DestinationVariable String gameId, PlayerWsDTO playerWsDTO) {
         // convert DTO to entity
-        Player player = new Player(playerDTO.getUsername(), playerDTO.getToken());
+        Player player = new Player(playerWsDTO.getUsername(), playerWsDTO.getToken());
 
         // remove player from game
         gameService.removePlayer(gameId, player);
