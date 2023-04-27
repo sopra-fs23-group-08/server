@@ -54,3 +54,7 @@
 * 27.4. - 4.5., Jonas https://github.com/sopra-fs23-group-08/client/issues/52 ; includes issues #53 - #56
 * 27.4. - 4.5., Jonas https://github.com/sopra-fs23-group-08/client/issues/57 ; includes issues #58 - #60
 * 27.4. - 4.5., Jonas https://github.com/sopra-fs23-group-08/client/issues/61 ; includes issues #62 & #63
+    
+* 27.4 - 4.5, Rolando https://github.com/sopra-fs23-group-08/server/issues/91
+* 27.4 - 4.5, Rolando https://github.com/sopra-fs23-group-08/server/issues/38
+* 27.4 - 4.5, Rolando https://github.com/sopra-fs23-group-08/server/issues/92
