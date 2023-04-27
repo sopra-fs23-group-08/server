@@ -16,6 +16,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
 
     private static final String WEBSOCKET_PREFIX = "/topic"; //prefix used for the destinations of WebSocket messages.In this case, it is set to "/topic".
+    private static final String WEBSOCKET_MESSAGE_PREFIX = "/app"; //prefix used to filter destinations handled by methods annotated with @MessageMapping.
     private static final String WEBSOCKET_SUFFIX = "/sopra-websocket"; //suffix for the WebSocket connection endpoint. In this case, it is set to "/sopra-websocket".
     private static final String ORIGIN_LOCALHOST = "http://localhost:3000"; //
     private static final String ORIGIN_PROD = "https://sopra-fs23-group-08-client.oa.r.appspot.com";
@@ -25,6 +26,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
         //WebSocketMessageBrokerConfigurer to configure the message broker. It starts by calling enableSimpleBroker() to enable 
         //a simple memory-based message broker to carry the greeting messages back to the client on destinations prefixed with /topic.
         config.enableSimpleBroker(WEBSOCKET_PREFIX);
+        config.setApplicationDestinationPrefixes(WEBSOCKET_MESSAGE_PREFIX);
     }
 
     @Override
