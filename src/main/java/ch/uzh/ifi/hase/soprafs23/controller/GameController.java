@@ -24,9 +24,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @CrossOrigin(origins = { "http://localhost:3000", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" })
 @RestController
@@ -67,7 +65,7 @@ public class GameController {
 
     @MessageMapping("/games/{gameId}/players/add")
     @SendTo("/topic/games/{gameId}/players")
-    public List<PlayerWsDTO> addPlayer(@DestinationVariable String gameId, PlayerDTO playerDTO) {
+    public Collection<PlayerWsDTO> addPlayer(@DestinationVariable String gameId, PlayerDTO playerDTO) {
         Player player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
         // add player to game
         gameService.addPlayer(gameId, player);
@@ -77,7 +75,7 @@ public class GameController {
 
     @MessageMapping("/games/{gameId}/players/remove")
     @SendTo("/topic/games/{gameId}/players")
-    public List<PlayerWsDTO> removePlayer(@DestinationVariable String gameId, PlayerDTO playerDTO) {
+    public Collection<PlayerWsDTO> removePlayer(@DestinationVariable String gameId, PlayerDTO playerDTO) {
         // convert DTO to entity
         Player player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
         // remove player from game
@@ -91,7 +89,6 @@ public class GameController {
     public SettingsWsDTO updateSettings(@DestinationVariable String gameId, SettingsWsDTO settingsWsDTO) {
         // update settings
         gameService.setGameSettings(gameId, settingsWsDTO);
-
         // send new settings to all players
         return settingsWsDTO;
     }
