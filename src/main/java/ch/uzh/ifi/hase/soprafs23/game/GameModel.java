@@ -168,7 +168,7 @@ class GameModel { //protected (Package Private)
     }
 
     public Collection<PlayerData> getPlayerDataCollection() {
-        return new ArrayList<PlayerData>(playersData.values());
+        return playersData.values();
     }
 
     public PlayerData getPlayerData(Player player) {

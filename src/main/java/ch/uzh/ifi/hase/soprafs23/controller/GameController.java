@@ -45,47 +45,45 @@ public class GameController {
     @PostMapping("/games")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public String createGame(@RequestBody PlayerWsDTO playerWsDTO) {
+    public String createGame(@RequestBody PlayerDTO playerDTO) {
 
-        Player player = DTOMapper.INSTANCE.convertPlayerWsDTOtoEntity(playerWsDTO);
-        String newGameId = gameService.createGame(player);
-
-        return String.format("{\"id\":\"%s\"}", newGameId);
+        try {
+            Player player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
+            String gameId = gameService.createGame(player);
+            return String.format("{\"id\":\"%s\"}", gameId);
+        }
+        catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/games/{gameId}/host")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public PlayerWsDTO getHost(@PathVariable String gameId) {
-        Game game = gameService.getGame(gameId);
-        Player host = game.getHost();
-        return DTOMapper.INSTANCE.convertEntityToPlayerWsDTO(host);
+    public PlayerDTO getHost(@PathVariable String gameId) {
+        Player host = gameService.getHost(gameId);
+        return DTOMapper.INSTANCE.convertEntityToPlayerDTO(host);
     }
 
     @MessageMapping("/games/{gameId}/players/add")
     @SendTo("/topic/games/{gameId}/players")
-    public ArrayList<PlayerWsDTO> addPlayer(@DestinationVariable String gameId, PlayerWsDTO Player) {
-        // convert DTO to entity
-        Player player = DTOMapper.INSTANCE.convertPlayerWsDTOtoEntity(Player);
-
+    public List<PlayerWsDTO> addPlayer(@DestinationVariable String gameId, PlayerDTO playerDTO) {
+        Player player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
         // add player to game
         gameService.addPlayer(gameId, player);
-
         // convert player-list to DTOs
-        return convertListToDTOs(gameService.getPlayers(gameId));
+        return gameService.getPlayers(gameId);
     }
 
     @MessageMapping("/games/{gameId}/players/remove")
     @SendTo("/topic/games/{gameId}/players")
-    public ArrayList<PlayerWsDTO> removePlayer(@DestinationVariable String gameId, PlayerWsDTO playerWsDTO) {
+    public List<PlayerWsDTO> removePlayer(@DestinationVariable String gameId, PlayerDTO playerDTO) {
         // convert DTO to entity
-        Player player = new Player(playerWsDTO.getUsername(), playerWsDTO.getToken());
-
+        Player player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
         // remove player from game
         gameService.removePlayer(gameId, player);
-
         // convert player-list to DTOs
-        return convertListToDTOs(gameService.getPlayers(gameId));
+        return gameService.getPlayers(gameId);
     }
 
     @MessageMapping("/games/{gameId}/settings")
@@ -160,14 +158,6 @@ public class GameController {
         // TODO figure out conversion with VideoData public attributes
     }
 
-    /** HELPER METHODS */
-    private ArrayList<PlayerWsDTO> convertListToDTOs(List<Player> players) {
-        ArrayList<PlayerWsDTO> playerDTOs = new ArrayList<>();
-        for (Player p : players) {
-            playerDTOs.add(DTOMapper.INSTANCE.convertEntityToPlayerWsDTO(p));
-        }
-        return playerDTOs;
-    }
 }
 
 

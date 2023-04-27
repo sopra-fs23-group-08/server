@@ -42,11 +42,12 @@ public class GameService implements GameObserver{
 
     private HashMap<String, GameData> gamesData = new HashMap<>();
 
-    public String createGame(Player host){
+    public Game createGame(Player host){
         // create new game
         Game newGame = new Game(host);
 
         GameData gameData = new GameData();
+
 
         newGame.addObserver(this);
         
@@ -59,7 +60,7 @@ public class GameService implements GameObserver{
         games.put(newGame.getGameId(), newGame);
         gamesData.put(newGame.getGameId(), gameData);
 
-        return newGame.getGameId();
+        return newGame;
     }
 
     public void startGame(String gameId) {
@@ -113,12 +114,7 @@ public class GameService implements GameObserver{
     public void nextRound(String gameId) {
         checkIfGameExists(gameId);
         Game game = games.get(gameId);
-        try {
-            game.nextRound();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }        
+        game.nextRound();        
     }
 
     public Player getHost(String gameId){
