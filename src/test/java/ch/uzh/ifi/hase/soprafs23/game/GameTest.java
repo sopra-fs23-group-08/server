@@ -21,8 +21,8 @@ public class GameTest {
   @BeforeEach
   public void setUpGame() throws Exception {
 
-    game = new Game();
     playerA = new Player("A");
+    game = new Game(playerA);
     playerB = new Player("B");
     playerC = new Player("C");
     observer = new TestGameObserver();
@@ -32,7 +32,6 @@ public class GameTest {
     game.setup.joinGame(playerC);
     game.setup.joinGame(playerB);
     game.addObserver(observer);
-    game.setup.joinGame(playerA);
     game.setup.setStartScoreForAll(1000); //maybe change call to be in game.setup.setAllPlayerScore
     game.setup.setSmallBlindAmount(10);
     game.setup.setBigBlindAmount(20);

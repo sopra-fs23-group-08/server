@@ -52,7 +52,7 @@ public class GameService implements GameObserver{
         Game newGame = new Game(host);
 
         GameData gameData = new GameData();
-
+        gameData.playersData.put(host.getToken(), new PlayerWsDTO(host.getToken(),host.getName(),null,null,false,false,false));
 
         newGame.addObserver(this);
         
@@ -64,7 +64,7 @@ public class GameService implements GameObserver{
         // add game to list of games
         games.put(newGame.getGameId(), newGame);
         gamesData.put(newGame.getGameId(), gameData);
-
+        
         return newGame.getGameId();
     }
 
@@ -210,9 +210,8 @@ public class GameService implements GameObserver{
         gameData.playersData.get(player.getToken()).setScore(score);
 
         //send GameData to front end
-        gameController.gameStateChanged(gameId, null); //todo create Setting DTO
+        gameController.playerStateChanged(gameId, gameData.playersData.values());
 
-        throw new UnsupportedOperationException("not working yet");
     }
 
     
@@ -222,9 +221,6 @@ public class GameService implements GameObserver{
         
         //send GameData to front end
         gameController.newHand(gameId, player, hand); //todo create Setting DTO
-
-
-        throw new UnsupportedOperationException("Unimplemented method 'newHand'");
     }
 
     @Override
@@ -236,9 +232,8 @@ public class GameService implements GameObserver{
         playerWsDTO.setLastDecision(decision);
 
         //send GameData to front end
-        gameController.gameStateChanged(gameId, null); //todo create Setting DTO
+        gameController.playerStateChanged(gameId, gameData.playersData.values()); //todo create Setting DTO
 
-        throw new UnsupportedOperationException("not working yet");
     }
 
     @Override
@@ -249,9 +244,8 @@ public class GameService implements GameObserver{
         gameData.setCurrentPlayer(player);
 
         //send GameData to front end
-        gameController.gameStateChanged(gameId, null); //todo create Setting DTO
+        gameController.playerStateChanged(gameId, gameData.playersData.values()); //todo create Setting DTO
 
-        throw new UnsupportedOperationException("not working yet");
     }
 
     @Override
@@ -316,7 +310,6 @@ public class GameService implements GameObserver{
 
         //send GameData to front end
         gameController.playerStateChanged(gameId, gameData.playersData.values());
-        throw new UnsupportedOperationException("Unimplemented method 'newPlayerBigBlindNSmallBlind'");
     }
 
     @Override

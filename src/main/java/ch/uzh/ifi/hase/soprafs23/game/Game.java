@@ -28,59 +28,61 @@ public class Game {
 
     private GameModel gameModel;
     public Setup setup;
-    private GameLogic gameController;
+    private GameLogic gameLogic;
 
 
     public Game(Player host) {
         setup();
+        try {
+            setup.joinGame(host);
+        } catch (Exception e) {
+            throw new Error("some internal setup bug in game");
+        }
         gameModel.setHost(host);
     }
 
-    public Game() {
-        setup();
-    }
 
     private void setup() { 
         gameModel = new GameModel();
         setup = new SetupData(); //create a new setup data 
-        gameController = new GameLogic(gameModel, setup);
+        gameLogic = new GameLogic(gameModel, setup);
     }
 
     public void startGame() throws IOException, InterruptedException, Exception { //this ends the setup phase. No changes to setup are possible
-        gameController.startGame();
+        gameLogic.startGame();
         setup = new SetupClosed();
-        gameController.startBettingRound();
+        gameLogic.startBettingRound();
     }
     
     public void startBettingRound() { //this is not needed at the current state but would start the betting round
-        gameController.startBettingRound();
+        gameLogic.startBettingRound();
     }
 
     public void call(Player player) throws Exception {
-        gameController.playerDecision(player, Decision.CALL);
+        gameLogic.playerDecision(player, Decision.CALL);
     }
     public void call(String playerId) throws Exception{ //this should be called of player player decides to call
-        gameController.playerDecision(new Player(playerId), Decision.CALL);
+        gameLogic.playerDecision(new Player(playerId), Decision.CALL);
     }
 
     
     public void raise(Player player, Integer amount) throws Exception {
-        gameController.playerDecision(player, Decision.RAISE, amount);
+        gameLogic.playerDecision(player, Decision.RAISE, amount);
     }
     public void raise(String playerId, int newCallAmount) throws Exception{ //this should be called of player player decides to raise
-        gameController.playerDecision(new Player(playerId), Decision.RAISE, newCallAmount);
+        gameLogic.playerDecision(new Player(playerId), Decision.RAISE, newCallAmount);
     }
 
     public void fold(Player player) throws Exception {
-        gameController.playerDecision(player, Decision.FOLD);
+        gameLogic.playerDecision(player, Decision.FOLD);
     }
     public void fold(String playerId) throws Exception { //this should be called of player player decides to fold
-        gameController.playerDecision(new Player(playerId), Decision.FOLD);
+        gameLogic.playerDecision(new Player(playerId), Decision.FOLD);
     }
 
     public void nextRound() throws IOException, InterruptedException, Exception { // this should be called after a round to play a second round
-        gameController.startRound();
-        gameController.startBettingRound();
+        gameLogic.startRound();
+        gameLogic.startBettingRound();
     }
 
     public void addObserver(GameObserver o) { //adding game observer. Game observer are classes which implement GameObserver most of the data traffic happens there
@@ -113,7 +115,7 @@ public class Game {
 
 
     public static void main(String[] args) throws IOException, InterruptedException, Exception {
-        Game game = new Game();
+        Game game = new Game( new Player());
         Player playerA = new Player("A");
         Player playerB = new Player("B");
         Player playerC = new Player("C");

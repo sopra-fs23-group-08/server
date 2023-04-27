@@ -25,6 +25,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.Collection;
 //todo showdown
 
@@ -124,10 +125,9 @@ public class GameController {
         messagingTemplate.convertAndSend(destination, gameStateWsDTO);
     }
 
-    //TODO clarify the payload for this message
     public void playerStateChanged(String gameId, Collection<PlayerWsDTO> playersDTOList) {
         String destination = String.format("/topic/games/%s/players", gameId);
-        messagingTemplate.convertAndSend(destination, "");
+        messagingTemplate.convertAndSend(destination, playersDTOList);
     }
 
     public void newHand(String gameId, Player player, Hand hand) {
