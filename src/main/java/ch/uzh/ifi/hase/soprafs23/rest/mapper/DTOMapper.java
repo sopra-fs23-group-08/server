@@ -23,17 +23,13 @@ public interface DTOMapper {
   DTOMapper INSTANCE = Mappers.getMapper(DTOMapper.class);
 
   /** DTO -> ENTITY*/
-  @Mapping(source = "id", target = "id")
-  @Mapping(source = "password", target = "password")
+  @Mapping(source = "name", target = "name")
   @Mapping(source = "username", target = "username")
-  @Mapping(source = "token", target = "token")
   User convertUserPostDTOtoEntity(UserPostDTO userPostDTO);
 
+  @Mapping(source = "name", target = "name")
   @Mapping(source = "token", target = "token")
-  @Mapping(source = "username", target = "username")
-  @Mapping(source = "score", target = "score")
-  @Mapping(source = "lastDecision", target = "lastDecision")
-  Player convertPlayerWsDTOtoEntity(PlayerWsDTO playerWsDTO);
+  Player convertPlayerDTOtoEntity(PlayerDTO playerDTO);
 
   @Mapping(source = "bigBlind", target = "bigBlind")
   @Mapping(source = "smallBlind", target = "smallBlind")
@@ -44,10 +40,14 @@ public interface DTOMapper {
 
   /** ENTITY -> DTO */
   @Mapping(source = "id", target = "id")
-  @Mapping(source = "password", target = "password")
+  @Mapping(source = "name", target = "name")
   @Mapping(source = "username", target = "username")
   @Mapping(source = "status", target = "status")
   UserGetDTO convertEntityToUserGetDTO(User user);
+
+  @Mapping(source = "name", target = "name")
+  @Mapping(source = "token", target = "token")
+  PlayerDTO convertEntityToPlayerDTO(Player player);
 
   @Mapping(source = "title", target = "title")
   @Mapping(source = "thumbnailUrl", target = "thumbnailUrl")
@@ -56,12 +56,6 @@ public interface DTOMapper {
   @Mapping(source = "duration", target = "duration")
   @Mapping(source = "releaseDate", target = "releaseDate")
   VideoDataWsDTO convertEntityToVideoDataWsDTO(VideoData videoData);
-
-  @Mapping(source = "token", target = "token")
-  @Mapping(source = "username", target = "username")
-  @Mapping(source = "score", target = "score")
-  @Mapping(source = "lastDecision", target = "lastDecision")
-  PlayerWsDTO convertEntityToPlayerWsDTO(Player player);
 
   @Mapping(source = "bigBlind", target = "bigBlind")
   @Mapping(source = "smallBlind", target = "smallBlind")

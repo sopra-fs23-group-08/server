@@ -50,7 +50,6 @@ public class Game {
         gameController.startGame();
         setup = new SetupClosed();
         gameController.startBettingRound();
-        
     }
     
     public void startBettingRound() { //this is not needed at the current state but would start the betting round

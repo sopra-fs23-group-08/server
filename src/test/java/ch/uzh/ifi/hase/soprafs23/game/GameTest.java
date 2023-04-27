@@ -215,7 +215,7 @@ public class GameTest {
       assertEquals(pScore + potScore, observer.playerScore);
 
       var oldBig = observer.bigBlind;
-      game.nextRound();//---------------------------------------------------------
+      game.nexRound();//---------------------------------------------------------
       assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
       assertEquals(oldBig, observer.smallBlind);
       
@@ -228,7 +228,7 @@ public class GameTest {
       game.fold(observer.currentPlayer);
       assertEquals(GamePhase.END_ALL_FOLDED, observer.gamePhase);
       
-      game.nextRound(); //only two players left
+      game.nexRound(); //only two players left
       
       game.raise(observer.currentPlayer, 10);
       game.raise(observer.currentPlayer, 20);
