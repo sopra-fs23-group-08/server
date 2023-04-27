@@ -169,10 +169,12 @@ public class GameService implements GameObserver{
         checkIfGameExists(gameId);
 
         Game game = games.get(gameId);
-
+        var gameData = gamesData.get(gameId);
         // TODO allow players to leave after the game has started
+        
         try {
             game.setup.leaveGame(player);
+            gameData.playersData.remove(player.getToken());
         }
         catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
