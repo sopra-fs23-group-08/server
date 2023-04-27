@@ -12,6 +12,7 @@ import ch.uzh.ifi.hase.soprafs23.game.VideoData;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.DecisionWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.VideoDataWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.mapper.DTOMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,12 @@ import java.util.List;
 // TODO: end/delete games
 public class GameService implements GameObserver{
 
-    @Autowired
-    public GameController gameController; 
+    // @Autowired
+    public GameController gameController;
+    
+    public GameService(GameController gameController) {
+        this.gameController = gameController;
+    }
 
     private HashMap<String, Game> games = new HashMap<>();
     //The service maintains a HashMap of games with game IDs as keys and Game objects as values.
@@ -106,7 +111,7 @@ public class GameService implements GameObserver{
             };
         }
         catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+            
         }
 
     }
@@ -117,8 +122,7 @@ public class GameService implements GameObserver{
         try {
             game.nextRound();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }        
     }
 
@@ -146,7 +150,6 @@ public class GameService implements GameObserver{
         // check if game exists
         checkIfGameExists(gameId);
 
-        // TODO create new PlayerWsDTO
 
         PlayerWsDTO playerWsDTO = new PlayerWsDTO(player.getToken(),player.getName(),null,null,false,false,false);
         
@@ -155,7 +158,7 @@ public class GameService implements GameObserver{
         Game game = games.get(gameId);
         try {
             game.setup.joinGame(player);
-    }
+        }
         catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
@@ -318,7 +321,14 @@ public class GameService implements GameObserver{
 
     @Override
     public void newVideoData(String gameId, VideoData videoData) {
-        gameController.newVideoData(gameId, videoData);
+        var vd = new VideoDataWsDTO();
+        vd.setDuration(videoData.videoLength);
+        vd.setLikes(videoData.likes);
+        vd.setReleaseDate(videoData.releaseDate);
+        vd.setThumbnailUrl(videoData.thumbnail);
+        vd.setTitle(videoData.title);
+        vd.setViews(videoData.views);
+        gameController.newVideoData(gameId, vd);
         throw new UnsupportedOperationException("Unimplemented method 'newVideoData'");
     }
 

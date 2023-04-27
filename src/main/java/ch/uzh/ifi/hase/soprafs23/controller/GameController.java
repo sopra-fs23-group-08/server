@@ -1,6 +1,7 @@
 package ch.uzh.ifi.hase.soprafs23.controller;
 
 
+import ch.uzh.ifi.hase.soprafs23.entity.MutablePlayer;
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 import ch.uzh.ifi.hase.soprafs23.entity.Settings;
 import ch.uzh.ifi.hase.soprafs23.game.Decision;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
+//todo showdown
 
 @CrossOrigin(origins = { "http://localhost:3000", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" })
 @RestController
@@ -36,8 +38,8 @@ public class GameController {
 
     private final GameService gameService;
 
-    GameController(GameService gameService) {
-        this.gameService = gameService;
+    GameController() {
+        this.gameService = new GameService(this);
     }
 
     @PostMapping("/games")
@@ -45,14 +47,9 @@ public class GameController {
     @ResponseBody
     public String createGame(@RequestBody PlayerDTO playerDTO) {
 
-        try {
-            Player player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
-            String gameId = gameService.createGame(player);
-            return String.format("{\"id\":\"%s\"}", gameId);
-        }
-        catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        MutablePlayer player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
+        String gameId = gameService.createGame(new Player(player));
+        return String.format("{\"id\":\"%s\"}", gameId);
     }
 
     @GetMapping("/games/{gameId}/host")
@@ -60,15 +57,15 @@ public class GameController {
     @ResponseBody
     public PlayerDTO getHost(@PathVariable String gameId) {
         Player host = gameService.getHost(gameId);
-        return DTOMapper.INSTANCE.convertEntityToPlayerDTO(host);
+        return DTOMapper.INSTANCE.convertEntityToPlayerDTO(new MutablePlayer(host));
     }
 
     @MessageMapping("/games/{gameId}/players/add")
     @SendTo("/topic/games/{gameId}/players")
     public Collection<PlayerWsDTO> addPlayer(@DestinationVariable String gameId, PlayerDTO playerDTO) {
-        Player player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
+        MutablePlayer player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
         // add player to game
-        gameService.addPlayer(gameId, player);
+        gameService.addPlayer(gameId, new Player(player));
         // convert player-list to DTOs
         return gameService.getPlayers(gameId);
     }
@@ -77,9 +74,9 @@ public class GameController {
     @SendTo("/topic/games/{gameId}/players")
     public Collection<PlayerWsDTO> removePlayer(@DestinationVariable String gameId, PlayerDTO playerDTO) {
         // convert DTO to entity
-        Player player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
+        MutablePlayer player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
         // remove player from game
-        gameService.removePlayer(gameId, player);
+        gameService.removePlayer(gameId, new Player(player));
         // convert player-list to DTOs
         return gameService.getPlayers(gameId);
     }
@@ -95,14 +92,12 @@ public class GameController {
 
     // TODO not sure if the sendTo is required
     @MessageMapping("/games/{gameId}/start")
-    @SendTo("/topic/games/{gameId}/start")
     public void startGame(@DestinationVariable String gameId) {
         // start game
         gameService.startGame(gameId);
     }
 
     @MessageMapping("/games/{gameId}/end")
-    @SendTo("/topic/games/{gameId}/end")
     public void endGame(@DestinationVariable String gameId) {
         // end game
         // TODO create gameService method & notify all players
@@ -149,10 +144,9 @@ public class GameController {
         messagingTemplate.convertAndSend(destination, responseBody);
     }
 
-    public void newVideoData(String gameId, VideoData videoData) {
+    public void newVideoData(String gameId, VideoDataWsDTO videoData) {
         String destination = String.format("/topic/games/%s/video", gameId);
-        // convert to videoDataDTO
-        // TODO figure out conversion with VideoData public attributes
+        messagingTemplate.convertAndSend(destination, videoData );
     }
 
 }

@@ -1,6 +1,7 @@
 package ch.uzh.ifi.hase.soprafs23.game;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.springframework.data.util.Pair;
@@ -48,7 +49,7 @@ class GameLogic {
         gm.setVideoData(ytData.getFirst());
         gm.setFoldCount(0);
 
-        for (PlayerData playerData : gm.getPlayerDataCollection()) {
+        for (PlayerData playerData : new ArrayList<>(gm.getPlayerDataCollection())) {
             playerData.setDecision(Decision.NOT_DECIDED);
             if (playerData.getScore() < sd.getBigBlindAmount()) {//player is not allowed to play since he has not enough points
                 leaveGame(playerData);
