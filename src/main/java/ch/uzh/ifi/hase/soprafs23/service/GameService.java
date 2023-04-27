@@ -23,6 +23,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -133,9 +134,9 @@ public class GameService implements GameObserver{
     }
 
     //returns a list of players for a specified game.
-    public List<Player> getPlayers(String gameId) {
+    public Collection<PlayerWsDTO> getPlayers(String gameId) {
         checkIfGameExists(gameId);
-        return games.get(gameId).getPlayers();
+        return gamesData.get(gameId).playersData.values();
     }
 
     // adds a new player to a specified game.
@@ -143,6 +144,8 @@ public class GameService implements GameObserver{
         // TODO deal with case where player is registered
         // check if game exists
         checkIfGameExists(gameId);
+
+        // TODO create new PlayerWsDTO
 
         Game game = games.get(gameId);
         try {
