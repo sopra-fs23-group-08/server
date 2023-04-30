@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 //todo showdown
 
-@CrossOrigin(origins = { "http://localhost:3000", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" })
+@CrossOrigin(origins = { "http://localhost:3000/", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" })
 @RestController
 public class GameController {
 
@@ -82,7 +82,7 @@ public class GameController {
         return gameService.getPlayers(gameId);
     }
 
-    @MessageMapping("/games/{gameId}/settings")
+    @MessageMapping("/games/{gameId}/")
     @SendTo("/topic/games/{gameId}/settings")
     public SettingsWsDTO updateSettings(@DestinationVariable String gameId, SettingsWsDTO settingsWsDTO) {
         // update settings
