@@ -91,11 +91,13 @@ public class GameController {
         return settingsWsDTO;
     }
 
-    // TODO not sure if the sendTo is required
     @MessageMapping("/games/{gameId}/start")
-    public void startGame(@DestinationVariable String gameId) {
+    @SendTo("/topic/games/{gameId}/start")
+    public String startGame() {
         // start game
-        gameService.startGame(gameId);
+        // TODO fix gameService method
+        // gameService.startGame(gameId);
+        return "Game started.";
     }
 
     @MessageMapping("/games/{gameId}/end")
