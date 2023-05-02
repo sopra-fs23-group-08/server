@@ -82,7 +82,7 @@ public class GameController {
         return gameService.getPlayers(gameId);
     }
 
-    @MessageMapping("/games/{gameId}/")
+    @MessageMapping("/games/{gameId}/settings")
     @SendTo("/topic/games/{gameId}/settings")
     public SettingsWsDTO updateSettings(@DestinationVariable String gameId, SettingsWsDTO settingsWsDTO) {
         // update settings
