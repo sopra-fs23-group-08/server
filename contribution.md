@@ -71,13 +71,14 @@
 * 27.4 - 4.5, Serafin https://github.com/sopra-fs23-group-08/server/issues/12
 * 27.4 - 4.5, Serafin https://github.com/sopra-fs23-group-08/server/issues/6
 
-* 27.4. - 4.5., Yating https://github.com/sopra-fs23-group-08/client/issues/15 ; includes issues #17, render the video information increasively after each round and display to all players
-* 27.4. - 4.5., Yating https://github.com/sopra-fs23-group-08/client/issues/19; announce current player and position to all players
-* 27.4. - 4.5., Yating https://github.com/sopra-fs23-group-08/client/issues/18 ; already have show down ui, but need to connect with server to check the results
-* 27.4. - 4.5., Yating https://github.com/sopra-fs23-group-08/client/issues/26 ; same as 18
-* 27.4. - 4.5., Yating https://github.com/sopra-fs23-group-08/client/issues/20 ; same as 18     
-
+* 27.4. - 4.5., Yating https://github.com/sopra-fs23-group-08/client/issues/14
+* 27.4. - 4.5., Yating https://github.com/sopra-fs23-group-08/client/issues/19
+* 27.4. - 4.5., Yating https://github.com/sopra-fs23-group-08/client/issues/68
+    
 ### Week 5
 * 5.5. - 12.5., Jonas https://github.com/sopra-fs23-group-08/client/issues/2
 * 5.5. - 12.5., Jonas https://github.com/sopra-fs23-group-08/client/issues/67
+* 5.5. - 12.5., Yating https://github.com/sopra-fs23-group-08/client/issues/25
+* 5.5. - 12.5., Yating https://github.com/sopra-fs23-group-08/client/issues/17; video reveal, communication problem
+       
    
