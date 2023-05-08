@@ -19,7 +19,7 @@ public class GameTest {
   TestGameObserver observer;
 
   @BeforeEach
-  public void setUpGame() throws Exception {
+  public void setUpGame() throws IllegalStateException {
 
     playerA = new Player("A");
     game = new Game(playerA);
@@ -51,7 +51,7 @@ public class GameTest {
   }
 
   @Test
-  public void runThrough() throws Exception { //this is like a sample game
+  public void runThrough() throws IllegalStateException { //this is like a sample game
     executableThrowsExceptionMsg(() -> {
       game.setup.setBigBlindAmount(0);
     }, "During the game the Setup can't be changed. 'setBigBlindAmount'");

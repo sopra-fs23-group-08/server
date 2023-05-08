@@ -95,26 +95,20 @@ public class GameService implements GameObserver{
 
         checkIfGameExists(gameId);
         Game game = games.get(gameId);
-        try {
-            switch (decision) {
-                case CALL: game.call(playerId);
+        switch (decision) {
+            case CALL: game.call(playerId);
 
-                    break;
-                case RAISE: game.raise(playerId, raiseAmount);
+                break;
+            case RAISE: game.raise(playerId, raiseAmount);
 
-                    break;
-                case FOLD: game.fold(playerId);
+                break;
+            case FOLD: game.fold(playerId);
 
-                    break;
+                break;
 
-                default:
-                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Illegal decision");
-            };
-        }
-        catch (Exception e) {
-            
-        }
-
+            default:
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Illegal decision");
+        };
     }
 
     public void nextRound(String gameId) {
@@ -330,7 +324,7 @@ public class GameService implements GameObserver{
 
     /** HELPER METHODS */
 
-    public boolean checkPlaylist(String URL) throws Exception {//true if playlist contains 6 or more videos
+    public boolean checkPlaylist(String URL) throws IllegalStateException {//true if playlist contains 6 or more videos
         return YTAPIManager.checkPlaylistUrl(URL);
     }
 

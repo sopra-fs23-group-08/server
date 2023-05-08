@@ -14,7 +14,7 @@ public enum GamePhase {
         return val;
     }
     
-    public GamePhase nextPhase() throws Exception {
+    public GamePhase nextPhase() throws IllegalStateException {
         switch (this) {
             case FIRST_BETTING_ROUND:
                 return GamePhase.SECOND_BETTING_ROUND;
@@ -23,7 +23,7 @@ public enum GamePhase {
             case THIRD_BETTING_ROUND:
                 return GamePhase.FOURTH_BETTING_ROUND;
             default:
-                throw new Exception("nextPhase is invalid for " + this);
+                throw new IllegalStateException("nextPhase is invalid for " + this);
         }
     }
 }

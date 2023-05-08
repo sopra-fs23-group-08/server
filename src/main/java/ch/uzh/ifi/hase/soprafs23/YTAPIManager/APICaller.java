@@ -23,7 +23,7 @@ public class APICaller {
                 jsonString += (char) c;
             in.close();
         } catch(Exception e){
-            System.out.println("Something went wrong with the YouTube API key: " + e);
+            throw new IllegalStateException("Something went wrong with the YouTube API key: " + e);
         }
         return jsonString;
     }

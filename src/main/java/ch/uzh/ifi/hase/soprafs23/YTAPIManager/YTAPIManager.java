@@ -24,17 +24,17 @@ public class YTAPIManager {
     private String playlistId = "PL6HF94r1ogByYa2xFAXIE_1Pw-K0AU_Vd";
     private Language language = Language.GERMAN;
 
-    public static boolean checkPlaylistUrl(String Url) throws Exception {
+    public static boolean checkPlaylistUrl(String Url) throws IllegalStateException, IOException, InterruptedException {
         var listId = urlToPlaylistId(Url);
         var videoCount = APIController.getVideoCountForPlaylist(listId);
         if (videoCount > 5) {
             return true;
         } else {
-            throw new Exception("There must be at least 6 videos in the Playlist (Playlist contains " + videoCount + ")");
+            throw new IllegalStateException("There must be at least 6 videos in the Playlist (Playlist contains " + videoCount + ")");
         }
     }
     
-    public void setPlaylist(String URL) throws Exception {
+    public void setPlaylist(String URL) throws IllegalStateException {
         playlistId = urlToPlaylistId(URL);
     }
 
@@ -46,11 +46,11 @@ public class YTAPIManager {
         this.language = language;
     }
 
-    public void setMinimalViewcount(Integer viewCount) throws Exception {
-        throw new Exception("method not implemented yet");
+    public void setMinimalViewcount(Integer viewCount) throws IllegalStateException {
+        throw new IllegalStateException("method not implemented yet");
     }
     
-    public Pair<VideoData, List<Hand>> getVideoAndHand() throws IOException, InterruptedException, Exception {
+    public Pair<VideoData, List<Hand>> getVideoAndHand() throws IOException, InterruptedException  {
         boolean isDebug = java.lang.management.ManagementFactory.getRuntimeMXBean().getInputArguments().toString()
                 .indexOf("jdwp") >= 0;
 
@@ -70,12 +70,12 @@ public class YTAPIManager {
         }
     }
 
-    static private String urlToPlaylistId(String URL) throws Exception {
+    static private String urlToPlaylistId(String URL) throws IllegalStateException {
         Pattern pattern = Pattern.compile("list=");
         String[] s1 = pattern.split(URL);
         String[] s2;
         if (s1.length < 2) {
-            throw new Exception("There is no Playlist in this URL: " + URL);
+            throw new IllegalStateException("There is no Playlist in this URL: " + URL);
         } else {
             s2 = s1[1].split("&");
         }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import org.springframework.data.util.Pair;
+import org.springframework.transaction.IllegalTransactionStateException;
 
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
@@ -21,7 +22,7 @@ class GameLogic {
         this.sd = sd;
     }
 
-    void startGame() throws IOException, InterruptedException, Exception {//Creating playerData and stuff
+    void startGame() throws IOException, InterruptedException {//Creating playerData and stuff
         
         Pair<VideoData, java.util.List<Hand>> ytData = sd.getYTData();
 
@@ -43,7 +44,7 @@ class GameLogic {
         gm.setDealerPlayer(); //random dealer if not set before
     }
     
-    void startRound() throws IOException, InterruptedException, Exception {
+    void startRound() throws IOException, InterruptedException {
         Pair<VideoData, java.util.List<Hand>> ytData = sd.getYTData();
 
         gm.setVideoData(ytData.getFirst());
@@ -73,15 +74,15 @@ class GameLogic {
         gm.resetBettingRound();
     }
 
-    void playerDecision(Player player, Decision d) throws Exception {
+    void playerDecision(Player player, Decision d) throws IllegalStateException {
         playerDecision(player, d, gm.getCallAmount());
     }
-    void playerDecision(Player player, Decision d, Integer newCallAmount) throws Exception {
+    void playerDecision(Player player, Decision d, Integer newCallAmount) throws IllegalStateException {
         if (player != gm.getCurrentPlayer()) {
-            throw new Exception("You're not the current player");
+            throw new IllegalCallerException("You're not the current player");
         }
         if (gm.getPlayerData(player).getDecision() == Decision.FOLD) {
-            throw new Exception("After you folded you can't do anything until next game");
+            throw new IllegalStateException("After you folded you can't do anything until next game");
         }
         enforceBigAndSmallBlind(player, newCallAmount);
 
@@ -97,11 +98,11 @@ class GameLogic {
             case RAISE:
                 var playerData = gm.getPlayerData(player);
                 if (playerData.getScore() < newCallAmount) {
-                    throw new Exception(
+                    throw new IllegalStateException(
                             "Player score(" + playerData.getScore() + ") is not high enough to raise(" + newCallAmount
                                     + ").");
                 }else if (gm.getCallAmount() > newCallAmount){
-                    throw new Exception("The CallAmount must be higher after a raise. CallAmountBefore: " + gm.getCallAmount() + " NewCallAmount: " + newCallAmount);
+                    throw new IllegalStateException("The CallAmount must be higher after a raise. CallAmountBefore: " + gm.getCallAmount() + " NewCallAmount: " + newCallAmount);
                 }
                 gm.setCallAmount(newCallAmount);
                 addToPot(player);
@@ -109,7 +110,7 @@ class GameLogic {
 
                 break;
             default:
-                throw new Exception("Illegal decision " + d);
+                throw new IllegalStateException("Illegal decision " + d);
         }
         gm.getPlayerData(player).setDecision(d);
         gm.nextPlayer();
@@ -121,27 +122,27 @@ class GameLogic {
         }
     }
 
-    void winOtherFolded() throws Exception {
+    void winOtherFolded() throws IllegalStateException {
         gm.setGamePhase(GamePhase.END_ALL_FOLDED);
         Player winner = null;
         for (PlayerData pd : gm.getPlayerDataCollection()) {
             if (pd.getDecision() != Decision.FOLD) {
                 if (winner != null) {
-                    throw new Exception("There can not be two winner");
+                    throw new IllegalStateException("There can not be two winner");
                 }
                 winner = pd.getPlayer();
             }
         }
 
         if (winner == null) {
-            throw new Exception("There must be a winner");
+            throw new IllegalStateException("There must be a winner");
         }
 
         gm.setWinner(winner);
         
     }
     
-    void evaluateWinner() throws Exception {
+    void evaluateWinner() throws IllegalStateException {
         gm.setGamePhase(GamePhase.END_ALL_FOLDED);
         Player winner = null;
         int maxCorrect = -1;
@@ -153,14 +154,14 @@ class GameLogic {
         }
 
         if (winner == null) {
-            throw new Exception("There must be a winner");
+            throw new IllegalStateException("There must be a winner");
         }
 
         gm.setGamePhase(GamePhase.END_AFTER_FOURTH_BETTING_ROUND);
         gm.setWinner(winner);
     }
     
-    void endOfBettingRound() throws Exception {
+    void endOfBettingRound() throws IllegalStateException {
         if (gm.getGamePhase() == GamePhase.FOURTH_BETTING_ROUND) {
             evaluateWinner();
         } else {
@@ -170,12 +171,12 @@ class GameLogic {
     }
     
 
-    void addToPot(Player player) throws Exception {
+    void addToPot(Player player) throws IllegalStateException {
         
 
         var playerData = gm.getPlayerData(player);
         if (playerData.getScore() < gm.getCallAmount()) {
-            throw new Exception(
+            throw new IllegalStateException(
                     player + " not enough score(" + playerData.getScore() + ") to call(" + gm.getCallAmount() + ")");
         }
 
@@ -192,12 +193,12 @@ class GameLogic {
         return (gm.getBigBlindPlayer() == player);
     }
 
-    void enforceBigAndSmallBlind(Player player, Integer newCallAmount) throws Exception {
+    void enforceBigAndSmallBlind(Player player, Integer newCallAmount) throws IllegalStateException {
         if (isBigBlind(player) && newCallAmount < sd.getBigBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_BETTING_ROUND) {
-            throw new Exception("BigBlind must raise. currentCallAmount: " + newCallAmount + " BigBlindAmount: "
+            throw new IllegalStateException("BigBlind must raise. currentCallAmount: " + newCallAmount + " BigBlindAmount: "
                     + sd.getBigBlindAmount());
         } else if (isSmallBlind(player) && newCallAmount < sd.getSmallBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_BETTING_ROUND) {
-            throw new Exception("SmallBlind must raise. currentCallAmount: " + newCallAmount
+            throw new IllegalStateException("SmallBlind must raise. currentCallAmount: " + newCallAmount
                     + " SmallBlindAmount: " + sd.getSmallBlindAmount());
         }
     }

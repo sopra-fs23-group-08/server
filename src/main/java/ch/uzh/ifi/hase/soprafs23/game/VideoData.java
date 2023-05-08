@@ -30,7 +30,7 @@ public class VideoData {
         videoLength = mvd.videoLength;
     }
 
-    public VideoData getPartialVideoData(int gameInfoAmount) throws Exception { //game info Amount 0-4
+    public VideoData getPartialVideoData(int gameInfoAmount) throws IllegalStateException { //game info Amount 0-4
         MutableVideoData mvd = new MutableVideoData(this);
 
         switch (gameInfoAmount) {
@@ -48,7 +48,7 @@ public class VideoData {
             case 5:
                 break;
             default:
-                throw new Exception("only values in [0,5] are allowed");
+                throw new IllegalStateException("only values in [0,5] are allowed");
         }
 
         return new VideoData(mvd);

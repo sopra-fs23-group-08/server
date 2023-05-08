@@ -60,7 +60,7 @@ class SetupData extends Setup {
         players.addAll(l);
     }
 
-    public Pair<VideoData, List<Hand>> getYTData() throws IOException, InterruptedException, Exception {
+    public Pair<VideoData, List<Hand>> getYTData() throws IOException, InterruptedException {
         return video.getVideoAndHand();
     }
     

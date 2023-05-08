@@ -43,6 +43,8 @@ class GameModel { //protected (Package Private)
         dealerPlayer = new Player();
         smallBlindPlayer = new Player();
         bigBlindPlayer = new Player();
+        winner = new Player();
+        host = new Player();
     }
 
     public void resetTable() {//call before playing, players stay
@@ -148,7 +150,7 @@ class GameModel { //protected (Package Private)
         }
     }
 
-    public List<HandOwnerWinner> getHands() throws Exception {
+    public List<HandOwnerWinner> getHands() throws IllegalStateException {
         var l = new ArrayList<HandOwnerWinner>();
         for (PlayerData pd : playersData.values()) {
             var how = new HandOwnerWinner();
@@ -161,7 +163,7 @@ class GameModel { //protected (Package Private)
             l.add(how);
         }
         if (winner == null) {
-            throw new Exception("There is currently no Winner in Game: " + gameId);
+            throw new IllegalStateException("There is currently no Winner in Game: " + gameId);
         }
         return l;
     }

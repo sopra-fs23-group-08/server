@@ -16,7 +16,7 @@ public class VideoSetup {
         ytAPIManager = new YTAPIManager();
     }
 
-    public void setPlaylist(String url) throws Exception {
+    public void setPlaylist(String url) throws IllegalStateException {
         ytAPIManager.setPlaylist(url);
     }
 
@@ -28,11 +28,11 @@ public class VideoSetup {
         ytAPIManager.setLanguage(language);
     }
 
-    public void setMinimalViewcount(Integer viewCount) throws Exception {
+    public void setMinimalViewcount(Integer viewCount) throws IllegalStateException {
         ytAPIManager.setMinimalViewcount(viewCount);
     }
 
-    protected Pair<VideoData, List<Hand>> getVideoAndHand() throws IOException, InterruptedException, Exception{
+    protected Pair<VideoData, List<Hand>> getVideoAndHand() throws IOException, InterruptedException {
         return ytAPIManager.getVideoAndHand();
     }
 }
