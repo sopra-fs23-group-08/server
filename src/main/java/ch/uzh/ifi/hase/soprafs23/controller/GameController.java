@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 //todo showdown
 
-@CrossOrigin(origins = { "http://localhost:3000", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" })
+@CrossOrigin(origins = { "http://localhost:3000/", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" })
 @RestController
 public class GameController {
 
@@ -91,11 +91,13 @@ public class GameController {
         return settingsWsDTO;
     }
 
-    // TODO not sure if the sendTo is required
     @MessageMapping("/games/{gameId}/start")
-    public void startGame(@DestinationVariable String gameId) {
+    @SendTo("/topic/games/{gameId}/start")
+    public String startGame() {
         // start game
-        gameService.startGame(gameId);
+        // TODO fix gameService method
+        // gameService.startGame(gameId);
+        return "Game started.";
     }
 
     @MessageMapping("/games/{gameId}/end")
