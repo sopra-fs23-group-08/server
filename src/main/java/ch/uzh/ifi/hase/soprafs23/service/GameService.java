@@ -256,7 +256,7 @@ public class GameService implements GameObserver{
         checkIfGameExists(gameId);
         //update GameData
         GameData gameData = gamesData.get(gameId);
-        gameData.gameStateWsDTO.setRoundWinner(player);
+        gameData.gameStateWsDTO.setRoundWinnerToken(player.getToken());
         //send GameData to front end
         gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
 

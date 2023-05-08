@@ -19,21 +19,21 @@ public class GameStateWsDTO {
         this.currentPot = currentPot;
         this.hasStarted = hasStarted;
         this.gamePhase = gamePhase;
-        this.roundWinner = roundWinner;
+        this.roundWinnerToken = roundWinner.getToken();
     }
 
     private Integer currentBet;
     private Integer currentPot;
     private boolean hasStarted;
     private GamePhase gamePhase;
-    private Player roundWinner;
+    private String roundWinnerToken; //this seems bad
 
-    public Player getRoundWinner() {
-        return roundWinner;
+    public String getRoundWinnerToken() {
+        return roundWinnerToken;
     }
 
-    public void setRoundWinner(Player roundWinner) {
-        this.roundWinner = roundWinner;
+    public void setRoundWinnerToken(String roundWinnerToken) {
+        this.roundWinnerToken = roundWinnerToken;
     }
 
     public Integer getCurrentBet() {
