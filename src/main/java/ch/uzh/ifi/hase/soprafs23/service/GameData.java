@@ -34,7 +34,9 @@ class GameData {
         for(PlayerWsDTO player: playersData.values()){
             player.setCurrentPlayer(false);
         }
-        playersData.get(currentPlayer.getToken()).setCurrentPlayer(true);
+        if (currentPlayer.getToken() != null) {
+            playersData.get(currentPlayer.getToken()).setCurrentPlayer(true);
+        }
 
     }
 
@@ -42,7 +44,9 @@ class GameData {
         for(PlayerWsDTO player: playersData.values()){
             player.setBigBlind(false);
         }
-        playersData.get(bigBlind.getToken()).setBigBlind(true);
+        if (bigBlind.getToken() != null) {
+            playersData.get(bigBlind.getToken()).setBigBlind(true);
+        }
 
     }
 
@@ -50,7 +54,9 @@ class GameData {
         for(PlayerWsDTO player: playersData.values()){
             player.setSmallBlind(false);
         }
-        playersData.get(smallBlind.getToken()).setSmallBlind(true);
+        if (smallBlind.getToken() != null) {
+            playersData.get(smallBlind.getToken()).setSmallBlind(true);
+        }
 
     }
     

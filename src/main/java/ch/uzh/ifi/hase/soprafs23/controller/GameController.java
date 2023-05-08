@@ -93,10 +93,10 @@ public class GameController {
 
     @MessageMapping("/games/{gameId}/start")
     @SendTo("/topic/games/{gameId}/start")
-    public String startGame() {
+    public String startGame(@DestinationVariable String gameId) {
         // start game
         // TODO fix gameService method
-        // gameService.startGame(gameId);
+        gameService.startGame(gameId);
         return "Game started.";
     }
 
