@@ -52,13 +52,13 @@ class GameModel { //protected (Package Private)
         setCurrentPlayer(new Player());
         setGamePhase(GamePhase.FIRST_BETTING_ROUND);
         setPotAmount(0);
-        setWinner(null);
+        setWinner(new Player());
         setCallAmount(0);
     }
 
     public void resetRound() {
         setGamePhase(GamePhase.FIRST_BETTING_ROUND);
-        setWinner(null);
+        setWinner(new Player());
         setCallAmount(0);
     }
 
@@ -162,7 +162,7 @@ class GameModel { //protected (Package Private)
             }
             l.add(how);
         }
-        if (winner == null) {
+        if (winner.getToken() == null) {
             throw new IllegalStateException("There is currently no Winner in Game: " + gameId);
         }
         return l;
@@ -268,7 +268,7 @@ class GameModel { //protected (Package Private)
 
     public void setWinner(Player winner) {
         //update points
-        if (winner != null) {
+        if (winner.getToken() != null) {
             int score = getPlayerData(winner).getScore();
             getPlayerData(winner).setScore(score + potAmount);
             setPotAmount(0);

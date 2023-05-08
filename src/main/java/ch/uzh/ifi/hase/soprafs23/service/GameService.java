@@ -322,9 +322,13 @@ public class GameService implements GameObserver{
         throw new UnsupportedOperationException("Unimplemented method 'newVideoData'");
     }
 
-    /** HELPER METHODS */
+    /** HELPER METHODS 
+     * @throws InterruptedException
+     * @throws IOException 
+     * @throws IllegalStateException
+     * */
 
-    public boolean checkPlaylist(String URL) throws IllegalStateException {//true if playlist contains 6 or more videos
+    public boolean checkPlaylist(String URL) throws IllegalStateException, IOException, InterruptedException {//true if playlist contains 6 or more videos
         return YTAPIManager.checkPlaylistUrl(URL);
     }
 
