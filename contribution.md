@@ -82,7 +82,6 @@
 * 5.5. - 12.5., Yating https://github.com/sopra-fs23-group-08/client/issues/17; video reveal, communication problem
 * 5.5. - 12.5., Serafin https://github.com/sopra-fs23-group-08/server/issues/98
 * 5.5. - 12.5., Serafin https://github.com/sopra-fs23-group-08/server/issues/99
-* 5.5. - 12.5., Serafin assist in debugging backend
- 
+* 5.5. - 12.5., Serafin assist in debugging
        
    
