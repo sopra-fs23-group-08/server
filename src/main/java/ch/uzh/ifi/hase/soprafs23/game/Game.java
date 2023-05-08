@@ -33,11 +33,7 @@ public class Game {
 
     public Game(Player host) {
         setup();
-        try {
-            setup.joinGame(host);
-        } catch (Exception e) {
-            throw new Error("some internal setup bug in game");
-        }
+        setup.joinGame(host);
         gameModel.setHost(host);
     }
 
