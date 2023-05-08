@@ -39,6 +39,10 @@ class GameModel { //protected (Package Private)
         observers = new ArrayList<>();
         playerOrder = new ArrayList<>();
         rand = new Random();
+        currentPlayer = new Player();
+        dealerPlayer = new Player();
+        smallBlindPlayer = new Player();
+        bigBlindPlayer = new Player();
     }
 
     public void resetTable() {//call before playing, players stay
@@ -119,7 +123,7 @@ class GameModel { //protected (Package Private)
     }
     
     public void setDealerPlayer() {
-        if (dealerPlayer == null) {
+        if (dealerPlayer.getToken() == null) {
             setDealerPlayer(playerOrder.get(rand.nextInt(playerOrder.size())));
         } else {
             setDealerPlayer(dealerPlayer);
@@ -137,8 +141,8 @@ class GameModel { //protected (Package Private)
     }
 
     private void resetSmallBigBlind() {
-        smallBlindPlayer = null;
-        bigBlindPlayer = null;
+        smallBlindPlayer = new Player();
+        bigBlindPlayer = new Player();
         for (GameObserver o : observers) {
             o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
         }
