@@ -17,16 +17,17 @@ public class GameTest {
   Player playerB;
   Player playerC;
   TestGameObserver observer;
-
+  
   @BeforeEach
   public void setUpGame() throws IllegalStateException {
-
+    
     playerA = new Player("A");
     game = new Game(playerA);
     playerB = new Player("B");
     playerC = new Player("C");
     observer = new TestGameObserver();
-
+    game.setup.video.useYtApi(false);
+    
     assertEquals(false, game.getGameId().isEmpty());
     
     game.setup.joinGame(playerC);

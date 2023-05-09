@@ -23,6 +23,7 @@ public class YTAPIManager {
     private String query = "LoFi HipHop";
     private String playlistId = "PL6HF94r1ogByYa2xFAXIE_1Pw-K0AU_Vd";
     private Language language = Language.GERMAN;
+    private boolean useYouTubeApi = true;
 
     public static boolean checkPlaylistUrl(String Url) throws IllegalStateException, IOException, InterruptedException {
         var listId = urlToPlaylistId(Url);
@@ -59,7 +60,7 @@ public class YTAPIManager {
                     "Set fastDebug = true in YTAPIManager/YTAPIManager.getVideoAndHand to have faster Debugging. Attention empty VideoData and Hands will be returned");
 
         var fastDebug = false;
-        var useYouTubeApi = true;
+        
 
         if (fastDebug && isDebug) {
             return emptyVideoAndHand();
@@ -82,10 +83,17 @@ public class YTAPIManager {
         return s2[0];
     }
     
-    private Pair<VideoData, List<Hand>> emptyVideoAndHand(){
-            Comment comment = new Comment(null, query, query, query, null, null);
-            Pair<Comment,Correctness> p = Pair.of(comment, Correctness.CORRECT);
-            Hand hand = new Hand(Arrays.asList(p, p, p, p, p, p));
-            return Pair.of(new VideoData(null, null, null, null, null, null), new ArrayList<>(Arrays.asList(new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments())))); //faster debug
+    private Pair<VideoData, List<Hand>> emptyVideoAndHand() {
+        Comment comment = new Comment(null, query, query, query, null, null);
+        Pair<Comment, Correctness> p = Pair.of(comment, Correctness.CORRECT);
+        Hand hand = new Hand(Arrays.asList(p, p, p, p, p, p));
+        return Pair.of(new VideoData(null, null, null, null, null, null),
+                new ArrayList<>(Arrays.asList(new Hand(hand.getComments()), new Hand(hand.getComments()),
+                        new Hand(hand.getComments()), new Hand(hand.getComments()), new Hand(hand.getComments()),
+                        new Hand(hand.getComments())))); //faster debug
+    }
+    
+    public void useYtApi(boolean use){
+        useYouTubeApi = use;
     }
 }

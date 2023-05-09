@@ -18,8 +18,6 @@ class SetupData extends Setup {
     private boolean infoFirstRound;
     private int initialScore;
 
-    public VideoSetup video;
-
     public SetupData() {
         players = new ArrayList<>();
         initialScore = 0;

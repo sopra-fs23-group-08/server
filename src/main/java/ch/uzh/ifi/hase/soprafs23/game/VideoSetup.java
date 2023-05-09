@@ -35,4 +35,8 @@ public class VideoSetup {
     protected Pair<VideoData, List<Hand>> getVideoAndHand() throws IOException, InterruptedException {
         return ytAPIManager.getVideoAndHand();
     }
+
+    public void useYtApi(boolean b) {
+        ytAPIManager.useYtApi(b);
+    }
 }
