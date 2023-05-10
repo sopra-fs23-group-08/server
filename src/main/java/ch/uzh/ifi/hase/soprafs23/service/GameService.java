@@ -328,8 +328,14 @@ public class GameService implements GameObserver{
      * @throws IllegalStateException
      * */
 
-    public boolean checkPlaylist(String URL) throws IllegalStateException, IOException, InterruptedException {//true if playlist contains 6 or more videos
-        return YTAPIManager.checkPlaylistUrl(URL);
+    public boolean checkPlaylist(String URL) throws ResponseStatusException {//true if playlist contains 6 or more videos
+        try {
+            YTAPIManager.checkPlaylistUrl(URL);
+            return true;
+        }
+        catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
     private void checkIfGameExists(String gameId) {
