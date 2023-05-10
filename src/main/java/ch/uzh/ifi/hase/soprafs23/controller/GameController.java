@@ -70,6 +70,12 @@ public class GameController {
         // convert player-list to DTOs
         return gameService.getPlayers(gameId);
     }
+    
+    @MessageMapping("/echo")
+    @SendTo("/topic/echo")
+    public String echo() {
+        return "pong";
+    }
 
     @MessageMapping("/games/{gameId}/players/remove")
     @SendTo("/topic/games/{gameId}/players")
