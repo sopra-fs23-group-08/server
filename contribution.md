@@ -76,12 +76,15 @@
 * 27.4. - 4.5., Yating https://github.com/sopra-fs23-group-08/client/issues/68
     
 ### Week 5
-* 5.5. - 12.5., Jonas https://github.com/sopra-fs23-group-08/client/issues/2
-* 5.5. - 12.5., Jonas https://github.com/sopra-fs23-group-08/client/issues/67
+* 5.5. - 12.5., Jonas https://github.com/sopra-fs23-group-08/server/issues/101, https://github.com/sopra-fs23-group-08/client/issues/73
+* 5.5. - 12.5., Jonas https://github.com/sopra-fs23-group-08/client/issues/74
 * 5.5. - 12.5., Yating https://github.com/sopra-fs23-group-08/client/issues/25
 * 5.5. - 12.5., Yating https://github.com/sopra-fs23-group-08/client/issues/17; video reveal, communication problem
 * 5.5. - 12.5., Serafin https://github.com/sopra-fs23-group-08/server/issues/98
 * 5.5. - 12.5., Serafin https://github.com/sopra-fs23-group-08/server/issues/99
 * 5.5. - 12.5., Serafin assist in debugging
-       
+
+### Week 6
+* 11.3. - 18.5., Jonas
+* 11.3. - 18.5., Jonas
    
