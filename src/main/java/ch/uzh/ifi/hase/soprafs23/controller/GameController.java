@@ -73,8 +73,8 @@ public class GameController {
     
     @MessageMapping("/echo")
     @SendTo("/topic/echo")
-    public String echo() {
-        return "pong";
+    public String echo(String msg) {
+        return "pong" + msg;
     }
 
     @MessageMapping("/games/{gameId}/players/remove")

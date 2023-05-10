@@ -1,6 +1,7 @@
 package ch.uzh.ifi.hase.soprafs23.controller;
 
 import java.io.IOException;
+import java.lang.annotation.Retention;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -15,8 +16,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.regex.Pattern;
-// import java.net.http.HttpRequest.BodyPublishers;
-// import java.net.http.HttpRequest.BodyPublisher;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +31,10 @@ import org.springframework.web.socket.messaging.WebSocketStompClient;
 import org.springframework.web.socket.sockjs.client.SockJsClient;
 import org.springframework.web.socket.sockjs.client.WebSocketTransport;
 
+import net.bytebuddy.asm.Advice.Return;
+
 import static org.awaitility.Awaitility.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -47,12 +49,19 @@ public class GameControllerTest {
     private Integer port;
     private WebSocketStompClient webSocketStompClient;
     private String gameId;
+    private StompSession stompSession;
  
     @BeforeEach
-    void setup() throws IOException, InterruptedException {
+    void setup() throws IOException, InterruptedException, ExecutionException, TimeoutException {
         this.webSocketStompClient = new WebSocketStompClient(new SockJsClient(
                 List.of(new WebSocketTransport(new StandardWebSocketClient()))));
         gameId = newGame();
+
+        this.webSocketStompClient.setMessageConverter(new StringMessageConverter());
+                
+        this.stompSession = this.webSocketStompClient
+                .connect(serverWsURL, new StompSessionHandlerAdapter() {})
+                .get(1, TimeUnit.SECONDS);
     }
     
     @Test
@@ -60,7 +69,8 @@ public class GameControllerTest {
         StompSession session = webSocketStompClient
                 .connect(serverWsURL, new StompSessionHandlerAdapter() {})
                 .get(1, TimeUnit.SECONDS);
-        session.send("/app/echo", "");
+        ;
+        assertDoesNotThrow(() -> session.send("/app/echo", ""), "");
     }
     
     @Test
@@ -71,7 +81,6 @@ public class GameControllerTest {
     
     @Test
     void echoTest() throws Exception {
-
 
         BlockingQueue<String> blockingQueue = new ArrayBlockingQueue<>(1);
 
@@ -95,16 +104,49 @@ public class GameControllerTest {
             }
         });
 
-        session.send("/app/echo","");
+        var msg = "ping";
+        session.send("/app/echo", msg);
 
         await()
                 .atMost(5, TimeUnit.SECONDS)
-                .untilAsserted(() -> assertEquals("pong", blockingQueue.poll()));
+                .untilAsserted(() -> assertEquals("pong" + msg, blockingQueue.poll()));
+    }
+
+    @Test
+    public void conciseEchoTest() {
+        var echoIn = subscribe(stompSession, "/echo", newBQ());
+        stompSession.send("/app/echo", "body");
+        responseAssert("pongbody", echoIn);
+
+        stompSession.send("/app/echo", "2");
+        responseAssert("pong2", echoIn);
     }
     
+    private void responseAssert(String expected, BlockingQueue<String> destinationBQ){
+        await().atMost(2, TimeUnit.SECONDS).untilAsserted(() -> assertEquals(expected, destinationBQ.poll()));
+    }
 
+    private BlockingQueue<String> subscribe(StompSession session, String topic, BlockingQueue<String> destinationBQ){
+        session.subscribe("/topic" + topic, new StompFrameHandler() {
+            
+            @Override
+            public Type getPayloadType(StompHeaders headers) {
+                return String.class;
+            }
+            
+            @Override
+            public void handleFrame(StompHeaders headers, Object payload) {
+                destinationBQ.add((String) payload);
+            }
+        });
+        return destinationBQ;
+    }
+    
+    
+    private BlockingQueue<String> newBQ(){
+        return new ArrayBlockingQueue<>(1);
+    }
     private String newGame() throws IOException, InterruptedException { //returns game id
-        HttpClient client = HttpClient.newHttpClient();
         String URL = serverURL + "/games";
         var body = "{  \"Token\": \"testPlayer\", \"Name\": \"Tobias Peter\" }";
 
