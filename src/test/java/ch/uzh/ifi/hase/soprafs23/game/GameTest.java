@@ -17,16 +17,17 @@ public class GameTest {
   Player playerB;
   Player playerC;
   TestGameObserver observer;
-
+  
   @BeforeEach
   public void setUpGame() throws IllegalStateException {
-
+    
     playerA = new Player("A");
     game = new Game(playerA);
     playerB = new Player("B");
     playerC = new Player("C");
     observer = new TestGameObserver();
-
+    game.setup.video.useYtApi(false);
+    
     assertEquals(false, game.getGameId().isEmpty());
     
     game.setup.joinGame(playerC);
@@ -106,7 +107,7 @@ public class GameTest {
       game.call(observer.currentPlayer);
     }, "BigBlind must raise. currentCallAmount: 10 BigBlindAmount: 20");
 
-    assertEquals(null, observer.winner);
+    assertEquals(null, observer.winner.getToken());
     try {
       game.raise(observer.currentPlayer, 20);
       game.call(observer.currentPlayer);
@@ -138,7 +139,7 @@ public class GameTest {
   @Test
   public void runThrough2() {
 
-    assertEquals(null, observer.winner);
+    assertEquals(null, observer.winner.getToken());
 
     try {
       game.raise(observer.currentPlayer, 10);
@@ -182,7 +183,7 @@ public class GameTest {
     } catch (Exception e) {
       assertEquals("Some exception occurred", e);
     }
-    assertNotEquals(null, observer.winner);
+    assertNotEquals(null, observer.winner.getToken());
   }
 
   @Test
