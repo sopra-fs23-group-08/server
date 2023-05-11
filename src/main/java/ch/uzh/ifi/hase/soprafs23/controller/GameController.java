@@ -39,17 +39,15 @@ public class GameController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public String createGame(@RequestBody PlayerDTO playerDTO) {
-
         MutablePlayer player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
         String gameId = gameService.createGame(new Player(player));
         return String.format("{\"id\":\"%s\"}", gameId);
     }
 
-    @PutMapping("/helper/playlists")
+    @PostMapping("/games/helpers/playlist")
     @ResponseStatus(HttpStatus.OK)
-    public void checkPlaylistUrl(@RequestBody String url) {
-        System.out.println(url);
-        gameService.checkPlaylist(url);
+    public void checkPlaylistUrl(@RequestBody PlaylistDTO playlistDTO) {
+        gameService.checkPlaylist(playlistDTO.getPlaylistUrl());
     }
 
     @GetMapping("/games/{gameId}/host")

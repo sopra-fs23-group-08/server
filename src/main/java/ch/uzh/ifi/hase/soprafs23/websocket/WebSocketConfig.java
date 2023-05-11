@@ -20,7 +20,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
     private static final String WEBSOCKET_SUFFIX = "/sopra-websocket"; //suffix for the WebSocket connection endpoint. In this case, it is set to "/sopra-websocket".
     private static final String ORIGIN_LOCALHOST = "http://localhost:3000"; //
     private static final String ORIGIN_PROD = "https://sopra-fs23-group-08-client.oa.r.appspot.com";
-    // private static final String LOCAL_TEST = "*";
 
     @Override
     public void configureMessageBroker(@NotNull MessageBrokerRegistry config) { // implements the default method in 
