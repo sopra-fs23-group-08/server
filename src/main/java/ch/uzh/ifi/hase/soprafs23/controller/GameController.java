@@ -48,6 +48,7 @@ public class GameController {
     @PutMapping("/helper/playlists")
     @ResponseStatus(HttpStatus.OK)
     public void checkPlaylistUrl(@RequestBody String url) {
+        System.out.println(url);
         gameService.checkPlaylist(url);
     }
 
@@ -70,9 +71,19 @@ public class GameController {
     }
     
     @MessageMapping("/echo")
-    @SendTo("/topic/echo")
-    public String echo(String msg) {
-        return "pong" + msg;
+    public void echo(String msg) {
+        echoResponse(msg);
+    }
+
+    public void echoResponse(String msg) {
+        messagingTemplate.convertAndSend("/topic/echo", "pong" + msg);
+    }
+
+    @MessageMapping("/echoSettings")
+    @SendTo("/topic/echoSettings")
+    public SettingsWsDTO settingsEcho() {
+        var temp = new SettingsWsDTO();
+        return temp;
     }
 
     @MessageMapping("/games/{gameId}/players/remove")
@@ -129,6 +140,7 @@ public class GameController {
     public void gameStateChanged(String gameId, GameStateWsDTO gameStateWsDTO) {
         String destination = String.format("/topic/games/%s/state", gameId);
         messagingTemplate.convertAndSend(destination, gameStateWsDTO);
+        // echoResponse("stateChanged");
     }
 
     public void playerStateChanged(String gameId, Collection<PlayerWsDTO> playersDTOList) {

@@ -20,7 +20,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
     private static final String WEBSOCKET_SUFFIX = "/sopra-websocket"; //suffix for the WebSocket connection endpoint. In this case, it is set to "/sopra-websocket".
     private static final String ORIGIN_LOCALHOST = "http://localhost:3000"; //
     private static final String ORIGIN_PROD = "https://sopra-fs23-group-08-client.oa.r.appspot.com";
-    private static final String LOCAL_TEST = "*";
+    // private static final String LOCAL_TEST = "*";
 
     @Override
     public void configureMessageBroker(@NotNull MessageBrokerRegistry config) { // implements the default method in 
@@ -35,7 +35,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
         //registers the /sopra-websocket endpoint, enabling SockJS fallback 
         //options so that alternate transports can be used if WebSocket is not available.
         registry.addEndpoint(WEBSOCKET_SUFFIX)
-                .setAllowedOrigins(ORIGIN_LOCALHOST, ORIGIN_PROD, LOCAL_TEST)
+                .setAllowedOrigins(ORIGIN_LOCALHOST, ORIGIN_PROD)
                 .withSockJS(); //The SockJS client will attempt to connect to /sopra-websocket and use the best available transport
     }
 }

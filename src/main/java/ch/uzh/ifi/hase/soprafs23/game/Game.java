@@ -86,6 +86,7 @@ public class Game {
     }
 
     public String getGameId() { // to get the game uuid
+        System.out.println(gameModel.getGameId());
         return gameModel.getGameId();
     }
 

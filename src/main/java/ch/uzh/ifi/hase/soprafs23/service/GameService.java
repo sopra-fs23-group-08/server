@@ -319,7 +319,6 @@ public class GameService implements GameObserver{
         vd.setTitle(videoData.title);
         vd.setViews(videoData.views);
         gameController.newVideoData(gameId, vd);
-        throw new UnsupportedOperationException("Unimplemented method 'newVideoData'");
     }
 
     /** HELPER METHODS 
