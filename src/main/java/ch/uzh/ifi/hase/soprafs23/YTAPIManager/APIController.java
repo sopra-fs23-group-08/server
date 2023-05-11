@@ -78,7 +78,7 @@ class APIController {
     }
 
     static Integer getVideoCountForPlaylist(String playlistId) throws IOException, InterruptedException {
-        var videoList = fromJsonToVideoList(APICaller.getVideosByPlaylistId(playlistId));
+        var videoList = fromJsonToPlaylistVideoList(APICaller.getVideosByPlaylistId(playlistId));
         return videoList.items.size();
     }
     

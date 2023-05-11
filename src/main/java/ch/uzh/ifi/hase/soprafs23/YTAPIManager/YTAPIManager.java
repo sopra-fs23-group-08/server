@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 import org.springframework.data.util.Pair;
 
-
+import ch.qos.logback.classic.turbo.TurboFilter;
 import ch.uzh.ifi.hase.soprafs23.entity.Comment;
 import ch.uzh.ifi.hase.soprafs23.game.Correctness;
 import ch.uzh.ifi.hase.soprafs23.game.Hand;
@@ -23,7 +23,7 @@ public class YTAPIManager {
     private String query = "LoFi HipHop";
     private String playlistId = "PL6HF94r1ogByYa2xFAXIE_1Pw-K0AU_Vd";
     private Language language = Language.GERMAN;
-    private boolean useYouTubeApi = true;
+    private boolean useYouTubeApi = false;
 
     public static boolean checkPlaylistUrl(String Url) throws IllegalStateException, IOException, InterruptedException {
         var listId = urlToPlaylistId(Url);
