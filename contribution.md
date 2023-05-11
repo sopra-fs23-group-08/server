@@ -93,7 +93,5 @@
 * 11.3. - 18.5., Serafin https://github.com/sopra-fs23-group-08/server/issues/99
 * 11.3. - 18.5., Rolando https://github.com/sopra-fs23-group-08/server/issues/102
 * 11.3. - 18.5., Rolando https://github.com/sopra-fs23-group-08/server/issues/103
-* 11.3. - 18.5., Jonas https://github.com/sopra-fs23-group-08/client/issues/67
-* 11.3. - 18.5., Jonas https://github.com/sopra-fs23-group-08/server/issues/97 
 * 11.3. - 18.5., Yating https://github.com/sopra-fs23-group-08/client/issues/75
 * 11.3. - 18.5., Yating https://github.com/sopra-fs23-group-08/client/issues/76  
