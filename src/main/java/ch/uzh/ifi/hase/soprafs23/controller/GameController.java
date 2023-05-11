@@ -39,16 +39,15 @@ public class GameController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public String createGame(@RequestBody PlayerDTO playerDTO) {
-
         MutablePlayer player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
         String gameId = gameService.createGame(new Player(player));
         return String.format("{\"id\":\"%s\"}", gameId);
     }
 
-    @PutMapping("/helper/playlists")
+    @PostMapping("/games/helpers/playlist")
     @ResponseStatus(HttpStatus.OK)
-    public void checkPlaylistUrl(@RequestBody String url) {
-        gameService.checkPlaylist(url);
+    public void checkPlaylistUrl(@RequestBody PlaylistDTO playlistDTO) {
+        gameService.checkPlaylist(playlistDTO.getPlaylistUrl());
     }
 
     @GetMapping("/games/{gameId}/host")
@@ -67,12 +66,6 @@ public class GameController {
         gameService.addPlayer(gameId, new Player(player));
         // convert player-list to DTOs
         return gameService.getPlayers(gameId);
-    }
-    
-    @MessageMapping("/echo")
-    @SendTo("/topic/echo")
-    public String echo(String msg) {
-        return "pong" + msg;
     }
 
     @MessageMapping("/games/{gameId}/players/remove")
