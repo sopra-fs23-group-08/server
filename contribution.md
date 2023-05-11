@@ -83,6 +83,8 @@
 * 5.5. - 12.5., Serafin https://github.com/sopra-fs23-group-08/server/issues/98
 * 5.5. - 12.5., Serafin https://github.com/sopra-fs23-group-08/server/issues/99
 * 5.5. - 12.5., Serafin assist in debugging
+* 5.5. - 12.5., Rolando https://github.com/sopra-fs23-group-08/client/issues/60
+* 5.5. - 12.5., Rolando https://github.com/sopra-fs23-group-08/client/issues/2   
 
 ### Week 6
 * 11.3. - 18.5., Jonas
