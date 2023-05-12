@@ -120,7 +120,7 @@ public class GameService implements GameObserver{
         }        
     }
 
-    public void isLobbyJoinable(String gameId) {
+    public boolean isLobbyJoinable(String gameId) {
         var game = getGame(gameId);
 
         if (game.getGamePhase() != GamePhase.LOBBY) {
@@ -131,6 +131,8 @@ public class GameService implements GameObserver{
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                     "Game with id " + gameId + " is already full " + game.getPlayers().size() + "/6");
         }
+        
+        return true;
     }
 
     public MutablePlayer getHost(String gameId){

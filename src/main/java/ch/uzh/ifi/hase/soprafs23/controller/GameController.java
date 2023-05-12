@@ -73,6 +73,7 @@ public class GameController {
         try {
             MutablePlayer player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
             // add player to game
+            gameService.isLobbyJoinable(gameId);
             gameService.addPlayer(gameId, new Player(player));
             // convert player-list to DTOs
         } catch (Exception e) {
