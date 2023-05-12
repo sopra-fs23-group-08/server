@@ -47,6 +47,11 @@ public class GameController {
         return String.format("{\"id\":\"%s\"}", gameId);
     }
 
+    @GetMapping("/games/{gameId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void isLobbyJoinable(@PathVariable String gameId) {
+        gameService.isLobbyJoinable(gameId);
+    }
     @PostMapping("/games/helpers/playlist")
     @ResponseStatus(HttpStatus.OK)
     public void checkPlaylistUrl(@RequestBody PlaylistDTO playlistDTO) {
@@ -70,7 +75,6 @@ public class GameController {
         // convert player-list to DTOs
         return gameService.getPlayers(gameId);
     }
-    
     
 
     @MessageMapping("/games/{gameId}/players/remove")

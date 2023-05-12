@@ -121,6 +121,13 @@ public class GameService implements GameObserver{
         }        
     }
 
+    public void isLobbyJoinable(String gameId) {
+        // TODO implement
+        // check if game exists, if no >> throw 404
+        // check if game is in lobby phase, if no >> throw 403
+        // check if game is full, if no >> throw 409
+    }
+
     public MutablePlayer getHost(String gameId){
         if (!games.containsKey(gameId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");
