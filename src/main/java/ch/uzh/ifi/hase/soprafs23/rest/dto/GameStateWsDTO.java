@@ -13,20 +13,20 @@ public class GameStateWsDTO {
     public GameStateWsDTO(@JsonProperty("currentBet") Integer currentBet,
                           @JsonProperty("currentPot") Integer currentPot,
                           @JsonProperty("hasStarted") boolean hasStarted,
-                          @JsonProperty("roundWinner") Player roundWinner,
+                          @JsonProperty("roundWinner") String roundWinnerToken,
                           @JsonProperty("gamePhase") GamePhase gamePhase) {
         this.currentBet = currentBet;
         this.currentPot = currentPot;
         this.hasStarted = hasStarted;
         this.gamePhase = gamePhase;
-        this.roundWinnerToken = roundWinner.getToken();
+        this.roundWinnerToken = roundWinnerToken;
     }
 
     private Integer currentBet;
     private Integer currentPot;
     private boolean hasStarted;
     private GamePhase gamePhase;
-    private String roundWinnerToken; //this seems bad
+    private String roundWinnerToken; 
 
     public String getRoundWinnerToken() {
         return roundWinnerToken;
