@@ -2,6 +2,8 @@ package ch.uzh.ifi.hase.soprafs23.controller;
 
 import ch.uzh.ifi.hase.soprafs23.entity.MutablePlayer;
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
+import ch.uzh.ifi.hase.soprafs23.game.Decision;
+import ch.uzh.ifi.hase.soprafs23.game.GamePhase;
 import ch.uzh.ifi.hase.soprafs23.game.Hand;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.*;
 import ch.uzh.ifi.hase.soprafs23.rest.mapper.DTOMapper;
@@ -18,6 +20,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.Collection;
 //todo showdown
 
@@ -68,21 +71,7 @@ public class GameController {
         return gameService.getPlayers(gameId);
     }
     
-    @MessageMapping("/echo")
-    public void echo(String msg) {
-        echoResponse(msg);
-    }
-
-    public void echoResponse(String msg) {
-        messagingTemplate.convertAndSend("/topic/echo", "pong" + msg);
-    }
-
-    @MessageMapping("/echoSettings")
-    @SendTo("/topic/echoSettings")
-    public SettingsWsDTO settingsEcho() {
-        var temp = new SettingsWsDTO();
-        return temp;
-    }
+    
 
     @MessageMapping("/games/{gameId}/players/remove")
     @SendTo("/topic/games/{gameId}/players")
@@ -162,9 +151,32 @@ public class GameController {
 
     public void newVideoData(String gameId, VideoDataWsDTO videoData) {
         String destination = String.format("/topic/games/%s/video", gameId);
-        messagingTemplate.convertAndSend(destination, videoData );
+        messagingTemplate.convertAndSend(destination, videoData);
     }
 
+    @MessageMapping("/echo")
+    public void echo(String msg) {
+        echoResponse(msg);
+    }
+
+    public void echoResponse(String msg) {
+        messagingTemplate.convertAndSend("/topic/echo", "pong" + msg);
+    }
+
+    @MessageMapping("/echoDTO")
+    public void settingsEcho() {
+        
+        var player = new PlayerWsDTO("playerToken", "Peter Toggenburger", 0, Decision.NOT_DECIDED, false, false, false);
+        Collection<PlayerWsDTO> playerCollection = new ArrayList<>();
+        playerCollection.add(player);
+
+        messagingTemplate.convertAndSend("/topic/echoVideoData", new VideoDataWsDTO());
+        messagingTemplate.convertAndSend("/topic/echoPlayer", player);
+        messagingTemplate.convertAndSend("/topic/echoPlayerCollection", playerCollection);
+        messagingTemplate.convertAndSend("/topic/echoGameState", new GameStateWsDTO(0,0,false, "playerToken", GamePhase.LOBBY));
+        messagingTemplate.convertAndSend("/topic/echoDecision", new DecisionWsDTO());
+        messagingTemplate.convertAndSend("/topic/echoSettings", new SettingsWsDTO());
+    }
 }
 
 
