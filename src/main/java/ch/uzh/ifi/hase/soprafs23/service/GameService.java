@@ -322,9 +322,9 @@ public class GameService implements GameObserver{
     @Override
     public void newVideoData(String gameId, VideoData videoData) {
         var vd = new VideoDataWsDTO();
-        vd.setDuration(videoData.videoLength != null ? videoData.videoLength.toString() : "null");
+        vd.setDuration(videoData.videoLength != null ? videoData.videoLength.toString() : null);
         vd.setLikes(videoData.likes);
-        vd.setReleaseDate(videoData.releaseDate != null ? videoData.releaseDate.toString() : "null");
+        vd.setReleaseDate(videoData.releaseDate != null ? videoData.releaseDate.toString() : null);
         vd.setThumbnailUrl(videoData.thumbnail);
         vd.setTitle(videoData.title);
         vd.setViews(videoData.views);
