@@ -146,7 +146,7 @@ public class GameService implements GameObserver{
         checkIfGameExists(gameId);
 
 
-        PlayerWsDTO playerWsDTO = new PlayerWsDTO(player.getToken(),player.getName(),null,null,false,false,false);
+        PlayerWsDTO playerWsDTO = new PlayerWsDTO(player.getToken(),player.getName(),null,Decision.NOT_DECIDED,false,false,false);
         
         gamesData.get(gameId).playersData.put(playerWsDTO.getToken(), playerWsDTO);
 
@@ -184,11 +184,21 @@ public class GameService implements GameObserver{
         Game game = games.get(gameId);
 
         try {
-            game.setup.setBigBlindAmount(settings.getBigBlind());
-            game.setup.setSmallBlindAmount(settings.getSmallBlind());
-            game.setup.setStartScoreForAll(settings.getInitialBalance());
-            game.setup.video.setPlaylist(settings.getPlaylistUrl());
-            game.setup.video.setLanguage(settings.getLanguage());
+            if (settings.getBigBlind() != null) {
+                game.setup.setBigBlindAmount(settings.getBigBlind());
+            }
+            if (settings.getSmallBlind() != null) {
+                game.setup.setSmallBlindAmount(settings.getSmallBlind());
+            }
+            if (settings.getInitialBalance() != null) {
+                game.setup.setStartScoreForAll(settings.getInitialBalance());
+            }
+            if (settings.getPlaylistUrl() != null && settings.getPlaylistUrl().length() != 0) {
+                game.setup.video.setPlaylist(settings.getPlaylistUrl());
+            }
+            if (settings.getLanguage() != null) {
+                game.setup.video.setLanguage(settings.getLanguage());
+            }
         }
         catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
@@ -312,9 +322,9 @@ public class GameService implements GameObserver{
     @Override
     public void newVideoData(String gameId, VideoData videoData) {
         var vd = new VideoDataWsDTO();
-        vd.setDuration(videoData.videoLength);
+        vd.setDuration(videoData.videoLength.toString());
         vd.setLikes(videoData.likes);
-        vd.setReleaseDate(videoData.releaseDate);
+        vd.setReleaseDate(videoData.releaseDate.toString());
         vd.setThumbnailUrl(videoData.thumbnail);
         vd.setTitle(videoData.title);
         vd.setViews(videoData.views);
