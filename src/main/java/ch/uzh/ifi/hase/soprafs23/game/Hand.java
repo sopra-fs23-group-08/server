@@ -1,6 +1,7 @@
 package ch.uzh.ifi.hase.soprafs23.game;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.util.Pair;
@@ -13,6 +14,13 @@ public class Hand {
         comments = new ArrayList<>(cards); //shallow copy
     }
     
+    public Hand() {
+        var comment = new Comment("nullId","nullId","This is a Null Comment","Written from nullerboy", 0, new Date(1000000));
+        List<Pair<Comment,Correctness>> list = new ArrayList<>();
+        list.add(Pair.of(comment,Correctness.NOT_REVEALED));
+        this.comments = list;
+    }
+
     public List<Pair<Comment, Correctness>> getComments() {
         return new ArrayList<>(comments); //shallow copy
     }

@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.messaging.MessagingException;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -186,12 +187,19 @@ public class GameController {
         messagingTemplate.convertAndSend("/topic/echo", "pong" + msg);
     }
 
+    /**
+     * @throws JsonProcessingException
+     * @throws MessagingException
+     * 
+     */
     @MessageMapping("/echoDTO")
-    public void settingsEcho() {
+    public void settingsEcho() throws MessagingException, JsonProcessingException {
         
         var player = new PlayerWsDTO("playerToken", "Peter Toggenburger", 0, Decision.NOT_DECIDED, false, false, false);
         Collection<PlayerWsDTO> playerCollection = new ArrayList<>();
         playerCollection.add(player);
+        ObjectMapper objectMapper = new ObjectMapper();
+        var hand = new Hand();
 
         messagingTemplate.convertAndSend("/topic/echoVideoData", new VideoDataWsDTO());
         messagingTemplate.convertAndSend("/topic/echoPlayer", player);
@@ -199,6 +207,7 @@ public class GameController {
         messagingTemplate.convertAndSend("/topic/echoGameState", new GameStateWsDTO(0,0,false, "playerToken", GamePhase.LOBBY));
         messagingTemplate.convertAndSend("/topic/echoDecision", new DecisionWsDTO());
         messagingTemplate.convertAndSend("/topic/echoSettings", new SettingsWsDTO());
+        messagingTemplate.convertAndSend("/topic/echoHand", objectMapper.writeValueAsString(hand.getComments()));
     }
 }
 
