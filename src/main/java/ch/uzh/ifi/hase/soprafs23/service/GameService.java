@@ -122,8 +122,8 @@ public class GameService implements GameObserver{
     }
 
     public void isLobbyJoinable(String gameId) {
+        checkIfGameExists(gameId);
         // TODO implement
-        // check if game exists, if no >> throw 404
         // check if game is in lobby phase, if no >> throw 403
         // check if game is full, if no >> throw 409
     }
@@ -149,7 +149,6 @@ public class GameService implements GameObserver{
     // adds a new player to a specified game.
     public void addPlayer(String gameId, Player player) {
         // TODO deal with case where player is registered
-        // check if game exists
         checkIfGameExists(gameId);
 
 
