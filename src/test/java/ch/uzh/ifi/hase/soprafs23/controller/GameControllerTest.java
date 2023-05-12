@@ -6,19 +6,14 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.regex.Pattern;
 
-import java.util.Collection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,18 +29,14 @@ import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
 import org.springframework.web.socket.sockjs.client.SockJsClient;
 import org.springframework.web.socket.sockjs.client.WebSocketTransport;
-import org.springframework.web.socket.sockjs.frame.Jackson2SockJsMessageCodec;
 
 import ch.uzh.ifi.hase.soprafs23.YTAPIManager.Language;
-import ch.uzh.ifi.hase.soprafs23.game.GamePhase;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.DecisionWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.GameStateWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.VideoDataWsDTO;
-import javassist.bytecode.SignatureAttribute.ClassType;
-import javassist.expr.NewArray;
 
 import static org.awaitility.Awaitility.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -243,6 +234,16 @@ public class GameControllerTest {
     }
 
     @Test
+    public void receiveHandTest() throws InterruptedException, ExecutionException, TimeoutException {
+        var stompSession = createStompSession(new StringMessageConverter());
+        var handObserver = subscribe(stompSession, "/topic/echoHand", String.class);
+        stompSession.send("/app/echoDTO", "");
+        var handString = handObserver.poll(1, TimeUnit.SECONDS);
+        assertNotEquals(null, handString);
+    }
+
+
+    @Test
     public void conciseEchoTest() throws InterruptedException, ExecutionException, TimeoutException {
         stompSession = createStompSession(new StringMessageConverter());
 
@@ -276,17 +277,16 @@ public class GameControllerTest {
     }
     
     @Test
-    public void basicStartGameTest() throws InterruptedException {
+    public void basicStartGameTest() throws InterruptedException, ExecutionException, TimeoutException {
         var gameStateObserver = subscribe(stompSession, "/topic/games/" + gameId + "/state", GameStateWsDTO.class);
         var videoDataObserver = subscribe(stompSession, "/topic/games/" + gameId + "/video", VideoDataWsDTO.class);
-
         
         stompSession.send("/app/games/" + gameId + "/start", "");
         var response = gameStateObserver.poll(10, TimeUnit.SECONDS);
         var response2 = videoDataObserver.poll(10, TimeUnit.SECONDS);
 
-        assertNotEquals(null, response2);
         assertNotEquals(null, response);
+        assertNotEquals(null, response2);
     }
 
     @Test
@@ -380,14 +380,18 @@ public class GameControllerTest {
         var response = stateObserver.poll(10, TimeUnit.SECONDS);
         assertNotEquals(null, response);
     }
-    //todo
-    // String destination = String.format("/topic/games/%s/state", gameId);
-    //todo
-    // String destination = String.format("/topic/games/%s/players", gameId);
-    //todo
-    // String destination = String.format("/topic/games/%s/players/%s/hand", gameId, player.getToken());
-    //todo
-    // String destination = String.format("/topic/games/%s/video", gameId);
+
+    @Test
+    public void basicHandReceiveTest() throws InterruptedException, ExecutionException, TimeoutException{
+        var stompSession = createStompSession(new StringMessageConverter());
+        var handObserver = subscribe(stompSession,
+                String.format("/topic/games/%s/players/%s/hand", gameId, "testPlayer"), String.class);
+        stompSession.send("/app/games/" + gameId + "/start", "");
+
+        var response = handObserver.poll(2, TimeUnit.SECONDS);
+        assertNotEquals(null, response);
+    }
+    
     //todo
     //more complex game run trough
 
