@@ -355,17 +355,18 @@ public class GameControllerTest {
 
     @Test
     public void basicDecisionPlayerTest() throws InterruptedException {
-        var playersObserver = subscribe(stompSession, String.format("/topic/games/%s/players", gameId), List.class);
+        var errorObserver = subscribe(stompSession, "/topic/games/" + gameId + "/error", Exception.class);
+        stompSession.send("/app/games/" + gameId + "start", "");
 
         var decision = new DecisionWsDTO();
         decision.setDecision("FOLD"); //change to decision
         decision.setRaiseAmount(100);
-        stompSession.send(String.format("/app/games/%s/players/%s", gameId, "testPlayer"), decision);
+        stompSession.send(String.format("/app/games/%s/players/%s/decision", gameId, "testPlayer"), decision);
 
 
-        var response = playersObserver.poll(10, TimeUnit.SECONDS);
+        var response = errorObserver.poll(10, TimeUnit.SECONDS);
         assertNotEquals(null, response);
-        assertNotEquals(0, response.size());
+        assertEquals("You're not the current player", response.getMessage());
     }
 
     @Test

@@ -69,10 +69,14 @@ public class GameController {
     @MessageMapping("/games/{gameId}/players/add")
     @SendTo("/topic/games/{gameId}/players")
     public Collection<PlayerWsDTO> addPlayer(@DestinationVariable String gameId, PlayerDTO playerDTO) {
-        MutablePlayer player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
-        // add player to game
-        gameService.addPlayer(gameId, new Player(player));
-        // convert player-list to DTOs
+        try {
+            MutablePlayer player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
+            // add player to game
+            gameService.addPlayer(gameId, new Player(player));
+            // convert player-list to DTOs
+        } catch (Exception e) {
+            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", e);
+        }
         return gameService.getPlayers(gameId);
     }
     
@@ -80,20 +84,29 @@ public class GameController {
     @MessageMapping("/games/{gameId}/players/remove")
     @SendTo("/topic/games/{gameId}/players")
     public Collection<PlayerWsDTO> removePlayer(@DestinationVariable String gameId, PlayerDTO playerDTO) {
-        // convert DTO to entity
-        MutablePlayer player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
-        // remove player from game
-        gameService.removePlayer(gameId, new Player(player));
-        // convert player-list to DTOs
+        try {
+            // convert DTO to entity
+            MutablePlayer player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
+            // remove player from game
+            gameService.removePlayer(gameId, new Player(player));
+            // convert player-list to DTOs
+            
+        } catch (Exception e) {
+            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", e);
+        }
         return gameService.getPlayers(gameId);
     }
 
     @MessageMapping("/games/{gameId}/settings")
     @SendTo("/topic/games/{gameId}/settings")
     public SettingsWsDTO updateSettings(@DestinationVariable String gameId, SettingsWsDTO settingsWsDTO) {
-        // update settings
-        gameService.setGameSettings(gameId, settingsWsDTO);
-        // send new settings to all players
+        try {
+            // update settings
+            gameService.setGameSettings(gameId, settingsWsDTO);
+            // send new settings to all players
+        } catch (Exception e) {
+            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", e);
+        }
         return settingsWsDTO;
     }
 
@@ -101,8 +114,11 @@ public class GameController {
     @SendTo("/topic/games/{gameId}/start")
     public String startGame(@DestinationVariable String gameId) {
         // start game
-        // TODO fix gameService method
-        gameService.startGame(gameId);
+        try {
+            gameService.startGame(gameId);
+        } catch (Exception e) {
+            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", e);
+        }
         return "Game started.";
     }
 
@@ -118,12 +134,20 @@ public class GameController {
                                      @DestinationVariable String playerToken,
                                      DecisionWsDTO decisionWsDTO)
     {
-        gameService.playerDecision(gameId, playerToken, decisionWsDTO);
+        try {
+            gameService.playerDecision(gameId, playerToken, decisionWsDTO);
+        } catch (Exception e) {
+            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", e);
+        }
     }
 
     @MessageMapping("/games/{gameId}/rounds/next")
     public void nextRound(@DestinationVariable String gameId) {
-        gameService.nextRound(gameId);
+        try {
+            gameService.nextRound(gameId);
+        } catch (Exception e) {
+            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", e);
+        }
     }
 
     /** OBSERVER ENDPOINT METHODS
