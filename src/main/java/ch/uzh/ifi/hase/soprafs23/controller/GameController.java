@@ -127,7 +127,6 @@ public class GameController {
     public void gameStateChanged(String gameId, GameStateWsDTO gameStateWsDTO) {
         String destination = String.format("/topic/games/%s/state", gameId);
         messagingTemplate.convertAndSend(destination, gameStateWsDTO);
-        // echoResponse("stateChanged");
     }
 
     public void playerStateChanged(String gameId, Collection<PlayerWsDTO> playersDTOList) {

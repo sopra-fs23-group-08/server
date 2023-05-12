@@ -285,8 +285,8 @@ public class GameControllerTest {
         var response = gameStateObserver.poll(10, TimeUnit.SECONDS);
         var response2 = videoDataObserver.poll(10, TimeUnit.SECONDS);
 
-        assertNotEquals(null, response);
         assertNotEquals(null, response2);
+        assertNotEquals(null, response);
     }
 
     @Test
