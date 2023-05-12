@@ -154,7 +154,6 @@ public class GameService implements GameObserver{
     // adds a new player to a specified game.
     public void addPlayer(String gameId, Player player) {
         // TODO deal with case where player is registered
-        // check if game exists
         checkIfGameExists(gameId);
 
 
