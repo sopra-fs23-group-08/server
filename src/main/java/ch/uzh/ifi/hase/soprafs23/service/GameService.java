@@ -32,7 +32,6 @@ import java.util.List;
 @Service //part of the Spring Framework, and you will use it to mark a class as a service layer component. 
 @Transactional // transactions should be managed for this service via @Transactional annotation.
 
-// TODO: start games
 // TODO: end/delete games
 public class GameService implements GameObserver{
 
@@ -122,10 +121,16 @@ public class GameService implements GameObserver{
     }
 
     public void isLobbyJoinable(String gameId) {
-        // TODO implement
-        // check if game exists, if no >> throw 404
-        // check if game is in lobby phase, if no >> throw 403
-        // check if game is full, if no >> throw 409
+        var game = getGame(gameId);
+
+        if (game.getGamePhase() != GamePhase.LOBBY) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN,
+                    "Game with id " + gameId + " is not in Lobby phase. (Can't be joined)");
+        }
+        if (game.getPlayers().size() >= 6) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "Game with id " + gameId + " is already full " + game.getPlayers().size() + "/6");
+        }
     }
 
     public MutablePlayer getHost(String gameId){
