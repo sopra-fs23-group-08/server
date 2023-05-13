@@ -48,7 +48,7 @@ public class GameController {
         return String.format("{\"id\":\"%s\"}", gameId);
     }
 
-    @GetMapping("/games/{gameId}")
+    @GetMapping("/games/{gameId}/lobby")
     @ResponseStatus(HttpStatus.OK)
     public void isLobbyJoinable(@PathVariable String gameId) {
         gameService.isLobbyJoinable(gameId);
