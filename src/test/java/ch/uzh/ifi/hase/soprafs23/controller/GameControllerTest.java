@@ -20,11 +20,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.converter.MessageConverter;
+import org.springframework.messaging.converter.SimpleMessageConverter;
 import org.springframework.messaging.converter.StringMessageConverter;
 import org.springframework.messaging.simp.stomp.StompFrameHandler;
 import org.springframework.messaging.simp.stomp.StompHeaders;
 import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.messaging.simp.stomp.StompSessionHandlerAdapter;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
 import org.springframework.web.socket.sockjs.client.SockJsClient;
@@ -47,19 +49,19 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class GameControllerTest {
  
-    final String serverURL = "http://localhost:8080";
+    final static String serverURL = "http://localhost:8080";
     // final String serverWsURL = "ws://localhost:8080/sopra-websocket";
     static final String serverWsURL = "ws://localhost:8080/sopra-websocket";
     
     @LocalServerPort
     private Integer port;
     private String gameId;
-    private StompSession stompSession;
+    private StompSession session;
  
     @BeforeEach
     void setup() throws IOException, InterruptedException, ExecutionException, TimeoutException {
         gameId = newGame();
-        stompSession = createStompSession(new MappingJackson2MessageConverter());
+        session = createStompSession(new MappingJackson2MessageConverter());
     }
     
     @Test
@@ -186,40 +188,40 @@ public class GameControllerTest {
     @Test
     public void receiveSettingsTest() throws InterruptedException {
 
-        var settingsObserver = subscribe(stompSession, "/topic/echoSettings", SettingsWsDTO.class);
-        stompSession.send("/app/echoDTO", "");
+        var settingsObserver = subscribe(session, "/topic/echoSettings", SettingsWsDTO.class);
+        session.send("/app/echoDTO", "");
         var settings = settingsObserver.poll(1, TimeUnit.SECONDS);
         assertNotEquals(null, settings);
     }
 
     @Test
     public void receiveDecisionTest() throws InterruptedException {
-        var decisionObserver = subscribe(stompSession, "/topic/echoDecision", DecisionWsDTO.class);
-        stompSession.send("/app/echoDTO", "");
+        var decisionObserver = subscribe(session, "/topic/echoDecision", DecisionWsDTO.class);
+        session.send("/app/echoDTO", "");
         var decision = decisionObserver.poll(1, TimeUnit.SECONDS);
         assertNotEquals(null, decision);
     }
 
     @Test
     public void receiveGameStateTest() throws InterruptedException {
-        var gameStateObserver = subscribe(stompSession, "/topic/echoGameState", GameStateWsDTO.class);
-        stompSession.send("/app/echoDTO", "");
+        var gameStateObserver = subscribe(session, "/topic/echoGameState", GameStateWsDTO.class);
+        session.send("/app/echoDTO", "");
         var gameState = gameStateObserver.poll(1, TimeUnit.SECONDS);
         assertNotEquals(null, gameState);
     }
 
     @Test
     public void receivePlayerTest() throws InterruptedException {
-        var playerObserver = subscribe(stompSession, "/topic/echoPlayer", PlayerWsDTO.class);
-        stompSession.send("/app/echoDTO", "");
+        var playerObserver = subscribe(session, "/topic/echoPlayer", PlayerWsDTO.class);
+        session.send("/app/echoDTO", "");
         var player = playerObserver.poll(1, TimeUnit.SECONDS);
         assertNotEquals(null, player);
     }
 
     @Test
     public void receivePlayerCollectionTest() throws InterruptedException {
-        var playerCollectionObserver = subscribe(stompSession, "/topic/echoPlayerCollection", List.class);
-        stompSession.send("/app/echoDTO", "");
+        var playerCollectionObserver = subscribe(session, "/topic/echoPlayerCollection", List.class);
+        session.send("/app/echoDTO", "");
         var playerCollection = playerCollectionObserver.poll(1, TimeUnit.SECONDS);
         assertNotEquals(null, playerCollection);
         assertNotEquals(0, playerCollection.size());
@@ -227,8 +229,8 @@ public class GameControllerTest {
 
     @Test
     public void receiveVideoDataTest() throws InterruptedException {
-        var videoDataObserver = subscribe(stompSession, "/topic/echoVideoData", VideoDataWsDTO.class);
-        stompSession.send("/app/echoDTO", "");
+        var videoDataObserver = subscribe(session, "/topic/echoVideoData", VideoDataWsDTO.class);
+        session.send("/app/echoDTO", "");
         var videoData = videoDataObserver.poll(1, TimeUnit.SECONDS);
         assertNotEquals(null, videoData);
     }
@@ -242,26 +244,34 @@ public class GameControllerTest {
         assertNotEquals(null, handString);
     }
 
+    @Test
+    public void receiveErrorA() throws InterruptedException, ExecutionException, TimeoutException {
+        var handObserver = subscribe(session, "/topic/echoErrorA", Exception.class);
+        session.send("/app/echoDTO", "");
+        var handString = handObserver.poll(1, TimeUnit.SECONDS);
+        assertNotEquals(null, handString);
+    }
+
 
     @Test
     public void conciseEchoTest() throws InterruptedException, ExecutionException, TimeoutException {
-        stompSession = createStompSession(new StringMessageConverter());
+        session = createStompSession(new StringMessageConverter());
 
-        var echoIn = subscribe(stompSession, "/topic/echo", String.class);
-        stompSession.send("/app/echo", "body");
+        var echoIn = subscribe(session, "/topic/echo", String.class);
+        session.send("/app/echo", "body");
         responseAssert("pongbody", echoIn);
 
-        stompSession.send("/app/echo", "2");
+        session.send("/app/echo", "2");
         responseAssert("pong2", echoIn);
 
-        stompSession.send("/app/echo", "2");
+        session.send("/app/echo", "2");
         var response = echoIn.poll(2, TimeUnit.SECONDS);
         assertEquals("pong2", response);
     }
 
     @Test
     public void basicSettingTest() throws InterruptedException {
-        var settingsObsesrver = subscribe(stompSession, String.format("/topic/games/%s/settings", gameId),
+        var settingsObsesrver = subscribe(session, String.format("/topic/games/%s/settings", gameId),
                 SettingsWsDTO.class);
         
         var settings = new SettingsWsDTO();
@@ -271,17 +281,17 @@ public class GameControllerTest {
         settings.setSmallBlind(100);
         settings.setInitialBalance(100);
 
-        stompSession.send(String.format("/app/games/%s/settings", gameId), settings);
+        session.send(String.format("/app/games/%s/settings", gameId), settings);
         var response = settingsObsesrver.poll(10, TimeUnit.SECONDS);
         assertNotEquals(null, response);
     }
     
     @Test
     public void basicStartGameTest() throws InterruptedException, ExecutionException, TimeoutException {
-        var gameStateObserver = subscribe(stompSession, "/topic/games/" + gameId + "/state", GameStateWsDTO.class);
-        var videoDataObserver = subscribe(stompSession, "/topic/games/" + gameId + "/video", VideoDataWsDTO.class);
+        var gameStateObserver = subscribe(session, "/topic/games/" + gameId + "/state", GameStateWsDTO.class);
+        var videoDataObserver = subscribe(session, "/topic/games/" + gameId + "/video", VideoDataWsDTO.class);
         
-        stompSession.send("/app/games/" + gameId + "/start", "");
+        session.send("/app/games/" + gameId + "/start", "");
         var response = gameStateObserver.poll(10, TimeUnit.SECONDS);
         var response2 = videoDataObserver.poll(10, TimeUnit.SECONDS);
 
@@ -294,7 +304,7 @@ public class GameControllerTest {
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create("http://localhost:8080/games/helpers/playlist"))
             .header("Accept", "*/*")
-            .header("User-Agent", "Thunder Client (https://www.thunderclient.com)")
+            // .header("User-Agent", "Thunder Client (https://www.thunderclient.com)")
             .header("Content-Type", "application/json")
             .method("POST", HttpRequest.BodyPublishers.ofString("{\n  \"playlistUrl\":\"list=PL6HF94r1ogByYa2xFAXIE_1Pw-K0AU_Vd\"\n}"))
             .build();
@@ -322,17 +332,17 @@ public class GameControllerTest {
                 .build();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
-        assertEquals("{\"name\":\"Tobias Peter\",\"token\":\"testPlayer\"}", response.body());
+        assertEquals("{\"name\":\"Tobias Peter\",\"token\":\"Host\"}", response.body());
     }
     
 
     @Test
     public void basicAddPlayerTest() throws InterruptedException {
-        var playersObserver = subscribe(stompSession, String.format("/topic/games/%s/players", gameId), List.class);
+        var playersObserver = subscribe(session, String.format("/topic/games/%s/players", gameId), List.class);
         var player = new PlayerDTO();
         player.setName("Sebastian Pamela");
         player.setToken("secondPlayer");
-        stompSession.send("/app/games/" + gameId + "/players/add", player);
+        session.send("/app/games/" + gameId + "/players/add", player);
 
         var response = playersObserver.poll(10, TimeUnit.SECONDS);
         assertNotEquals(null, response);
@@ -341,12 +351,12 @@ public class GameControllerTest {
     
     @Test
     public void basicRemovePlayerTest() throws InterruptedException {
-        var playersObserver = subscribe(stompSession, String.format("/topic/games/%s/players", gameId), List.class);
+        var playersObserver = subscribe(session, String.format("/topic/games/%s/players", gameId), List.class);
         var player = new PlayerDTO();
         player.setName("Sebastian Pamela");
         player.setToken("secondPlayer");
-        stompSession.send("/app/games/" + gameId + "/players/add", player);
-        stompSession.send("/app/games/" + gameId + "/players/remove", player);
+        session.send("/app/games/" + gameId + "/players/add", player);
+        session.send("/app/games/" + gameId + "/players/remove", player);
 
         var response = playersObserver.poll(10, TimeUnit.SECONDS);
         assertNotEquals(null, response);
@@ -355,13 +365,13 @@ public class GameControllerTest {
 
     @Test
     public void basicDecisionPlayerTest() throws InterruptedException {
-        var errorObserver = subscribe(stompSession, "/topic/games/" + gameId + "/error", Exception.class);
-        stompSession.send("/app/games/" + gameId + "start", "");
+        var errorObserver = subscribe(session, "/topic/games/" + gameId + "/error", Exception.class);
+        session.send("/app/games/" + gameId + "start", "");
 
         var decision = new DecisionWsDTO();
         decision.setDecision("FOLD"); //change to decision
         decision.setRaiseAmount(100);
-        stompSession.send(String.format("/app/games/%s/players/%s/decision", gameId, "testPlayer"), decision);
+        session.send(String.format("/app/games/%s/players/%s/decision", gameId, "Host"), decision);
 
 
         var response = errorObserver.poll(10, TimeUnit.SECONDS);
@@ -371,10 +381,10 @@ public class GameControllerTest {
 
     @Test
     public void basicNextRoundTest() throws InterruptedException {
-        var stateObserver = subscribe(stompSession, String.format("/topic/games/%s/state", gameId),
+        var stateObserver = subscribe(session, String.format("/topic/games/%s/state", gameId),
                 GameStateWsDTO.class);
 
-        stompSession.send(String.format("/app/games/%s/rounds/next", gameId), "");
+        session.send(String.format("/app/games/%s/rounds/next", gameId), "");
 
 
         var response = stateObserver.poll(10, TimeUnit.SECONDS);
@@ -385,15 +395,14 @@ public class GameControllerTest {
     public void basicHandReceiveTest() throws InterruptedException, ExecutionException, TimeoutException{
         var stompSession = createStompSession(new StringMessageConverter());
         var handObserver = subscribe(stompSession,
-                String.format("/topic/games/%s/players/%s/hand", gameId, "testPlayer"), String.class);
+                String.format("/topic/games/%s/players/%s/hand", gameId, "Host"), String.class);
         stompSession.send("/app/games/" + gameId + "/start", "");
 
         var response = handObserver.poll(2, TimeUnit.SECONDS);
         assertNotEquals(null, response);
     }
     
-    //todo
-    //more complex game run trough
+    //more complex game run trough in extended gc test
 
 
     
@@ -401,9 +410,9 @@ public class GameControllerTest {
         await().atMost(2, TimeUnit.SECONDS).untilAsserted(() -> assertEquals(expected, destinationBQ.poll()));
     }
 
-    static private <T> BlockingQueue<T> subscribe(StompSession session, String endPoint,
+    static public <T> BlockingQueue<T> subscribe(StompSession session, String endPoint,
             Class<T> classType) {
-        var destinationBQ = new ArrayBlockingQueue<T>(1);
+        var destinationBQ = new ArrayBlockingQueue<T>(10);
         session.subscribe(endPoint, new StompFrameHandler() {
             
             @Override
@@ -420,9 +429,9 @@ public class GameControllerTest {
     }
     
 
-    private String newGame() throws IOException, InterruptedException { //returns game id
+    public static String newGame() throws IOException, InterruptedException { //returns game id
         String URL = serverURL + "/games";
-        var body = "{\n  \"name\":\"Tobias Peter\",\n  \"token\":\"testPlayer\"\n}";
+        var body = "{\n  \"name\":\"Tobias Peter\",\n  \"token\":\"Host\"\n}";
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(URL))
@@ -444,7 +453,7 @@ public class GameControllerTest {
         return s2[0];
     }
     
-    static private StompSession createStompSession(MessageConverter converter) throws InterruptedException, ExecutionException, TimeoutException {
+    static public StompSession createStompSession(MessageConverter converter) throws InterruptedException, ExecutionException, TimeoutException {
         var webSocketStompClient = new WebSocketStompClient(new SockJsClient(
                 List.of(new WebSocketTransport(new StandardWebSocketClient()))));
 

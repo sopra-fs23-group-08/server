@@ -11,6 +11,15 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
+//todo
+//multi leave test
+//Information increase test
+//end of round test
+//next round test
+//leave testing in generally
+//With API testing
+
 public class GameTest {
   Game game;
   Player playerA;
