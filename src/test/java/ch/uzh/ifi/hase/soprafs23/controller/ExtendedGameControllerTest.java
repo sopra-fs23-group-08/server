@@ -123,7 +123,7 @@ public class ExtendedGameControllerTest {
                 // Thread.sleep(1000);
                 // await().atMost(1, TimeUnit.SECONDS);
         }
-        // Thread.sleep(10000);
+        Thread.sleep(5000);
         
         response = getNewest(playersObserver);
         // assertEquals("Host", ((HashMap) response.get(0)).get("token"));
