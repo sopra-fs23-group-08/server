@@ -87,11 +87,14 @@
 * 5.5. - 12.5., Rolando https://github.com/sopra-fs23-group-08/client/issues/2
 
 ### Week 6
-* 11.3. - 18.5., Jonas https://github.com/sopra-fs23-group-08/server/issues/104
-* 11.3. - 18.5., Jonas https://github.com/sopra-fs23-group-08/server/issues/97
-* 11.3. - 18.5., Serafin https://github.com/sopra-fs23-group-08/server/issues/98
-* 11.3. - 18.5., Serafin https://github.com/sopra-fs23-group-08/server/issues/99
-* 11.3. - 18.5., Rolando https://github.com/sopra-fs23-group-08/server/issues/102
-* 11.3. - 18.5., Rolando https://github.com/sopra-fs23-group-08/server/issues/103
-* 11.3. - 18.5., Yating https://github.com/sopra-fs23-group-08/client/issues/75
-* 11.3. - 18.5., Yating https://github.com/sopra-fs23-group-08/client/issues/76  
+* 11.5. - 18.5., Jonas https://github.com/sopra-fs23-group-08/server/issues/104
+* 11.5. - 18.5., Jonas https://github.com/sopra-fs23-group-08/server/issues/97
+* 11.5. - 18.5., Serafin https://github.com/sopra-fs23-group-08/server/issues/98
+* 11.5. - 18.5., Serafin https://github.com/sopra-fs23-group-08/server/issues/99
+* 11.5. - 18.5., Rolando https://github.com/sopra-fs23-group-08/server/issues/102
+* 11.5. - 18.5., Rolando https://github.com/sopra-fs23-group-08/server/issues/103
+* 11.5. - 18.5., Yating https://github.com/sopra-fs23-group-08/client/issues/75
+* 11.5. - 18.5., Yating https://github.com/sopra-fs23-group-08/client/issues/76 
+* 15.5. - 18.5., Yating: fix the bug that except host, other players cannot receive the data from all subscrptions
+    
+ 
