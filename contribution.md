@@ -97,4 +97,7 @@
 * 11.5. - 18.5., Yating https://github.com/sopra-fs23-group-08/client/issues/76 
 * 15.5. - 18.5., Yating: fix the bug that except host, other players cannot receive the data from all subscrptions
     
+### Week 7
+* 18.5. - 25.2., Jonas https://github.com/sopra-fs23-group-08/server/issues/78
+    
  
