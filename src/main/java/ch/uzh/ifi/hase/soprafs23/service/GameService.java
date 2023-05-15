@@ -127,7 +127,7 @@ public class GameService implements GameObserver{
             throw new ResponseStatusException(HttpStatus.FORBIDDEN,
                     "Game with id " + gameId + " is not in Lobby phase. (Can't be joined)");
         }
-        if (game.getPlayers().size() >= 6) {
+        if (game.setup.getPlayers().size() >= 6) {
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                     "Game with id " + gameId + " is already full " + game.getPlayers().size() + "/6");
         }
