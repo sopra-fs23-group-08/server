@@ -4,25 +4,15 @@ import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
 
 public class UserGetDTO {
 
-  private Long id;
-  private String password;
+  private String token;
   private String username;
-  private UserStatus status;
 
-  public Long getId() {
-    return id;
+  public String getToken() {
+    return token;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
+  public void setToken(String token) {
+    this.token = token;
   }
 
   public String getUsername() {
@@ -33,11 +23,4 @@ public class UserGetDTO {
     this.username = username;
   }
 
-  public UserStatus getStatus() {
-    return status;
-  }
-
-  public void setStatus(UserStatus status) {
-    this.status = status;
-  }
 }
