@@ -44,13 +44,13 @@ public class Game {
         gameLogic = new GameLogic(gameModel, setup);
     }
 
-    public void startGame() throws IOException, InterruptedException{ //this ends the setup phase. No changes to setup are possible
+    public synchronized void startGame() throws IOException, InterruptedException{ //this ends the setup phase. No changes to setup are possible
         gameLogic.startGame();
         setup = new SetupClosed();
         gameLogic.startBettingRound();
     }
     
-    public void startBettingRound() { //this is not needed at the current state but would start the betting round
+    public synchronized void startBettingRound() { //this is not needed at the current state but would start the betting round
         gameLogic.startBettingRound();
     }
 
@@ -76,12 +76,12 @@ public class Game {
         gameLogic.playerDecision(new Player(playerId), Decision.FOLD);
     }
 
-    public void nextRound() throws IOException, InterruptedException { // this should be called after a round to play a second round
+    public synchronized void nextRound() throws IOException, InterruptedException { // this should be called after a round to play a second round
         gameLogic.startRound();
         gameLogic.startBettingRound();
     }
 
-    public void addObserver(GameObserver o) { //adding game observer. Game observer are classes which implement GameObserver most of the data traffic happens there
+    public synchronized void addObserver(GameObserver o) { //adding game observer. Game observer are classes which implement GameObserver most of the data traffic happens there
         gameModel.addObserver(o);
     }
 
@@ -108,6 +108,13 @@ public class Game {
 
     public GamePhase getGamePhase() {
         return gameModel.getGamePhase();
+    }
+
+    public void closeGame() {
+        gameModel.closeGame();
+        this.gameModel = null;
+        this.gameLogic = null;
+        this.setup = null;
     }
 
 
