@@ -51,14 +51,16 @@ class GameLogic {
         gm.setFoldCount(0);
 
         for (PlayerData playerData : new ArrayList<>(gm.getPlayerDataCollection())) {
-            playerData.setDecision(Decision.NOT_DECIDED);
-            if (playerData.getScore() < sd.getBigBlindAmount()) {//player is not allowed to play since he has not enough points
-                leaveGame(playerData);
+            synchronized (playerData) {
+                playerData.setDecision(Decision.NOT_DECIDED);
+                if (playerData.getScore() < sd.getBigBlindAmount()) {//player is not allowed to play since he has not enough points
+                    leaveGame(playerData);
+                }
+                Hand hand = ytData.getSecond().get(rand.nextInt(ytData.getSecond().size()));
+                ytData.getSecond().remove(hand);
+                playerData.setNewHand(hand);
+                playerData.setScorePutIntoPot(0);
             }
-            Hand hand = ytData.getSecond().get(rand.nextInt(ytData.getSecond().size()));
-            ytData.getSecond().remove(hand);
-            playerData.setNewHand(hand);
-            playerData.setScorePutIntoPot(0);
         }
 
         gm.resetRound();
@@ -74,10 +76,10 @@ class GameLogic {
         gm.resetBettingRound();
     }
 
-    void playerDecision(Player player, Decision d) throws IllegalStateException {
+    synchronized void playerDecision(Player player, Decision d) throws IllegalStateException {
         playerDecision(player, d, gm.getCallAmount());
     }
-    void playerDecision(Player player, Decision d, Integer newCallAmount) throws IllegalStateException {
+    synchronized void playerDecision(Player player, Decision d, Integer newCallAmount) throws IllegalStateException {
         if (player != gm.getCurrentPlayer()) {
             throw new IllegalCallerException("You're not the current player");
         }
