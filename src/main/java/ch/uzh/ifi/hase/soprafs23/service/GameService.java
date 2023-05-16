@@ -73,8 +73,8 @@ public class GameService implements GameObserver{
     }
 
     public void startGame(String gameId) {
-        checkIfGameExists(gameId);
-        Game game = games.get(gameId);
+        
+        Game game = getGame(gameId);
         try {
             game.startGame();
         }
@@ -297,6 +297,11 @@ public class GameService implements GameObserver{
         Game game = getGame(gameId);
         gameData.gameStateWsDTO.setRoundWinnerToken(player.getToken());
         //send GameData to front end
+
+        if (player.getToken() == null) { //do not send null updates
+            return;
+        }
+
         gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
         gameController.showdown(gameId, game.getHands());
     }

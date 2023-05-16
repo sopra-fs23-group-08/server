@@ -1,6 +1,7 @@
 package ch.uzh.ifi.hase.soprafs23.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import org.apache.catalina.connector.OutputBuffer;
 import org.h2.engine.Session;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,8 +23,17 @@ import org.springframework.messaging.converter.StringMessageConverter;
 import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
+import ch.uzh.ifi.hase.soprafs23.game.Hand;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.DecisionWsDTO;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.GameStateWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
 
@@ -55,8 +66,10 @@ public class ExtendedGameControllerTest {
     @Test
     public void setupTest() throws IOException, InterruptedException {
         assertNotEquals(null, gameId);
-        session.send("/app/games/" + gameId + "/start", ""); //works
+        errorObserver.clear();
 
+        session.send("/app/games/" + gameId + "/start", ""); //works
+        
         var response = errorObserver.poll(1, TimeUnit.SECONDS);
         assertEquals(null, response);
 
@@ -123,9 +136,10 @@ public class ExtendedGameControllerTest {
     @Test
     public void doubleLeave() throws InterruptedException {
         fillGame();
+        Thread.sleep(500);
         var player = new PlayerDTO("abc", "A");
         var playersObserver = subscribe(session, topic + "/players", List.class);
-        
+
         session.send(app + "/players/remove", player);
 
         var playerList = getNewest(playersObserver);
@@ -138,18 +152,68 @@ public class ExtendedGameControllerTest {
 
         assertNotEquals(null, playerList);
         assertEquals(5, playerList.size());
-        assertNotEquals(null, error);     
+        assertNotEquals(null, error);
+    }
+    
+    @Test
+    public void differentComments() throws InterruptedException, JsonMappingException, JsonProcessingException {
+        var playerObserver = subscribe(session, topic + "/players", List.class);
+        var gameStateObserver = subscribe(session, topic + "/state", GameStateWsDTO.class);
+        var pA = new HandObserver("A");
+        var pB = new HandObserver("B");
+        var pC = new HandObserver("C");
+        var pD = new HandObserver("D");
+        var pE = new HandObserver("E");
+        var pHost = new HandObserver("Host");
+
+        var handObservers = List.of(pA, pB, pC, pD, pE, pHost);
+
+        fillGame();
+        Thread.sleep(500);
+        session.send(app + "/start", "");
+
+        var playerList = getNewest(playerObserver);
+        var gameState = getNewest(gameStateObserver);
+        
+        var hands = new ArrayList<>();
+        for (var o : handObservers) {
+            hands.add(o.getHand());
+        }
+
+        var content = getContent(0, 0, hands);
+        assertEquals(getContent(0, 0, hands), content);
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = i + 1; j < 6; j++) {
+                var A = getContent(i, 0, hands);
+                var B = getContent(j, 0, hands);
+                assertNotEquals(A, B);
+            }
+        }
+        
+        for (int i = 0; i < 6; i++) {
+            for (int j = i + 1; j < 6; j++) {
+                var A = getContent(0, i, hands);
+                var B = getContent(0, j, hands);
+                assertNotEquals(A , B);
+            }
+        }
+    }
+    
+    
+    @Test
+    public void runThrough2() throws InterruptedException, JsonMappingException, JsonProcessingException {
+        fillGame();
+        Thread.sleep(500);
+        var hands = startGame();
+
+
     }
     
     @Test
     public void mutexTesting() {
         session.send("/app/mutexA", "");
         session.send("/app/mutexB", "");
-    }
-    
-    @Test
-    public void runThrough() {
-
     }
 
     private void fillGame() {
@@ -160,10 +224,29 @@ public class ExtendedGameControllerTest {
         var p5 = new PlayerDTO("FredericE", "E");
         var players = List.of(p1, p2, p3, p4, p5);
 
-
         for (var p : players) {
             session.send("/app/games/" + gameId + "/players/add", p);
         }
+    }
+    
+    private List<ArrayNode> startGame() throws JsonMappingException, JsonProcessingException, InterruptedException {
+        var pA = new HandObserver("A");
+        var pB = new HandObserver("B");
+        var pC = new HandObserver("C");
+        var pD = new HandObserver("D");
+        var pE = new HandObserver("E");
+        var pHost = new HandObserver("Host");
+
+        var handObservers = List.of(pA, pB, pC, pD, pE, pHost);
+
+        session.send(app + "/start", "");
+        
+        List<ArrayNode> hands = new ArrayList<>();
+        for (var o : handObservers) {
+            hands.add((ArrayNode) o.getHand());
+        }
+
+        return hands;
     }
 
     static private <T> T getNewest(BlockingQueue<T> bq) throws InterruptedException {
@@ -171,6 +254,25 @@ public class ExtendedGameControllerTest {
             bq.poll();
         }
         return bq.poll(1, TimeUnit.SECONDS);
+    }
+
+    private String getContent(int handIndex, int commentIndex, List hands) {
+        return ((ArrayNode) hands.get(handIndex)).get(commentIndex).get("first").get("content").asText();
+    }
+
+    class HandObserver {
+        BlockingQueue<String> observer;
+        ObjectMapper objectMapper;
+
+        HandObserver(String playerId) {
+            objectMapper = new ObjectMapper();
+            observer = subscribe(sessionString, topic + "/players/" + playerId + "/hand", String.class);
+        }
+
+        public JsonNode getHand() throws InterruptedException, JsonMappingException, JsonProcessingException {
+            var response = getNewest(observer);
+            return objectMapper.readTree(response);
+        }
     }
     
     public static void main(String[] args) throws InterruptedException {
