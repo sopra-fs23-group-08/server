@@ -73,7 +73,6 @@ public class GameController {
         try {
             MutablePlayer player = DTOMapper.INSTANCE.convertPlayerDTOtoEntity(playerDTO);
             // add player to game
-            gameService.isLobbyJoinable(gameId);
             gameService.addPlayer(gameId, new Player(player));
             // convert player-list to DTOs
         } catch (ResponseStatusException e) {
@@ -210,7 +209,7 @@ public class GameController {
      */
     @MessageMapping("/echoDTO")
     public synchronized void settingsEcho() throws MessagingException, JsonProcessingException {
-        
+
         var player = new PlayerWsDTO("playerToken", "Peter Toggenburger", 0, Decision.NOT_DECIDED, false, false, false);
         Collection<PlayerWsDTO> playerCollection = new ArrayList<>();
         playerCollection.add(player);
@@ -220,11 +219,30 @@ public class GameController {
         messagingTemplate.convertAndSend("/topic/echoVideoData", new VideoDataWsDTO());
         messagingTemplate.convertAndSend("/topic/echoPlayer", player);
         messagingTemplate.convertAndSend("/topic/echoPlayerCollection", playerCollection);
-        messagingTemplate.convertAndSend("/topic/echoGameState", new GameStateWsDTO(0,0,false, "playerToken", GamePhase.LOBBY));
+        messagingTemplate.convertAndSend("/topic/echoGameState",
+                new GameStateWsDTO(0, 0, false, "playerToken", GamePhase.LOBBY));
         messagingTemplate.convertAndSend("/topic/echoDecision", new DecisionWsDTO());
         messagingTemplate.convertAndSend("/topic/echoSettings", new SettingsWsDTO());
         messagingTemplate.convertAndSend("/topic/echoHand", objectMapper.writeValueAsString(hand.getComments()));
         messagingTemplate.convertAndSend("/topic/echoErrorA", new IllegalStateException("Test error"));
+    }
+
+    String abc = "abc";
+    @MessageMapping("/mutexA")
+    public void mutexA() throws InterruptedException {
+        
+        synchronized (abc) {
+            if (abc == "abc") {
+                Thread.sleep(1000);
+                abc = abc + "d";
+            }
+        }
+        System.out.println(abc);
+    }
+
+    @MessageMapping("/mutexB")
+    public void mutexB(){
+        abc = "hacke_";
     }
 }
 
