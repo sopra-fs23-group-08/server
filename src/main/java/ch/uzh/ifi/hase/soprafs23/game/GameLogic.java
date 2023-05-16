@@ -206,7 +206,7 @@ class GameLogic {
     }
 
     boolean isBettingRoundOver() {
-        if (gm.getCurrentPlayer().getToken() == gm.getLastRaisingPlayer().getToken()) {
+        if (gm.getCurrentPlayer().getToken().equals(gm.getLastRaisingPlayer().getToken())) {
             return true;
         }
         return false;

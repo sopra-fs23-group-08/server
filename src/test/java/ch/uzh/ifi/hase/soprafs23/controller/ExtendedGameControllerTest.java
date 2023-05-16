@@ -110,13 +110,35 @@ public class ExtendedGameControllerTest {
         for (var p : players) {
             session.send("/app/games/" + gameId + "/players/add", p);
         }
-        Thread.sleep(5000);
+        Thread.sleep(1000);
 
         response = getNewest(playersObserver);
         // assertEquals("Host", ((HashMap) response.get(0)).get("token"));
         assertEquals(6, response.size());
         var error = errorObserver.poll(1, TimeUnit.SECONDS);
         assertNotEquals(null, error);
+    }
+    
+
+    @Test
+    public void doubleLeave() throws InterruptedException {
+        fillGame();
+        var player = new PlayerDTO("abc", "A");
+        var playersObserver = subscribe(session, topic + "/players", List.class);
+        
+        session.send(app + "/players/remove", player);
+
+        var playerList = getNewest(playersObserver);
+        assertNotEquals(null, playerList);
+        assertEquals(5, playerList.size());
+
+        session.send(app + "/players/remove", player);
+        playerList = playersObserver.poll(1, TimeUnit.SECONDS);
+        var error = errorObserver.poll(1, TimeUnit.SECONDS);
+
+        assertNotEquals(null, playerList);
+        assertEquals(5, playerList.size());
+        assertNotEquals(null, error);     
     }
     
     @Test
@@ -130,7 +152,20 @@ public class ExtendedGameControllerTest {
 
     }
 
-    
+    private void fillGame() {
+        var p1 = new PlayerDTO("FredericA", "A");
+        var p2 = new PlayerDTO("FredericB", "B");
+        var p3 = new PlayerDTO("FredericC", "C");
+        var p4 = new PlayerDTO("FredericD", "D");
+        var p5 = new PlayerDTO("FredericE", "E");
+        var players = List.of(p1, p2, p3, p4, p5);
+
+
+        for (var p : players) {
+            session.send("/app/games/" + gameId + "/players/add", p);
+        }
+    }
+
     static private <T> T getNewest(BlockingQueue<T> bq) throws InterruptedException {
         while (bq.size() > 1) {
             bq.poll();

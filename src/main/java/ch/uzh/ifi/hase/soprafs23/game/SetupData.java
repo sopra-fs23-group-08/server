@@ -43,10 +43,15 @@ class SetupData extends Setup {
         synchronized (players) {
             Pair<Player, Integer> remove = null;
             for (Pair<Player, Integer> pair : players) {
-                if (pair.getFirst().getToken() == p.getToken()) {
+                var joinedToken = pair.getFirst().getToken();
+                var leaveToken = p.getToken();
+                if (joinedToken.equals(leaveToken)) {
                     remove = pair;
                     break;
                 }
+            }
+            if (remove == null) {
+                throw new IllegalStateException("There is no Player" + p);
             }
             players.remove(remove);
         }

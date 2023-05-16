@@ -164,10 +164,15 @@ public class GameService implements GameObserver{
 
         PlayerWsDTO playerWsDTO = new PlayerWsDTO(player.getToken(),player.getName(),null,Decision.NOT_DECIDED,false,false,false);
         Game game = getGame(gameId);
+        GameData gameData = getGameData(gameId);
 
         try {
-            game.setup.joinGame(player);
-            gamesData.get(gameId).playersData.put(playerWsDTO.getToken(), playerWsDTO); //only add if join was successful
+            synchronized (game) {
+                synchronized (gameData) {
+                    game.setup.joinGame(player);
+                    gameData.playersData.put(playerWsDTO.getToken(), playerWsDTO); //only add if join was successful
+                }
+            }
         }
         catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -181,16 +186,24 @@ public class GameService implements GameObserver{
         
         if (gameData.gameStateWsDTO.getGamePhase() == GamePhase.LOBBY) {
             try {
-            game.setup.leaveGame(player);
-            gameData.playersData.remove(player.getToken());
+                synchronized (game) {
+                    synchronized (gameData) {
+                        game.setup.leaveGame(player);
+                        gameData.playersData.remove(player.getToken());
+                    }
+                }
             }
             catch (Exception e) {
                 throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
             }
         }else if(gameData.gameStateWsDTO.getGamePhase() != GamePhase.CLOSED){
             try {
-                game.leave(player);
-                gameData.playersData.remove(player.getToken());
+                synchronized (game) {
+                    synchronized (gameData) {
+                        game.leave(player);
+                        gameData.playersData.remove(player.getToken());
+                    }
+                }
             } catch (Exception e){
                 throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
             }
