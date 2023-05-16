@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import org.h2.engine.Session;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -100,36 +101,28 @@ public class ExtendedGameControllerTest {
         var p6 = new PlayerDTO("FredericF", "F");
         var players = List.of(p1, p2, p3, p4, p5, p6);
         List response;
-        
+
         var playersObserver = subscribe(session, String.format("/topic/games/%s/players", gameId), List.class);
         var player = new PlayerDTO();
         player.setName("Sebastian Pamela");
         player.setToken("secondPlayer");
-        // session.send("/app/games/" + gameId + "/players/add", p1);
 
-        // response = playersObserver.poll(10, TimeUnit.SECONDS);
-        
-        // session.send("/app/games/" + gameId + "/players/add", p2);
-        // session.send("/app/games/" + gameId + "/players/add", p3);
-
-        // response = playersObserver.poll(10, TimeUnit.SECONDS);
-        // session.send("/app/games/" + gameId + "/players/add", p4);
-        // session.send("/app/games/" + gameId + "/players/add", p5);
-        // session.send("/app/games/" + gameId + "/players/add", p6);
-        
         for (var p : players) {
-                // session.send("/app/games/" + gameId + "/players/add", player);
-                session.send("/app/games/" + gameId + "/players/add", p);
-                // Thread.sleep(1000);
-                // await().atMost(1, TimeUnit.SECONDS);
+            session.send("/app/games/" + gameId + "/players/add", p);
         }
         Thread.sleep(5000);
-        
+
         response = getNewest(playersObserver);
         // assertEquals("Host", ((HashMap) response.get(0)).get("token"));
-        // assertNotEquals(null, errorObserver.poll(1, TimeUnit.SECONDS));
         assertEquals(6, response.size());
-        
+        var error = errorObserver.poll(1, TimeUnit.SECONDS);
+        assertNotEquals(null, error);
+    }
+    
+    @Test
+    public void mutexTesting() {
+        session.send("/app/mutexA", "");
+        session.send("/app/mutexB", "");
     }
     
     @Test
@@ -146,12 +139,12 @@ public class ExtendedGameControllerTest {
     }
     
     public static void main(String[] args) throws InterruptedException {
-        var b = new ArrayBlockingQueue<Integer>(10); //size of queue matters !!!
-        for (int i = 0; i < 10; i++) {
-            b.add(i);
-        }
-        var x = getNewest(b);
-        assertEquals(9, x);
-        System.out.println(x);
+        // var b = new ArrayBlockingQueue<Integer>(10); //size of queue matters !!!
+        // for (int i = 0; i < 10; i++) {
+        //     b.add(i);
+        // }
+        // var x = getNewest(b);
+        // assertEquals(9, x);
+        // System.out.println(x);
     }
 }
