@@ -5,6 +5,7 @@ import ch.uzh.ifi.hase.soprafs23.entity.Player;
 import ch.uzh.ifi.hase.soprafs23.game.Decision;
 import ch.uzh.ifi.hase.soprafs23.game.GamePhase;
 import ch.uzh.ifi.hase.soprafs23.game.Hand;
+import ch.uzh.ifi.hase.soprafs23.game.HandOwnerWinner;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.*;
 import ch.uzh.ifi.hase.soprafs23.rest.mapper.DTOMapper;
 import ch.uzh.ifi.hase.soprafs23.service.GameService;
@@ -163,7 +164,7 @@ public class GameController {
         }
     }
 
-    @MessageMapping("/game/{gameId}/close")
+    @MessageMapping("/games/{gameId}/close")
     public void closeGame(@DestinationVariable String gameId) {
         try {
             gameService.closeGame(gameId);
@@ -185,6 +186,20 @@ public class GameController {
     public synchronized void playerStateChanged(String gameId, Collection<PlayerWsDTO> playersDTOList) {
         String destination = String.format("/topic/games/%s/players", gameId);
         messagingTemplate.convertAndSend(destination, playersDTOList);
+    }
+
+    public synchronized void showdown(String gameId, Collection<HandOwnerWinner> handOwnerWinners) {
+        String destination = String.format("/topic/games/%s/showdown", gameId);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String responseBody;
+        try {
+            responseBody = objectMapper.writeValueAsString(handOwnerWinners);
+        }
+        catch (JsonProcessingException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Could not convert showdown to JSON");
+        }
+
+        messagingTemplate.convertAndSend(destination, responseBody);
     }
 
     public synchronized void newHand(String gameId, Player player, Hand hand) {

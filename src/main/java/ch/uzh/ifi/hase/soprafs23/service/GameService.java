@@ -279,13 +279,13 @@ public class GameService implements GameObserver{
 
     @Override
     public void roundWinnerIs(String gameId, Player player) {
-        checkIfGameExists(gameId);
         //update GameData
-        GameData gameData = gamesData.get(gameId);
+        GameData gameData = getGameData(gameId);
+        Game game = getGame(gameId);
         gameData.gameStateWsDTO.setRoundWinnerToken(player.getToken());
         //send GameData to front end
         gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
-
+        gameController.showdown(gameId, game.getHands());
     }
 
     @Override
