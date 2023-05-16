@@ -156,7 +156,20 @@ public class GameController {
         try {
             gameService.nextRound(gameId);
         } catch (ResponseStatusException e) {
-            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", new Exception(e.getMessage(), e.getCause()));
+            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error",
+                    new Exception(e.getMessage(), e.getCause()));
+        } catch (Exception e) {
+            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", e);
+        }
+    }
+
+    @MessageMapping("/game/{gameId}/close")
+    public void closeGame(@DestinationVariable String gameId) {
+        try {
+            gameService.closeGame(gameId);
+        } catch (ResponseStatusException e) {
+            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error",
+                    new Exception(e.getMessage(), e.getCause()));
         } catch (Exception e) {
             messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", e);
         }

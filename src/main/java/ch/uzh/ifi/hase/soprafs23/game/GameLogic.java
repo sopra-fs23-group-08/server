@@ -216,18 +216,23 @@ class GameLogic {
         return gm.getFoldCount() >= gm.getPlayerDataCollection().size() - 1;
     }
     
-    void leaveGame(PlayerData playerData) {
+    void leaveGame(Player player) {
+        var playerData = gm.getPlayerData(player);
+        leaveGame(playerData);
+    }
+
+    synchronized void leaveGame(PlayerData playerData) {
         switch (gm.getGamePhase()) {
             case LOBBY:
             case END_AFTER_FOURTH_BETTING_ROUND:
             case END_ALL_FOLDED:
                 gm.removePlayerData(playerData);
                 break;
-        
+
             default:
                 gm.setPotAmount(gm.getPotAmount() + playerData.getScore());
-                playerData.setDecision(Decision.FOLD);
-                gm.setFoldCount(gm.getFoldCount() + 1);
+                // playerData.setDecision(Decision.FOLD);
+                // gm.setFoldCount(gm.getFoldCount() + 1);
                 gm.removePlayerData(playerData);
                 break;
         }

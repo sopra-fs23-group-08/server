@@ -175,20 +175,27 @@ public class GameService implements GameObserver{
     }
 
     public void removePlayer(String gameId, Player player) {
-        // check if game exists
-        checkIfGameExists(gameId);
-
-        Game game = games.get(gameId);
+        Game game = getGame(gameId);
         var gameData = gamesData.get(gameId);
         // TODO allow players to leave after the game has started
         
-        try {
+        if (gameData.gameStateWsDTO.getGamePhase() == GamePhase.LOBBY) {
+            try {
             game.setup.leaveGame(player);
             gameData.playersData.remove(player.getToken());
+            }
+            catch (Exception e) {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
+            }
+        }else if(gameData.gameStateWsDTO.getGamePhase() != GamePhase.CLOSED){
+            try {
+                game.leave(player);
+                gameData.playersData.remove(player.getToken());
+            } catch (Exception e){
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
+            }
         }
-        catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
-        }
+        
     }
 
     public void setGameSettings(String gameId, SettingsWsDTO settings) {
@@ -364,6 +371,18 @@ public class GameService implements GameObserver{
             if (!games.containsKey(gameId)) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");
             }
+        }
+    }
+
+    public void closeGame(String gameId) {
+        //maybe add some check to not close any game at some time??
+        var game = getGame(gameId);
+        game.closeGame();
+        synchronized (games) {
+            games.remove(gameId);
+        }
+        synchronized (gamesData) {
+            gamesData.remove(gameId);
         }
     }
 

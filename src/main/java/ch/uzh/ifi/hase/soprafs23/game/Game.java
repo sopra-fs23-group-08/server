@@ -130,5 +130,10 @@ public class Game {
         game.setup.joinGame(playerA);
         game.startGame();
     }
+
+
+    public void leave(Player player) {
+        gameLogic.leaveGame(player);
+    }
     
 }
