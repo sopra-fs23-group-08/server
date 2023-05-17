@@ -58,7 +58,7 @@ public class Game {
         gameLogic.playerDecision(player, Decision.CALL);
     }
     public void call(String playerId) throws IllegalStateException{ //this should be called of player player decides to call
-        gameLogic.playerDecision(new Player(playerId), Decision.CALL);
+        gameLogic.playerDecision(new Player("", playerId), Decision.CALL);
     }
 
     
@@ -66,14 +66,14 @@ public class Game {
         gameLogic.playerDecision(player, Decision.RAISE, amount);
     }
     public void raise(String playerId, int newCallAmount) throws IllegalStateException{ //this should be called of player player decides to raise
-        gameLogic.playerDecision(new Player(playerId), Decision.RAISE, newCallAmount);
+        gameLogic.playerDecision(new Player("", playerId), Decision.RAISE, newCallAmount);
     }
 
     public void fold(Player player) throws IllegalStateException {
         gameLogic.playerDecision(player, Decision.FOLD);
     }
     public void fold(String playerId) throws IllegalStateException { //this should be called of player player decides to fold
-        gameLogic.playerDecision(new Player(playerId), Decision.FOLD);
+        gameLogic.playerDecision(new Player("", playerId), Decision.FOLD);
     }
 
     public synchronized void nextRound() throws IOException, InterruptedException { // this should be called after a round to play a second round

@@ -80,7 +80,7 @@ class GameLogic {
         playerDecision(player, d, gm.getCallAmount());
     }
     synchronized void playerDecision(Player player, Decision d, Integer newCallAmount) throws IllegalStateException {
-        if (player != gm.getCurrentPlayer()) {
+        if (!player.compareTo(gm.getCurrentPlayer())) {
             throw new IllegalCallerException("You're not the current player");
         }
         if (gm.getPlayerData(player).getDecision() == Decision.FOLD) {
@@ -188,11 +188,11 @@ class GameLogic {
     }
 
     boolean isSmallBlind(Player player) {
-        return (gm.getSmallBlindPlayer() == player);
+        return (gm.getSmallBlindPlayer().compareTo(player));
     }
 
     boolean isBigBlind(Player player) {
-        return (gm.getBigBlindPlayer() == player);
+        return (gm.getBigBlindPlayer().compareTo(player));
     }
 
     void enforceBigAndSmallBlind(Player player, Integer newCallAmount) throws IllegalStateException {

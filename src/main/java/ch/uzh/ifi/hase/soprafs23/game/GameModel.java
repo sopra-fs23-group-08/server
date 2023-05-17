@@ -189,7 +189,7 @@ class GameModel { //protected (Package Private)
                     how.setHand(pd.getHand());
                     how.setPlayer(pd.getPlayer());
                     how.setIsWinner(false);
-                    if (how.getPlayer() == winner) {
+                    if (how.getPlayer().compareTo(winner)) {
                         how.setIsWinner(true);
                     }
                     l.add(how);
@@ -256,9 +256,10 @@ class GameModel { //protected (Package Private)
     }
 
     public void setCurrentPlayer(Player currentPlayer) {
-        if (currentPlayer.getToken() != null && currentPlayer.getToken().equals(this.currentPlayer.getToken())) {
+        if (currentPlayer == null) {
+            throw new IllegalArgumentException("CurrentPlayer is null but should not be null");}
+        if (currentPlayer.compareTo(this.currentPlayer)) {
             return;}
-        if(currentPlayer.getToken() == null && this.currentPlayer.getToken() == null){return;}
         synchronized (this.currentPlayer) {
             for (GameObserver o : observers) {
                 o.currentPlayerChange(gameId, currentPlayer);

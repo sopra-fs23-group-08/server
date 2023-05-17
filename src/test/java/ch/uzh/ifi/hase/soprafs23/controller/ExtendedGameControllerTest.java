@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import ch.uzh.ifi.hase.soprafs23.YTAPIManager.Language;
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 import ch.uzh.ifi.hase.soprafs23.game.Decision;
 import ch.uzh.ifi.hase.soprafs23.game.Hand;
@@ -214,8 +215,8 @@ public class ExtendedGameControllerTest {
         var hands = startGame();
         Thread.sleep(500);
 
-        List<LinkedHashMap<String,Object>> playerList = getNewest(playerObserver);
-        LinkedHashMap<String,Object> currentPlayer = null;
+        List<LinkedHashMap<String, Object>> playerList = getNewest(playerObserver);
+        LinkedHashMap<String, Object> currentPlayer = null;
         for (var p : playerList) {
             var token = p.get("token");
             if ((Boolean) p.get("currentPlayer")) {
@@ -223,6 +224,23 @@ public class ExtendedGameControllerTest {
             }
         }
         assertNotEquals(null, currentPlayer);
+    }
+    
+    @Test
+    public void runThrough1() throws InterruptedException, JsonMappingException, JsonProcessingException {
+        fillGame();
+        Thread.sleep(500); //waiting for server to update. If started before all players have joined maybe only 3 players are in game
+        setupGame();
+        Thread.sleep(1000);
+        var hands = startGame();
+        Thread.sleep(1000); //waiting for server to update. If next action is done before game has properly started some unexpected errors might happen. Like no player is able to do a decision, before the game has properly started.
+        errorObserver.clear();
+        assertEquals(null, errorObserver.poll(500, TimeUnit.MILLISECONDS)); //check for errors and give time to breathe for server
+        decision(Decision.RAISE, 10);
+        assertEquals(null, errorObserver.poll(500, TimeUnit.MILLISECONDS)); //check for errors and give time to breathe for server
+        decision(Decision.RAISE, 20);
+        assertEquals(null, errorObserver.poll(500, TimeUnit.MILLISECONDS));
+
     }
     
     @Test
@@ -242,6 +260,18 @@ public class ExtendedGameControllerTest {
         for (var p : players) {
             session.send("/app/games/" + gameId + "/players/add", p);
         }
+    }
+    
+    private List<HashMap<String,Object>> setupGame() throws InterruptedException {
+        var settings = new SettingsWsDTO();
+        settings.setBigBlind(20);
+        settings.setSmallBlind(10);
+        settings.setLanguage(Language.GERMAN);
+        settings.setInitialBalance(500);
+        settings.setPlaylistUrl(null);
+        session.send(app + "/settings", settings);
+        Thread.sleep(500);
+        return getNewest(playerObserver);
     }
     
     private List<ArrayNode> startGame() throws JsonMappingException, JsonProcessingException, InterruptedException {
@@ -265,10 +295,13 @@ public class ExtendedGameControllerTest {
     }
     
     private void decision(Decision d) throws InterruptedException{
-        List<PlayerWsDTO> playerList = getNewest(playerObserver);
-        PlayerWsDTO currentPlayer = null;
+        decision(d,0);
+    }
+    private void decision(Decision d, int raiseAmount) throws InterruptedException{
+        List<LinkedHashMap<String,Object>> playerList = getNewest(playerObserver);
+        LinkedHashMap<String,Object> currentPlayer = null;
         for (var p : playerList) {
-            if (p.isCurrentPlayer()) {
+            if ((Boolean) p.get("currentPlayer")) {
                 currentPlayer = p;
             }
         }
@@ -280,7 +313,8 @@ public class ExtendedGameControllerTest {
 
         var decision = new DecisionWsDTO();
         decision.setDecision(d.toString());
-        session.send(app + "/players/" + currentPlayer.getToken() + "/decision", decision);
+        decision.setRaiseAmount(raiseAmount);
+        session.send(app + "/players/" + currentPlayer.get("token") + "/decision", decision);
     }
 
     static private <T> T getNewest(BlockingQueue<T> bq) throws InterruptedException {
