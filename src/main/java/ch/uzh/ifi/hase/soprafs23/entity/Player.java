@@ -39,4 +39,16 @@ public class Player {
     public String getName() {
         return name;
     }
+
+    public boolean compareTo(Player other) {
+        if (other == null) {
+            return false;}
+        if (this.token == other.getToken()) {
+            return true;
+        }
+        if (this.token != null && other.getToken() != null && this.token.equals(other.getToken())) {
+            return true;
+        }
+        return false;
+    }
 }

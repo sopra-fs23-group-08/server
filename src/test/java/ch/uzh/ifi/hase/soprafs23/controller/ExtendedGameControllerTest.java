@@ -31,10 +31,12 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
+import ch.uzh.ifi.hase.soprafs23.game.Decision;
 import ch.uzh.ifi.hase.soprafs23.game.Hand;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.DecisionWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.GameStateWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerDTO;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
 
 // makes use of functions declared in GameControllerTest
@@ -52,6 +54,7 @@ public class ExtendedGameControllerTest {
     private BlockingQueue<Exception> errorObserver;
     private String topic;
     private String app;
+    private BlockingQueue<List> playerObserver;
 
     @BeforeEach
     public void setup() throws IOException, InterruptedException, ExecutionException, TimeoutException {
@@ -61,6 +64,7 @@ public class ExtendedGameControllerTest {
         errorObserver = subscribe(session, "/topic/games/" + gameId + "/error", Exception.class);
         topic = "/topic/games/" + gameId;
         app = "/app/games/" + gameId;
+        playerObserver = subscribe(session, topic + "/players", List.class);
     }
     
     @Test
@@ -202,12 +206,23 @@ public class ExtendedGameControllerTest {
     
     
     @Test
-    public void runThrough2() throws InterruptedException, JsonMappingException, JsonProcessingException {
+    public void isThereACurrentPlayer() throws InterruptedException, JsonMappingException, JsonProcessingException {
         fillGame();
         Thread.sleep(500);
+        var playerObserver = subscribe(session, topic + "/players", List.class);
+        var gameStateObserver = subscribe(session, topic + "/state", GameStateWsDTO.class);
         var hands = startGame();
+        Thread.sleep(500);
 
-
+        List<LinkedHashMap<String,Object>> playerList = getNewest(playerObserver);
+        LinkedHashMap<String,Object> currentPlayer = null;
+        for (var p : playerList) {
+            var token = p.get("token");
+            if ((Boolean) p.get("currentPlayer")) {
+                currentPlayer = p;
+            }
+        }
+        assertNotEquals(null, currentPlayer);
     }
     
     @Test
@@ -240,13 +255,32 @@ public class ExtendedGameControllerTest {
         var handObservers = List.of(pA, pB, pC, pD, pE, pHost);
 
         session.send(app + "/start", "");
-        
+
         List<ArrayNode> hands = new ArrayList<>();
         for (var o : handObservers) {
             hands.add((ArrayNode) o.getHand());
         }
 
         return hands;
+    }
+    
+    private void decision(Decision d) throws InterruptedException{
+        List<PlayerWsDTO> playerList = getNewest(playerObserver);
+        PlayerWsDTO currentPlayer = null;
+        for (var p : playerList) {
+            if (p.isCurrentPlayer()) {
+                currentPlayer = p;
+            }
+        }
+
+        if (currentPlayer == null) {
+            throw new IllegalStateException("there must be a current player to make a move");
+        }
+
+
+        var decision = new DecisionWsDTO();
+        decision.setDecision(d.toString());
+        session.send(app + "/players/" + currentPlayer.getToken() + "/decision", decision);
     }
 
     static private <T> T getNewest(BlockingQueue<T> bq) throws InterruptedException {
@@ -271,6 +305,9 @@ public class ExtendedGameControllerTest {
 
         public JsonNode getHand() throws InterruptedException, JsonMappingException, JsonProcessingException {
             var response = getNewest(observer);
+            if (response == null) {
+                throw new IllegalStateException("Hand is empty for some Reason");
+            }
             return objectMapper.readTree(response);
         }
     }

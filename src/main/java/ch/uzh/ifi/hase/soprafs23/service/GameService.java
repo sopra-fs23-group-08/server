@@ -274,19 +274,18 @@ public class GameService implements GameObserver{
         playerWsDTO.setLastDecision(decision);
 
         //send GameData to front end
-        gameController.playerStateChanged(gameId, gameData.playersData.values()); //todo create Setting DTO
+        gameController.playerStateChanged(gameId, gameData.playersData.values()); 
 
     }
 
     @Override
     public void currentPlayerChange(String gameId, Player player) {
-        checkIfGameExists(gameId);
         //update GameData
-        GameData gameData = gamesData.get(gameId);
+        GameData gameData = getGameData(gameId);
         gameData.setCurrentPlayer(player);
 
         //send GameData to front end
-        gameController.playerStateChanged(gameId, gameData.playersData.values()); //todo create Setting DTO
+        gameController.playerStateChanged(gameId, gameData.playersData.values()); 
 
     }
 

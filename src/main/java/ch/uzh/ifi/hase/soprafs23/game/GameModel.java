@@ -153,11 +153,15 @@ class GameModel { //protected (Package Private)
             synchronized (smallBlindPlayer) {
                 synchronized (bigBlindPlayer) {
                     var indexDealer = playerOrder.indexOf(dealer);
-                    smallBlindPlayer = playerOrder.get((indexDealer + 1) % playerOrder.size());
-                    bigBlindPlayer = playerOrder.get((indexDealer + 2) % playerOrder.size());
-                    for (GameObserver o : observers) {
-                        o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
-                    }
+                    if(!smallBlindPlayer.compareTo(playerOrder.get((indexDealer + 1) % playerOrder.size())) ||
+                            !bigBlindPlayer.compareTo(playerOrder.get((indexDealer + 2) % playerOrder.size()))) {
+                    
+                            smallBlindPlayer = playerOrder.get((indexDealer + 1) % playerOrder.size());
+                            bigBlindPlayer = playerOrder.get((indexDealer + 2) % playerOrder.size());
+                            for (GameObserver o : observers) {
+                                o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
+                            }
+                        }
                     this.dealerPlayer = dealer;
                 }
             }
@@ -216,6 +220,8 @@ class GameModel { //protected (Package Private)
     }
 
     public void setVideoData(VideoData videoData) {
+        if (videoData == null || videoData == this.videoData) {return;}
+
         synchronized (videoData) {
             for (GameObserver o : observers) {
                 //not observed ?? good design doubt it :) 
@@ -229,6 +235,9 @@ class GameModel { //protected (Package Private)
     }
 
     public void setGamePhase(GamePhase gamePhase) {
+        if (gamePhase == null || gamePhase == this.gamePhase) {
+            return;}
+
         synchronized (this.gamePhase) {
             for (GameObserver o : observers) {
                 o.gamePhaseChange(gameId, gamePhase);
@@ -247,6 +256,9 @@ class GameModel { //protected (Package Private)
     }
 
     public void setCurrentPlayer(Player currentPlayer) {
+        if (currentPlayer.getToken() != null && currentPlayer.getToken().equals(this.currentPlayer.getToken())) {
+            return;}
+        if(currentPlayer.getToken() == null && this.currentPlayer.getToken() == null){return;}
         synchronized (this.currentPlayer) {
             for (GameObserver o : observers) {
                 o.currentPlayerChange(gameId, currentPlayer);
@@ -261,6 +273,8 @@ class GameModel { //protected (Package Private)
     }
 
     public void setPotAmount(int pot) {
+        if (pot == this.potAmount) {
+            return;}
         for (GameObserver o : observers) {
             o.potScoreChange(gameId, pot);
         }
@@ -273,7 +287,8 @@ class GameModel { //protected (Package Private)
     }
 
     public void setCallAmount(int callAmount) {
-
+        if (callAmount == this.callAmount) {
+            return;}
         for (GameObserver o : observers) {
             o.callAmountChanged(gameId, callAmount);
         }
@@ -289,7 +304,7 @@ class GameModel { //protected (Package Private)
         return lastRaisingPlayer;
     }
 
-    public void setLastRaisingPlayer(Player player) {
+    public void setLastRaisingPlayer(Player player) {      
         synchronized (this.lastRaisingPlayer) {
             this.lastRaisingPlayer = player;
         }
@@ -308,6 +323,12 @@ class GameModel { //protected (Package Private)
     }
 
     public void setWinner(Player winner) {
+        if (winner.getToken() != null && winner.getToken().equals(this.winner.getToken())) {
+            return;
+        }
+        if (winner.getClass() == null && this.winner.getToken() == null) {
+            return;
+        }
         //update points
         synchronized (playersData) { 
             synchronized (winner) {

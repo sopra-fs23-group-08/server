@@ -264,7 +264,7 @@ public class GameTest {
     public Player player;
     public Integer playerScore;
     public Integer potScore;
-    public Integer callAmount;
+    public Integer callAmount = 0;
     public Player smallBlind;
     public Player bigBlind;
     public Hand hand;
