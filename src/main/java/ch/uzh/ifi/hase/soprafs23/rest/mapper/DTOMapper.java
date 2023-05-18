@@ -25,6 +25,9 @@ public interface DTOMapper {
   /** DTO -> ENTITY*/
   @Mapping(source = "password", target = "password")
   @Mapping(source = "username", target = "username")
+  @Mapping(source = "token", target = "token")
+  @Mapping(source = "id", target = "id")
+  @Mapping(source = "status", target = "status")
   User convertUserPostDTOtoEntity(UserPostDTO userPostDTO);
 
   @Mapping(source = "token", target = "token")
@@ -39,6 +42,7 @@ public interface DTOMapper {
   Settings convertSettingsWsDTOtoEntity(SettingsWsDTO settingsWsDTO);
 
   /** ENTITY -> DTO */
+  //
   @Mapping(source = "token", target = "token")
   @Mapping(source = "username", target = "username")
   UserGetDTO convertEntityToUserGetDTO(User user);
