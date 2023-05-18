@@ -207,6 +207,7 @@ public class GameService implements GameObserver{
 
     public void setGameSettings(String gameId, SettingsWsDTO settings) {
         // TODO deal with case where player is registered
+        //
         // check if game exists
         checkIfGameExists(gameId);
 
