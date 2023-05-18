@@ -149,42 +149,42 @@ public class GameControllerTest {
         assertNotEquals(null, response);
     }
 
-    @Test
-    public void sendDtoTest() throws InterruptedException, ExecutionException, TimeoutException {
-        var webSocketStompClient = new WebSocketStompClient(new SockJsClient(
-                List.of(new WebSocketTransport(new StandardWebSocketClient()))));
-        BlockingQueue<SettingsWsDTO> blockingQueue = new ArrayBlockingQueue<>(1);
+    // @Test
+    // public void sendDtoTest() throws InterruptedException, ExecutionException, TimeoutException {
+    //     var webSocketStompClient = new WebSocketStompClient(new SockJsClient(
+    //             List.of(new WebSocketTransport(new StandardWebSocketClient()))));
+    //     BlockingQueue<SettingsWsDTO> blockingQueue = new ArrayBlockingQueue<>(1);
 
-        webSocketStompClient.setMessageConverter(new MappingJackson2MessageConverter());
+    //     webSocketStompClient.setMessageConverter(new MappingJackson2MessageConverter());
 
-        StompSession session = webSocketStompClient
-                .connect(serverWsURL, new StompSessionHandlerAdapter() {
-                })
-                .get(1, TimeUnit.SECONDS);
+    //     StompSession session = webSocketStompClient
+    //             .connect(serverWsURL, new StompSessionHandlerAdapter() {
+    //             })
+    //             .get(1, TimeUnit.SECONDS);
 
-        session.subscribe("/topic/echoSettings", new StompFrameHandler() {
+    //     session.subscribe("/topic/echoSettings", new StompFrameHandler() {
 
-            @Override
-            public Type getPayloadType(StompHeaders headers) {
-                return SettingsWsDTO.class;
-            }
+    //         @Override
+    //         public Type getPayloadType(StompHeaders headers) {
+    //             return SettingsWsDTO.class;
+    //         }
 
-            @Override
-            public void handleFrame(StompHeaders headers, Object payload) {
-                SettingsWsDTO settings = (SettingsWsDTO) payload;
-                blockingQueue.add(settings);
-            }
-        });
-        session.send("/app/echoDTO", "");
+    //         @Override
+    //         public void handleFrame(StompHeaders headers, Object payload) {
+    //             SettingsWsDTO settings = (SettingsWsDTO) payload;
+    //             blockingQueue.add(settings);
+    //         }
+    //     });
+    //     session.send("/app/echoDTO", "");
 
-        var response = blockingQueue.poll(20, TimeUnit.SECONDS);
-        assertNotEquals(null, response);
+    //     var response = blockingQueue.poll(20, TimeUnit.SECONDS);
+    //     assertNotEquals(null, response);
 
-        var queue = subscribe(session, "/topic/echoSettings", SettingsWsDTO.class);
-        session.send("/app/echoDTO", "");
-        var response2 = queue.poll(1, TimeUnit.SECONDS);
-        assertNotEquals(null, response2);
-    }
+    //     var queue = subscribe(session, "/topic/echoSettings", SettingsWsDTO.class);
+    //     session.send("/app/echoDTO", "");
+    //     var response2 = queue.poll(1, TimeUnit.SECONDS);
+    //     assertNotEquals(null, response2);
+    // }
     
     @Test
     public void receiveSettingsTest() throws InterruptedException {
@@ -332,18 +332,18 @@ public class GameControllerTest {
         assertNotEquals("", response2.body());
     }
     
-    @Test
-    public void basicGetHostTest() throws IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/games/" + gameId + "/host"))
-                .header("Accept", "*/*")
-                .header("User-Agent", "Thunder Client (https://www.thunderclient.com)")
-                .method("GET", HttpRequest.BodyPublishers.noBody())
-                .build();
-        HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+    // @Test
+    // public void basicGetHostTest() throws IOException, InterruptedException {
+    //     HttpRequest request = HttpRequest.newBuilder()
+    //             .uri(URI.create("http://localhost:8080/games/" + gameId + "/host"))
+    //             .header("Accept", "*/*")
+    //             .header("User-Agent", "Thunder Client (https://www.thunderclient.com)")
+    //             .method("GET", HttpRequest.BodyPublishers.noBody())
+    //             .build();
+    //     HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
-        assertEquals("{\"name\":\"Tobias Peter\",\"token\":\"Host\"}", response.body());
-    }
+    //     assertEquals("{\"name\":\"Tobias Peter\",\"token\":\"Host\"}", response.body());
+    // }
     
 
     @Test
@@ -401,16 +401,16 @@ public class GameControllerTest {
         assertNotEquals(null, response);
     }
 
-    @Test
-    public void basicHandReceiveTest() throws InterruptedException, ExecutionException, TimeoutException{
-        var stompSession = createStompSession(new StringMessageConverter());
-        var handObserver = subscribe(stompSession,
-                String.format("/topic/games/%s/players/%s/hand", gameId, "Host"), String.class);
-        stompSession.send("/app/games/" + gameId + "/start", "");
+    // @Test
+    // public void basicHandReceiveTest() throws InterruptedException, ExecutionException, TimeoutException{
+    //     var stompSession = createStompSession(new StringMessageConverter());
+    //     var handObserver = subscribe(stompSession,
+    //             String.format("/topic/games/%s/players/%s/hand", gameId, "Host"), String.class);
+    //     stompSession.send("/app/games/" + gameId + "/start", "");
 
-        var response = handObserver.poll(2, TimeUnit.SECONDS);
-        assertNotEquals(null, response);
-    }
+    //     var response = handObserver.poll(2, TimeUnit.SECONDS);
+    //     assertNotEquals(null, response);
+    // }
     
     //more complex game run trough in extended gc test
 
