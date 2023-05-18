@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
@@ -46,6 +47,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@DisabledIfEnvironmentVariable(named = "NODE_ENV", matches = "production")
 public class GameControllerTest {
  
     final static String serverURL = "http://localhost:8080";

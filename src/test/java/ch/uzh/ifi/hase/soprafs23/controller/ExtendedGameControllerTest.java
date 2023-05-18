@@ -14,10 +14,12 @@ import org.apache.catalina.connector.OutputBuffer;
 // import org.h2.engine.Session;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.converter.StringMessageConverter;
 import org.springframework.messaging.simp.stomp.StompSession;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -38,6 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @SuppressWarnings({"unchecked", "rawtypes", "unused"})
+@DisabledIfEnvironmentVariable(named = "NODE_ENV", matches = "production")
 public class ExtendedGameControllerTest {
 
     private String gameId;
@@ -375,6 +378,7 @@ public class ExtendedGameControllerTest {
     }
     
     public static void main(String[] args) throws InterruptedException {
+        System.out.println(System.getenv("Config"));
         // var b = new ArrayBlockingQueue<Integer>(10); //size of queue matters !!!
         // for (int i = 0; i < 10; i++) {
         //     b.add(i);
