@@ -56,7 +56,7 @@ public class GameController {
     }
     @PostMapping("/games/helpers/playlist")
     @ResponseStatus(HttpStatus.OK)
-    public void checkPlaylistUrl(@RequestBody PlaylistDTO playlistDTO) {
+    public void checkPlaylistUrl(@RequestBody PlaylistDTO playlistDTO){
         gameService.checkPlaylist(playlistDTO.getPlaylistUrl());
     }
 
@@ -66,6 +66,18 @@ public class GameController {
     public PlayerDTO getHost(@PathVariable String gameId) {
         MutablePlayer host = gameService.getHost(gameId);
         return DTOMapper.INSTANCE.convertEntityToPlayerDTO(host);
+    }
+    
+    //send Data to topics. usually data is sent automatically. but if some data got lost this end point can be used to send it again.
+    @MessageMapping("/games/{gameId}/sendData")
+    public void sendGameData(@DestinationVariable String gameId) {
+        gameService.sendGameData(gameId);
+    }
+
+    //send Data to topics. usually data is sent automatically. but if some data got lost this end point can be used to send it again.
+    @MessageMapping("/games/{gameId}/players/{playerToken}/sendHand")
+    public void sendHandData(@DestinationVariable String gameId, @DestinationVariable String playerToken) {
+        gameService.sendHandData(gameId, playerToken);
     }
 
     @MessageMapping("/games/{gameId}/players/add")
@@ -131,13 +143,6 @@ public class GameController {
         return "Game started.";
     }
 
-    @MessageMapping("/games/{gameId}/end")
-    public void endGame(@DestinationVariable String gameId) {
-        // end game
-        // TODO create gameService method & notify all players
-        // gameService.endGame(gameId);
-    }
-
     @MessageMapping("/games/{gameId}/players/{playerToken}/decision")
     public void handlePlayerDecision(@DestinationVariable String gameId,
                                      @DestinationVariable String playerToken,
@@ -196,8 +201,7 @@ public class GameController {
         String responseBody;
         try {
             responseBody = objectMapper.writeValueAsString(handOwnerWinners);
-        }
-        catch (JsonProcessingException e) {
+        } catch (JsonProcessingException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Could not convert showdown to JSON");
         }
 
@@ -205,7 +209,11 @@ public class GameController {
     }
 
     public void newHand(String gameId, Player player, Hand hand) {
-        String destination = String.format("/topic/games/%s/players/%s/hand", gameId, player.getToken());
+        newHand(gameId, player.getToken(), hand);
+    }
+
+    public void newHand(String gameId, String player, Hand hand) {
+        String destination = String.format("/topic/games/%s/players/%s/hand", gameId, player);
         ObjectMapper objectMapper = new ObjectMapper();
         String responseBody;
         try {
@@ -266,24 +274,6 @@ public class GameController {
         messagingTemplate.convertAndSend("/topic/echoHand", objectMapper.writeValueAsString(hand.getComments()));
         messagingTemplate.convertAndSend("/topic/echoError", new IllegalStateException("Test error"));
         messagingTemplate.convertAndSend("/topic/echoHandOwnerWinner", objectMapper.writeValueAsString(List.of(handOwnerWinner1,handOwnerWinner2)));
-    }
-
-    String abc = "abc";
-    @MessageMapping("/mutexA")
-    public void mutexA() throws InterruptedException {
-        
-        synchronized (abc) {
-            if (abc == "abc") {
-                Thread.sleep(1000);
-                abc = abc + "d";
-            }
-        }
-        System.out.println(abc);
-    }
-
-    @MessageMapping("/mutexB")
-    public void mutexB(){
-        abc = "hacke_";
     }
 }
 

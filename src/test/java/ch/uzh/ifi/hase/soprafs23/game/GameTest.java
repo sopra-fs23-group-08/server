@@ -273,6 +273,7 @@ public class GameTest {
     public Player winner;
     public Player currentPlayer;
     public VideoData videoData;
+    public boolean closed = false;
 
     @Override
     public void playerScoreChanged(String gameId, Player player, Integer score) {
@@ -304,8 +305,7 @@ public class GameTest {
 
     @Override
     public void gameGettingClosed(String gameId) {
-      // TODO Auto-generated method stub
-      throw new UnsupportedOperationException("Unimplemented method 'gameGettingClosed'");
+      this.closed = true;
     }
 
     @Override

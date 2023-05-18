@@ -1,6 +1,8 @@
 package ch.uzh.ifi.hase.soprafs23.YTAPIManager;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.util.Pair;
 import ch.uzh.ifi.hase.soprafs23.entity.Comment;
 import ch.uzh.ifi.hase.soprafs23.game.Correctness;
@@ -16,7 +18,7 @@ class HandCreator {
         comments.add(Pair.of(comment, correctness));
     }
 
-    public ArrayList<Pair<Comment, Correctness>> getComments() {
+    public List<Pair<Comment, Correctness>> getComments() {
         return new ArrayList<>(comments); //shallow copy
     }
 }
