@@ -33,6 +33,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import ch.uzh.ifi.hase.soprafs23.YTAPIManager.Language;
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 import ch.uzh.ifi.hase.soprafs23.game.Decision;
+import ch.uzh.ifi.hase.soprafs23.game.GamePhase;
 import ch.uzh.ifi.hase.soprafs23.game.Hand;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.DecisionWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.GameStateWsDTO;
@@ -56,6 +57,7 @@ public class ExtendedGameControllerTest {
     private String topic;
     private String app;
     private BlockingQueue<List> playerObserver;
+    private List<LinkedHashMap<String,Object>> playerList;
 
     @BeforeEach
     public void setup() throws IOException, InterruptedException, ExecutionException, TimeoutException {
@@ -226,21 +228,43 @@ public class ExtendedGameControllerTest {
         assertNotEquals(null, currentPlayer);
     }
     
+    //this test needs the sleep times to ensure server responses. but maybe there are multi threading issues.
     @Test
     public void runThrough1() throws InterruptedException, JsonMappingException, JsonProcessingException {
-        fillGame();
-        Thread.sleep(500); //waiting for server to update. If started before all players have joined maybe only 3 players are in game
-        setupGame();
-        Thread.sleep(1000);
-        var hands = startGame();
-        Thread.sleep(1000); //waiting for server to update. If next action is done before game has properly started some unexpected errors might happen. Like no player is able to do a decision, before the game has properly started.
-        errorObserver.clear();
-        assertEquals(null, errorObserver.poll(500, TimeUnit.MILLISECONDS)); //check for errors and give time to breathe for server
-        decision(Decision.RAISE, 10);
-        assertEquals(null, errorObserver.poll(500, TimeUnit.MILLISECONDS)); //check for errors and give time to breathe for server
-        decision(Decision.RAISE, 20);
-        assertEquals(null, errorObserver.poll(500, TimeUnit.MILLISECONDS));
+        final int sleepTime = 500; //increase this when inconsistent errors occur
 
+        fillGame();
+        Thread.sleep(sleepTime); //waiting for server to update. If started before all players have joined maybe only 3 players are in game
+        var playerList = setupGame();
+        var hands = startGame();
+
+        Thread.sleep(sleepTime); //waiting for server to update. If next action is done before game has properly started some unexpected errors might happen. Like no player is able to do a decision, before the game has properly started.
+        errorObserver.clear();
+        assertEquals(null, errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS)); //check for errors and give time to breathe for server
+        decision(Decision.RAISE, 10);
+        assertEquals(null, errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS)); //check for errors and give time to breathe for server
+        decision(Decision.RAISE, 20);
+        assertEquals(null, errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS));
+        decision(Decision.CALL, 0); 
+        decision(Decision.CALL, 0); //this is too fast and sends the second decision with the no longer current player gives an error
+        assertEquals("You're not the current player", errorObserver.poll(sleepTime*10, TimeUnit.MILLISECONDS).getMessage()); //since a message is expected the poll time is longer
+        Thread.sleep(sleepTime);
+        decision(Decision.CALL, 0); //is fine down here after currentPlayer is updated
+        assertEquals(null, errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS));
+
+        var gameStateObserver = subscribe(session, topic + "/state", GameStateWsDTO.class);
+        GamePhase gamePhase = GamePhase.FIRST_BETTING_ROUND;
+        while (gamePhase != GamePhase.END_AFTER_FOURTH_BETTING_ROUND || gamePhase == GamePhase.END_ALL_FOLDED) {
+            decision(Decision.CALL, 0);
+
+            var response1 = errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS);
+            if (response1 != null) {
+                assertEquals("You're not the current player", response1.getMessage());
+            }
+            
+            var response = getNewest(gameStateObserver);
+            gamePhase = response == null ? gamePhase : response.getGamePhase();
+        }
     }
     
     @Test
@@ -293,12 +317,26 @@ public class ExtendedGameControllerTest {
 
         return hands;
     }
+
+    int nullListRuns = 0;
+
+    private void updatePlayerList() throws InterruptedException {
+        var response = getNewest(playerObserver);
+        if (response != null) {
+            playerList = response;
+        } else {
+            nullListRuns++;
+            if (nullListRuns > 20) {
+                throw new IllegalStateException("There have been more than 20 PlayerList updates which did not change anything");
+            }
+        }
+    }
     
-    private void decision(Decision d) throws InterruptedException{
-        decision(d,0);
+    private void decision(Decision d) throws InterruptedException {
+        decision(d, 0);
     }
     private void decision(Decision d, int raiseAmount) throws InterruptedException{
-        List<LinkedHashMap<String,Object>> playerList = getNewest(playerObserver);
+        updatePlayerList();
         LinkedHashMap<String,Object> currentPlayer = null;
         for (var p : playerList) {
             if ((Boolean) p.get("currentPlayer")) {

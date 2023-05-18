@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.regex.Pattern;
@@ -245,9 +246,18 @@ public class GameControllerTest {
     }
 
     @Test
-    public void receiveErrorA() throws InterruptedException, ExecutionException, TimeoutException {
-        var handObserver = subscribe(session, "/topic/echoErrorA", Exception.class);
+    public void receiveError() throws InterruptedException, ExecutionException, TimeoutException {
+        var handObserver = subscribe(session, "/topic/echoError", Exception.class);
         session.send("/app/echoDTO", "");
+        var handString = handObserver.poll(1, TimeUnit.SECONDS);
+        assertNotEquals(null, handString);
+    }
+
+    @Test
+    public void receiveHandOwnerWinnerTest() throws InterruptedException, ExecutionException, TimeoutException {
+        var stompSession = createStompSession(new StringMessageConverter());
+        var handObserver = subscribe(stompSession, "/topic/echoHandOwnerWinner", String.class);
+        stompSession.send("/app/echoDTO", "");
         var handString = handObserver.poll(1, TimeUnit.SECONDS);
         assertNotEquals(null, handString);
     }
@@ -412,7 +422,7 @@ public class GameControllerTest {
 
     static public <T> BlockingQueue<T> subscribe(StompSession session, String endPoint,
             Class<T> classType) {
-        var destinationBQ = new ArrayBlockingQueue<T>(10);
+        var destinationBQ = new LinkedBlockingQueue<T>();
         session.subscribe(endPoint, new StompFrameHandler() {
             
             @Override

@@ -339,10 +339,10 @@ class GameModel { //protected (Package Private)
                     setPotAmount(0);
                 }
                 //declare winner
+                this.winner = winner; //first  set winner then update
                 for (GameObserver o : observers) {
                     o.roundWinnerIs(gameId, winner);
                 }
-                this.winner = winner;
             }
         }
     }

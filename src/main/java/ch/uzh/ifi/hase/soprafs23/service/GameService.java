@@ -403,5 +403,11 @@ public class GameService implements GameObserver{
         }
     }
 
+    public void playerUpdate(String gameId) {
+        GameData gameData = getGameData(gameId);
+        //send GameData to front end
+        gameController.playerStateChanged(gameId, gameData.playersData.values());
+    }
+
 }
 

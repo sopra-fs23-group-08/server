@@ -2,6 +2,7 @@ package ch.uzh.ifi.hase.soprafs23.game;
 
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
+//mutable only use this to send data
 public class HandOwnerWinner {
     private Hand hand;
     private Player player;

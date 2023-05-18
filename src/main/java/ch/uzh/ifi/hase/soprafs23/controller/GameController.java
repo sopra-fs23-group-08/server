@@ -24,6 +24,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @CrossOrigin(origins = { "http://localhost:3000/", "https://sopra-fs23-group-08-client.oa.r.appspot.com/" })
 @RestController
@@ -146,8 +147,10 @@ public class GameController {
             gameService.playerDecision(gameId, playerToken, decisionWsDTO);
         } catch (ResponseStatusException e) {
             messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", new Exception(e.getMessage(), e.getCause()));
+            gameService.playerUpdate(gameId); //in case client has not received correct playerState
         } catch (Exception e) {
             messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", e);
+            gameService.playerUpdate(gameId); //in case client has not received correct playerState
         }
     }
 
@@ -177,12 +180,12 @@ public class GameController {
 
     /** OBSERVER ENDPOINT METHODS
      * these methods are invoked by gameService */
-    public void gameStateChanged(String gameId, GameStateWsDTO gameStateWsDTO) {
+    public synchronized void gameStateChanged(String gameId, GameStateWsDTO gameStateWsDTO) {
         String destination = String.format("/topic/games/%s/state", gameId);
         messagingTemplate.convertAndSend(destination, gameStateWsDTO);
     }
 
-    public void playerStateChanged(String gameId, Collection<PlayerWsDTO> playersDTOList) {
+    public synchronized void playerStateChanged(String gameId, Collection<PlayerWsDTO> playersDTOList) {
         String destination = String.format("/topic/games/%s/players", gameId);
         messagingTemplate.convertAndSend(destination, playersDTOList);
     }
@@ -237,21 +240,32 @@ public class GameController {
     @MessageMapping("/echoDTO")
     public void settingsEcho() throws MessagingException, JsonProcessingException {
 
-        var player = new PlayerWsDTO("playerToken", "Peter Toggenburger", 0, Decision.NOT_DECIDED, false, false, false);
+        var player1 = new PlayerWsDTO("playerToken1", "Peter Toggenburger1", 0, Decision.NOT_DECIDED, false, false, false);
+        var player2 = new PlayerWsDTO("playerToken2", "Peter Toggenburger2", 100, Decision.NOT_DECIDED, false, false, false);
         Collection<PlayerWsDTO> playerCollection = new ArrayList<>();
-        playerCollection.add(player);
+        playerCollection.add(player1);
+        playerCollection.add(player2);
         ObjectMapper objectMapper = new ObjectMapper();
         var hand = new Hand();
+        var handOwnerWinner1 = new HandOwnerWinner();
+        handOwnerWinner1.setHand(hand);
+        handOwnerWinner1.setPlayer(new Player("playerName1", "playerToken1"));
+        handOwnerWinner1.setIsWinner(true);
+
+        var handOwnerWinner2 = new HandOwnerWinner();
+        handOwnerWinner2.setHand(hand);
+        handOwnerWinner2.setPlayer(new Player("playerName2", "playerToken2"));
+        handOwnerWinner2.setIsWinner(false);
 
         messagingTemplate.convertAndSend("/topic/echoVideoData", new VideoDataWsDTO());
-        messagingTemplate.convertAndSend("/topic/echoPlayer", player);
+        messagingTemplate.convertAndSend("/topic/echoPlayer", player1);
         messagingTemplate.convertAndSend("/topic/echoPlayerCollection", playerCollection);
-        messagingTemplate.convertAndSend("/topic/echoGameState",
-                new GameStateWsDTO(0, 0, false, "playerToken", GamePhase.LOBBY));
+        messagingTemplate.convertAndSend("/topic/echoGameState", new GameStateWsDTO(0, 0, false, "playerToken", GamePhase.LOBBY));
         messagingTemplate.convertAndSend("/topic/echoDecision", new DecisionWsDTO());
         messagingTemplate.convertAndSend("/topic/echoSettings", new SettingsWsDTO());
         messagingTemplate.convertAndSend("/topic/echoHand", objectMapper.writeValueAsString(hand.getComments()));
-        messagingTemplate.convertAndSend("/topic/echoErrorA", new IllegalStateException("Test error"));
+        messagingTemplate.convertAndSend("/topic/echoError", new IllegalStateException("Test error"));
+        messagingTemplate.convertAndSend("/topic/echoHandOwnerWinner", objectMapper.writeValueAsString(List.of(handOwnerWinner1,handOwnerWinner2)));
     }
 
     String abc = "abc";
