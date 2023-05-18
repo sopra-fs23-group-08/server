@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import org.springframework.data.util.Pair;
-import org.springframework.transaction.IllegalTransactionStateException;
-
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
 //todo testing :)

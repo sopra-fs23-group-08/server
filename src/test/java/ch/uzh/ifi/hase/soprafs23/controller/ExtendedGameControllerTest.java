@@ -5,49 +5,37 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import org.apache.catalina.connector.OutputBuffer;
-import org.h2.engine.Session;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
-import org.springframework.messaging.converter.SimpleMessageConverter;
 import org.springframework.messaging.converter.StringMessageConverter;
 import org.springframework.messaging.simp.stomp.StompSession;
-import org.springframework.web.server.ResponseStatusException;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import ch.uzh.ifi.hase.soprafs23.YTAPIManager.Language;
-import ch.uzh.ifi.hase.soprafs23.entity.Player;
 import ch.uzh.ifi.hase.soprafs23.game.Decision;
 import ch.uzh.ifi.hase.soprafs23.game.GamePhase;
-import ch.uzh.ifi.hase.soprafs23.game.Hand;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.DecisionWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.GameStateWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerDTO;
-import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
 
 // makes use of functions declared in GameControllerTest
 import static ch.uzh.ifi.hase.soprafs23.controller.GameControllerTest.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.awaitility.Awaitility.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SuppressWarnings({"unchecked", "rawtypes", "unused"})
 public class ExtendedGameControllerTest {
 
     private String gameId;
@@ -231,7 +219,7 @@ public class ExtendedGameControllerTest {
     //this test needs the sleep times to ensure server responses. but maybe there are multi threading issues.
     @Test
     public void runThrough1() throws InterruptedException, JsonMappingException, JsonProcessingException {
-        final int sleepTime = 500; //increase this when inconsistent errors occur
+        final int sleepTime = 100; //increase this when inconsistent errors occur
 
         fillGame();
         Thread.sleep(sleepTime); //waiting for server to update. If started before all players have joined maybe only 3 players are in game

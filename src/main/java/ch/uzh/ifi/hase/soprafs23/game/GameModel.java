@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentMap;
-
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
 
@@ -223,9 +221,9 @@ class GameModel { //protected (Package Private)
         if (videoData == null || videoData == this.videoData) {return;}
 
         synchronized (videoData) {
-            for (GameObserver o : observers) {
-                //not observed ?? good design doubt it :) 
-            }
+            // for (GameObserver o : observers) {
+            //     //not observed ?? good design doubt it :) 
+            // }
             this.videoData = videoData;
         }
     }

@@ -14,9 +14,6 @@ import ch.uzh.ifi.hase.soprafs23.rest.dto.DecisionWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.VideoDataWsDTO;
-import ch.uzh.ifi.hase.soprafs23.rest.mapper.DTOMapper;
-
-import org.springframework.beans.factory.annotation.Autowired;
 // import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -24,10 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 
 @Service //part of the Spring Framework, and you will use it to mark a class as a service layer component. 
 @Transactional // transactions should be managed for this service via @Transactional annotation.

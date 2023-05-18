@@ -1,7 +1,6 @@
 package ch.uzh.ifi.hase.soprafs23.YTAPIManager;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.regex.Pattern;
 
 import org.springframework.data.util.Pair;
 
-import ch.qos.logback.classic.turbo.TurboFilter;
 import ch.uzh.ifi.hase.soprafs23.entity.Comment;
 import ch.uzh.ifi.hase.soprafs23.game.Correctness;
 import ch.uzh.ifi.hase.soprafs23.game.Hand;

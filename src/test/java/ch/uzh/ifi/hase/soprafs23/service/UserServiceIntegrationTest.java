@@ -53,6 +53,7 @@ public class UserServiceIntegrationTest {
   }
 
   @Test
+  @SuppressWarnings({"unused"})
   public void createUser_duplicateUsername_throwsException() {
     assertNull(userRepository.findByUsername("testUsername"));
 

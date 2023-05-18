@@ -3,25 +3,18 @@ package ch.uzh.ifi.hase.soprafs23.YTAPIManager;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.Duration;
 import java.util.Date;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Stream;
-
-import org.hibernate.type.StringNVarcharType;
-import org.springframework.boot.json.GsonJsonParser;
-import org.springframework.core.convert.ConversionException;
 import org.springframework.data.util.Pair;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
-import ch.uzh.ifi.hase.soprafs23.YTAPIManager.CommentList.Item.Snippet;
 import ch.uzh.ifi.hase.soprafs23.entity.Comment;
 import ch.uzh.ifi.hase.soprafs23.game.Correctness;
 import ch.uzh.ifi.hase.soprafs23.game.Hand;
@@ -216,11 +209,11 @@ class APIController {
 
 class Test {
     public static void main(String[] args) throws IllegalStateException, FileNotFoundException, IOException {
-        VideoList videoList = APIController.fromJsonToVideoList(APIController.readFile("src/main/resources/VideoByQueryJson.txt"));
+        // VideoList videoList = APIController.fromJsonToVideoList(APIController.readFile("src/main/resources/VideoByQueryJson.txt"));
 
-        CommentList c = APIController.fromJsonToCommentList(APIController.readFile("src/main/resources/CommentsByVideoIdJson.txt"));
+        // CommentList c = APIController.fromJsonToCommentList(APIController.readFile("src/main/resources/CommentsByVideoIdJson.txt"));
 
-        VideoInfoList vil = APIController.fromJsonVideoInfoList(APIController.readFile("src/main/resources/VideoInfoJson.txt"));
+        // VideoInfoList vil = APIController.fromJsonVideoInfoList(APIController.readFile("src/main/resources/VideoInfoJson.txt"));
     }
 }
 

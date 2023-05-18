@@ -1,8 +1,5 @@
 package ch.uzh.ifi.hase.soprafs23.rest.dto;
 
-import java.time.Duration;
-import java.util.Date;
-
 public class VideoDataWsDTO {
     private String title;
     private String thumbnailUrl;
