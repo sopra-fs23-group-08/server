@@ -26,11 +26,10 @@ import java.util.HashMap;
 @Service //part of the Spring Framework, and you will use it to mark a class as a service layer component. 
 @Transactional // transactions should be managed for this service via @Transactional annotation.
 
-// TODO: end/delete games
 public class GameService implements GameObserver{
 
     // @Autowired
-    public GameController gameController;
+    public final GameController gameController;
     
     public GameService(GameController gameController) {
         this.gameController = gameController;
@@ -66,15 +65,15 @@ public class GameService implements GameObserver{
         return newGame.getGameId();
     }
 
-    public void startGame(String gameId) {
+    public void startGame(String gameId){
         
         Game game = getGame(gameId);
         try {
             game.startGame();
-        }
-        // TODO throw more specific exception - no players? other error?
-        catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }catch (InterruptedException e){
+            Thread.currentThread().interrupt();
+        }catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
     }
 
@@ -104,13 +103,15 @@ public class GameService implements GameObserver{
 
             default:
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Illegal decision");
-        };
+        }
     }
 
-    public void nextRound(String gameId) {
+    public void nextRound(String gameId){
         Game game = getGame(gameId);
         try {
             game.nextRound();
+        }catch (InterruptedException e){
+            Thread.currentThread().interrupt();
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }        
@@ -176,7 +177,6 @@ public class GameService implements GameObserver{
     public void removePlayer(String gameId, Player player) {
         Game game = getGame(gameId);
         var gameData = gamesData.get(gameId);
-        // TODO allow players to leave after the game has started
         
         if (gameData.gameStateWsDTO.getGamePhase() == GamePhase.LOBBY) {
             try {
@@ -371,12 +371,14 @@ public class GameService implements GameObserver{
      * @throws IllegalStateException
      * */
 
-    public boolean checkPlaylist(String URL) throws ResponseStatusException {//true if playlist contains 6 or more videos
+    public boolean checkPlaylist(String url) throws ResponseStatusException {//true if playlist contains 6 or more videos
         try {
-            YTAPIManager.checkPlaylistUrl(URL);
+            YTAPIManager.checkPlaylistUrl(url);
             return true;
-        }
-        catch (Exception e){
+        }catch (InterruptedException e){
+            Thread.currentThread().interrupt();
+            return false;
+        } catch (Exception e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
@@ -410,7 +412,7 @@ public class GameService implements GameObserver{
     public void sendHandData(String gameId, String playerToken) {
         var gameData = getGameData(gameId);
         var hand = gameData.handData.get(playerToken);
-        gameController.newHand(gameId, playerToken, hand);;
+        gameController.newHand(gameId, playerToken, hand);
     }
 
     public void sendGameData(String gameId) {

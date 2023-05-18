@@ -56,7 +56,7 @@ public class GameController {
     }
     @PostMapping("/games/helpers/playlist")
     @ResponseStatus(HttpStatus.OK)
-    public void checkPlaylistUrl(@RequestBody PlaylistDTO playlistDTO) {
+    public void checkPlaylistUrl(@RequestBody PlaylistDTO playlistDTO){
         gameService.checkPlaylist(playlistDTO.getPlaylistUrl());
     }
 
@@ -141,13 +141,6 @@ public class GameController {
             messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", e);
         }
         return "Game started.";
-    }
-
-    @MessageMapping("/games/{gameId}/end")
-    public void endGame(@DestinationVariable String gameId) {
-        // end game
-        // TODO create gameService method & notify all players
-        // gameService.endGame(gameId);
     }
 
     @MessageMapping("/games/{gameId}/players/{playerToken}/decision")
@@ -281,24 +274,6 @@ public class GameController {
         messagingTemplate.convertAndSend("/topic/echoHand", objectMapper.writeValueAsString(hand.getComments()));
         messagingTemplate.convertAndSend("/topic/echoError", new IllegalStateException("Test error"));
         messagingTemplate.convertAndSend("/topic/echoHandOwnerWinner", objectMapper.writeValueAsString(List.of(handOwnerWinner1,handOwnerWinner2)));
-    }
-
-    String abc = "abc";
-    @MessageMapping("/mutexA")
-    public void mutexA() throws InterruptedException {
-        
-        synchronized (abc) {
-            if (abc == "abc") {
-                Thread.sleep(1000);
-                abc = abc + "d";
-            }
-        }
-        System.out.println(abc);
-    }
-
-    @MessageMapping("/mutexB")
-    public void mutexB(){
-        abc = "hacke_";
     }
 }
 
