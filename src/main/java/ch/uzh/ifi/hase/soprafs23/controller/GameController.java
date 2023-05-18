@@ -67,6 +67,18 @@ public class GameController {
         MutablePlayer host = gameService.getHost(gameId);
         return DTOMapper.INSTANCE.convertEntityToPlayerDTO(host);
     }
+    
+    //send Data to topics. usually data is sent automatically. but if some data got lost this end point can be used to send it again.
+    @MessageMapping("/games/{gameId}/sendData")
+    public void sendGameData(@DestinationVariable String gameId) {
+        gameService.sendGameData(gameId);
+    }
+
+    //send Data to topics. usually data is sent automatically. but if some data got lost this end point can be used to send it again.
+    @MessageMapping("/games/{gameId}/players/{playerToken}/sendHand")
+    public void sendHandData(@DestinationVariable String gameId, @DestinationVariable String playerToken) {
+        gameService.sendHandData(gameId, playerToken);
+    }
 
     @MessageMapping("/games/{gameId}/players/add")
     @SendTo("/topic/games/{gameId}/players")
@@ -196,8 +208,7 @@ public class GameController {
         String responseBody;
         try {
             responseBody = objectMapper.writeValueAsString(handOwnerWinners);
-        }
-        catch (JsonProcessingException e) {
+        } catch (JsonProcessingException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Could not convert showdown to JSON");
         }
 
@@ -205,7 +216,11 @@ public class GameController {
     }
 
     public void newHand(String gameId, Player player, Hand hand) {
-        String destination = String.format("/topic/games/%s/players/%s/hand", gameId, player.getToken());
+        newHand(gameId, player.getToken(), hand);
+    }
+
+    public void newHand(String gameId, String player, Hand hand) {
+        String destination = String.format("/topic/games/%s/players/%s/hand", gameId, player);
         ObjectMapper objectMapper = new ObjectMapper();
         String responseBody;
         try {

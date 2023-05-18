@@ -14,7 +14,6 @@ import ch.uzh.ifi.hase.soprafs23.rest.dto.DecisionWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.VideoDataWsDTO;
-// import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -256,8 +255,10 @@ public class GameService implements GameObserver{
     public void newHand(String gameId, Player player, Hand hand) {
         checkIfGameExists(gameId);
         
+        var gameData = getGameData(gameId);
+        gameData.handData.put(player.getToken(), hand);
         //send GameData to front end
-        gameController.newHand(gameId, player, hand); //todo create Setting DTO
+        gameController.newHand(gameId, player, hand);
     }
 
     @Override
@@ -359,6 +360,8 @@ public class GameService implements GameObserver{
         vd.setThumbnailUrl(videoData.thumbnail);
         vd.setTitle(videoData.title);
         vd.setViews(videoData.views);
+        var gameData = getGameData(gameId);
+        gameData.videoData = vd;
         gameController.newVideoData(gameId, vd);
     }
 
@@ -402,6 +405,19 @@ public class GameService implements GameObserver{
         GameData gameData = getGameData(gameId);
         //send GameData to front end
         gameController.playerStateChanged(gameId, gameData.playersData.values());
+    }
+
+    public void sendHandData(String gameId, String playerToken) {
+        var gameData = getGameData(gameId);
+        var hand = gameData.handData.get(playerToken);
+        gameController.newHand(gameId, playerToken, hand);;
+    }
+
+    public void sendGameData(String gameId) {
+        var gameData = getGameData(gameId);
+        gameController.playerStateChanged(gameId, gameData.playersData.values());
+        gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
+        gameController.newVideoData(gameId, gameData.videoData);
     }
 
 }
