@@ -56,4 +56,3 @@ public class UserPostDTO {
   public void setId(Long id) {
     this.id = id;
   }
-}
