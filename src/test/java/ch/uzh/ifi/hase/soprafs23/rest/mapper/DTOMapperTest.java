@@ -1,6 +1,6 @@
 package ch.uzh.ifi.hase.soprafs23.rest.mapper;
 
-import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
+// import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
 import ch.uzh.ifi.hase.soprafs23.entity.User;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.UserGetDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.UserPostDTO;
@@ -32,7 +32,7 @@ public class DTOMapperTest {
     // create User
     User user = new User();
     user.setUsername("firstname@lastname");
-    user.setStatus(UserStatus.OFFLINE);
+    // user.setStatus(UserStatus.OFFLINE);
     user.setToken("1");
 
     // MAP -> Create UserGetDTO
