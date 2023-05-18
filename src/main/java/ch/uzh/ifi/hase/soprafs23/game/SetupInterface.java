@@ -9,28 +9,28 @@ import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
 public interface SetupInterface {
 
-    public List<Pair<Player, Integer>> getPlayers() throws Exception;
+    public List<Pair<Player, Integer>> getPlayers() throws IllegalStateException;
 
-    public void joinGame(Player p) throws Exception;
+    public void joinGame(Player p) throws IllegalStateException;
 
-    public void leaveGame(Player p) throws Exception;
+    public void leaveGame(Player p) throws IllegalStateException;
 
-    public void setScoreForPlayer(Player p, int newInitialScore) throws Exception;
+    public void setScoreForPlayer(Player p, int newInitialScore) throws IllegalStateException;
 
-    public void setStartScoreForAll(int newInitialScore) throws Exception;
+    public void setStartScoreForAll(int newInitialScore) throws IllegalStateException;
 
-    public Pair<VideoData, List<Hand>> getYTData() throws IOException, InterruptedException, Exception;
+    public Pair<VideoData, List<Hand>> getYTData() throws IOException, InterruptedException, IllegalStateException;
 
-    public int getSmallBlindAmount() throws Exception;
+    public int getSmallBlindAmount() throws IllegalStateException;
 
-    public void setSmallBlindAmount(int smallBid) throws Exception;
+    public void setSmallBlindAmount(int smallBid) throws IllegalStateException;
 
-    public int getBigBlindAmount() throws Exception;
+    public int getBigBlindAmount() throws IllegalStateException;
 
-    public void setBigBlindAmount(int bigBlind) throws Exception;
+    public void setBigBlindAmount(int bigBlind) throws IllegalStateException;
 
-    public boolean isInfoFirstRound() throws Exception;
+    public boolean isInfoFirstRound() throws IllegalStateException;
 
-    public void setInfoFirstRound(boolean infoFirstRound) throws Exception;
+    public void setInfoFirstRound(boolean infoFirstRound) throws IllegalStateException;
 }
 

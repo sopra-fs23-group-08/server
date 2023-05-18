@@ -11,22 +11,32 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
+//todo
+//multi leave test
+//Information increase test
+//end of round test
+//next round test
+//leave testing in generally
+//With API testing
+
 public class GameTest {
   Game game;
   Player playerA;
   Player playerB;
   Player playerC;
   TestGameObserver observer;
-
+  
   @BeforeEach
-  public void setUpGame() throws Exception {
-
+  public void setUpGame() throws IllegalStateException {
+    
     playerA = new Player("A");
     game = new Game(playerA);
     playerB = new Player("B");
     playerC = new Player("C");
     observer = new TestGameObserver();
-
+    game.setup.video.useYtApi(false);
+    
     assertEquals(false, game.getGameId().isEmpty());
     
     game.setup.joinGame(playerC);
@@ -51,7 +61,7 @@ public class GameTest {
   }
 
   @Test
-  public void runThrough() throws Exception { //this is like a sample game
+  public void runThrough() throws IllegalStateException { //this is like a sample game
     executableThrowsExceptionMsg(() -> {
       game.setup.setBigBlindAmount(0);
     }, "During the game the Setup can't be changed. 'setBigBlindAmount'");
@@ -106,7 +116,7 @@ public class GameTest {
       game.call(observer.currentPlayer);
     }, "BigBlind must raise. currentCallAmount: 10 BigBlindAmount: 20");
 
-    assertEquals(null, observer.winner);
+    assertEquals(null, observer.winner.getToken());
     try {
       game.raise(observer.currentPlayer, 20);
       game.call(observer.currentPlayer);
@@ -138,7 +148,7 @@ public class GameTest {
   @Test
   public void runThrough2() {
 
-    assertEquals(null, observer.winner);
+    assertEquals(null, observer.winner.getToken());
 
     try {
       game.raise(observer.currentPlayer, 10);
@@ -182,7 +192,7 @@ public class GameTest {
     } catch (Exception e) {
       assertEquals("Some exception occurred", e);
     }
-    assertNotEquals(null, observer.winner);
+    assertNotEquals(null, observer.winner.getToken());
   }
 
   @Test
@@ -254,7 +264,7 @@ public class GameTest {
     public Player player;
     public Integer playerScore;
     public Integer potScore;
-    public Integer callAmount;
+    public Integer callAmount = 0;
     public Player smallBlind;
     public Player bigBlind;
     public Hand hand;

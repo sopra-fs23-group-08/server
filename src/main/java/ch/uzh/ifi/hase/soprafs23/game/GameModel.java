@@ -7,28 +7,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentMap;
-
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 
 
 class GameModel { //protected (Package Private)
+    //follow this order to enter mutex state.
     public final String gameId;
     private final Map<String, PlayerData> playersData; //mutable but address cannot be changed
     private final List<Player> playerOrder;
     private Random rand;
     private VideoData videoData;
     private GamePhase gamePhase;
+
     private Player currentPlayer;
     private Player dealerPlayer;
     private Player smallBlindPlayer; //automatically set when dealer is set
     private Player bigBlindPlayer; //automatically set when dealer is set
-    private int potAmount;
-    private int callAmount = 0;
     private Player lastRaisingPlayer;
-    private int foldCount;
     private Player winner;
     private Player host;
+
+    private int potAmount;
+    private int callAmount = 0;
+    private int foldCount;
 
     private List<GameObserver> observers;
 
@@ -39,6 +40,21 @@ class GameModel { //protected (Package Private)
         observers = new ArrayList<>();
         playerOrder = new ArrayList<>();
         rand = new Random();
+
+        //avoid null pointer exceptions
+        currentPlayer = new Player();
+        dealerPlayer = new Player();
+        smallBlindPlayer = new Player();
+        bigBlindPlayer = new Player();
+        lastRaisingPlayer = new Player();
+        winner = new Player();
+        host = new Player();
+    }
+
+    public void closeGame() {
+        for (var o : observers) {
+            o.gameGettingClosed(gameId);
+        }
     }
 
     public void resetTable() {//call before playing, players stay
@@ -46,13 +62,13 @@ class GameModel { //protected (Package Private)
         setCurrentPlayer(new Player());
         setGamePhase(GamePhase.FIRST_BETTING_ROUND);
         setPotAmount(0);
-        setWinner(null);
+        setWinner(new Player());
         setCallAmount(0);
     }
 
     public void resetRound() {
         setGamePhase(GamePhase.FIRST_BETTING_ROUND);
-        setWinner(null);
+        setWinner(new Player());
         setCallAmount(0);
     }
 
@@ -79,18 +95,22 @@ class GameModel { //protected (Package Private)
 
     //player stuff-------------------------------
     public void addPlayerData(PlayerData p) {
-        playersData.put(p.token ,p);
-        playerOrder.add(p.getPlayer());
-        for (GameObserver o : observers) {
-            p.addObserver(gameId, o);
+        synchronized (playersData) {
+            playersData.put(p.token ,p);
+            playerOrder.add(p.getPlayer());
+            for (GameObserver o : observers) {
+                p.addObserver(gameId, o);
+            }
         }
     }
     
     public void removePlayerData(PlayerData p) {
-        playersData.remove(p.token);
-        playerOrder.remove(p.getPlayer());
-        for (GameObserver o : observers) {
-            p.removeObserver(o);
+        synchronized (playersData) {
+            playersData.remove(p.token);
+            playerOrder.remove(p.getPlayer());
+            for (GameObserver o : observers) {
+                p.removeObserver(o);
+            }
         }
     }
 
@@ -119,7 +139,7 @@ class GameModel { //protected (Package Private)
     }
     
     public void setDealerPlayer() {
-        if (dealerPlayer == null) {
+        if (dealerPlayer.getToken() == null) {
             setDealerPlayer(playerOrder.get(rand.nextInt(playerOrder.size())));
         } else {
             setDealerPlayer(dealerPlayer);
@@ -127,39 +147,57 @@ class GameModel { //protected (Package Private)
     }
 
     public void setDealerPlayer(Player dealer) {
-        var indexDealer = playerOrder.indexOf(dealer);
-        smallBlindPlayer = playerOrder.get((indexDealer + 1) % playerOrder.size());
-        bigBlindPlayer = playerOrder.get((indexDealer + 2) % playerOrder.size());
-        for (GameObserver o : observers) {
-            o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
+        synchronized (dealer) {
+            synchronized (smallBlindPlayer) {
+                synchronized (bigBlindPlayer) {
+                    var indexDealer = playerOrder.indexOf(dealer);
+                    if(!smallBlindPlayer.compareTo(playerOrder.get((indexDealer + 1) % playerOrder.size())) ||
+                            !bigBlindPlayer.compareTo(playerOrder.get((indexDealer + 2) % playerOrder.size()))) {
+                    
+                            smallBlindPlayer = playerOrder.get((indexDealer + 1) % playerOrder.size());
+                            bigBlindPlayer = playerOrder.get((indexDealer + 2) % playerOrder.size());
+                            for (GameObserver o : observers) {
+                                o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
+                            }
+                        }
+                    this.dealerPlayer = dealer;
+                }
+            }
         }
-        this.dealerPlayer = dealer;
     }
 
     private void resetSmallBigBlind() {
-        smallBlindPlayer = null;
-        bigBlindPlayer = null;
-        for (GameObserver o : observers) {
-            o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
+        synchronized (smallBlindPlayer) {
+            synchronized (bigBlindPlayer) {
+                smallBlindPlayer = new Player();
+                bigBlindPlayer = new Player();
+                for (GameObserver o : observers) {
+                    o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
+                }
+            }
         }
     }
 
-    public List<HandOwnerWinner> getHands() throws Exception {
-        var l = new ArrayList<HandOwnerWinner>();
-        for (PlayerData pd : playersData.values()) {
-            var how = new HandOwnerWinner();
-            how.setHand(pd.getHand());
-            how.setPlayer(pd.getPlayer());
-            how.setIsWinner(false);
-            if (how.getPlayer() == winner) {
-                how.setIsWinner(true);
+    public List<HandOwnerWinner> getHands() throws IllegalStateException {
+        synchronized (playersData) {
+            synchronized (winner) {
+                var l = new ArrayList<HandOwnerWinner>();
+                for (PlayerData pd : playersData.values()) {
+                    var how = new HandOwnerWinner();
+                    how.setHand(pd.getHand());
+                    how.setPlayer(pd.getPlayer());
+                    how.setIsWinner(false);
+                    if (how.getPlayer().compareTo(winner)) {
+                        how.setIsWinner(true);
+                    }
+                    l.add(how);
+                }
+                if (winner.getToken() == null) {
+                    throw new IllegalStateException("There is currently no Winner in Game: " + gameId);
+                }
+                return l;
             }
-            l.add(how);
         }
-        if (winner == null) {
-            throw new Exception("There is currently no Winner in Game: " + gameId);
-        }
-        return l;
     }
 
 
@@ -180,10 +218,14 @@ class GameModel { //protected (Package Private)
     }
 
     public void setVideoData(VideoData videoData) {
-        for (GameObserver o : observers) {
-            //not observed ?? good design doubt it :) 
+        if (videoData == null || videoData == this.videoData) {return;}
+
+        synchronized (videoData) {
+            // for (GameObserver o : observers) {
+            //     //not observed ?? good design doubt it :) 
+            // }
+            this.videoData = videoData;
         }
-        this.videoData = videoData;
     }
 
     public GamePhase getGamePhase() {
@@ -191,15 +233,20 @@ class GameModel { //protected (Package Private)
     }
 
     public void setGamePhase(GamePhase gamePhase) {
-        for (GameObserver o : observers) {
-            o.gamePhaseChange(gameId, gamePhase);
-            try {
-                o.newVideoData(gameId, videoData.getPartialVideoData(gamePhase.getVal()));
-            } catch (Exception e) {
-                System.out.println("Sending video Data did not work: " + e);
+        if (gamePhase == null || gamePhase == this.gamePhase) {
+            return;}
+
+        synchronized (this.gamePhase) {
+            for (GameObserver o : observers) {
+                o.gamePhaseChange(gameId, gamePhase);
+                try {
+                    o.newVideoData(gameId, videoData.getPartialVideoData(gamePhase.getVal()));
+                } catch (Exception e) {
+                    System.out.println("Sending video Data did not work: " + e);
+                }
             }
+            this.gamePhase = gamePhase;
         }
-        this.gamePhase = gamePhase;
     }
 
     public Player getCurrentPlayer() {
@@ -207,10 +254,16 @@ class GameModel { //protected (Package Private)
     }
 
     public void setCurrentPlayer(Player currentPlayer) {
-        for (GameObserver o : observers) {
-            o.currentPlayerChange(gameId, currentPlayer);
+        if (currentPlayer == null) {
+            throw new IllegalArgumentException("CurrentPlayer is null but should not be null");}
+        if (currentPlayer.compareTo(this.currentPlayer)) {
+            return;}
+        synchronized (this.currentPlayer) {
+            for (GameObserver o : observers) {
+                o.currentPlayerChange(gameId, currentPlayer);
+            }
+            this.currentPlayer = currentPlayer;
         }
-        this.currentPlayer = currentPlayer;
     }
 
 
@@ -219,10 +272,13 @@ class GameModel { //protected (Package Private)
     }
 
     public void setPotAmount(int pot) {
+        if (pot == this.potAmount) {
+            return;}
         for (GameObserver o : observers) {
             o.potScoreChange(gameId, pot);
         }
         potAmount = pot;
+
     }
 
     public int getCallAmount() {
@@ -230,10 +286,13 @@ class GameModel { //protected (Package Private)
     }
 
     public void setCallAmount(int callAmount) {
+        if (callAmount == this.callAmount) {
+            return;}
         for (GameObserver o : observers) {
             o.callAmountChanged(gameId, callAmount);
         }
         this.callAmount = callAmount;
+
     }
 
     public List<GameObserver> getObservers() {
@@ -244,8 +303,10 @@ class GameModel { //protected (Package Private)
         return lastRaisingPlayer;
     }
 
-    public void setLastRaisingPlayer(Player player) {
-        this.lastRaisingPlayer = player;
+    public void setLastRaisingPlayer(Player player) {      
+        synchronized (this.lastRaisingPlayer) {
+            this.lastRaisingPlayer = player;
+        }
     }
 
     public int getFoldCount() {
@@ -261,17 +322,27 @@ class GameModel { //protected (Package Private)
     }
 
     public void setWinner(Player winner) {
+        if (winner.getToken() != null && winner.getToken().equals(this.winner.getToken())) {
+            return;
+        }
+        if (winner.getClass() == null && this.winner.getToken() == null) {
+            return;
+        }
         //update points
-        if (winner != null) {
-            int score = getPlayerData(winner).getScore();
-            getPlayerData(winner).setScore(score + potAmount);
-            setPotAmount(0);
+        synchronized (playersData) { 
+            synchronized (winner) {
+                if (winner.getToken() != null) {
+                    int score = getPlayerData(winner).getScore();
+                    getPlayerData(winner).setScore(score + potAmount);
+                    setPotAmount(0);
+                }
+                //declare winner
+                this.winner = winner; //first  set winner then update
+                for (GameObserver o : observers) {
+                    o.roundWinnerIs(gameId, winner);
+                }
+            }
         }
-        //declare winner
-        for (GameObserver o : observers) {
-            o.roundWinnerIs(gameId, winner);
-        }
-        this.winner = winner;
     }
 
     public Player getHost() {
@@ -279,7 +350,11 @@ class GameModel { //protected (Package Private)
     }
 
     public void setHost(Player host) {
-        this.host = host;
+        synchronized (host) {
+
+            
+            this.host = host;
+        }
     }
 
 }

@@ -5,6 +5,12 @@ public class PlayerDTO {
     private String name;
     private String token;
 
+    public PlayerDTO(String name, String token) {
+        this.name = name;
+        this.token = token;
+    }
+    public PlayerDTO(){}
+
     public String getToken() {
         return token;
     }

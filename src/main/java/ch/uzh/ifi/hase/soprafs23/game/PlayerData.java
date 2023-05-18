@@ -10,10 +10,10 @@ class PlayerData { //protected (Package Private)
     final String token;
     final String name;
     private String gameId;
-    private Integer score;
+    private Integer score = 0;
     private Integer scorePutIntoPot = 0;
     private Hand hand;
-    private Decision decision;
+    private Decision decision = Decision.NOT_DECIDED;
 
     private List<GameObserver> observersPlayer;
 
@@ -32,12 +32,16 @@ class PlayerData { //protected (Package Private)
     }
 
     public void addObserver(String gameId, GameObserver o) {
-        this.gameId = gameId;
-        observersPlayer.add(o);
+        synchronized (observersPlayer) {
+            this.gameId = gameId;
+            observersPlayer.add(o);
+        }
     }
 
     public void removeObserver(GameObserver o) {
-        observersPlayer.remove(o);
+        synchronized (observersPlayer){
+            observersPlayer.remove(o);
+        }
     }
 
     //setters and getter-------------------------------------
@@ -46,7 +50,7 @@ class PlayerData { //protected (Package Private)
         return scorePutIntoPot;
     }
 
-    public void setScorePutIntoPot(Integer scorePutIntoPot) {
+    public synchronized void setScorePutIntoPot(Integer scorePutIntoPot) {
         this.scorePutIntoPot = scorePutIntoPot;
     }
 
@@ -55,7 +59,14 @@ class PlayerData { //protected (Package Private)
     }
 
 
-    public void setScore(Integer score) {
+    public synchronized void setScore(Integer score) {
+        if (score == null) {
+            return;
+        }
+        if(this.score != null && score.compareTo(this.score) == 0) {
+            return;
+        }
+            
         for (GameObserver o : observersPlayer) {
             o.playerScoreChanged(gameId, player, score);
         }
@@ -66,7 +77,9 @@ class PlayerData { //protected (Package Private)
         return score;
     }
     
-    public void setNewHand(Hand hand) {
+    public synchronized void setNewHand(Hand hand) {
+        if (hand == this.hand) {
+            return;}
         for (GameObserver o : observersPlayer) {
             o.newHand(gameId, player, hand);
         }
@@ -84,7 +97,9 @@ class PlayerData { //protected (Package Private)
         return hand;
     }
 
-    public void setDecision(Decision d) {
+    public synchronized void setDecision(Decision d) {
+        if (d == this.decision) {
+            return;}
         for (GameObserver o : observersPlayer) {
             o.playerDecisionChanged(gameId, player, d);
         }

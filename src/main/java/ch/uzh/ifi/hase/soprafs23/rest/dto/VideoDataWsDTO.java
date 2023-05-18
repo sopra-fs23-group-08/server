@@ -1,15 +1,12 @@
 package ch.uzh.ifi.hase.soprafs23.rest.dto;
 
-import java.time.Duration;
-import java.util.Date;
-
 public class VideoDataWsDTO {
     private String title;
     private String thumbnailUrl;
     private Integer views;
     private Integer likes;
-    private Date releaseDate;
-    private Duration duration;
+    private String releaseDate;
+    private String duration;
 
     public String getTitle() {
         return title;
@@ -43,19 +40,19 @@ public class VideoDataWsDTO {
         this.likes = likes;
     }
 
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public Duration getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Duration duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 }

@@ -14,9 +14,6 @@ import ch.uzh.ifi.hase.soprafs23.rest.dto.DecisionWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.VideoDataWsDTO;
-import ch.uzh.ifi.hase.soprafs23.rest.mapper.DTOMapper;
-
-import org.springframework.beans.factory.annotation.Autowired;
 // import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -24,15 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 
 @Service //part of the Spring Framework, and you will use it to mark a class as a service layer component. 
 @Transactional // transactions should be managed for this service via @Transactional annotation.
 
-// TODO: start games
 // TODO: end/delete games
 public class GameService implements GameObserver{
 
@@ -63,15 +57,19 @@ public class GameService implements GameObserver{
         
         
         // add game to list of games
-        games.put(newGame.getGameId(), newGame);
-        gamesData.put(newGame.getGameId(), gameData);
+        synchronized (games) {
+            games.put(newGame.getGameId(), newGame);
+        }
+        synchronized (gamesData) {
+            gamesData.put(newGame.getGameId(), gameData);
+        }
         
         return newGame.getGameId();
     }
 
     public void startGame(String gameId) {
-        checkIfGameExists(gameId);
-        Game game = games.get(gameId);
+        
+        Game game = getGame(gameId);
         try {
             game.startGame();
         }
@@ -93,38 +91,45 @@ public class GameService implements GameObserver{
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Illegal decision");
         }
 
-        checkIfGameExists(gameId);
-        Game game = games.get(gameId);
-        try {
-            switch (decision) {
-                case CALL: game.call(playerId);
+        Game game = getGame(gameId);
+        switch (decision) {
+            case CALL: game.call(playerId);
 
-                    break;
-                case RAISE: game.raise(playerId, raiseAmount);
+                break;
+            case RAISE: game.raise(playerId, raiseAmount);
 
-                    break;
-                case FOLD: game.fold(playerId);
+                break;
+            case FOLD: game.fold(playerId);
 
-                    break;
+                break;
 
-                default:
-                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Illegal decision");
-            };
-        }
-        catch (Exception e) {
-            
-        }
-
+            default:
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Illegal decision");
+        };
     }
 
     public void nextRound(String gameId) {
-        checkIfGameExists(gameId);
-        Game game = games.get(gameId);
+        Game game = getGame(gameId);
         try {
             game.nextRound();
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }        
+    }
+
+    public boolean isLobbyJoinable(String gameId) {
+        var game = getGame(gameId);
+
+        if (game.getGamePhase() != GamePhase.LOBBY) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN,
+                    "Game with id " + gameId + " is not in Lobby phase. (Can't be joined)");
+        }
+        if (game.setup.getPlayers().size() >= 6) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "Game with id " + gameId + " is already full " + game.getPlayers().size() + "/6");
+        }
+        
+        return true;
     }
 
     public MutablePlayer getHost(String gameId){
@@ -134,31 +139,35 @@ public class GameService implements GameObserver{
         return new MutablePlayer(games.get(gameId).getHost());
     }
 
-    public Game getGame(String gameId) {
+    private Game getGame(String gameId) {
         checkIfGameExists(gameId);
         return games.get(gameId);
     }
 
+    private GameData getGameData(String gameId) {
+        checkIfGameExists(gameId);
+        return gamesData.get(gameId);
+    }
+
     //returns a list of players for a specified game.
     public Collection<PlayerWsDTO> getPlayers(String gameId) {
-        checkIfGameExists(gameId);
-        return gamesData.get(gameId).playersData.values();
+        return getGameData(gameId).playersData.values();
     }
 
     // adds a new player to a specified game.
-    public void addPlayer(String gameId, Player player) {
-        // TODO deal with case where player is registered
-        // check if game exists
-        checkIfGameExists(gameId);
+    public synchronized void addPlayer(String gameId, Player player) {
 
+        PlayerWsDTO playerWsDTO = new PlayerWsDTO(player.getToken(),player.getName(),null,Decision.NOT_DECIDED,false,false,false);
+        Game game = getGame(gameId);
+        GameData gameData = getGameData(gameId);
 
-        PlayerWsDTO playerWsDTO = new PlayerWsDTO(player.getToken(),player.getName(),null,null,false,false,false);
-        
-        gamesData.get(gameId).playersData.put(playerWsDTO.getToken(), playerWsDTO);
-
-        Game game = games.get(gameId);
         try {
-            game.setup.joinGame(player);
+            synchronized (game) {
+                synchronized (gameData) {
+                    game.setup.joinGame(player);
+                    gameData.playersData.put(playerWsDTO.getToken(), playerWsDTO); //only add if join was successful
+                }
+            }
         }
         catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -166,20 +175,35 @@ public class GameService implements GameObserver{
     }
 
     public void removePlayer(String gameId, Player player) {
-        // check if game exists
-        checkIfGameExists(gameId);
-
-        Game game = games.get(gameId);
+        Game game = getGame(gameId);
         var gameData = gamesData.get(gameId);
         // TODO allow players to leave after the game has started
         
-        try {
-            game.setup.leaveGame(player);
-            gameData.playersData.remove(player.getToken());
+        if (gameData.gameStateWsDTO.getGamePhase() == GamePhase.LOBBY) {
+            try {
+                synchronized (game) {
+                    synchronized (gameData) {
+                        game.setup.leaveGame(player);
+                        gameData.playersData.remove(player.getToken());
+                    }
+                }
+            }
+            catch (Exception e) {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
+            }
+        }else if(gameData.gameStateWsDTO.getGamePhase() != GamePhase.CLOSED){
+            try {
+                synchronized (game) {
+                    synchronized (gameData) {
+                        game.leave(player);
+                        gameData.playersData.remove(player.getToken());
+                    }
+                }
+            } catch (Exception e){
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
+            }
         }
-        catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
-        }
+        
     }
 
     public void setGameSettings(String gameId, SettingsWsDTO settings) {
@@ -190,11 +214,21 @@ public class GameService implements GameObserver{
         Game game = games.get(gameId);
 
         try {
-            game.setup.setBigBlindAmount(settings.getBigBlind());
-            game.setup.setSmallBlindAmount(settings.getSmallBlind());
-            game.setup.setStartScoreForAll(settings.getInitialBalance());
-            game.setup.video.setPlaylist(settings.getPlaylistUrl());
-            game.setup.video.setLanguage(settings.getLanguage());
+            if (settings.getBigBlind() != null) {
+                game.setup.setBigBlindAmount(settings.getBigBlind());
+            }
+            if (settings.getSmallBlind() != null) {
+                game.setup.setSmallBlindAmount(settings.getSmallBlind());
+            }
+            if (settings.getInitialBalance() != null) {
+                game.setup.setStartScoreForAll(settings.getInitialBalance());
+            }
+            if (settings.getPlaylistUrl() != null && settings.getPlaylistUrl().length() != 0) {
+                game.setup.video.setPlaylist(settings.getPlaylistUrl());
+            }
+            if (settings.getLanguage() != null) {
+                game.setup.video.setLanguage(settings.getLanguage());
+            }
         }
         catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
@@ -235,44 +269,48 @@ public class GameService implements GameObserver{
         playerWsDTO.setLastDecision(decision);
 
         //send GameData to front end
-        gameController.playerStateChanged(gameId, gameData.playersData.values()); //todo create Setting DTO
+        gameController.playerStateChanged(gameId, gameData.playersData.values()); 
 
     }
 
     @Override
     public void currentPlayerChange(String gameId, Player player) {
-        checkIfGameExists(gameId);
         //update GameData
-        GameData gameData = gamesData.get(gameId);
+        GameData gameData = getGameData(gameId);
         gameData.setCurrentPlayer(player);
 
         //send GameData to front end
-        gameController.playerStateChanged(gameId, gameData.playersData.values()); //todo create Setting DTO
+        gameController.playerStateChanged(gameId, gameData.playersData.values()); 
 
     }
 
     @Override
     public void roundWinnerIs(String gameId, Player player) {
-        checkIfGameExists(gameId);
         //update GameData
-        GameData gameData = gamesData.get(gameId);
-        gameData.gameStateWsDTO.setRoundWinner(player);
+        GameData gameData = getGameData(gameId);
+        Game game = getGame(gameId);
+        gameData.gameStateWsDTO.setRoundWinnerToken(player.getToken());
         //send GameData to front end
-        gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
 
+        if (player.getToken() == null) { //do not send null updates
+            return;
+        }
+
+        gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
+        gameController.showdown(gameId, game.getHands());
     }
 
     @Override
     public void gameGettingClosed(String gameId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'gameGettingClosed'");
+        GameData gameData = getGameData(gameId);
+        gameData.gameStateWsDTO.setGamePhase(GamePhase.CLOSED);
+        gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
     }
 
     @Override
     public void gamePhaseChange(String gameId, GamePhase gamePhase) {
-        checkIfGameExists(gameId);
         //update GameData
-        GameData gameData = gamesData.get(gameId);
+        GameData gameData = getGameData(gameId);
         gameData.gameStateWsDTO.setGamePhase(gamePhase);
 
         //send GameData to front end
@@ -283,9 +321,8 @@ public class GameService implements GameObserver{
 
     @Override
     public void potScoreChange(String gameId, Integer score) {
-        checkIfGameExists(gameId);
         //update GameData
-        GameData gameData = gamesData.get(gameId);
+        GameData gameData = getGameData(gameId);
         gameData.gameStateWsDTO.setCurrentPot(score);
 
         //send GameData to front end
@@ -294,9 +331,8 @@ public class GameService implements GameObserver{
 
     @Override
     public void callAmountChanged(String gameId, Integer newCallAmount) {
-        checkIfGameExists(gameId);
         //update GameData
-        GameData gameData = gamesData.get(gameId);
+        GameData gameData = getGameData(gameId);
         gameData.gameStateWsDTO.setCurrentBet(newCallAmount);
 
         //send GameData to front end
@@ -305,9 +341,8 @@ public class GameService implements GameObserver{
 
     @Override
     public void newPlayerBigBlindNSmallBlind(String gameId, Player smallBlind, Player bigBlind) {
-        checkIfGameExists(gameId);
         //update GameData
-        GameData gameData = gamesData.get(gameId);
+        GameData gameData = getGameData(gameId);
         gameData.setSmallBlind(smallBlind);
         gameData.setBigBlind(bigBlind);
 
@@ -318,27 +353,55 @@ public class GameService implements GameObserver{
     @Override
     public void newVideoData(String gameId, VideoData videoData) {
         var vd = new VideoDataWsDTO();
-        vd.setDuration(videoData.videoLength);
+        vd.setDuration(videoData.videoLength != null ? videoData.videoLength.toString() : null);
         vd.setLikes(videoData.likes);
-        vd.setReleaseDate(videoData.releaseDate);
+        vd.setReleaseDate(videoData.releaseDate != null ? videoData.releaseDate.toString() : null);
         vd.setThumbnailUrl(videoData.thumbnail);
         vd.setTitle(videoData.title);
         vd.setViews(videoData.views);
         gameController.newVideoData(gameId, vd);
-        throw new UnsupportedOperationException("Unimplemented method 'newVideoData'");
     }
 
-    /** HELPER METHODS */
+    /** HELPER METHODS 
+     * @throws InterruptedException
+     * @throws IOException 
+     * @throws IllegalStateException
+     * */
 
-    public boolean checkPlaylist(String URL) throws Exception {//true if playlist contains 6 or more videos
-        return YTAPIManager.checkPlaylistUrl(URL);
+    public boolean checkPlaylist(String URL) throws ResponseStatusException {//true if playlist contains 6 or more videos
+        try {
+            YTAPIManager.checkPlaylistUrl(URL);
+            return true;
+        }
+        catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
     private void checkIfGameExists(String gameId) {
-        if (!games.containsKey(gameId)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");
+        synchronized (games) {
+            if (!games.containsKey(gameId)) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game with id " + gameId + " does not exist.");
+            }
         }
-        
+    }
+
+    public void closeGame(String gameId) {
+        //maybe add some check to not close any game at some time??
+        var game = getGame(gameId);
+        game.closeGame();
+        synchronized (games) {
+            games.remove(gameId);
+        }
+        synchronized (gamesData) {
+            gamesData.remove(gameId);
+        }
+    }
+
+    public void playerUpdate(String gameId) {
+        GameData gameData = getGameData(gameId);
+        //send GameData to front end
+        gameController.playerStateChanged(gameId, gameData.playersData.values());
     }
 
 }

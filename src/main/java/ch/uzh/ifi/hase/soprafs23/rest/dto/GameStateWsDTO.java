@@ -1,6 +1,5 @@
 package ch.uzh.ifi.hase.soprafs23.rest.dto;
 
-import ch.uzh.ifi.hase.soprafs23.entity.Player;
 import ch.uzh.ifi.hase.soprafs23.game.GamePhase;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -13,27 +12,27 @@ public class GameStateWsDTO {
     public GameStateWsDTO(@JsonProperty("currentBet") Integer currentBet,
                           @JsonProperty("currentPot") Integer currentPot,
                           @JsonProperty("hasStarted") boolean hasStarted,
-                          @JsonProperty("roundWinner") Player roundWinner,
+                          @JsonProperty("roundWinner") String roundWinnerToken,
                           @JsonProperty("gamePhase") GamePhase gamePhase) {
         this.currentBet = currentBet;
         this.currentPot = currentPot;
         this.hasStarted = hasStarted;
         this.gamePhase = gamePhase;
-        this.roundWinner = roundWinner;
+        this.roundWinnerToken = roundWinnerToken;
     }
 
     private Integer currentBet;
     private Integer currentPot;
     private boolean hasStarted;
     private GamePhase gamePhase;
-    private Player roundWinner;
+    private String roundWinnerToken; 
 
-    public Player getRoundWinner() {
-        return roundWinner;
+    public String getRoundWinnerToken() {
+        return roundWinnerToken;
     }
 
-    public void setRoundWinner(Player roundWinner) {
-        this.roundWinner = roundWinner;
+    public void setRoundWinnerToken(String roundWinnerToken) {
+        this.roundWinnerToken = roundWinnerToken;
     }
 
     public Integer getCurrentBet() {

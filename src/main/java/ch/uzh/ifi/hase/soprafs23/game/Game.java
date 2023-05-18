@@ -33,11 +33,7 @@ public class Game {
 
     public Game(Player host) {
         setup();
-        try {
-            setup.joinGame(host);
-        } catch (Exception e) {
-            throw new Error("some internal setup bug in game");
-        }
+        setup.joinGame(host);
         gameModel.setHost(host);
     }
 
@@ -48,48 +44,49 @@ public class Game {
         gameLogic = new GameLogic(gameModel, setup);
     }
 
-    public void startGame() throws IOException, InterruptedException, Exception { //this ends the setup phase. No changes to setup are possible
+    public synchronized void startGame() throws IOException, InterruptedException{ //this ends the setup phase. No changes to setup are possible
         gameLogic.startGame();
         setup = new SetupClosed();
         gameLogic.startBettingRound();
     }
     
-    public void startBettingRound() { //this is not needed at the current state but would start the betting round
+    public synchronized void startBettingRound() { //this is not needed at the current state but would start the betting round
         gameLogic.startBettingRound();
     }
 
-    public void call(Player player) throws Exception {
+    public void call(Player player) throws IllegalStateException {
         gameLogic.playerDecision(player, Decision.CALL);
     }
-    public void call(String playerId) throws Exception{ //this should be called of player player decides to call
-        gameLogic.playerDecision(new Player(playerId), Decision.CALL);
+    public void call(String playerId) throws IllegalStateException{ //this should be called of player player decides to call
+        gameLogic.playerDecision(new Player("", playerId), Decision.CALL);
     }
 
     
-    public void raise(Player player, Integer amount) throws Exception {
+    public void raise(Player player, Integer amount) throws IllegalStateException {
         gameLogic.playerDecision(player, Decision.RAISE, amount);
     }
-    public void raise(String playerId, int newCallAmount) throws Exception{ //this should be called of player player decides to raise
-        gameLogic.playerDecision(new Player(playerId), Decision.RAISE, newCallAmount);
+    public void raise(String playerId, int newCallAmount) throws IllegalStateException{ //this should be called of player player decides to raise
+        gameLogic.playerDecision(new Player("", playerId), Decision.RAISE, newCallAmount);
     }
 
-    public void fold(Player player) throws Exception {
+    public void fold(Player player) throws IllegalStateException {
         gameLogic.playerDecision(player, Decision.FOLD);
     }
-    public void fold(String playerId) throws Exception { //this should be called of player player decides to fold
-        gameLogic.playerDecision(new Player(playerId), Decision.FOLD);
+    public void fold(String playerId) throws IllegalStateException { //this should be called of player player decides to fold
+        gameLogic.playerDecision(new Player("", playerId), Decision.FOLD);
     }
 
-    public void nextRound() throws IOException, InterruptedException, Exception { // this should be called after a round to play a second round
+    public synchronized void nextRound() throws IOException, InterruptedException { // this should be called after a round to play a second round
         gameLogic.startRound();
         gameLogic.startBettingRound();
     }
 
-    public void addObserver(GameObserver o) { //adding game observer. Game observer are classes which implement GameObserver most of the data traffic happens there
+    public synchronized void addObserver(GameObserver o) { //adding game observer. Game observer are classes which implement GameObserver most of the data traffic happens there
         gameModel.addObserver(o);
     }
 
     public String getGameId() { // to get the game uuid
+        System.out.println(gameModel.getGameId());
         return gameModel.getGameId();
     }
 
@@ -97,7 +94,7 @@ public class Game {
         return gameModel.getHost();
     }
 
-    public List<HandOwnerWinner> getHands() throws Exception{
+    public List<HandOwnerWinner> getHands() throws IllegalStateException{
         return gameModel.getHands();
     }
 
@@ -113,8 +110,15 @@ public class Game {
         return gameModel.getGamePhase();
     }
 
+    public void closeGame() {
+        gameModel.closeGame();
+        this.gameModel = null;
+        this.gameLogic = null;
+        this.setup = null;
+    }
 
-    public static void main(String[] args) throws IOException, InterruptedException, Exception {
+
+    public static void main(String[] args) throws IOException, InterruptedException{
         Game game = new Game( new Player());
         Player playerA = new Player("A");
         Player playerB = new Player("B");
@@ -125,6 +129,11 @@ public class Game {
         game.setup.joinGame(playerB);
         game.setup.joinGame(playerA);
         game.startGame();
+    }
+
+
+    public void leave(Player player) {
+        gameLogic.leaveGame(player);
     }
     
 }

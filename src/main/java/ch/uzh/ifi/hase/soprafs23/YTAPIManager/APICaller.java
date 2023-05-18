@@ -1,6 +1,5 @@
 package ch.uzh.ifi.hase.soprafs23.YTAPIManager;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -23,7 +22,7 @@ public class APICaller {
                 jsonString += (char) c;
             in.close();
         } catch(Exception e){
-            System.out.println("Something went wrong with the YouTube API key: " + e);
+            throw new IllegalStateException("Something went wrong with the YouTube API key: " + e);
         }
         return jsonString;
     }

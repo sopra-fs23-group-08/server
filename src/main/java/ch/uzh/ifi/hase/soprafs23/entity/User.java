@@ -22,14 +22,13 @@ public class User implements Serializable {
   private static final long serialVersionUID = 1L;
 
   // TODO add fields for statistics
-  // TODO replace name attribute with password
 
   @Id
   @GeneratedValue
   private Long id;
 
   @Column
-  private String name;
+  private String password;
 
   @Column(nullable = false, unique = true)
   private String username;
@@ -48,12 +47,12 @@ public class User implements Serializable {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getPassword() {
+    return password;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   public String getUsername() {
