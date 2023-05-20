@@ -22,6 +22,7 @@ class GameLogic {
 
     void startGame() throws IOException, InterruptedException {//Creating playerData and stuff
         
+        gm.setInfoFirstRound(sd.isInfoFirstRound());
         Pair<VideoData, java.util.List<Hand>> ytData = sd.getYTData();
 
         gm.setVideoData(ytData.getFirst());

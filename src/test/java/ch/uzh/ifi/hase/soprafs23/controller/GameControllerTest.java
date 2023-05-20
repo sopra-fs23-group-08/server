@@ -19,6 +19,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
@@ -28,6 +30,7 @@ import org.springframework.messaging.simp.stomp.StompFrameHandler;
 import org.springframework.messaging.simp.stomp.StompHeaders;
 import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.messaging.simp.stomp.StompSessionHandlerAdapter;
+import org.springframework.test.context.junit.jupiter.DisabledIf;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
 import org.springframework.web.socket.sockjs.client.SockJsClient;
@@ -48,13 +51,12 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Disabled
+@EnabledOnOs({OS.WINDOWS, OS.MAC})
 public class GameControllerTest {
- 
-    // final static String serverURL = "http://localhost:8080";
-    final static String serverURL = "https://sopra-fs23-group-08-server.oa.r.appspot.com";
-    // static final String serverWsURL = "ws://localhost:8080/sopra-websocket";
-    static final String serverWsURL = "ws://sopra-fs23-group-08-server.oa.r.appspot.com/sopra-websocket";
+    final static String serverURL = "http://localhost:8080";
+    // final static String serverURL = "https://sopra-fs23-group-08-server.oa.r.appspot.com";
+    static final String serverWsURL = "ws://localhost:8080/sopra-websocket";
+    // static final String serverWsURL = "ws://sopra-fs23-group-08-server.oa.r.appspot.com/sopra-websocket";
     
     @LocalServerPort
     private Integer port;
@@ -479,8 +481,9 @@ public class GameControllerTest {
         return stompSession;
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException, ExecutionException, TimeoutException {
-        
+    public static void main(String[] args)
+            throws IOException, InterruptedException, ExecutionException, TimeoutException {
+
         var webSocketStompClient = new WebSocketStompClient(new SockJsClient(
                 List.of(new WebSocketTransport(new StandardWebSocketClient()))));
 
@@ -489,7 +492,8 @@ public class GameControllerTest {
         webSocketStompClient.setMessageConverter(new MappingJackson2MessageConverter());
 
         StompSession session = webSocketStompClient
-                .connect(serverWsURL, new StompSessionHandlerAdapter() {})
+                .connect(serverWsURL, new StompSessionHandlerAdapter() {
+                })
                 .get(1, TimeUnit.SECONDS);
 
         session.subscribe("/topic/echoSettings", new StompFrameHandler() {
@@ -514,5 +518,9 @@ public class GameControllerTest {
         session.send("/app/echoSettings", "");
         var response2 = queue.poll(1, TimeUnit.SECONDS);
         System.out.println(response2);
+    }
+
+    public static String local() {
+        return "false";
     }
 }
