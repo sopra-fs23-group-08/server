@@ -43,7 +43,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @SuppressWarnings({"unchecked", "rawtypes", "unused"})
-@EnabledOnOs({OS.WINDOWS, OS.MAC})
+@EnabledOnOs({OS.WINDOWS, OS.MAC})//cloud runs on linux therefore this is only runs locally
 public class ExtendedGameControllerTest {
 
     private String gameId;

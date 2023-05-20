@@ -51,7 +51,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@EnabledOnOs({OS.WINDOWS, OS.MAC})
+@EnabledOnOs({OS.WINDOWS, OS.MAC})  //cloud runs on linux therefore this is only runs locally
 public class GameControllerTest {
     final static String serverURL = "http://localhost:8080";
     // final static String serverURL = "https://sopra-fs23-group-08-server.oa.r.appspot.com";
