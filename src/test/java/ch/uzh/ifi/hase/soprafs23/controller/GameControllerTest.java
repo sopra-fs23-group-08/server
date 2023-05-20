@@ -54,7 +54,7 @@ public class GameControllerTest {
     // final static String serverURL = "http://localhost:8080";
     final static String serverURL = "https://sopra-fs23-group-08-server.oa.r.appspot.com";
     // static final String serverWsURL = "ws://localhost:8080/sopra-websocket";
-    static final String serverWsURL = "ws://sopra-fs23-group-08-server.oa.r.appspot.com/sopra-websocket";
+    static final String serverWsURL = "wss://sopra-fs23-group-08-server.oa.r.appspot.com/sopra-websocket";
     
     @LocalServerPort
     private Integer port;
@@ -466,17 +466,27 @@ public class GameControllerTest {
         return s2[0];
     }
     
-    static public StompSession createStompSession(MessageConverter converter) throws InterruptedException, ExecutionException, TimeoutException {
-        var webSocketStompClient = new WebSocketStompClient(new SockJsClient(
-                List.of(new WebSocketTransport(new StandardWebSocketClient()))));
+    static public StompSession createStompSession(MessageConverter converter)
+            throws InterruptedException, ExecutionException, TimeoutException {
+            
+        Exception error = null;
+        for (int x = 0; x < 3; x++) {
+            try {
+                var webSocketStompClient = new WebSocketStompClient(new SockJsClient(
+                        List.of(new WebSocketTransport(new StandardWebSocketClient()))));
 
+                webSocketStompClient.setMessageConverter(converter);
 
-        webSocketStompClient.setMessageConverter(converter);
-                
-        var stompSession = webSocketStompClient
-                .connect(serverWsURL, new StompSessionHandlerAdapter() {})
-                .get(1, TimeUnit.SECONDS);
-        return stompSession;
+                var stompSession = webSocketStompClient
+                        .connect(serverWsURL, new StompSessionHandlerAdapter() {
+                        })
+                        .get(1, TimeUnit.SECONDS);
+                return stompSession;
+            } catch (Exception e) {
+                error = e;
+            }
+        }
+        throw new IllegalStateException("Connection failed", error);
     }
 
     public static void main(String[] args) throws IOException, InterruptedException, ExecutionException, TimeoutException {
