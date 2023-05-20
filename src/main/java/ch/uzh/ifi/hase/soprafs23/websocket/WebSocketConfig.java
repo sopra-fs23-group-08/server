@@ -34,7 +34,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
         //registers the /sopra-websocket endpoint, enabling SockJS fallback 
         //options so that alternate transports can be used if WebSocket is not available.
         registry.addEndpoint(WEBSOCKET_SUFFIX)
-                .setAllowedOrigins(ORIGIN_LOCALHOST, ORIGIN_PROD)
+                .setAllowedOriginPatterns("*")
                 .withSockJS(); //The SockJS client will attempt to connect to /sopra-websocket and use the best available transport
     }
 }
