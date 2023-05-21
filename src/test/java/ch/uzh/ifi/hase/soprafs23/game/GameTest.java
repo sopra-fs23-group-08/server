@@ -45,6 +45,7 @@ public class GameTest {
     game.setup.setStartScoreForAll(1000); //maybe change call to be in game.setup.setAllPlayerScore
     game.setup.setSmallBlindAmount(10);
     game.setup.setBigBlindAmount(20);
+    game.setup.setInfoFirstRound(false);
 
     assertTrue(!game.getPlayers().contains(playerC));//players are added after the game has started. maybe change that?
     assertEquals(GamePhase.LOBBY, game.getGamePhase());
@@ -198,10 +199,9 @@ public class GameTest {
   @Test
   public void runThrough3() {
 
-    
     try {
       assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
-      
+
       game.raise(observer.currentPlayer, 10);
       game.raise(observer.currentPlayer, 20);
 
@@ -210,12 +210,12 @@ public class GameTest {
       var pScore = observer.playerScore;
 
       game.call(observer.currentPlayer);
-      
+
       var potScore = observer.potScore;
 
       assertEquals(GamePhase.SECOND_BETTING_ROUND, observer.gamePhase);
       assertEquals(observer.smallBlind, observer.currentPlayer);
-      
+
       game.fold(observer.currentPlayer);
       game.fold(observer.currentPlayer);
       assertEquals(GamePhase.END_ALL_FOLDED, observer.gamePhase);
@@ -227,24 +227,78 @@ public class GameTest {
       game.nextRound();//---------------------------------------------------------
       assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
       assertEquals(oldBig, observer.smallBlind);
-      
+
       game.raise(observer.currentPlayer, 980);
       game.call(observer.currentPlayer);
       game.call(observer.currentPlayer);
       assertEquals(GamePhase.SECOND_BETTING_ROUND, observer.gamePhase);
-      
+
       game.fold(observer.currentPlayer);
       game.fold(observer.currentPlayer);
       assertEquals(GamePhase.END_ALL_FOLDED, observer.gamePhase);
-      
+
       game.nextRound(); //only two players left
-      
+
       game.raise(observer.currentPlayer, 10);
       game.raise(observer.currentPlayer, 20);
       game.fold(observer.currentPlayer);
-      
+
       assertEquals(GamePhase.END_ALL_FOLDED, observer.gamePhase);
-            
+
+    } catch (Exception e) {
+      assertEquals("Some exception occurred", e);
+    }
+  }
+
+  @Test
+  public void incrementalInformationTest() {
+    //same as run trough three but additional tests for information reveal.
+    
+    
+    try {
+      game.raise(observer.currentPlayer, 10);
+      assertEquals(10, observer.potScore);
+      game.raise(observer.currentPlayer, 20);
+      assertEquals(30, observer.potScore);
+      game.call(observer.currentPlayer);
+      assertEquals(50, observer.potScore);
+      assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
+      assertEquals(null, observer.videoData.likes);
+      assertEquals(null, observer.videoData.views);
+      game.call(observer.currentPlayer);
+      assertEquals(60, observer.potScore);
+      assertEquals(GamePhase.SECOND_BETTING_ROUND, observer.gamePhase);
+      assertEquals(null, observer.videoData.videoLength);
+      
+      game.call(observer.currentPlayer);
+      assertEquals(60, observer.potScore);
+      game.call(observer.currentPlayer);
+      assertEquals(60, observer.potScore);
+      game.call(observer.currentPlayer);
+      assertEquals(60, observer.potScore);
+      assertEquals(GamePhase.THIRD_BETTING_ROUND, observer.gamePhase);
+      assertEquals(null, observer.videoData.thumbnail);
+      
+      game.call(observer.currentPlayer);
+      game.raise(observer.currentPlayer, 40);
+      assertEquals(80, observer.potScore);
+      game.call(observer.currentPlayer);
+      assertEquals(100, observer.potScore);
+      executableThrowsExceptionMsg(() -> {
+        game.raise(observer.currentPlayer, 20);
+      }, "The CallAmount must be higher after a raise. CallAmountBefore: 40 NewCallAmount: 20");
+      game.call(observer.currentPlayer);
+      assertEquals(GamePhase.FOURTH_BETTING_ROUND, observer.gamePhase);
+      assertEquals(null, observer.videoData.releaseDate);
+      
+      executableThrowsExceptionMsg(() -> {
+        game.raise(observer.currentPlayer, 1000);
+      }, "Player score(960) is not high enough to raise(1000).");
+      game.call(observer.currentPlayer);
+      game.call(observer.currentPlayer);
+      game.call(observer.currentPlayer);
+      assertEquals(GamePhase.END_AFTER_FOURTH_BETTING_ROUND, observer.gamePhase);
+      assertEquals(null, observer.videoData.title);
 
     } catch (Exception e) {
       assertEquals("Some exception occurred", e);
