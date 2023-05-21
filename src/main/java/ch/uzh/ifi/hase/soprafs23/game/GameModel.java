@@ -32,6 +32,11 @@ class GameModel { //protected (Package Private)
     private int foldCount;
 
     private List<GameObserver> observers;
+    private boolean infoFirstRound = true;
+
+    public void setInfoFirstRound(boolean infoFirstRound) {
+        this.infoFirstRound = infoFirstRound;
+    }
 
     public GameModel() {
         gameId = UUID.randomUUID().toString(); //generates a unique identifier
@@ -234,18 +239,25 @@ class GameModel { //protected (Package Private)
 
     public void setGamePhase(GamePhase gamePhase) {
         if (gamePhase == null || gamePhase == this.gamePhase) {
-            return;}
+            return;
+        }
 
         synchronized (this.gamePhase) {
             for (GameObserver o : observers) {
                 o.gamePhaseChange(gameId, gamePhase);
-                try {
-                    o.newVideoData(gameId, videoData.getPartialVideoData(gamePhase.getVal()));
-                } catch (Exception e) {
-                    System.out.println("Sending video Data did not work: " + e);
-                }
             }
             this.gamePhase = gamePhase;
+        }
+        updateVideoData(infoFirstRound);
+    }
+    
+    public void updateVideoData(boolean infoFirstRound) {
+        for (var o : observers) {
+            try {
+                o.newVideoData(gameId, videoData.getPartialVideoData(gamePhase.getVal() + (infoFirstRound ? 1 : 0)));
+            } catch (Exception e) {
+                System.out.println("Sending video Data did not work: " + e);
+            }
         }
     }
 
