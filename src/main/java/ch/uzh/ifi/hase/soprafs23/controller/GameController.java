@@ -183,9 +183,11 @@ public class GameController {
     }
 
     @MessageMapping("/games/{gameId}/close")
+    @SendTo("/topic/games/{gameId}/close")
     public void closeGame(@DestinationVariable String gameId) {
         try {
             gameService.closeGame(gameId);
+            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/close", "Game closed");
         } catch (ResponseStatusException e) {
             messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error",
                     new Exception(e.getMessage(), e.getCause()));
@@ -195,7 +197,7 @@ public class GameController {
     }
 
     /** OBSERVER ENDPOINT METHODS
-     * these methods are invoked by gameService */
+     * these methods are invoked by gameService to send data to the FE*/
     public synchronized void gameStateChanged(String gameId, GameStateWsDTO gameStateWsDTO) {
         String destination = String.format("/topic/games/%s/state", gameId);
         messagingTemplate.convertAndSend(destination, gameStateWsDTO);
