@@ -2,6 +2,7 @@ package ch.uzh.ifi.hase.soprafs23.service;
 
 import ch.uzh.ifi.hase.soprafs23.rest.dto.GameStateWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerWsDTO;
+import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.VideoDataWsDTO;
 
 import java.util.HashMap;
@@ -19,6 +20,7 @@ class GameData {
     protected Map<String, PlayerWsDTO> playersData = new HashMap<>();
     protected Map<String, Hand> handData = new HashMap<>();
     protected VideoDataWsDTO videoData = null;
+    protected SettingsWsDTO settings = null;
 
     public GameData(List<Player> players){
         for(Player player: players){

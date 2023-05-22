@@ -67,11 +67,17 @@ public class GameController {
         MutablePlayer host = gameService.getHost(gameId);
         return DTOMapper.INSTANCE.convertEntityToPlayerDTO(host);
     }
+
     
     //send Data to topics. usually data is sent automatically. but if some data got lost this end point can be used to send it again.
     @MessageMapping("/games/{gameId}/sendData")
     public void sendGameData(@DestinationVariable String gameId) {
         gameService.sendGameData(gameId);
+    }
+
+    @MessageMapping("/games/{gameId}/resendSettings")
+    public void resendSettings(@DestinationVariable String gameId) {
+        gameService.resendSettings(gameId);
     }
 
     //send Data to topics. usually data is sent automatically. but if some data got lost this end point can be used to send it again.
@@ -122,11 +128,16 @@ public class GameController {
             gameService.setGameSettings(gameId, settingsWsDTO);
             // send new settings to all players
         } catch (ResponseStatusException e) {
-            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", new Exception(e.getMessage(), e.getCause()));
+            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error",
+                    new Exception(e.getMessage(), e.getCause()));
         } catch (Exception e) {
             messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", e);
         }
         return settingsWsDTO;
+    }
+
+    public void sendSettingsToClient(String gameId, SettingsWsDTO settings) {
+        messagingTemplate.convertAndSend("/topic/games/"+gameId+"/settings", settings);
     }
 
     @MessageMapping("/games/{gameId}/start")

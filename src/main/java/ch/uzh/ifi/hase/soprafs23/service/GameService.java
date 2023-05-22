@@ -206,12 +206,10 @@ public class GameService implements GameObserver{
     }
 
     public void setGameSettings(String gameId, SettingsWsDTO settings) {
-        // TODO deal with case where player is registered
-        //
-        // check if game exists
-        checkIfGameExists(gameId);
 
-        Game game = games.get(gameId);
+        Game game = getGame(gameId);
+        var gameData = getGameData(gameId);
+        gameData.settings = settings;
 
         try {
             if (settings.getBigBlind() != null) {
@@ -421,6 +419,11 @@ public class GameService implements GameObserver{
         gameController.playerStateChanged(gameId, gameData.playersData.values());
         gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
         gameController.newVideoData(gameId, gameData.videoData);
+    }
+
+    public void resendSettings(String gameId) {
+        var gameData = getGameData(gameId);
+        gameController.sendSettingsToClient(gameId, gameData.settings);
     }
 
 }
