@@ -1,86 +1,74 @@
-# SoPra RESTful Service Template FS23
+<!-- # SoPra RESTful Service Template FS23
+edit for title  -->
+<h1 align="center">
+<br>
+Yuker Tuker-Server
+<br>
+</h1>
+## Introduction
+Yuker Tuker is an exciting and competitive game that allows players to compete against each other in guessing a random YouTube video from a selected playlist, using a similar logic to poker. This is the back-end component of our project. The front-end part can be found [here](https://github.com/sopra-fs23-group-08/client).
 
-## Getting started with Spring Boot
--   Documentation: https://docs.spring.io/spring-boot/docs/current/reference/html/index.html
--   Guides: http://spring.io/guides
-    -   Building a RESTful Web Service: http://spring.io/guides/gs/rest-service/
-    -   Building REST services with Spring: https://spring.io/guides/tutorials/rest/
 
-## Setup this Template with your IDE of choice
-Download your IDE of choice (e.g., [IntelliJ](https://www.jetbrains.com/idea/download/), [Visual Studio Code](https://code.visualstudio.com/), or [Eclipse](http://www.eclipse.org/downloads/)). Make sure Java 17 is installed on your system (for Windows, please make sure your `JAVA_HOME` environment variable is set to the correct version of Java).
+## Technologies
+The Java-written back end of this project utilizes the Spring Boot framework. Persistence is managed through JPA/Hibernate. Communication between the server and client is achieved through REST and websockets, with the additional usage of the STOMP messaging protocol for websockets. <!-- # recheck  -->
 
-### IntelliJ
-1. File -> Open... -> SoPra server template
-2. Accept to import the project as a `gradle project`
-3. To build right click the `build.gradle` file and choose `Run Build`
+## Launch & Deployment
 
-### VS Code
-The following extensions can help you get started more easily:
--   `vmware.vscode-spring-boot`
--   `vscjava.vscode-spring-initializr`
--   `vscjava.vscode-spring-boot-dashboard`
--   `vscjava.vscode-java-pack`
-
-**Note:** You'll need to build the project first with Gradle, just click on the `build` command in the _Gradle Tasks_ extension. Then check the _Spring Boot Dashboard_ extension if it already shows `soprafs23` and hit the play button to start the server. If it doesn't show up, restart VS Code and check again.
-
-## Building with Gradle
-You can use the local Gradle Wrapper to build the application.
--   macOS: `./gradlew`
--   Linux: `./gradlew`
--   Windows: `./gradlew.bat`
-
-More Information about [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) and [Gradle](https://gradle.org/docs/).
+To help onboard a new developer joining our team, we have documented the necessary steps to get started with our application. Below are the commands required to build, run, and test the project locally:
 
 ### Build
+
+To build the project, run the following command:
 
 ```bash
 ./gradlew build
 ```
 
+This command will compile the source code, run tests, and package the application.
+
 ### Run
+
+To run the project locally, execute the following command:
+
 
 ```bash
 ./gradlew bootRun
 ```
 
+This will start the application on your local machine, allowing you to interact with it.
 You can verify that the server is running by visiting `localhost:8080` in your browser.
 
+
 ### Test
+
+To run the tests for the project, use the following command:
+
 
 ```bash
 ./gradlew test
 ```
+This will execute the test suite and provide feedback on the application's functionality and reliability.
 
-### Development Mode
-You can start the backend in development mode, this will automatically trigger a new build and reload the application
-once the content of a file has been changed.
 
-Start two terminal windows and run:
+## Roadmap
 
-`./gradlew build --continuous`
+- In-game chat 
+- Automatic blind deduction
 
-and in the other one:
+## Authors and Acknowledgment
 
-`./gradlew bootRun`
 
-If you want to avoid running all tests with every change, use the following command instead:
+SoPra Group 08 2023 consists of [Serafin Schoch](https://github.com/S3r4f1n), [Jonas Krumm](https://github.com/Dedphish),
+[Yating Pan](https://github.com/YatingPan), [Rolando Villaseñor](https://github.com/RoVi80).
 
-`./gradlew build --continuous -xtest`
+We would like to thank our teaching assistant [Sheena Lang](https://github.com/SheenaGit) for her help throughout the semester. We also thank Youtube for providing its API, and to the game of poker for inspiring our idea. This semester has proven to be both challenging and intriguing, offering us valuable opportunities for growth, as we acquired extensive knowledge not only in coding but also in teamwork and project execution. Even though none of us are doing Informatics as a major, we appreciate the opportunity and the experience gained from this project.
 
-## API Endpoint Testing with Postman
-We recommend using [Postman](https://www.getpostman.com) to test your API Endpoints.
+## License
 
-## Debugging
-If something is not working and/or you don't know what is going on. We recommend using a debugger and step-through the process step-by-step.
+GNU GPLv3
 
-To configure a debugger for SpringBoot's Tomcat servlet (i.e. the process you start with `./gradlew bootRun` command), do the following:
 
-1. Open Tab: **Run**/Edit Configurations
-2. Add a new Remote Configuration and name it properly
-3. Start the Server in Debug mode: `./gradlew bootRun --debug-jvm`
-4. Press `Shift + F9` or the use **Run**/Debug "Name of your task"
-5. Set breakpoints in the application where you need it
-6. Step through the process one step at a time
 
-## Testing
-Have a look here: https://www.baeldung.com/spring-boot-testing
+
+
+
