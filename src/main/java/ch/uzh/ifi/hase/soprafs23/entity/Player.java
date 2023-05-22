@@ -43,7 +43,7 @@ public class Player {
     public boolean compareTo(Player other) {
         if (other == null) {
             return false;}
-        if (this.token == other.getToken()) {
+        if (this.token == null && other.getToken() == null) {
             return true;
         }
         if (this.token != null && other.getToken() != null && this.token.equals(other.getToken())) {

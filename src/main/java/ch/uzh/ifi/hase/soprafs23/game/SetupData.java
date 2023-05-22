@@ -32,9 +32,13 @@ class SetupData extends Setup {
         synchronized (players) {
             if (players.size() >= MAXPLAYER) {
                 throw new IllegalStateException("Lobby already full");
-            } else {
-                this.players.add(Pair.of(p, initialScore));
             }
+            for (var pin : players) {
+                if (pin.getFirst().compareTo(p)) {
+                    throw new IllegalStateException("This User "+p.getName()+" is already in Lobby");
+                }
+            }
+            this.players.add(Pair.of(p, initialScore));
         }
     }
 
