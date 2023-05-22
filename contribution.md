@@ -99,5 +99,5 @@
     
 ### Week 7
 * 18.5. - 25.2., Jonas https://github.com/sopra-fs23-group-08/server/issues/78
-    
- 
+* 18.5. - 25.2., Rolando: Solve deployment issues 
+* 18.5. - 25.2., Rolando: Solve Sonarcloud and Build issues
