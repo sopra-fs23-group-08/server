@@ -79,6 +79,10 @@ class GameLogic {
         playerDecision(player, d, gm.getCallAmount());
     }
     synchronized void playerDecision(Player player, Decision d, Integer newCallAmount) throws IllegalStateException {
+        if (gm.getGamePhase() == GamePhase.LOBBY || gm.getGamePhase() == GamePhase.END_AFTER_FOURTH_BETTING_ROUND
+                || gm.getGamePhase() == GamePhase.END_ALL_FOLDED) {
+            throw new IllegalCallerException("No decisions possible if game is in Lobby or end state");
+        }
         if (!player.compareTo(gm.getCurrentPlayer())) {
             throw new IllegalCallerException("You're not the current player");
         }
@@ -230,6 +234,9 @@ class GameLogic {
 
             default:
                 gm.setPotAmount(gm.getPotAmount() + playerData.getScore());
+                if (playerData.getPlayer().compareTo(gm.getCurrentPlayer())) {
+                    gm.nextPlayer();
+                }
                 // playerData.setDecision(Decision.FOLD);
                 // gm.setFoldCount(gm.getFoldCount() + 1);
                 gm.removePlayerData(playerData);
