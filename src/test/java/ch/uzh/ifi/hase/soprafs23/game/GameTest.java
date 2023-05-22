@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
+
 
 //todo
 //multi leave test
@@ -196,6 +198,58 @@ public class GameTest {
     assertNotEquals(null, observer.winner.getToken());
   }
 
+  @Test
+  public void twoPlayerTest() throws IOException, InterruptedException {
+    playerA = new Player("A");
+    game = new Game(playerA);
+    playerB = new Player("B");
+    observer = new TestGameObserver();
+    game.setup.video.useYtApi(false);
+    
+    assertEquals(false, game.getGameId().isEmpty());
+    
+    game.setup.joinGame(playerB);
+    game.addObserver(observer);
+    game.setup.setStartScoreForAll(1000); 
+    game.setup.setSmallBlindAmount(10);
+    game.setup.setBigBlindAmount(20);
+    game.setup.setInfoFirstRound(false);
+
+    game.startGame();
+    assertEquals(2, game.getPlayers().size());
+    var p1 = observer.currentPlayer;
+    assertEquals(p1.getToken(), observer.smallBlind.getToken());
+    game.raise(observer.currentPlayer, 10);
+    var p2 = observer.currentPlayer;
+    assertEquals(p2.getToken(), observer.bigBlind.getToken());
+    assertNotEquals(p1.getToken(), p2.getToken());
+    game.raise(observer.currentPlayer, 20);
+    assertEquals(p1.getToken(), observer.currentPlayer.getToken());
+    game.call(observer.currentPlayer);
+
+    assertEquals(GamePhase.SECOND_BETTING_ROUND, observer.gamePhase);
+    assertEquals(p1.getToken(), observer.currentPlayer.getToken());
+    game.call(observer.currentPlayer);
+    assertEquals(p2.getToken(), observer.currentPlayer.getToken());
+    game.call(observer.currentPlayer);
+    
+    assertEquals(GamePhase.THIRD_BETTING_ROUND, observer.gamePhase);
+    assertEquals(p1.getToken(), observer.currentPlayer.getToken());
+    game.call(observer.currentPlayer);
+    assertEquals(p2.getToken(), observer.currentPlayer.getToken());
+    game.call(observer.currentPlayer);
+
+    assertEquals(GamePhase.FOURTH_BETTING_ROUND, observer.gamePhase);
+    assertEquals(p1.getToken(), observer.currentPlayer.getToken());
+    game.call(observer.currentPlayer);
+    assertEquals(p2.getToken(), observer.currentPlayer.getToken());
+    game.call(observer.currentPlayer);
+    
+    assertEquals(GamePhase.END_AFTER_FOURTH_BETTING_ROUND, observer.gamePhase);
+    assertEquals(p1.getToken(), observer.currentPlayer.getToken());
+    
+  }
+  
   @Test
   public void runThrough3() {
 

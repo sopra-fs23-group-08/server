@@ -1,9 +1,11 @@
 package ch.uzh.ifi.hase.soprafs23.controller;
 
 import java.io.IOException;
+import java.lang.annotation.Retention;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutionException;
@@ -19,6 +21,7 @@ import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.util.Pair;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.converter.StringMessageConverter;
 import org.springframework.messaging.simp.stomp.StompSession;
@@ -35,6 +38,7 @@ import ch.uzh.ifi.hase.soprafs23.rest.dto.DecisionWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.GameStateWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.PlayerDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
+import javassist.expr.NewArray;
 
 // makes use of functions declared in GameControllerTest
 import static ch.uzh.ifi.hase.soprafs23.controller.GameControllerTest.*;
@@ -241,32 +245,99 @@ public class ExtendedGameControllerTest {
         assertEquals(null, errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS)); //check for errors and give time to breathe for server
         decision(Decision.RAISE, 20);
         assertEquals(null, errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS));
-        decision(Decision.CALL, 0); 
+        decision(Decision.CALL, 0);
         decision(Decision.CALL, 0); //this is too fast and sends the second decision with the no longer current player gives an error
-        assertEquals("You're not the current player", errorObserver.poll(sleepTime*10, TimeUnit.MILLISECONDS).getMessage()); //since a message is expected the poll time is longer
+        assertEquals("You're not the current player",
+                errorObserver.poll(sleepTime * 10, TimeUnit.MILLISECONDS).getMessage()); //since a message is expected the poll time is longer
         Thread.sleep(sleepTime);
         decision(Decision.CALL, 0); //is fine down here after currentPlayer is updated
         assertEquals(null, errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS));
 
         var gameStateObserver = subscribe(session, topic + "/state", GameStateWsDTO.class);
         GamePhase gamePhase = GamePhase.FIRST_BETTING_ROUND;
-        while (gamePhase != GamePhase.END_AFTER_FOURTH_BETTING_ROUND || gamePhase == GamePhase.END_ALL_FOLDED) {
+        while (gamePhase != GamePhase.END_AFTER_FOURTH_BETTING_ROUND && gamePhase != GamePhase.END_ALL_FOLDED) {
             decision(Decision.CALL, 0);
 
             var response1 = errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS);
             if (response1 != null) {
                 assertEquals("You're not the current player", response1.getMessage());
             }
-            
+
             var response = getNewest(gameStateObserver);
             gamePhase = response == null ? gamePhase : response.getGamePhase();
         }
     }
-    
+
     @Test
-    public void mutexTesting() {
-        session.send("/app/mutexA", "");
-        session.send("/app/mutexB", "");
+    public void runthrough2() throws InterruptedException, JsonMappingException, JsonProcessingException {
+        final int sleepTime = 100; //increase this when inconsistent errors occur
+
+        fillGame();
+        Thread.sleep(sleepTime); //waiting for server to update. If started before all players have joined maybe only 3 players are in game
+        var playerList = setupGame();
+        var hands = startGame();
+
+        Thread.sleep(sleepTime); //waiting for server to update. If next action is done before game has properly started some unexpected errors might happen. Like no player is able to do a decision, before the game has properly started.
+        errorObserver.clear();
+        assertEquals(null, errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS)); //check for errors and give time to breathe for server
+        
+        var decisionStack = new LinkedList<Pair<Decision, Integer>>();
+        decisionStack.add(Pair.of(Decision.RAISE, 10));
+        decisionStack.add(Pair.of(Decision.RAISE, 20));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.FOLD, 0));
+        decisionStack.add(Pair.of(Decision.FOLD, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.RAISE, 50));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+        decisionStack.add(Pair.of(Decision.CALL, 0));
+
+        var gameStateObserver = subscribe(session, topic + "/state", GameStateWsDTO.class);
+        GamePhase gamePhase = GamePhase.FIRST_BETTING_ROUND;
+        while (gamePhase != GamePhase.END_AFTER_FOURTH_BETTING_ROUND && gamePhase != GamePhase.END_ALL_FOLDED) {
+            var temp = decisionStack.removeFirst();
+            var currentPlayer = decision(temp.getFirst(), temp.getSecond());
+
+            var response1 = errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS);
+            if (response1 != null) {
+                assertEquals("You're not the current player", response1.getMessage());
+            }
+
+            var response = getNewest(gameStateObserver);
+            gamePhase = response == null ? gamePhase : response.getGamePhase();
+        }
     }
 
     private void fillGame() {
@@ -315,6 +386,7 @@ public class ExtendedGameControllerTest {
     }
 
     int nullListRuns = 0;
+    private List playerLog = new LinkedList();
 
     private void updatePlayerList() throws InterruptedException {
         var response = getNewest(playerObserver);
@@ -331,12 +403,13 @@ public class ExtendedGameControllerTest {
     private void decision(Decision d) throws InterruptedException {
         decision(d, 0);
     }
-    private void decision(Decision d, int raiseAmount) throws InterruptedException{
+    private String decision(Decision d, int raiseAmount) throws InterruptedException{
         updatePlayerList();
         LinkedHashMap<String,Object> currentPlayer = null;
         for (var p : playerList) {
             if ((Boolean) p.get("currentPlayer")) {
                 currentPlayer = p;
+                playerLog.add(p);
             }
         }
 
@@ -344,11 +417,11 @@ public class ExtendedGameControllerTest {
             throw new IllegalStateException("there must be a current player to make a move");
         }
 
-
         var decision = new DecisionWsDTO();
         decision.setDecision(d.toString());
         decision.setRaiseAmount(raiseAmount);
         session.send(app + "/players/" + currentPlayer.get("token") + "/decision", decision);
+        return (String) currentPlayer.get("token");
     }
 
     static private <T> T getNewest(BlockingQueue<T> bq) throws InterruptedException {
