@@ -426,5 +426,12 @@ public class GameService implements GameObserver{
         gameController.sendSettingsToClient(gameId, gameData.settings);
     }
 
+    @Override
+    public void updatePlayerPotScore(String gameId, Player player, Integer scorePutIntoPot) {
+        var gameData = getGameData(gameId);
+        gameData.playersData.get(player.getToken()).setScorePlayerPutIntoPot(scorePutIntoPot);
+        //since this always changes if a player also does a decision. No update is sent to FE
+    }
+
 }
 

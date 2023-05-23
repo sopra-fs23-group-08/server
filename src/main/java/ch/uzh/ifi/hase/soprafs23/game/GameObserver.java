@@ -27,4 +27,6 @@ public interface GameObserver {
     void newPlayerBigBlindNSmallBlind(String gameId, Player smallBlind, Player bigBlind);
 
     void newVideoData(String gameId, VideoData videoData); //not revealed fields are set to null
+
+    void updatePlayerPotScore(String gameId, Player player, Integer scorePutIntoPot);
 }
