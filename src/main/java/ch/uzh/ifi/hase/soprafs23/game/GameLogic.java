@@ -21,33 +21,26 @@ class GameLogic {
     }
 
     void startGame() throws IOException, InterruptedException {//Creating playerData and stuff
-        
         gm.setInfoFirstRound(sd.isInfoFirstRound());
-        Pair<VideoData, java.util.List<Hand>> ytData = sd.getYTData();
-
-        gm.setVideoData(ytData.getFirst());
-
         for (Pair<Player, Integer> pair : sd.getPlayers()) {
             var playerData = new PlayerData(pair.getFirst());
             gm.addPlayerData(playerData);
 
             playerData.setScore(pair.getSecond());
             playerData.setDecision(Decision.NOT_DECIDED);
-
-            Hand hand = ytData.getSecond().get(rand.nextInt(ytData.getSecond().size()));
-            ytData.getSecond().remove(hand);
-            playerData.setNewHand(hand);
         }
 
-        gm.resetTable();
-        gm.setDealerPlayer(); //random dealer if not set before
+        setupRound();
     }
     
-    void startRound() throws IOException, InterruptedException {
+    void nextRound() throws IOException, InterruptedException {
+        setupRound();
+    }
+    
+    private void setupRound() throws IllegalStateException, IOException, InterruptedException {//set hands small and big blinds after this the Round
         Pair<VideoData, java.util.List<Hand>> ytData = sd.getYTData();
 
         gm.setVideoData(ytData.getFirst());
-        gm.setFoldCount(0);
 
         for (PlayerData playerData : new ArrayList<>(gm.getPlayerDataCollection())) {
             synchronized (playerData) {
@@ -62,8 +55,16 @@ class GameLogic {
             }
         }
 
-        gm.resetRound();
-        gm.nextDealer(); //random dealer if not set before
+        gm.resetTable();
+
+        if (gm.getDealerPlayer().getToken() == null) {
+            gm.setDealerPlayer();
+        } else {
+            gm.nextDealer();
+        }
+
+        startBettingRound();
+        paySmallNBigBlind();
     }
 
     void startBettingRound() {
@@ -180,7 +181,7 @@ class GameLogic {
         
 
         var playerData = gm.getPlayerData(player);
-        if (playerData.getScore() < gm.getCallAmount()) {
+        if (playerData.getScore() + playerData.getScorePutIntoPot() < gm.getCallAmount()) {
             throw new IllegalStateException(
                     player + " not enough score(" + playerData.getScore() + ") to call(" + gm.getCallAmount() + ")");
         }
@@ -199,13 +200,26 @@ class GameLogic {
     }
 
     void enforceBigAndSmallBlind(Player player, Integer newCallAmount) throws IllegalStateException {
-        if (isBigBlind(player) && newCallAmount < sd.getBigBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_BETTING_ROUND) {
-            throw new IllegalStateException("BigBlind must raise. currentCallAmount: " + newCallAmount + " BigBlindAmount: "
-                    + sd.getBigBlindAmount());
-        } else if (isSmallBlind(player) && newCallAmount < sd.getSmallBlindAmount() && gm.getGamePhase() == GamePhase.FIRST_BETTING_ROUND) {
+        if (isBigBlind(player) && newCallAmount < sd.getBigBlindAmount()
+                && gm.getGamePhase() == GamePhase.FIRST_BETTING_ROUND) {
+            throw new IllegalStateException(
+                    "BigBlind must raise. currentCallAmount: " + newCallAmount + " BigBlindAmount: "
+                            + sd.getBigBlindAmount());
+        } else if (isSmallBlind(player) && newCallAmount < sd.getSmallBlindAmount()
+                && gm.getGamePhase() == GamePhase.FIRST_BETTING_ROUND) {
             throw new IllegalStateException("SmallBlind must raise. currentCallAmount: " + newCallAmount
                     + " SmallBlindAmount: " + sd.getSmallBlindAmount());
         }
+    }
+    
+    void paySmallNBigBlind() {
+        gm.setCallAmount(sd.getSmallBlindAmount());
+        addToPot(gm.getSmallBlindPlayer());
+        gm.setCallAmount(sd.getBigBlindAmount());
+        addToPot(gm.getBigBlindPlayer());
+        gm.setCurrentPlayer(gm.getBigBlindPlayer());
+        gm.nextPlayer();
+        gm.setLastRaisingPlayer(gm.getCurrentPlayer());
     }
 
     boolean isBettingRoundOver() {

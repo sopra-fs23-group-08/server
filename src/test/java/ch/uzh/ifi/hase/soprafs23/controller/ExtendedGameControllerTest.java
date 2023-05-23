@@ -240,10 +240,6 @@ public class ExtendedGameControllerTest {
 
         Thread.sleep(sleepTime); //waiting for server to update. If next action is done before game has properly started some unexpected errors might happen. Like no player is able to do a decision, before the game has properly started.
         errorObserver.clear();
-        assertEquals(null, errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS)); //check for errors and give time to breathe for server
-        decision(Decision.RAISE, 10);
-        assertEquals(null, errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS)); //check for errors and give time to breathe for server
-        decision(Decision.RAISE, 20);
         assertEquals(null, errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS));
         decision(Decision.CALL, 0);
         decision(Decision.CALL, 0); //this is too fast and sends the second decision with the no longer current player gives an error
@@ -282,8 +278,7 @@ public class ExtendedGameControllerTest {
         assertEquals(null, errorObserver.poll(sleepTime, TimeUnit.MILLISECONDS)); //check for errors and give time to breathe for server
         
         var decisionStack = new LinkedList<Pair<Decision, Integer>>();
-        decisionStack.add(Pair.of(Decision.RAISE, 10));
-        decisionStack.add(Pair.of(Decision.RAISE, 20));
+     
         decisionStack.add(Pair.of(Decision.CALL, 0));
         decisionStack.add(Pair.of(Decision.CALL, 0));
         decisionStack.add(Pair.of(Decision.CALL, 0));

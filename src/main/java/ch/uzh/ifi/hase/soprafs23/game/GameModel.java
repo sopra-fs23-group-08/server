@@ -62,19 +62,13 @@ class GameModel { //protected (Package Private)
         }
     }
 
-    public void resetTable() {//call before playing, players stay
-        resetSmallBigBlind();
+    public void resetTable() {//call before playing
         setCurrentPlayer(new Player());
         setGamePhase(GamePhase.FIRST_BETTING_ROUND);
         setPotAmount(0);
         setWinner(new Player());
         setCallAmount(0);
-    }
-
-    public void resetRound() {
-        setGamePhase(GamePhase.FIRST_BETTING_ROUND);
-        setWinner(new Player());
-        setCallAmount(0);
+        setFoldCount(0);
     }
 
     public void resetBettingRound() {
@@ -153,7 +147,7 @@ class GameModel { //protected (Package Private)
     }
 
     public void setDealerPlayer(Player dealer) {
-        synchronized (dealer) {
+        synchronized (this.dealerPlayer) {
             synchronized (smallBlindPlayer) {
                 synchronized (bigBlindPlayer) {
                     var indexDealer = playerOrder.indexOf(dealer);
@@ -227,9 +221,6 @@ class GameModel { //protected (Package Private)
         if (videoData == null || videoData == this.videoData) {return;}
 
         synchronized (videoData) {
-            // for (GameObserver o : observers) {
-            //     //not observed ?? good design doubt it :) 
-            // }
             this.videoData = videoData;
         }
     }
