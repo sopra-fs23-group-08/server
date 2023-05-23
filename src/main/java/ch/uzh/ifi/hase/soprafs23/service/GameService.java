@@ -65,15 +65,13 @@ public class GameService implements GameObserver{
         return newGame.getGameId();
     }
 
-    public void startGame(String gameId){
+    public void startGame(String gameId) throws IOException{
         
         Game game = getGame(gameId);
         try {
             game.startGame();
         }catch (InterruptedException e){
             Thread.currentThread().interrupt();
-        }catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
     }
 
