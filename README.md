@@ -5,6 +5,7 @@ edit for title  -->
 Yuker Tuker-Server
 <br>
 </h1>
+
 ## Introduction
 Yuker Tuker is an exciting and competitive game that allows players to compete against each other in guessing a random YouTube video from a selected playlist, using a similar logic to poker. This is the back-end component of our project. The front-end part can be found [here](https://github.com/sopra-fs23-group-08/client).
 
@@ -54,6 +55,7 @@ This will execute the test suite and provide feedback on the application's funct
 
 - In-game chat 
 - Automatic blind deduction
+- Improved UI; structuring CSS code, replacing material ui components with custom ones
 
 ## Authors and Acknowledgment
 
