@@ -114,6 +114,7 @@ class GameModel { //protected (Package Private)
             playersData.remove(p.token);
             playerOrder.remove(p.getPlayer());
             for (GameObserver o : observers) {
+                o.playerLeft(gameId, p.getPlayer());
                 p.removeObserver(o);
             }
         }

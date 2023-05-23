@@ -433,5 +433,12 @@ public class GameService implements GameObserver{
         //since this always changes if a player also does a decision. No update is sent to FE
     }
 
+    @Override
+    public void playerLeft(String gameId, Player p) {
+        var gameData = getGameData(gameId);
+        gameData.playersData.remove(p.getToken());
+        gameController.playerStateChanged(gameId, gameData.playersData.values());
+    }
+
 }
 

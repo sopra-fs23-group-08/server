@@ -29,4 +29,6 @@ public interface GameObserver {
     void newVideoData(String gameId, VideoData videoData); //not revealed fields are set to null
 
     void updatePlayerPotScore(String gameId, Player player, Integer scorePutIntoPot);
+
+    void playerLeft(String gameId, Player p);
 }

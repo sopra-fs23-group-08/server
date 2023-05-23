@@ -446,6 +446,11 @@ public class GameTest {
     public void updatePlayerPotScore(String gameId, Player player, Integer scorePutIntoPot) {
       // TODO Auto-generated method stub
     }
+
+    @Override
+    public void playerLeft(String gameId, Player p) {
+      // TODO Auto-generated method stub
+    }
     
   }
 
