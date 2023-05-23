@@ -21,7 +21,7 @@ public class YTAPIManager {
     private String query = "LoFi HipHop";
     private String playlistId = "PL6HF94r1ogByYa2xFAXIE_1Pw-K0AU_Vd";
     private Language language = Language.GERMAN;
-    private boolean useYouTubeApi = false;
+    private boolean useYouTubeApi = true;
 
     public static boolean checkPlaylistUrl(String Url) throws IllegalStateException, IOException, InterruptedException {
         var listId = urlToPlaylistId(Url);
