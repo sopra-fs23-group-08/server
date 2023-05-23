@@ -441,6 +441,11 @@ public class GameTest {
     public void newVideoData(String gameId, VideoData videoData) {
       this.videoData = videoData;
     }
+
+    @Override
+    public void updatePlayerPotScore(String gameId, Player player, Integer scorePutIntoPot) {
+      // TODO Auto-generated method stub
+    }
     
   }
 
