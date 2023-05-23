@@ -166,17 +166,17 @@ class GameModel { //protected (Package Private)
         }
     }
 
-    private void resetSmallBigBlind() {
-        synchronized (smallBlindPlayer) {
-            synchronized (bigBlindPlayer) {
-                smallBlindPlayer = new Player();
-                bigBlindPlayer = new Player();
-                for (GameObserver o : observers) {
-                    o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
-                }
-            }
-        }
-    }
+    // private void resetSmallBigBlind() {
+    //     synchronized (smallBlindPlayer) {
+    //         synchronized (bigBlindPlayer) {
+    //             smallBlindPlayer = new Player();
+    //             bigBlindPlayer = new Player();
+    //             for (GameObserver o : observers) {
+    //                 o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
+    //             }
+    //         }
+    //     }
+    // }
 
     public List<HandOwnerWinner> getHands() throws IllegalStateException {
         synchronized (playersData) {

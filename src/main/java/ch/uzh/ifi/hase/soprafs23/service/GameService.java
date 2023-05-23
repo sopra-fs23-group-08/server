@@ -245,8 +245,7 @@ public class GameService implements GameObserver{
         gameData.playersData.get(player.getToken()).setScore(score);
 
         //send GameData to front end
-        gameController.playerStateChanged(gameId, gameData.playersData.values());
-
+        // gameController.playerStateChanged(gameId, gameData.playersData.values());
     }
 
     
@@ -269,7 +268,7 @@ public class GameService implements GameObserver{
         playerWsDTO.setLastDecision(decision);
 
         //send GameData to front end
-        gameController.playerStateChanged(gameId, gameData.playersData.values()); 
+        // gameController.playerStateChanged(gameId, gameData.playersData.values()); 
 
     }
 
@@ -298,6 +297,7 @@ public class GameService implements GameObserver{
 
         gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
         gameController.showdown(gameId, game.getHands());
+        gameController.playerStateChanged(gameId, gameData.playersData.values());
     }
 
     @Override
@@ -347,7 +347,7 @@ public class GameService implements GameObserver{
         gameData.setBigBlind(bigBlind);
 
         //send GameData to front end
-        gameController.playerStateChanged(gameId, gameData.playersData.values());
+        // gameController.playerStateChanged(gameId, gameData.playersData.values());
     }
 
     @Override
