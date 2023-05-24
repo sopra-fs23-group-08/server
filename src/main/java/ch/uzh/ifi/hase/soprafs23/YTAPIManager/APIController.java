@@ -64,11 +64,36 @@ class APIController {
 
     static Pair<VideoData, List<Hand>> getGameDataByPlaylist(String playlistId, Language language)
             throws IOException, InterruptedException {
-        var temp1 = APICaller.getVideosByPlaylistId(playlistId);
-        var temp1_5 = fromJsonToPlaylistVideoList(temp1);
-        var temp2 = temp1_5.toVideoList();
-        var temp3 = collectCommentsFromVideoList(temp2);
-        var temp4 = getGameDataFromVidsAndComments(temp3);
+        String temp1;
+        try {
+            temp1  = APICaller.getVideosByPlaylistId(playlistId);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(
+                    "Fetching the JSON from the YT Api with the provided PlaylistId (" + playlistId + ") did not work",
+                    e);
+        }
+        VideoList temp2;
+        try {
+            var temp1_5 = fromJsonToPlaylistVideoList(temp1);
+            temp2 = temp1_5.toVideoList();
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Converting JSON to videolist did not work", e);
+        }
+        List<Pair<VideoList.Item, List<CommentList.Item>>> temp3;
+        try {
+            temp3 = collectCommentsFromVideoList(temp2);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Collecting comments from VideoList did not Work", e);
+        }
+        Pair<VideoData, List<Hand>> temp4;
+        try {
+            temp4 = getGameDataFromVidsAndComments(temp3);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IllegalArgumentException("Was interrupted. Converting Vids and Comments to gameData did not work", e);
+        }catch (Exception e){ 
+            throw new IllegalArgumentException("Converting Vids and Comments to gameData did not work", e);
+        }
         return temp4;
     }
 
@@ -281,6 +306,9 @@ class PlaylistVideoList {
     public VideoList toVideoList() {
         var vd = new VideoList();
         vd.items = new ArrayList<>();
+        if (items == null || items.size() == 0) {
+            throw new IllegalStateException("Must have at least one video in Playlist. VideoPlaylist can not be parsed");
+        }
         for (var i : items) {
             vd.items.add(i.toVideoList());
         }
@@ -359,7 +387,11 @@ class PlaylistVideoList {
         public VideoList.Item toVideoList() {
             var i = new VideoList().new Item();
             i.id = i.new itemId();
-            i.id.videoId = snippet.resourceId.videoId;
+            try {
+                i.id.videoId = snippet.resourceId.videoId;
+            } catch (Exception e) {
+                throw new IllegalStateException("Video Id not found can not pares Playlist video list", e);
+            }
             i.snippet = snippet.toVideoList(i);
             return i;
         }

@@ -181,6 +181,7 @@ public class ExtendedGameControllerTest {
         fillGame();
         Thread.sleep(500);
         session.send(app + "/start", "");
+        Thread.sleep(10000); // wait for be to fetch comments
 
         var playerList = getNewest(playerObserver);
         var gameState = getNewest(gameStateObserver);
