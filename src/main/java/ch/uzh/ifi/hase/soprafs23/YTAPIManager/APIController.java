@@ -74,6 +74,9 @@ class APIController {
 
     static Integer getVideoCountForPlaylist(String playlistId) throws IOException, InterruptedException {
         var videoList = fromJsonToPlaylistVideoList(APICaller.getVideosByPlaylistId(playlistId));
+        if (videoList == null || videoList.items == null) {
+            throw new IllegalStateException("The provided Playlist is invalid. Probably it is private. It must be public");
+        }
         return videoList.items.size();
     }
     
