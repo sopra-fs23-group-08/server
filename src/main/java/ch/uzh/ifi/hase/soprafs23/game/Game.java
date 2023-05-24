@@ -47,7 +47,6 @@ public class Game {
     public synchronized void startGame() throws IOException, InterruptedException{ //this ends the setup phase. No changes to setup are possible
         gameLogic.startGame();
         setup = new SetupClosed();
-        gameLogic.startBettingRound();
     }
     
     public synchronized void startBettingRound() { //this is not needed at the current state but would start the betting round
@@ -77,8 +76,7 @@ public class Game {
     }
 
     public synchronized void nextRound() throws IOException, InterruptedException { // this should be called after a round to play a second round
-        gameLogic.startRound();
-        gameLogic.startBettingRound();
+        gameLogic.nextRound();
     }
 
     public synchronized void addObserver(GameObserver o) { //adding game observer. Game observer are classes which implement GameObserver most of the data traffic happens there

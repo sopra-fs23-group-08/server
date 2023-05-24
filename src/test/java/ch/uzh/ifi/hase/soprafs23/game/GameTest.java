@@ -83,45 +83,29 @@ public class GameTest {
     //   game.call(playerC);
     // }, "You're not the current player");
 
-    assertEquals(1000, observer.playerScore);
+    //small and big blind has been payed
+    assertEquals(980, observer.playerScore);
     //assertEquals(null, observer.currentPlayer.getToken());
 
 
-    var smallBlind = observer.smallBlind; //rename to smallBlindPlayer ?
+    var smallBlind = observer.bigBlind; //rename to smallBlindPlayer ?
     var currentPlayer = observer.currentPlayer;
-    assertEquals(smallBlind.getName(), currentPlayer.getName());
+    assertNotEquals(smallBlind.getName(), currentPlayer.getName());
 
     executableThrowsExceptionMsg(() -> {
       game.call(observer.bigBlind);
     }, "You're not the current player");
 
-    executableThrowsExceptionMsg(() -> {
-      game.call(observer.currentPlayer);
-    }, "SmallBlind must raise. currentCallAmount: 0 SmallBlindAmount: 10");
-
-    executableThrowsExceptionMsg(() -> {
-      game.raise(observer.currentPlayer, 5);
-    }, "SmallBlind must raise. currentCallAmount: 5 SmallBlindAmount: 10");
-
-    assertEquals(0, observer.callAmount);
-
-    try {
-      game.raise(observer.currentPlayer, 10);
-    } catch (Exception e) {
-      assertEquals("Some exception occurred1", e);
-    }
+    assertEquals(20, observer.callAmount);
+    game.call(observer.currentPlayer);
 
     assertNotEquals(currentPlayer, observer.currentPlayer); //since a new player is playing
     currentPlayer = observer.currentPlayer;
-    assertEquals(10, observer.callAmount);
-
-    executableThrowsExceptionMsg(() -> {
-      game.call(observer.currentPlayer);
-    }, "BigBlind must raise. currentCallAmount: 10 BigBlindAmount: 20");
+    assertEquals(20, observer.callAmount);
 
     assertEquals(null, observer.winner.getToken());
     try {
-      game.raise(observer.currentPlayer, 20);
+      game.raise(observer.currentPlayer, 30);
       game.call(observer.currentPlayer);
       assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
       game.call(observer.currentPlayer);
@@ -154,13 +138,11 @@ public class GameTest {
     assertEquals(null, observer.winner.getToken());
 
     try {
-      game.raise(observer.currentPlayer, 10);
-      assertEquals(10, observer.potScore);
-      game.raise(observer.currentPlayer, 20);
       assertEquals(30, observer.potScore);
       game.call(observer.currentPlayer);
       assertEquals(50, observer.potScore);
       assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
+      game.call(observer.currentPlayer);
       game.call(observer.currentPlayer);
       assertEquals(60, observer.potScore);
       assertEquals(GamePhase.SECOND_BETTING_ROUND, observer.gamePhase);
@@ -219,14 +201,13 @@ public class GameTest {
     assertEquals(2, game.getPlayers().size());
     var p1 = observer.currentPlayer;
     assertEquals(p1.getToken(), observer.smallBlind.getToken());
-    game.raise(observer.currentPlayer, 10);
+    game.call(observer.currentPlayer);
     var p2 = observer.currentPlayer;
     assertEquals(p2.getToken(), observer.bigBlind.getToken());
     assertNotEquals(p1.getToken(), p2.getToken());
-    game.raise(observer.currentPlayer, 20);
-    assertEquals(p1.getToken(), observer.currentPlayer.getToken());
+    assertEquals(p2.getToken(), observer.currentPlayer.getToken());
+    
     game.call(observer.currentPlayer);
-
     assertEquals(GamePhase.SECOND_BETTING_ROUND, observer.gamePhase);
     assertEquals(p1.getToken(), observer.currentPlayer.getToken());
     game.call(observer.currentPlayer);
@@ -256,16 +237,18 @@ public class GameTest {
     try {
       assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
 
-      game.raise(observer.currentPlayer, 10);
-      game.raise(observer.currentPlayer, 20);
-
       game.call(observer.currentPlayer);
       var winner = observer.player;
       var pScore = observer.playerScore;
-
+      assertEquals(980, observer.playerScore);
+      
       game.call(observer.currentPlayer);
-
+      assertEquals(980, observer.playerScore);
+      game.call(observer.currentPlayer);
+      assertEquals(980, observer.playerScore);
+      
       var potScore = observer.potScore;
+      assertEquals(60, potScore);
 
       assertEquals(GamePhase.SECOND_BETTING_ROUND, observer.gamePhase);
       assertEquals(observer.smallBlind, observer.currentPlayer);
@@ -293,8 +276,6 @@ public class GameTest {
 
       game.nextRound(); //only two players left
 
-      game.raise(observer.currentPlayer, 10);
-      game.raise(observer.currentPlayer, 20);
       game.fold(observer.currentPlayer);
 
       assertEquals(GamePhase.END_ALL_FOLDED, observer.gamePhase);
@@ -310,15 +291,13 @@ public class GameTest {
     
     
     try {
-      game.raise(observer.currentPlayer, 10);
-      assertEquals(10, observer.potScore);
-      game.raise(observer.currentPlayer, 20);
       assertEquals(30, observer.potScore);
       game.call(observer.currentPlayer);
       assertEquals(50, observer.potScore);
       assertEquals(GamePhase.FIRST_BETTING_ROUND, observer.gamePhase);
       assertEquals(null, observer.videoData.likes);
       assertEquals(null, observer.videoData.views);
+      game.call(observer.currentPlayer);
       game.call(observer.currentPlayer);
       assertEquals(60, observer.potScore);
       assertEquals(GamePhase.SECOND_BETTING_ROUND, observer.gamePhase);
@@ -440,6 +419,16 @@ public class GameTest {
     @Override
     public void newVideoData(String gameId, VideoData videoData) {
       this.videoData = videoData;
+    }
+
+    @Override
+    public void updatePlayerPotScore(String gameId, Player player, Integer scorePutIntoPot) {
+      // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void playerLeft(String gameId, Player p) {
+      // TODO Auto-generated method stub
     }
     
   }

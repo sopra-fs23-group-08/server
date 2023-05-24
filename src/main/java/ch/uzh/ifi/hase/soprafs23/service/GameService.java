@@ -65,15 +65,13 @@ public class GameService implements GameObserver{
         return newGame.getGameId();
     }
 
-    public void startGame(String gameId){
+    public void startGame(String gameId) throws IOException{
         
         Game game = getGame(gameId);
         try {
             game.startGame();
         }catch (InterruptedException e){
             Thread.currentThread().interrupt();
-        }catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
     }
 
@@ -245,8 +243,7 @@ public class GameService implements GameObserver{
         gameData.playersData.get(player.getToken()).setScore(score);
 
         //send GameData to front end
-        gameController.playerStateChanged(gameId, gameData.playersData.values());
-
+        // gameController.playerStateChanged(gameId, gameData.playersData.values());
     }
 
     
@@ -269,7 +266,7 @@ public class GameService implements GameObserver{
         playerWsDTO.setLastDecision(decision);
 
         //send GameData to front end
-        gameController.playerStateChanged(gameId, gameData.playersData.values()); 
+        // gameController.playerStateChanged(gameId, gameData.playersData.values()); 
 
     }
 
@@ -298,6 +295,7 @@ public class GameService implements GameObserver{
 
         gameController.gameStateChanged(gameId, gameData.gameStateWsDTO);
         gameController.showdown(gameId, game.getHands());
+        gameController.playerStateChanged(gameId, gameData.playersData.values());
     }
 
     @Override
@@ -347,7 +345,7 @@ public class GameService implements GameObserver{
         gameData.setBigBlind(bigBlind);
 
         //send GameData to front end
-        gameController.playerStateChanged(gameId, gameData.playersData.values());
+        // gameController.playerStateChanged(gameId, gameData.playersData.values());
     }
 
     @Override
@@ -424,6 +422,20 @@ public class GameService implements GameObserver{
     public void resendSettings(String gameId) {
         var gameData = getGameData(gameId);
         gameController.sendSettingsToClient(gameId, gameData.settings);
+    }
+
+    @Override
+    public void updatePlayerPotScore(String gameId, Player player, Integer scorePutIntoPot) {
+        var gameData = getGameData(gameId);
+        gameData.playersData.get(player.getToken()).setScorePlayerPutIntoPot(scorePutIntoPot);
+        //since this always changes if a player also does a decision. No update is sent to FE
+    }
+
+    @Override
+    public void playerLeft(String gameId, Player p) {
+        var gameData = getGameData(gameId);
+        gameData.playersData.remove(p.getToken());
+        gameController.playerStateChanged(gameId, gameData.playersData.values());
     }
 
 }

@@ -32,7 +32,12 @@ public class PlayerWsDTO {
     private boolean isBigBlind;
     private boolean isSmallBlind;
     private boolean isCurrentPlayer;
+    private Integer scorePutIntoPot;
 
+
+    public Integer getScorePutIntoPot() {
+        return scorePutIntoPot;
+    }
 
     public String getToken() {
         return token;
@@ -88,5 +93,9 @@ public class PlayerWsDTO {
 
     public void setBigBlind(boolean bigBlind) {
         isBigBlind = bigBlind;
+    }
+
+    public void setScorePlayerPutIntoPot(Integer scorePutIntoPot) {
+        this.scorePutIntoPot = scorePutIntoPot;
     }
 }

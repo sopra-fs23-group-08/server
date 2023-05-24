@@ -64,10 +64,12 @@ class APIController {
 
     static Pair<VideoData, List<Hand>> getGameDataByPlaylist(String playlistId, Language language)
             throws IOException, InterruptedException {
-        return getGameDataFromVidsAndComments(
-                collectCommentsFromVideoList(
-                        fromJsonToPlaylistVideoList(
-                                APICaller.getVideosByPlaylistId(playlistId)).toVideoList()));
+        var temp1 = APICaller.getVideosByPlaylistId(playlistId);
+        var temp1_5 = fromJsonToPlaylistVideoList(temp1);
+        var temp2 = temp1_5.toVideoList();
+        var temp3 = collectCommentsFromVideoList(temp2);
+        var temp4 = getGameDataFromVidsAndComments(temp3);
+        return temp4;
     }
 
     static Integer getVideoCountForPlaylist(String playlistId) throws IOException, InterruptedException {
@@ -179,14 +181,14 @@ class APIController {
     }
 
     static VideoList fromJsonToVideoList(String jsonString) {
-        jsonString = jsonString.replace("default", "default_escape");
+        // jsonString = jsonString.replace("default", "default_escape");
 
         Gson gson = new GsonBuilder().setDateFormat(DateFormat.FULL, DateFormat.FULL).create();
         return gson.fromJson(jsonString, VideoList.class);
     }
 
     static PlaylistVideoList fromJsonToPlaylistVideoList(String jsonString) {
-        jsonString = jsonString.replace("default", "default_escape");
+        jsonString = jsonString.replace("\"default\":", "\"default_escape\":");
 
         Gson gson = new GsonBuilder().setDateFormat(DateFormat.FULL, DateFormat.FULL).create();
         return gson.fromJson(jsonString, PlaylistVideoList.class);
@@ -311,9 +313,9 @@ class PlaylistVideoList {
             public Thumbnails thumbnails;
 
             public class Thumbnails {
-                //public Thumbnail default_escape;
+                public Thumbnail default_escape;
                 public Thumbnail medium;
-                //public Thumbnail high;
+                public Thumbnail high;
 
                 public class Thumbnail {
                     public String url;
@@ -337,7 +339,15 @@ class PlaylistVideoList {
                 s.publishedAt = publishedAt;
                 s.thumbnails = s.new Thumbnails();
                 s.thumbnails.medium = s.thumbnails.new Thumbnail();
-                s.thumbnails.medium.url = thumbnails.medium.url;
+                var thumbnailFound = false;
+                try {
+                    s.thumbnails.medium.url = thumbnails.default_escape.url;
+                    thumbnailFound = true;
+                    s.thumbnails.medium.url = thumbnails.medium.url;
+                    s.thumbnails.medium.url = thumbnails.high.url;
+                } catch (Exception e) {
+                    System.out.println("Problem in thumbnail fetching. Thumbnail found " + thumbnailFound);
+                }
                 s.title = title;
                 return s;
             }

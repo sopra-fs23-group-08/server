@@ -14,10 +14,10 @@ class SetupData extends Setup {
 
     private static final int MAXPLAYER = 6;
     private List<Pair<Player, Integer>> players;
-    private int smallBlind = 10;
-    private int bigBlind = 20;
+    private int smallBlind = 50;
+    private int bigBlind = 100;
     private boolean infoFirstRound = true;
-    private int initialScore = 500;
+    private int initialScore = 3000;
 
     public SetupData() {
         players = new ArrayList<>();

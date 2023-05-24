@@ -51,6 +51,9 @@ class PlayerData { //protected (Package Private)
     }
 
     public synchronized void setScorePutIntoPot(Integer scorePutIntoPot) {
+        for(var o : observersPlayer){
+            o.updatePlayerPotScore(gameId, player, scorePutIntoPot);
+        }
         this.scorePutIntoPot = scorePutIntoPot;
     }
 

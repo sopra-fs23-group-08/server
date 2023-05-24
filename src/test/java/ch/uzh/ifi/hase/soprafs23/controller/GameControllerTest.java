@@ -390,7 +390,7 @@ public class GameControllerTest {
 
         var response = errorObserver.poll(10, TimeUnit.SECONDS);
         assertNotEquals(null, response);
-        assertEquals("You're not the current player", response.getMessage());
+        assertEquals("No decisions possible if game is in Lobby or end state", response.getMessage());
     }
 
     @Test

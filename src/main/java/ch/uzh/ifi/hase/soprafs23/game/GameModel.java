@@ -62,19 +62,13 @@ class GameModel { //protected (Package Private)
         }
     }
 
-    public void resetTable() {//call before playing, players stay
-        resetSmallBigBlind();
+    public void resetTable() {//call before playing
         setCurrentPlayer(new Player());
         setGamePhase(GamePhase.FIRST_BETTING_ROUND);
         setPotAmount(0);
         setWinner(new Player());
         setCallAmount(0);
-    }
-
-    public void resetRound() {
-        setGamePhase(GamePhase.FIRST_BETTING_ROUND);
-        setWinner(new Player());
-        setCallAmount(0);
+        setFoldCount(0);
     }
 
     public void resetBettingRound() {
@@ -114,6 +108,7 @@ class GameModel { //protected (Package Private)
             playersData.remove(p.token);
             playerOrder.remove(p.getPlayer());
             for (GameObserver o : observers) {
+                o.playerLeft(gameId, p.getPlayer());
                 p.removeObserver(o);
             }
         }
@@ -152,7 +147,7 @@ class GameModel { //protected (Package Private)
     }
 
     public void setDealerPlayer(Player dealer) {
-        synchronized (dealer) {
+        synchronized (this.dealerPlayer) {
             synchronized (smallBlindPlayer) {
                 synchronized (bigBlindPlayer) {
                     var indexDealer = playerOrder.indexOf(dealer);
@@ -171,17 +166,17 @@ class GameModel { //protected (Package Private)
         }
     }
 
-    private void resetSmallBigBlind() {
-        synchronized (smallBlindPlayer) {
-            synchronized (bigBlindPlayer) {
-                smallBlindPlayer = new Player();
-                bigBlindPlayer = new Player();
-                for (GameObserver o : observers) {
-                    o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
-                }
-            }
-        }
-    }
+    // private void resetSmallBigBlind() {
+    //     synchronized (smallBlindPlayer) {
+    //         synchronized (bigBlindPlayer) {
+    //             smallBlindPlayer = new Player();
+    //             bigBlindPlayer = new Player();
+    //             for (GameObserver o : observers) {
+    //                 o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
+    //             }
+    //         }
+    //     }
+    // }
 
     public List<HandOwnerWinner> getHands() throws IllegalStateException {
         synchronized (playersData) {
@@ -226,9 +221,6 @@ class GameModel { //protected (Package Private)
         if (videoData == null || videoData == this.videoData) {return;}
 
         synchronized (videoData) {
-            // for (GameObserver o : observers) {
-            //     //not observed ?? good design doubt it :) 
-            // }
             this.videoData = videoData;
         }
     }
