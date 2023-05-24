@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
+import org.mockito.internal.stubbing.answers.ThrowsException;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.util.Pair;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
@@ -32,6 +33,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import ch.uzh.ifi.hase.soprafs23.YTAPIManager.Language;
+import ch.uzh.ifi.hase.soprafs23.YTAPIManager.YTAPIManager;
 import ch.uzh.ifi.hase.soprafs23.game.Decision;
 import ch.uzh.ifi.hase.soprafs23.game.GamePhase;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.DecisionWsDTO;
@@ -44,6 +46,7 @@ import javassist.expr.NewArray;
 import static ch.uzh.ifi.hase.soprafs23.controller.GameControllerTest.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @SuppressWarnings({"unchecked", "rawtypes", "unused"})
@@ -339,7 +342,7 @@ public class ExtendedGameControllerTest {
     public void basicPlaylistTest() throws InterruptedException {
         var settingsObsesrver = subscribe(session, String.format("/topic/games/%s/settings", gameId),
                 SettingsWsDTO.class);
-        
+
         var settings = new SettingsWsDTO();
         settings.setPlaylistUrl("https://www.youtube.com/watch?v=HnIdtbV_TDU&list=PLjT6ePOFLFf3gHO_fXXmikcipOV3ZLYB0");
         settings.setLanguage(Language.ENGLISH);
@@ -349,8 +352,15 @@ public class ExtendedGameControllerTest {
 
         session.send(String.format("/app/games/%s/settings", gameId), settings);
         var response = settingsObsesrver.poll(10, TimeUnit.SECONDS);
-        session.send(String.format("/app/games/%s/start", gameId),"");
+        session.send(String.format("/app/games/%s/start", gameId), "");
         assertNotEquals(null, response);
+    }
+
+    @Test
+    public void privatePlaylistTest() throws IllegalStateException, IOException, InterruptedException {
+        var playlistUrl = "https://www.youtube.com/watch?v=8RTR1Ag0rhQ&list=PLS9WZcsKGOeCVp6uMq3gROdIBTQFrR6ma";
+
+        assertThrows(IllegalStateException.class, () -> YTAPIManager.checkPlaylistUrl(playlistUrl));
     }
 
     private void fillGame() {

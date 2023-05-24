@@ -155,6 +155,9 @@ public class GameService implements GameObserver{
     // adds a new player to a specified game.
     public synchronized void addPlayer(String gameId, Player player) {
 
+        if ((player == null) || (player.getToken() == null)) {
+            throw new IllegalStateException("Player can't be null");
+        }
         PlayerWsDTO playerWsDTO = new PlayerWsDTO(player.getToken(),player.getName(),null,Decision.NOT_DECIDED,false,false,false);
         Game game = getGame(gameId);
         GameData gameData = getGameData(gameId);

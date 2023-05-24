@@ -167,8 +167,8 @@ public class GameTest {
       assertEquals(GamePhase.FOURTH_BETTING_ROUND, observer.gamePhase);
 
       executableThrowsExceptionMsg(() -> {
-        game.raise(observer.currentPlayer, 1000);
-      }, "Player score(960) is not high enough to raise(1000).");
+        game.raise(observer.currentPlayer, 1010);
+      }, "Player score(1000) is not high enough to raise(1010).");
       game.call(observer.currentPlayer);
       game.call(observer.currentPlayer);
       game.call(observer.currentPlayer);
@@ -325,8 +325,8 @@ public class GameTest {
       assertEquals(null, observer.videoData.releaseDate);
       
       executableThrowsExceptionMsg(() -> {
-        game.raise(observer.currentPlayer, 1000);
-      }, "Player score(960) is not high enough to raise(1000).");
+        game.raise(observer.currentPlayer, 1010);
+      }, "Player score(1000) is not high enough to raise(1010).");
       game.call(observer.currentPlayer);
       game.call(observer.currentPlayer);
       game.call(observer.currentPlayer);
