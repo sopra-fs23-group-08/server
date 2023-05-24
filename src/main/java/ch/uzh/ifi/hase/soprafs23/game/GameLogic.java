@@ -103,12 +103,19 @@ class GameLogic {
 
             case RAISE:
                 var playerData = gm.getPlayerData(player);
-                if (playerData.getScore() < newCallAmount) {
+                if (playerData.getScore() + playerData.getScorePutIntoPot()< newCallAmount) {
                     throw new IllegalStateException(
-                            "Player score(" + playerData.getScore() + ") is not high enough to raise(" + newCallAmount
+                            "Player score(" + (playerData.getScore()+playerData.getScorePutIntoPot()) + ") is not high enough to raise(" + newCallAmount
                                     + ").");
                 }else if (gm.getCallAmount() > newCallAmount){
                     throw new IllegalStateException("The CallAmount must be higher after a raise. CallAmountBefore: " + gm.getCallAmount() + " NewCallAmount: " + newCallAmount);
+                }
+                for (var pdata : gm.getPlayerDataCollection()) {
+                    var pscore = pdata.getScore() + pdata.getScorePutIntoPot();
+                    if (pscore < newCallAmount) {
+                        throw new IllegalStateException("Can not raise to " + newCallAmount + " because player "
+                                + pdata.getPlayer().getName() + " has enough points to follow.");
+                    }
                 }
                 gm.setCallAmount(newCallAmount);
                 addToPot(player);
