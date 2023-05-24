@@ -161,7 +161,7 @@ class APIController {
     //takes a list of videos filters to videos with comment and fetches 100 most relevant comments filters them to be longer than 50 chars.
     private static List<Pair<VideoList.Item, List<CommentList.Item>>> collectCommentsFromVideoList(VideoList videoList) {
         List<Pair<VideoList.Item, List<CommentList.Item>>> videosWithComments = new ArrayList<>();
-        final int MINCHARS = 50;
+        final int MINCHARS = 40;
 
         for (VideoList.Item video : videoList.items) {
 
@@ -181,6 +181,11 @@ class APIController {
             } catch (Exception e) {
                 System.out.println("Problem in fetching comments: " + e);
             }
+        }
+
+        if (videosWithComments.size() < 2) {
+            throw new IllegalStateException(
+                    "The Provided Playlist contains not enough comments longer than " + MINCHARS + " Chars. There must be at least 2 videos with more than 21 fitting comments. " + (videosWithComments.size() == 1 ? "One video" : videosWithComments.size() + " videos") +" fulfill this condition.");
         }
 
         return videosWithComments;

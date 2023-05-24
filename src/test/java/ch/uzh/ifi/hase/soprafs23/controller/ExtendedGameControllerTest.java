@@ -356,6 +356,24 @@ public class ExtendedGameControllerTest {
         session.send(String.format("/app/games/%s/start", gameId), "");
         assertNotEquals(null, response);
     }
+   
+    @Test
+    public void tinyPlaylistTest() throws InterruptedException {
+        var settingsObsesrver = subscribe(session, String.format("/topic/games/%s/settings", gameId),
+                SettingsWsDTO.class);
+
+        var settings = new SettingsWsDTO();
+        settings.setPlaylistUrl("https://www.youtube.com/playlist?list=PL3LitEY3lTxVfnzAcIdwygQfsrpiggNzn");
+        settings.setLanguage(Language.ENGLISH);
+        settings.setBigBlind(100);
+        settings.setSmallBlind(100);
+        settings.setInitialBalance(100);
+
+        session.send(String.format("/app/games/%s/settings", gameId), settings);
+        var response = settingsObsesrver.poll(10, TimeUnit.SECONDS);
+        session.send(String.format("/app/games/%s/start", gameId), "");
+        assertNotEquals(null, response);
+    }
 
     @Test
     public void privatePlaylistTest() throws IllegalStateException, IOException, InterruptedException {
