@@ -13,6 +13,12 @@ Yuker Tuker is an exciting and competitive game that allows players to compete a
 ## Technologies
 The Java-written back end of this project utilizes the Spring Boot framework. Persistence is managed through JPA/Hibernate. Communication between the server and client is achieved through REST and websockets, with the additional usage of the STOMP messaging protocol for websockets. <!-- # recheck  -->
 
+
+## High Level Components
+
+The GameController controls the game when the stomp websocket connection is established. In addition, Game is the main component that controls the gameflow. Furthermore, GameLogic provides the logic of the whole game and how should it play.
+
+
 ## Launch & Deployment
 
 To help onboard a new developer joining our team, we have documented the necessary steps to get started with our application. Below are the commands required to build, run, and test the project locally:
@@ -54,6 +60,7 @@ This will execute the test suite and provide feedback on the application's funct
 ## Roadmap
 
 - In-game chat 
+- Automatic blind deduction
 - Improved UI; structuring CSS code, replacing material ui components with custom ones
 
 ## Authors and Acknowledgment
