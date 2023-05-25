@@ -4,8 +4,6 @@
 runtime: java
 instance_class: F2
 
-env: flex
-
 automatic_scaling:
   max_num_instances: 1
 
