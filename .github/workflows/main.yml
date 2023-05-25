@@ -48,7 +48,7 @@ jobs:
         uses: google-github-actions/deploy-appengine@v1.2.7
         with:
           deliverables: app.yaml
-          version: v2
+          version: v1
 
       - name: Test
         run: curl "${{ steps.deploy.outputs.url }}"
