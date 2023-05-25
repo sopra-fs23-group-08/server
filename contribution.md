@@ -103,4 +103,7 @@
 * 18.5. - 25.2., Rolando: Solve deployment issues 
 * 18.5. - 25.2., Rolando: Solve Sonarcloud and Build issues
 * 18.5. - 25.2., Rolando: Summarize the Project with a README
+* 18.5. - 25.2., Serafin  https://github.com/sopra-fs23-group-08/client/issues/82
+* 18.5. - 25.2., Serafin https://github.com/sopra-fs23-group-08/client/issues/83
+* 18.5. - 25.2., Serafin https://github.com/sopra-fs23-group-08/server/issues/107
 
