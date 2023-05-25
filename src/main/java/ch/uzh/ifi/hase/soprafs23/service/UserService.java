@@ -52,6 +52,41 @@ public class UserService {
     return newUser;
   }
 
+  public User getUser(String token) {
+    User user = userRepository.findByToken(token);
+    if (user == null) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+    }
+    return user;
+  }
+
+  public User validateUser(User userToBeValidated){
+      String givenUsername = userToBeValidated.getUsername();
+      String givenPassword = userToBeValidated.getPassword();
+
+      // get user and check if username is valid
+      User user = this.userRepository.findByUsername(givenUsername);
+
+      // if user doesn't exist
+      if (user == null) {
+          throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
+                  "Error: Password or username incorrect");
+      }
+
+      // retrieve password
+      String actualPassword = user.getPassword();
+
+      // if passwords don't match
+      if(!(actualPassword.equals(givenPassword))) {
+          throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
+                  "Error: Password or username incorrect");
+      }
+
+      user.setStatus(UserStatus.ONLINE);
+
+      return user;
+  }
+
   /**
    * This is a helper method that will check the uniqueness criteria of the
    * username and the name
@@ -67,7 +102,7 @@ public class UserService {
   
     String baseErrorMessage = "The %s provided %s not unique. Therefore, the user could not be created!";
     if (userByUsername != null) {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(baseErrorMessage, "username", "is"));
+      throw new ResponseStatusException(HttpStatus.CONFLICT, String.format(baseErrorMessage, "username", "is"));
     }
   }
   
