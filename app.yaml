@@ -2,6 +2,7 @@
 # https://cloud.google.com/appengine/docs/standard
 
 runtime: java
+env: flex
 
 automatic_scaling:
   max_num_instances: 1
