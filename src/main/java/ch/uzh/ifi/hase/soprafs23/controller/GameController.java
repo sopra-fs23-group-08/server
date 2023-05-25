@@ -40,6 +40,11 @@ public class GameController {
         this.gameService = new GameService(this);
     }
 
+    public GameController(String nuller) {
+        //needs another constructor
+        this.gameService = null;
+    }
+
     @PostMapping("/games")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody

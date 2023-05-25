@@ -21,6 +21,9 @@ class GameLogic {
     }
 
     void startGame() throws IOException, InterruptedException {//Creating playerData and stuff
+        if (gm.getGamePhase() != GamePhase.LOBBY) {
+            throw new IllegalStateException("Game has already started. Try 'next round' if you want to play another round. Probably someone accidentally tried to start the game a second time");
+        }
         gm.setInfoFirstRound(sd.isInfoFirstRound());
         for (Pair<Player, Integer> pair : sd.getPlayers()) {
             var playerData = new PlayerData(pair.getFirst());

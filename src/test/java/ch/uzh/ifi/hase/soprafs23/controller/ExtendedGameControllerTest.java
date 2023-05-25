@@ -64,13 +64,18 @@ public class ExtendedGameControllerTest {
 
     @BeforeEach
     public void setup() throws IOException, InterruptedException, ExecutionException, TimeoutException {
-        gameId = newGame();
-        session = createStompSession(new MappingJackson2MessageConverter());
-        sessionString = createStompSession(new StringMessageConverter());
-        errorObserver = subscribe(session, "/topic/games/" + gameId + "/error", Exception.class);
-        topic = "/topic/games/" + gameId;
-        app = "/app/games/" + gameId;
-        playerObserver = subscribe(session, topic + "/players", List.class);
+        try {
+            gameId = newGame();
+            session = createStompSession(new MappingJackson2MessageConverter());
+            sessionString = createStompSession(new StringMessageConverter());
+            errorObserver = subscribe(session, "/topic/games/" + gameId + "/error", Exception.class);
+            topic = "/topic/games/" + gameId;
+            app = "/app/games/" + gameId;
+            playerObserver = subscribe(session, topic + "/players", List.class);
+        } catch (Exception e) {
+            System.err.println(e);
+            assertEquals("Needs running Backend. Probably your not running a local Backend", e);
+        }
     }
     
     @Test

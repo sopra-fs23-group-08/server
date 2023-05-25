@@ -65,8 +65,13 @@ public class GameControllerTest {
  
     @BeforeEach
     void setup() throws IOException, InterruptedException, ExecutionException, TimeoutException {
+        try{
         gameId = newGame();
         session = createStompSession(new MappingJackson2MessageConverter());
+        } catch (Exception e) {
+            System.err.println(e);
+            assertEquals("Needs running Backend. Probably your not running a local Backend", e);
+        }
     }
     
     @Test
