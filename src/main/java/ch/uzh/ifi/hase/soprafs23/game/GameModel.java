@@ -33,6 +33,16 @@ class GameModel { //protected (Package Private)
 
     private List<GameObserver> observers;
     private boolean infoFirstRound = true;
+    private Object playersDataLock = new Object();
+    private Object dealerPlayerLock = new Object();
+    private Object smallBlindPlayerLock = new Object();
+    private Object bigBlindPlayerLock = new Object();
+    private Object winnerLock = new Object();
+    private Object videoDataLock = new Object();
+    private Object gamePhaseLock = new Object();
+    private Object currentPlayerLock = new Object();
+    private Object lastRaisingPlayerLock = new Object();
+    private Object hostLock = new Object();
 
     public void setInfoFirstRound(boolean infoFirstRound) {
         this.infoFirstRound = infoFirstRound;
@@ -94,7 +104,7 @@ class GameModel { //protected (Package Private)
 
     //player stuff-------------------------------
     public void addPlayerData(PlayerData p) {
-        synchronized (playersData) {
+        synchronized (playersDataLock) {
             playersData.put(p.token ,p);
             playerOrder.add(p.getPlayer());
             for (GameObserver o : observers) {
@@ -104,7 +114,7 @@ class GameModel { //protected (Package Private)
     }
     
     public void removePlayerData(PlayerData p) {
-        synchronized (playersData) {
+        synchronized (playersDataLock) {
             playersData.remove(p.token);
             playerOrder.remove(p.getPlayer());
             for (GameObserver o : observers) {
@@ -147,9 +157,9 @@ class GameModel { //protected (Package Private)
     }
 
     public void setDealerPlayer(Player dealer) {
-        synchronized (this.dealerPlayer) {
-            synchronized (smallBlindPlayer) {
-                synchronized (bigBlindPlayer) {
+        synchronized (dealerPlayerLock) {
+            synchronized (smallBlindPlayerLock) {
+                synchronized (bigBlindPlayerLock) {
                     var indexDealer = playerOrder.indexOf(dealer);
                     if(!smallBlindPlayer.compareTo(playerOrder.get((indexDealer + 1) % playerOrder.size())) ||
                             !bigBlindPlayer.compareTo(playerOrder.get((indexDealer + 2) % playerOrder.size()))) {
@@ -166,21 +176,10 @@ class GameModel { //protected (Package Private)
         }
     }
 
-    // private void resetSmallBigBlind() {
-    //     synchronized (smallBlindPlayer) {
-    //         synchronized (bigBlindPlayer) {
-    //             smallBlindPlayer = new Player();
-    //             bigBlindPlayer = new Player();
-    //             for (GameObserver o : observers) {
-    //                 o.newPlayerBigBlindNSmallBlind(gameId, smallBlindPlayer, bigBlindPlayer);
-    //             }
-    //         }
-    //     }
-    // }
 
     public List<HandOwnerWinner> getHands() throws IllegalStateException {
-        synchronized (playersData) {
-            synchronized (winner) {
+        synchronized (playersDataLock) {
+            synchronized (winnerLock) {
                 var l = new ArrayList<HandOwnerWinner>();
                 for (PlayerData pd : playersData.values()) {
                     var how = new HandOwnerWinner();
@@ -220,7 +219,8 @@ class GameModel { //protected (Package Private)
     public void setVideoData(VideoData videoData) {
         if (videoData == null || videoData == this.videoData) {return;}
 
-        synchronized (videoData) {
+        synchronized (videoDataLock) {
+        
             this.videoData = videoData;
         }
     }
@@ -234,7 +234,7 @@ class GameModel { //protected (Package Private)
             return;
         }
 
-        synchronized (this.gamePhase) {
+        synchronized (this.gamePhaseLock) {
             for (GameObserver o : observers) {
                 o.gamePhaseChange(gameId, gamePhase);
             }
@@ -262,7 +262,7 @@ class GameModel { //protected (Package Private)
             throw new IllegalArgumentException("CurrentPlayer is null but should not be null");}
         if (currentPlayer.compareTo(this.currentPlayer)) {
             return;}
-        synchronized (this.currentPlayer) {
+        synchronized (this.currentPlayerLock) {
             for (GameObserver o : observers) {
                 o.currentPlayerChange(gameId, currentPlayer);
             }
@@ -308,7 +308,7 @@ class GameModel { //protected (Package Private)
     }
 
     public void setLastRaisingPlayer(Player player) {      
-        synchronized (this.lastRaisingPlayer) {
+        synchronized (this.lastRaisingPlayerLock) {
             this.lastRaisingPlayer = player;
         }
     }
@@ -333,8 +333,8 @@ class GameModel { //protected (Package Private)
             return;
         }
         //update points
-        synchronized (playersData) { 
-            synchronized (winner) {
+        synchronized (playersDataLock) { 
+            synchronized (winnerLock) {
                 if (winner.getToken() != null) {
                     int score = getPlayerData(winner).getScore();
                     getPlayerData(winner).setScore(score + potAmount);
@@ -354,7 +354,7 @@ class GameModel { //protected (Package Private)
     }
 
     public void setHost(Player host) {
-        synchronized (host) {
+        synchronized (hostLock) {
 
             
             this.host = host;

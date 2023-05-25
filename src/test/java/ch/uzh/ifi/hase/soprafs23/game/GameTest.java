@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 
@@ -55,7 +56,7 @@ public class GameTest {
     try {
       game.startGame();
     } catch (Exception e) {
-      assertEquals("Some exception occurred in setup", e);
+      fail("Some exception occurred in setup" + e);
     }
     
     
@@ -126,7 +127,7 @@ public class GameTest {
       assertEquals(winner, observer.winner);
       
     } catch (Exception e) {
-      assertEquals("Some exception occurred2", e);
+      fail("Some exception occurred2" + e);
     }
 
     
@@ -175,7 +176,7 @@ public class GameTest {
       assertEquals(GamePhase.END_AFTER_FOURTH_BETTING_ROUND, observer.gamePhase);
 
     } catch (Exception e) {
-      assertEquals("Some exception occurred", e);
+      fail("Some exception occurred" + e);
     }
     assertNotEquals(null, observer.winner.getToken());
   }
@@ -281,7 +282,7 @@ public class GameTest {
       assertEquals(GamePhase.END_ALL_FOLDED, observer.gamePhase);
 
     } catch (Exception e) {
-      assertEquals("Some exception occurred", e);
+      fail("Some exception occurred" + e);
     }
   }
 
@@ -334,7 +335,7 @@ public class GameTest {
       assertEquals(null, observer.videoData.title);
 
     } catch (Exception e) {
-      assertEquals("Some exception occurred", e);
+      fail("Some exception occurred" + e);
     }
   }
 

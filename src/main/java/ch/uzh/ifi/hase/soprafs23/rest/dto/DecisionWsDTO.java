@@ -6,6 +6,11 @@ public class DecisionWsDTO {
     private String decision;
     private Integer raiseAmount;
 
+    public DecisionWsDTO(){}
+    public DecisionWsDTO(String decision, Integer raiseAmount) {
+        this.decision = decision;
+        this.raiseAmount = raiseAmount;
+    }
     public String getDecision() {
         return decision;
     }
