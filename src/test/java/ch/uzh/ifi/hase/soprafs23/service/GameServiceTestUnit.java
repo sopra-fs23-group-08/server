@@ -1,8 +1,9 @@
-package ch.uzh.ifi.hase.soprafs23.controller;
+package ch.uzh.ifi.hase.soprafs23.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ch.uzh.ifi.hase.soprafs23.YTAPIManager.Language;
+import ch.uzh.ifi.hase.soprafs23.controller.GameController;
 import ch.uzh.ifi.hase.soprafs23.entity.Player;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.DecisionWsDTO;
 import ch.uzh.ifi.hase.soprafs23.rest.dto.SettingsWsDTO;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // @WebMvcTest(GameService.class)
-public class GameServiceTest {
+public class GameServiceTestUnit {
 
     // @Autowired
     // private MockMvc mockMvc;
@@ -29,7 +30,7 @@ public class GameServiceTest {
 
     @BeforeEach
     public void setup() {
-        gameService = new GameService(new GameController());
+        gameService = new GameService(new GameController("null"));
         host = new Player("host");
         gameId = gameService.createGame(host);
     }

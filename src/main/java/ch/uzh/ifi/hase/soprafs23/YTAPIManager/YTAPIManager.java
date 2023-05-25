@@ -19,7 +19,7 @@ import ch.uzh.ifi.hase.soprafs23.game.VideoData;
 
 public class YTAPIManager {
     private String query = "LoFi HipHop";
-    private String playlistId = "PL6HF94r1ogByYa2xFAXIE_1Pw-K0AU_Vd";
+    private String playlistId = "PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi";
     private Language language = Language.GERMAN;
     private boolean useYouTubeApi = true;
 
