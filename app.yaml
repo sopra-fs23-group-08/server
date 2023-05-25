@@ -4,10 +4,8 @@
 runtime: java
 
 automatic_scaling:
-     max_num_instances: 1
+  max_num_instances: 1
 
 runtime_config:
-     operating_system: "ubuntu22"
-     runtime_version: "17"
-
-# instance_class: B8
+  operating_system: "ubuntu22"
+  runtime_version: "17"
