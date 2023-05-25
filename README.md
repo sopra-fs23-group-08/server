@@ -54,7 +54,6 @@ This will execute the test suite and provide feedback on the application's funct
 ## Roadmap
 
 - In-game chat 
-- Automatic blind deduction
 - Improved UI; structuring CSS code, replacing material ui components with custom ones
 
 ## Authors and Acknowledgment
