@@ -21,8 +21,6 @@ public class User implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  // TODO add fields for statistics
-
   @Id
   @GeneratedValue
   private Long id;
