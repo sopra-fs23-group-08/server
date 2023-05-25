@@ -441,5 +441,10 @@ public class GameService implements GameObserver{
         gameController.playerStateChanged(gameId, gameData.playersData.values());
     }
 
+    public void noYtApi(String gameId) {
+        var game = getGame(gameId);
+        game.setup.video.useYtApi(false);
+    }
+
 }
 

@@ -78,6 +78,8 @@ public class ExtendedGameControllerTest {
         assertNotEquals(null, gameId);
         errorObserver.clear();
 
+        session.send("/app/games/" + gameId + "/noYtApi", "");
+        Thread.sleep(500);
         session.send("/app/games/" + gameId + "/start", ""); //works
         
         var response = errorObserver.poll(1, TimeUnit.SECONDS);
@@ -95,6 +97,8 @@ public class ExtendedGameControllerTest {
     public void setupTest2() throws InterruptedException, ExecutionException, TimeoutException {
         var handObserver = subscribe(sessionString,
                 String.format("/topic/games/%s/players/%s/hand", gameId, "Host"), String.class);
+        session.send("/app/games/" + gameId + "/noYtApi", "");
+        Thread.sleep(500);
         session.send("/app/games/" + gameId + "/start", "");
 
         var response = handObserver.poll(2, TimeUnit.SECONDS);
@@ -417,6 +421,8 @@ public class ExtendedGameControllerTest {
 
         var handObservers = List.of(pA, pB, pC, pD, pE, pHost);
 
+        session.send("/app/games/" + gameId + "/noYtApi", "");
+        Thread.sleep(500);
         session.send(app + "/start", "");
 
         List<ArrayNode> hands = new ArrayList<>();

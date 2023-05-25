@@ -305,6 +305,8 @@ public class GameControllerTest {
         var gameStateObserver = subscribe(session, "/topic/games/" + gameId + "/state", GameStateWsDTO.class);
         var videoDataObserver = subscribe(session, "/topic/games/" + gameId + "/video", VideoDataWsDTO.class);
         
+        session.send("/app/games/" + gameId + "/noYtApi", "");
+        Thread.sleep(500);
         session.send("/app/games/" + gameId + "/start", "");
         var response = gameStateObserver.poll(10, TimeUnit.SECONDS);
         var response2 = videoDataObserver.poll(10, TimeUnit.SECONDS);
@@ -380,7 +382,7 @@ public class GameControllerTest {
     @Test
     public void basicDecisionPlayerTest() throws InterruptedException {
         var errorObserver = subscribe(session, "/topic/games/" + gameId + "/error", Exception.class);
-        session.send("/app/games/" + gameId + "start", "");
+        session.send("/app/games/" + gameId + "/start", "");
 
         var decision = new DecisionWsDTO();
         decision.setDecision("FOLD"); //change to decision
@@ -410,6 +412,8 @@ public class GameControllerTest {
         var stompSession = createStompSession(new StringMessageConverter());
         var handObserver = subscribe(stompSession,
                 String.format("/topic/games/%s/players/%s/hand", gameId, "Host"), String.class);
+        stompSession.send("/app/games/" + gameId + "/noYtApi", "");
+        Thread.sleep(500);
         stompSession.send("/app/games/" + gameId + "/start", "");
 
         var response = handObserver.poll(2, TimeUnit.SECONDS);

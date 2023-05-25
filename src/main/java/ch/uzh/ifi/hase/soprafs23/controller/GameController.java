@@ -147,12 +147,18 @@ public class GameController {
         try {
             gameService.startGame(gameId);
         } catch (ResponseStatusException e) {
-            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", new Exception(e.getMessage(), e.getCause()));
+            messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error",
+                    new Exception(e.getMessage(), e.getCause()));
         } catch (Exception e) {
             messagingTemplate.convertAndSend("/topic/games/" + gameId + "/error", e);
         }
         return "Game started.";
     }
+
+    @MessageMapping("/games/{gameId}/noYtApi")
+    public void noYtApi(@DestinationVariable String gameId) {
+        gameService.noYtApi(gameId);
+    } 
 
     @MessageMapping("/games/{gameId}/players/{playerToken}/decision")
     public void handlePlayerDecision(@DestinationVariable String gameId,
