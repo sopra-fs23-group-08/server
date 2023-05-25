@@ -300,10 +300,12 @@ public class GameControllerTest {
         settings.setBigBlind(100);
         settings.setSmallBlind(100);
         settings.setInitialBalance(100);
+        
 
         session.send(String.format("/app/games/%s/settings", gameId), settings);
         var response = settingsObsesrver.poll(10, TimeUnit.SECONDS);
         assertNotEquals(null, response);
+        assertEquals(100, response.getBigBlind());
     }
     
     @Test

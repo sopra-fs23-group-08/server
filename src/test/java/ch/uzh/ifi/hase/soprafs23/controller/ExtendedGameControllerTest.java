@@ -189,10 +189,9 @@ public class ExtendedGameControllerTest {
         var handObservers = List.of(pA, pB, pC, pD, pE, pHost);
 
         fillGame();
-        session.send(app + "/noYtApi", "");
-        Thread.sleep(500);
+
         session.send(app + "/start", "");
-        Thread.sleep(10000); // wait for be to fetch comments
+        Thread.sleep(20000); // wait for be to fetch comments
 
         var playerList = getNewest(playerObserver);
         var gameState = getNewest(gameStateObserver);
