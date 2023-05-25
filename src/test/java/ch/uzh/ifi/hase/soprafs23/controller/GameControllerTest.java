@@ -48,6 +48,7 @@ import static org.awaitility.Awaitility.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -70,7 +71,7 @@ public class GameControllerTest {
         session = createStompSession(new MappingJackson2MessageConverter());
         } catch (Exception e) {
             System.err.println(e);
-            assertEquals("Needs running Backend. Probably your not running a local Backend", e);
+            fail("Needs running Backend. Probably your not running a local Backend" + e);
         }
     }
     
@@ -405,6 +406,8 @@ public class GameControllerTest {
         var stateObserver = subscribe(session, String.format("/topic/games/%s/state", gameId),
                 GameStateWsDTO.class);
 
+        session.send(String.format("/app/games/%s/noYtApi", gameId), "");
+        Thread.sleep(500);
         session.send(String.format("/app/games/%s/rounds/next", gameId), "");
 
 

@@ -47,6 +47,7 @@ import static ch.uzh.ifi.hase.soprafs23.controller.GameControllerTest.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @SuppressWarnings({"unchecked", "rawtypes", "unused"})
@@ -74,7 +75,7 @@ public class ExtendedGameControllerTest {
             playerObserver = subscribe(session, topic + "/players", List.class);
         } catch (Exception e) {
             System.err.println(e);
-            assertEquals("Needs running Backend. Probably your not running a local Backend", e);
+            fail("Needs running Backend. Probably your not running a local Backend" + e);
         }
     }
     
@@ -188,6 +189,7 @@ public class ExtendedGameControllerTest {
         var handObservers = List.of(pA, pB, pC, pD, pE, pHost);
 
         fillGame();
+        session.send(app + "/noYtApi", "");
         Thread.sleep(500);
         session.send(app + "/start", "");
         Thread.sleep(10000); // wait for be to fetch comments

@@ -60,6 +60,7 @@ public class YTAPIManager {
         var fastDebug = false;
         
 
+        //NOSONAR
         if (fastDebug && isDebug) {
             return emptyVideoAndHand();
         } else if (!useYouTubeApi) {//gson is really slow in debug mode

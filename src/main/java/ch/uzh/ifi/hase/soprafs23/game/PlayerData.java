@@ -11,8 +11,11 @@ class PlayerData { //protected (Package Private)
     final String name;
     private String gameId;
     private Integer score = 0;
+    private final Object scoreLock = new Object();
     private Integer scorePutIntoPot = 0;
+    private final Object scorePutIntoPotLock = new Object();
     private Hand hand;
+    private final Object decisionLock = new Object();
     private Decision decision = Decision.NOT_DECIDED;
 
     private List<GameObserver> observersPlayer;
@@ -47,14 +50,18 @@ class PlayerData { //protected (Package Private)
     //setters and getter-------------------------------------
 
     public Integer getScorePutIntoPot() {
-        return scorePutIntoPot;
+        synchronized (scorePutIntoPotLock) {
+            return scorePutIntoPot;
+        }
     }
 
-    public synchronized void setScorePutIntoPot(Integer scorePutIntoPot) {
-        for(var o : observersPlayer){
-            o.updatePlayerPotScore(gameId, player, scorePutIntoPot);
+    public void setScorePutIntoPot(Integer scorePutIntoPot) {
+        synchronized (scorePutIntoPotLock) {
+            for(var o : observersPlayer){
+                o.updatePlayerPotScore(gameId, player, scorePutIntoPot);
+            }
+            this.scorePutIntoPot = scorePutIntoPot;
         }
-        this.scorePutIntoPot = scorePutIntoPot;
     }
 
     public Player getPlayer() {
@@ -62,55 +69,59 @@ class PlayerData { //protected (Package Private)
     }
 
 
-    public synchronized void setScore(Integer score) {
-        if (score == null) {
-            return;
+    public void setScore(Integer score) {
+        synchronized (scoreLock) {
+            if (score == null) {
+                return;
+            }
+            if (this.score != null && score.compareTo(this.score) == 0) {
+                return;
+            }
+
+            for (GameObserver o : observersPlayer) {
+                o.playerScoreChanged(gameId, player, score);
+            }
+            this.score = score;
         }
-        if(this.score != null && score.compareTo(this.score) == 0) {
-            return;
-        }
-            
-        for (GameObserver o : observersPlayer) {
-            o.playerScoreChanged(gameId, player, score);
-        }
-        this.score = score;
     }
 
     public int getScore() {
-        return score;
+        synchronized (scoreLock) {
+            return score;
+        }
     }
     
     public synchronized void setNewHand(Hand hand) {
+
         if (hand == this.hand) {
             return;}
-        for (GameObserver o : observersPlayer) {
-            o.newHand(gameId, player, hand);
-        }
-        this.hand = hand;
-    }
+            for (GameObserver o : observersPlayer) {
+                o.newHand(gameId, player, hand);
+            }
+            this.hand = hand;
 
-    // public void setEvaluatedHand(Hand hand) {
-    //     for (GameObserver o : observers) {
-    //         o.handEvaluated(player, hand);
-    //     }
-    //     this.hand = hand;
-    // }
+    }
 
     public Hand getHand() {
         return hand;
     }
 
-    public synchronized void setDecision(Decision d) {
-        if (d == this.decision) {
-            return;}
-        for (GameObserver o : observersPlayer) {
-            o.playerDecisionChanged(gameId, player, d);
+    public void setDecision(Decision d) {
+        synchronized (decisionLock) {
+            
+            if (d == this.decision) {
+                return;}
+                for (GameObserver o : observersPlayer) {
+                    o.playerDecisionChanged(gameId, player, d);
+                }
+                this.decision = d;
         }
-        this.decision = d;
     }
 
     public Decision getDecision() {
-        return decision;
+        synchronized (decisionLock) {
+            return decision;
+        }
     }
     
 }
